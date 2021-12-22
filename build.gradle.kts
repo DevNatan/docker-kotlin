@@ -1,5 +1,6 @@
 plugins {
-    kotlin("multiplatform") version "1.5.10"
+    kotlin("multiplatform") version Versions.kotlin
+    kotlin("plugin.serialization") version Versions.ktxSerializationPlugin
 }
 
 group = "org.katan"
