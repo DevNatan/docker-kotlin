@@ -12,6 +12,7 @@ import org.katan.engine.container.PodmanContainerFactory
 class Podman : Engine {
 
     private val httpClient = HttpClient {
+        bas
         install(JsonFeature)
     }
 

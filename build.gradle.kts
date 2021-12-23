@@ -1,6 +1,9 @@
+// https://youtrack.jetbrains.com/issue/KTIJ-19369
+@Suppress("DSL_SCOPE_VIOLATION")
+
 plugins {
-    kotlin("multiplatform") version Versions.kotlin
-    kotlin("plugin.serialization") version Versions.ktxSerializationPlugin
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 group = "org.katan"
@@ -20,6 +23,7 @@ kotlin {
             useJUnitPlatform()
         }
     }
+
     val hostOs = System.getProperty("os.name")
     val isMingwX64 = hostOs.startsWith("Windows")
     val nativeTarget = when {
@@ -29,7 +33,6 @@ kotlin {
         else -> throw GradleException("Host OS is not supported in Kotlin/Native.")
     }
 
-    
     sourceSets {
         val commonMain by getting
         val commonTest by getting {

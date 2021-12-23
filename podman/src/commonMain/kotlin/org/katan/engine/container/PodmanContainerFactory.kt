@@ -6,7 +6,7 @@ import io.ktor.client.request.*
 /**
  * @see ContainerFactory
  */
-class PodmanContainerFactory(val httpClient: HttpClient) : ContainerFactory {
+class PodmanContainerFactory(private val httpClient: HttpClient) : ContainerFactory {
 
     /**
      * Creates a new container.

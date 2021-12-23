@@ -20,10 +20,8 @@ kotlin {
                 implementation(kotlin("stdlib-common"))
                 implementation(project(":api"))
                 implementation(project(":engine"))
-                implementation(Libs.ktorClientCore)
-                implementation(Libs.ktorClientCio)
-                implementation(Libs.ktorClientSerialization)
-                implementation(Libs.ktxSerializationJson)
+                implementation(libs.bundles.ktor)
+                implementation(libs.bundles.ktx)
             }
         }
 
@@ -31,8 +29,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
-                implementation(Libs.ktorClientMock)
-                implementation(Libs.ktxCoroutinesTest)
+                implementation(libs.ktx.coroutines.test)
             }
         }
     }

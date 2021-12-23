@@ -7,5 +7,6 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class PodmanContainer(
-    val name: String
+    val image: String,
+    val name: String? = null,
 ) : Container
