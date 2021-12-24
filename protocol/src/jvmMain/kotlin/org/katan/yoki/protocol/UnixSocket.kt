@@ -11,25 +11,25 @@ import java.nio.file.Paths
 /**
  * Thread safe non-persistent socket connection, closes the connection after a request.
  */
-public actual open class SingleUnixSocket(path: String) : UnixSocket {
+public actual open class SingleUnixSocket actual constructor(socketPath: String) : UnixSocket {
 
-    private val address: AFUNIXSocketAddress = getSocketAddress(path)
+    private val address: AFUNIXSocketAddress = getSocketAddress(socketPath)
     public actual val socketPath: String get() = address.path
 
-    actual override fun close() {
+    public actual override fun close() {
         // this socket connection is not persistent
     }
 
 }
 
-public actual class PersistentUnixSocket(path: String) : UnixSocket {
+public actual class PersistentUnixSocket actual constructor(socketPath: String) : UnixSocket {
 
-    private val socket: AFUNIXSocket = AFUNIXSocket.connectTo(getSocketAddress(path))
+    private val socket: AFUNIXSocket = AFUNIXSocket.connectTo(getSocketAddress(socketPath))
 
     private val writer: Writer = OutputStreamWriter(socket.outputStream)
     private val reader: BufferedReader = socket.inputStream.bufferedReader()
 
-    actual override fun close() {
+    public actual override fun close() {
         socket.close()
     }
 

@@ -8,20 +8,20 @@ public interface UnixSocket : Closeable {
 
 }
 
-public expect class SingleUnixSocket : UnixSocket {
+public expect class SingleUnixSocket(socketPath: String) : UnixSocket {
 
     public val socketPath: String
 
-    override fun close()
+    public override fun close()
 
 }
 
-public expect class PersistentUnixSocket : UnixSocket {
+public expect class PersistentUnixSocket(socketPath: String) : UnixSocket {
 
     public suspend fun write(value: String)
 
     public suspend fun read(): Flow<String>
 
-    override fun close()
+    public override fun close()
 
 }
