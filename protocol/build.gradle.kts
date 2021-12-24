@@ -2,13 +2,15 @@ plugins {
     kotlin("multiplatform")
 }
 
+group = "org.katan"
+version = "0.1.0"
+
 repositories {
     mavenCentral()
 }
 
 kotlin {
     explicitApi()
-
     jvm()
 
     sourceSets {
@@ -18,10 +20,12 @@ kotlin {
                 implementation(libs.ktx.coroutines.core)
             }
         }
+
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
+                implementation(libs.ktx.coroutines.test)
             }
         }
 
@@ -31,6 +35,10 @@ kotlin {
             dependencies {
                 implementation(libs.bundles.junixsocket)
             }
+        }
+
+        val jvmTest by getting {
+            dependsOn(commonTest)
         }
     }
 }
