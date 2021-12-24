@@ -12,7 +12,7 @@ repositories {
 
 kotlin {
     explicitApi()
-    linuxX64()
+    jvm()
 
     sourceSets {
         val commonMain by getting {
@@ -20,11 +20,20 @@ kotlin {
                 implementation(kotlin("stdlib-common"))
             }
         }
+
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
             }
+        }
+
+        val jvmMain by getting {
+            dependsOn(commonMain)
+        }
+
+        val jvmTest by getting {
+            dependsOn(commonTest)
         }
     }
 }

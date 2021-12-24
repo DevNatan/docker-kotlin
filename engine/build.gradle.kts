@@ -18,6 +18,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("stdlib-common"))
                 implementation(project(":api"))
+                api(project(":protocol"))
             }
         }
         
@@ -26,6 +27,14 @@ kotlin {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
             }
+        }
+
+        val jvmMain by getting {
+            dependsOn(commonMain)
+        }
+
+        val jvmTest by getting {
+            dependsOn(commonTest)
         }
     }
 }
