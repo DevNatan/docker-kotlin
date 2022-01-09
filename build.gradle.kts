@@ -3,12 +3,14 @@
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
-    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.kotlinx.serialization) apply false
 }
-
-group = "org.katan"
-version = "0.1.0"
 
 repositories {
     mavenCentral()
+}
+
+allprojects {
+    group = "me.devnatan.yoki"
+    version = "0.0.1"
 }
