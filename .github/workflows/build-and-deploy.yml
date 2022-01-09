@@ -1,4 +1,4 @@
-name: Build
+name: Build and Deploy
 on:
   push:
     branches: [main]
@@ -6,8 +6,8 @@ on:
     branches: [main]
   workflow_dispatch:
 jobs:
-  build:
-    name: Build
+  build-and-deploy:
+    name: Build and Deploy
     runs-on: ubuntu-18.04
     permissions:
       contents: read
