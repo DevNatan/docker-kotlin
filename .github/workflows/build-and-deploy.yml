@@ -19,14 +19,15 @@ jobs:
         with:
           java-version: '8'
           distribution: 'adopt'
+          server-id: github
           cache: 'gradle'
       - name: Gradle Wrapper Validation
         uses: gradle/wrapper-validation-action@v1.0.4
       - name: Build with Gradle
         uses: burrunan/gradle-cache-action@v1
-        env:
-          GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           arguments: clean publish
           gradle-version: wrapper
+        env:
+          GITHUB_USERNAME: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
