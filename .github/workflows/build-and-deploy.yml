@@ -8,7 +8,7 @@ on:
 jobs:
   build-and-deploy:
     name: Build and Deploy
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
@@ -20,6 +20,8 @@ jobs:
           java-version: '8'
           distribution: 'adopt'
           cache: 'gradle'
+      - name: Gradle Wrapper Validation
+        uses: gradle/wrapper-validation-action@v1.0.4
       - name: Build with Gradle
         uses: burrunan/gradle-cache-action@v1
         env:
