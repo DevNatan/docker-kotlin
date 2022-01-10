@@ -46,6 +46,7 @@ For now only Docker is supported but we plan to add support for other engines in
 Feel free to contribute if you want to make your own engine implementation that is not yet supported.
 
 ### Docker
+Before using, see if the endpoints you are targeting are supported in the Docker [Supported Endpoints](https://github.com/KatanPanel/yoki/blob/main/yoki-engine-docker/README.md) section.
 To add Yoki's Docker engine to your project, add the respective artifact.
 
 #### Maven
