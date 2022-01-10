@@ -28,11 +28,11 @@
 * [ ] Delete unused networks - POST **/networks/prune**
 
 ### Volumes
-* [ ] List volumes - GET **/volumes**
-* [ ] Create a volume - POST **/volumes/create**
-* [ ] Inspect a volume - GET **/volumes/:name**
-* [ ] Remove a volume - DELETE **/volumes/:name**
-* [ ] Delete unused volumes - POST **/volumes/prune**
+* [x] List volumes - GET **/volumes**
+* [x] Create a volume - POST **/volumes/create**
+* [x] Inspect a volume - GET **/volumes/:name**
+* [x] Remove a volume - DELETE **/volumes/:name**
+* [x] Delete unused volumes - POST **/volumes/prune**
 
 ### Exec
 * [ ] Start an exec instance - POST **/exec/:id/start**

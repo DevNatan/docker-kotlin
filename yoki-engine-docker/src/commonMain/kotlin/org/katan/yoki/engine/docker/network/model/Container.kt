@@ -1,4 +1,4 @@
-package org.katan.yoki.engine.docker.model
+package org.katan.yoki.engine.docker.network.model
 
 import kotlinx.serialization.Serializable
 
@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
  * @see Container
  */
 @Serializable
-public data class DockerContainer(
+public data class Container(
     val image: String,
     val name: String? = null,
 )
