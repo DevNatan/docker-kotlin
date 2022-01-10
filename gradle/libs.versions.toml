@@ -5,6 +5,7 @@ ktx-serialization = "1.3.1"
 ktor = "2.0.0-beta-1"
 junixsocket = "2.4.0"
 kotest = "5.0.3"
+ktx-datetime = "0.3.1"
 
 [libraries.ktx-coroutines-core]
 module = "org.jetbrains.kotlinx:kotlinx-coroutines-core"
@@ -77,6 +78,10 @@ version.ref = "kotest"
 [libraries.kotest-runner-junit5-jvm]
 module = "io.kotest:kotest-runner-junit5-jvm"
 version.ref = "kotest"
+
+[libraries.ktx-datetime]
+module = "org.jetbrains.kotlinx:kotlinx-datetime"
+version.ref = "ktx-datetime"
 
 [bundles]
 ktor = ["ktor-client-core", "ktor-client-okhttp", "ktor-client-serialization", "ktor-client-json", "ktor-network", "ktor-client-content-negotiation", "ktor-serialization-kotlinx-json"]
