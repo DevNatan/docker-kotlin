@@ -1,8 +1,8 @@
 [versions]
-kotlin = "1.6.0"
-ktx-coroutines = "1.6.0-RC3"
+kotlin = "1.6.10"
+ktx-coroutines = "1.6.0-native-mt"
 ktx-serialization = "1.3.1"
-ktor = "2.0.0-beta-1"
+ktor = "1.6.7"
 junixsocket = "2.4.0"
 kotest = "5.0.3"
 ktx-datetime = "0.3.1"
@@ -43,10 +43,6 @@ version.ref = "ktor"
 module = "io.ktor:ktor-client-mock"
 version.ref = "ktor"
 
-[libraries.ktor-client-content-negotiation]
-module = "io.ktor:ktor-client-content-negotiation"
-version.ref = "ktor"
-
 [libraries.ktor-serialization-kotlinx-json]
 module = "io.ktor:ktor-serialization-kotlinx-json"
 version.ref = "ktor"
@@ -73,6 +69,10 @@ version.ref = "kotest"
 
 [libraries.kotest-assertions-core]
 module = "io.kotest:kotest-assertions-core"
+version.ref = "kotest"
+
+[libraries.kotest-assertions-ktor]
+module = "io.kotest:kotest-assertions-ktor"
 version.ref = "kotest"
 
 [libraries.kotest-runner-junit5-jvm]
