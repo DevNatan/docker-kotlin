@@ -4,7 +4,7 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import org.katan.yoki.engine.docker.*
-import org.katan.yoki.engine.docker.model.*
+import org.katan.yoki.engine.docker.network.model.*
 
 /**
  * @see ContainerResource
