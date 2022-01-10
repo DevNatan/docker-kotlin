@@ -42,6 +42,7 @@ kotlin {
                 implementation(project(":yoki-protocol"))
                 implementation(libs.bundles.ktor)
                 implementation(libs.bundles.ktx)
+                implementation(libs.ktx.datetime)
             }
         }
 
