@@ -1,4 +1,15 @@
-package org.katan.yoki.api.external.properties
+package org.katan.yoki.engine.docker.model
+
+import kotlinx.serialization.Serializable
+
+/**
+ * @see Container
+ */
+@Serializable
+public data class DockerContainer(
+    val image: String,
+    val name: String? = null,
+)
 
 /**
  * The name the container will be given. If no name is provided, one will be randomly generated.

@@ -1,8 +1,16 @@
 package org.katan.yoki.api
 
-public interface Yoki<C : YokiConfig> {
+public interface Yoki {
 
-    public val config: C
+    public val config: YokiConfig
+
+    public val engine: YokiEngine
+
+}
+
+public interface YokiEngine : Closeable {
+
+
 
 }
 

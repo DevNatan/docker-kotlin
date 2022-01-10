@@ -1,21 +1,17 @@
 package org.katan.yoki.engine.docker
 
-import io.ktor.client.*
-import me.devnatan.yoki.api.*
-import org.katan.api.*
-import org.katan.yoki.*
 import org.katan.yoki.api.*
+import org.katan.yoki.engine.docker.resource.container.*
 
-public class Docker : Yoki<Docker> {
+public class Docker(
+    override val config: DockerConfig,
+    override val engine: DockerEngine
+) : Yoki {
 
-    private val httpClient = createHttpClient(this)
-    override val engine: Docker get() = this
-    override val config: YokiConfig = DefaultDockerConfig
-
-    override fun close() {
-        httpClient.close()
-    }
+    internal val container: ContainerResource = ContainerResource(engine)
 
 }
 
-public expect fun createHttpClient(yoki: Yoki<*>): HttpClient
+public inline fun Yoki(config: DockerConfigBuilder.() -> Unit): Yoki {
+    return Docker(DockerConfigBuilder().apply(config).build(), DockerEngine())
+}

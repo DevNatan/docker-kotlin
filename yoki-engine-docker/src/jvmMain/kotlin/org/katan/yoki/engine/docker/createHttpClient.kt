@@ -4,16 +4,10 @@ import io.ktor.client.*
 import io.ktor.client.engine.okhttp.*
 import io.ktor.client.plugins.*
 import io.ktor.serialization.kotlinx.json.*
-import me.devnatan.yoki.api.*
-import me.devnatan.yoki.protocol.*
 import okhttp3.*
-import org.katan.api.*
-import org.katan.yoki.*
 import org.katan.yoki.api.*
 import org.katan.yoki.protocol.*
-import java.io.*
 import java.net.*
-import javax.net.*
 
 private class SocketDns : Dns {
 
@@ -28,7 +22,8 @@ private class SocketDns : Dns {
 
 }
 
-public actual fun createHttpClient(yoki: Yoki<*, *>): HttpClient {
+
+public actual fun createHttpClient(engine: YokiEngine): HttpClient {
     return HttpClient(OkHttp) {
         engine {
             config {
