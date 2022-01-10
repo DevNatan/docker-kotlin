@@ -53,6 +53,7 @@ kotlin {
                 implementation(libs.ktx.coroutines.test)
                 implementation(libs.ktor.client.mock)
                 implementation(libs.bundles.kotest)
+                implementation(libs.kotest.assertions.ktor)
             }
         }
 
