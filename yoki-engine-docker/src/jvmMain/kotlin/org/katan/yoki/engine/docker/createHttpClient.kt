@@ -1,9 +1,9 @@
 package org.katan.yoki.engine.docker
 
 import io.ktor.client.*
-import io.ktor.client.engine.okhttp.*
-import io.ktor.client.plugins.*
-import io.ktor.serialization.kotlinx.json.*
+import io.ktor.client.engine.okhttp.OkHttp
+import io.ktor.client.features.*
+import io.ktor.client.features.json.*
 import okhttp3.*
 import org.katan.yoki.api.*
 import org.katan.yoki.protocol.*
@@ -38,7 +38,7 @@ public actual fun createHttpClient(engine: YokiEngine): HttpClient {
             }
         }
 
-        install(ContentNegotiation) { json() }
+        install(JsonFeature)
         install(UserAgent) { agent = "Yoki/0.0.1" }
     }
 }

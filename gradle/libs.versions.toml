@@ -73,7 +73,7 @@ module = "io.kotest:kotest-assertions-core"
 version.ref = "kotest"
 
 [libraries.kotest-assertions-ktor]
-module = "io.kotest:kotest-assertions-ktor"
+module = "io.kotest.extensions:kotest-assertions-ktor"
 version.ref = "kotest-assertions-ktor"
 
 [libraries.kotest-runner-junit5-jvm]
