@@ -2,11 +2,8 @@ package org.katan.yoki.engine.docker.resource.volume
 
 import io.ktor.client.call.*
 import io.ktor.client.request.*
-import io.ktor.http.*
 import org.katan.yoki.engine.docker.DockerEngine
-import org.katan.yoki.engine.docker.network.model.volume.*
-import org.katan.yoki.engine.docker.network.response.volume.VolumeListResponse
-import org.katan.yoki.engine.docker.network.response.volume.VolumePruneResponse
+import org.katan.yoki.engine.docker.model.volume.*
 
 /**
  * @see VolumeResource
