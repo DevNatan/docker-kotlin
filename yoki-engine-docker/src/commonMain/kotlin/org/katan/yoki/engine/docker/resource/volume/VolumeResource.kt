@@ -1,8 +1,7 @@
 package org.katan.yoki.engine.docker.resource.volume
 
-import io.ktor.client.call.*
 import io.ktor.client.request.*
-import org.katan.yoki.engine.docker.DockerEngine
+import org.katan.yoki.engine.docker.*
 import org.katan.yoki.engine.docker.model.volume.*
 
 /**
@@ -26,7 +25,7 @@ public class VolumeResource(
             options["filter"]?.let {
                 parameter(VolumeFilters, options["filter"])
             }
-        }.body()
+        }
     }
 
     /**
@@ -41,8 +40,8 @@ public class VolumeResource(
         require(VolumeDefinition in options) { "Volume Definition is required" }
 
         return engine.httpClient.post("/volumes/create") {
-            setBody(options[VolumeDefinition])
-        }.body()
+            body = options[VolumeDefinition]!!
+        }
     }
 
     /**
@@ -55,8 +54,7 @@ public class VolumeResource(
      */
     public suspend fun inspect(options: Map<String, Any>): Volume {
         require(VolumeName in options) { "Volume Name is required" }
-
-        return engine.httpClient.get("/volumes/${options[VolumeName]}").body()
+        return engine.httpClient.get("/volumes/${options[VolumeName]}")
     }
 
     /**
@@ -69,7 +67,7 @@ public class VolumeResource(
     public suspend fun remove(options: Map<String, Any>) {
         require(VolumeName in options) { "Volume Name is required" }
 
-        engine.httpClient.delete("/volumes/${options[VolumeName]}") {
+        engine.httpClient.delete<Unit>("/volumes/${options[VolumeName]}") {
             options[VolumeForceDelete]?.let {
                 parameter(VolumeForceDelete, it)
             }
@@ -89,7 +87,7 @@ public class VolumeResource(
             options[VolumeFilters]?.let {
                 parameter(VolumeFilters, options["filter"])
             }
-        }.body()
+        }
     }
 
 }

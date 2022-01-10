@@ -1,6 +1,7 @@
 package org.katan.yoki.engine.docker.resource.network
 
 import io.ktor.client.call.*
+import io.ktor.client.features.*
 import io.ktor.client.request.*
 import kotlinx.serialization.*
 import kotlinx.serialization.json.*
@@ -35,7 +36,7 @@ public class NetworkResource(private val engine: DockerEngine) {
     public suspend fun list(filters: NetworksFilters? = null): List<Network> {
         return engine.httpClient.get("/networks") {
             filters?.let { parameter(LIST_FILTERS, Json.Default.encodeToString(it)) }
-        }.body()
+        }
     }
 
     /**
@@ -50,7 +51,7 @@ public class NetworkResource(private val engine: DockerEngine) {
         return engine.httpClient.get("/networks/$id") {
             options?.verbose?.let { parameter(INSPECT_VERBOSE, it) }
             options?.scope?.let { parameter(INSPECT_SCOPE, it) }
-        }.body()
+        }
     }
 
     /**
@@ -60,7 +61,7 @@ public class NetworkResource(private val engine: DockerEngine) {
      * @see <a href="https://docs.docker.com/engine/api/latest/#operation/NetworkDelete">NetworkDelete</a>
      */
     public suspend fun remove(id: String) {
-        engine.httpClient.delete("/networks/$id")
+        engine.httpClient.delete<Unit>("/networks/$id")
     }
 
     /**
@@ -73,8 +74,8 @@ public class NetworkResource(private val engine: DockerEngine) {
         checkNotNull(config.name) { "Network name is required and cannot be null" }
 
         return engine.httpClient.post("/networks/create") {
-            setBody(config)
-        }.body()
+            body = config
+        }
     }
 
     /**
@@ -86,7 +87,7 @@ public class NetworkResource(private val engine: DockerEngine) {
      */
     @JvmOverloads
     public suspend fun prune(options: NetworkPrune? = null) {
-        engine.httpClient.post("/networks/prune") {
+        engine.httpClient.post<Unit>("/networks/prune") {
             parameter(PRUNE_FILTERS, options)
         }
     }
@@ -99,8 +100,8 @@ public class NetworkResource(private val engine: DockerEngine) {
      * @see <a href="https://docs.docker.com/engine/api/v1.41/#operation/NetworkConnect">NetworkConnect</a>
      */
     public suspend fun connectContainer(id: String, container: String) {
-        engine.httpClient.post("/networks/$id/connect") {
-            setBody(mapOf(CONNECT_CONTAINER_TO_NETWORK_CONTAINER to container))
+        engine.httpClient.post<Unit>("/networks/$id/connect") {
+            body = mapOf(CONNECT_CONTAINER_TO_NETWORK_CONTAINER to container)
         }
     }
 
@@ -112,8 +113,8 @@ public class NetworkResource(private val engine: DockerEngine) {
      * @see <a href="https://docs.docker.com/engine/api/latest/#operation/NetworkDisconnect">NetworkDisconnect</a>
      */
     public suspend fun disconnectContainer(id: String, container: String) {
-        engine.httpClient.post("/networks/$id/disconnect") {
-            setBody(mapOf(DISCONNECT_CONTAINER_TO_NETWORK_CONTAINER to container))
+        engine.httpClient.post<Unit>("/networks/$id/disconnect") {
+            body = mapOf(DISCONNECT_CONTAINER_TO_NETWORK_CONTAINER to container)
         }
     }
 
