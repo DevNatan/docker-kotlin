@@ -8,11 +8,7 @@ public interface Yoki {
 
 }
 
-public interface YokiEngine : Closeable {
-
-
-
-}
+public interface YokiEngine : Closeable
 
 public interface YokiConfig {
 
@@ -20,12 +16,12 @@ public interface YokiConfig {
 
 }
 
-public abstract class YokiConfigBuilder<C : YokiConfig> : YokiConfig {
+public abstract class YokiConfigBuilder : YokiConfig {
 
     public override var apiVersion: String = ""
-    public var engine: C? = null
+    public var engine: YokiConfig? = null
 
-    public abstract fun build(): C
+    public abstract fun build(): YokiConfig
 
 }
 

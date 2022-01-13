@@ -1,9 +1,6 @@
 package org.katan.yoki.protocol
 
 import kotlinx.coroutines.flow.Flow
-import me.devnatan.yoki.api.*
-import org.katan.api.*
-import org.katan.yoki.*
 import org.katan.yoki.api.*
 
 public interface UnixSocket : Closeable {

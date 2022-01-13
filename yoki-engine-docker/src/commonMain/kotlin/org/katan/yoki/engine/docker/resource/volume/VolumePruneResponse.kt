@@ -1,8 +1,8 @@
-package org.katan.yoki.engine.docker.network.response.volume
+package org.katan.yoki.engine.docker.resource.volume
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import org.katan.yoki.engine.docker.network.model.volume.Volume
+import org.katan.yoki.engine.docker.model.volume.Volume
 
 @Serializable
 public data class VolumePruneResponse(
