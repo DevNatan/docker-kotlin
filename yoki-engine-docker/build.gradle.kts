@@ -38,7 +38,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-common"))
-                implementation(project(":yoki-api"))
+                implementation(project(":yoki-engine"))
                 implementation(project(":yoki-protocol"))
                 implementation(libs.bundles.ktor)
                 implementation(libs.bundles.ktx)
