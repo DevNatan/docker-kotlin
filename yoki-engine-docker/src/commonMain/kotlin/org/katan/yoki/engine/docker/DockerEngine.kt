@@ -3,9 +3,9 @@ package org.katan.yoki.engine.docker
 import io.ktor.client.*
 import org.katan.yoki.api.*
 
-public class DockerEngine : YokiEngine {
-
-    internal val httpClient: HttpClient = createHttpClient(this)
+public class DockerEngine(
+    internal val httpClient: HttpClient
+) : YokiEngine {
 
     public override fun close() {
         httpClient.close()
@@ -13,8 +13,4 @@ public class DockerEngine : YokiEngine {
 
 }
 
-public expect fun createHttpClient(engine: YokiEngine): HttpClient
-
-public fun test() {
-
-}
+public expect fun createHttpClient(client: Yoki): HttpClient
