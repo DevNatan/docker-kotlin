@@ -1,3 +1,6 @@
 package org.katan.yoki.engine
 
-public interface YokiEngineConfig
+import org.katan.yoki.*
+
+@YokiDsl
+public open class YokiEngineConfig

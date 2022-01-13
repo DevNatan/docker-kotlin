@@ -1,6 +1,6 @@
 package org.katan.yoki.engine
 
-import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.*
 
 public interface YokiEngine : CoroutineScope {
 

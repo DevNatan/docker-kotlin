@@ -1,19 +1,19 @@
 package org.katan.yoki.engine.docker
 
-import org.katan.yoki.api.*
+import org.katan.yoki.*
+import org.katan.yoki.engine.*
 import org.katan.yoki.engine.docker.resource.container.*
 import org.katan.yoki.engine.docker.resource.network.*
+import org.katan.yoki.engine.docker.resource.volume.*
 
-public class Docker(
-    override val config: DockerConfig
-) : Yoki {
+public object Docker : YokiEngineFactory<DockerEngineConfig> {
 
-    override val engine: DockerEngine = DockerEngine(createHttpClient(this))
-    internal val container: ContainerResource = ContainerResource(engine)
-    internal val network: NetworkResource = NetworkResource(engine)
+    override fun create(block: DockerEngineConfig.() -> Unit): YokiEngine {
+        return DockerEngine(DockerEngineConfig().apply(block))
+    }
 
 }
 
-public inline fun Yoki(config: DockerConfigBuilder.() -> Unit = {}): Yoki {
-    return Docker(DockerConfigBuilder().apply(config).build() as DockerConfig)
-}
+public val Yoki.container: ContainerResource get() = (engine as DockerEngine).containerResource
+public val Yoki.network: NetworkResource get() = (engine as DockerEngine).networkResource
+public val Yoki.volume: VolumeResource get() = (engine as DockerEngine).volumeResource
