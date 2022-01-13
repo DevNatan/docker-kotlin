@@ -49,12 +49,12 @@ commonMain {
 ### Initializing the Client
 You can add your preferred engine to your project's classpath and use Yoki's agnostic startup function which will automatically identify which engine to use.
 ```kotlin
-public val yoki = Yoki()
+public val yoki = Yoki(Docker)
 ```
 
-Specify client or client configurations by expanding the function.
+Specify client configurations by expanding the function.
 ```kotlin
-public val yoki = Yoki {
+public val yoki = Yoki(Docker) {
     // ...
 }
 ```
