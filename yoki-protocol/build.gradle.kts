@@ -15,7 +15,6 @@ kotlin {
             dependencies {
                 implementation(kotlin("stdlib-common"))
                 implementation(libs.ktx.coroutines.core)
-                implementation(project(":yoki-api"))
             }
         }
 
