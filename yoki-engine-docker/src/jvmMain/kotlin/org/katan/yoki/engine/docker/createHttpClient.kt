@@ -23,7 +23,7 @@ private class SocketDns : Dns {
 }
 
 
-public actual fun createHttpClient(engine: YokiEngine): HttpClient {
+public actual fun createHttpClient(client: Yoki): HttpClient {
     return HttpClient(OkHttp) {
         engine {
             config {
