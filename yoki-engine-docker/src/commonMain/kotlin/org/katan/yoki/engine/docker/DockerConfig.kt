@@ -1,17 +1,21 @@
 package org.katan.yoki.engine.docker
 
-import org.katan.yoki.api.*
+import org.katan.yoki.engine.*
 
-public class DockerConfigBuilder : YokiConfigBuilder() {
+/**
+ * Docker engine configuration
+ *
+ * @see DockerEngine
+ */
+public class DockerEngineConfig : YokiEngineConfig() {
 
-    override var apiVersion: String = "1.41"
-    private var socketPath: String = "unix://docker.sock"
+    /**
+     * The version of the Docker API that will be used during communication.
+     *
+     * @see <a href="https://docs.docker.com/engine/api/#versioned-api-and-sdk">Versioned API and SDK</a>
+     */
+    public var apiVersion: String = "1.41"
 
-    override fun build(): YokiConfig = DockerConfig(apiVersion, socketPath)
+    public var socketPath: String = "unix:///var/run/docker.sock"
 
 }
-
-public class DockerConfig internal constructor(
-    apiVersion: String,
-    public val socketPath: String,
-) : BaseYokiConfig(apiVersion)

@@ -5,7 +5,7 @@ import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.features.*
 import io.ktor.client.features.json.*
 import okhttp3.*
-import org.katan.yoki.api.*
+import org.katan.yoki.engine.*
 import org.katan.yoki.protocol.*
 import java.net.*
 
@@ -23,7 +23,7 @@ private class SocketDns : Dns {
 }
 
 
-public actual fun createHttpClient(client: Yoki): HttpClient {
+public actual fun createHttpClient(engine: YokiEngine): HttpClient {
     return HttpClient(OkHttp) {
         engine {
             config {

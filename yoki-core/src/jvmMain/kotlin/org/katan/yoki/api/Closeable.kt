@@ -1,3 +1,3 @@
-package org.katan.yoki.api
+package org.katan.yoki
 
 public actual typealias Closeable = AutoCloseable

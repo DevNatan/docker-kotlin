@@ -8,7 +8,7 @@ Yoki is a multiplatform container engine API client.
   * [Project Setup](#project-setup)
   * [Initializing the Client](#initializing-the-client)
   * [Supported Engines](#supported-engines)
-* [Java support](#java-support)
+* [Java integration](#java-integration)
 * [Contributing](#contributing)
 * [License](#license)
 
@@ -49,12 +49,12 @@ commonMain {
 ### Initializing the Client
 You can add your preferred engine to your project's classpath and use Yoki's agnostic startup function which will automatically identify which engine to use.
 ```kotlin
-public val yoki = Yoki()
+public val yoki = Yoki(Docker)
 ```
 
-Specify client or client configurations by expanding the function.
+Specify client configurations by expanding the function.
 ```kotlin
-public val yoki = Yoki {
+public val yoki = Yoki(Docker) {
     // ...
 }
 ```
@@ -62,6 +62,15 @@ public val yoki = Yoki {
 ### Supported Engines
 For now only Docker is supported but we plan to add support for other engines in the future.
 Feel free to contribute if you want to make your own engine implementation that is not yet supported.
+
+You can configure a engine in the client initialization step.
+```kotlin
+public val yoki = Yoki(Docker) {
+    engine { 
+        // DockerEngineConfig
+    }
+}
+```
 
 #### Docker
 Before using, see if the endpoints you are targeting are supported in the Docker [Supported Endpoints](https://github.com/KatanPanel/yoki/blob/main/yoki-engine-docker/README.md) section.
@@ -92,11 +101,9 @@ commonMain {
 }
 ```
 
-### Java support
+## Java integration
 You can safely use Yoki in your Java project, we work to maintain decent compatibility with Java projects as the project is expected to be used in non-Kotlin projects too.
 If you want to use Yoki in your Java project, use the artifact suffixed with `-jvm`.
-
-Yoki supports version 8 of Java.
 
 ## Contributing
 Like all other Katan projects, Yoki is open-source and we lovingly accept any contribution to the project. 

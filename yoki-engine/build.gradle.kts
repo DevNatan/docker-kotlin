@@ -14,7 +14,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-common"))
-                implementation(project(":yoki-api"))
+                api(project(":yoki-core"))
                 api(project(":yoki-protocol"))
             }
         }
