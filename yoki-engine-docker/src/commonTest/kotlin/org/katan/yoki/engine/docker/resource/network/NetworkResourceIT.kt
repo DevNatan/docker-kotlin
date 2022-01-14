@@ -28,7 +28,7 @@ class NetworkResourceIT {
         assertTrue(client.networks.list().any { it.name == network.id })
 
         client.networks.remove(network.id)
-        assertFalse(client.networks.list().any { it.name == network.id })
+        assertTrue(client.networks.list().none { it.name == network.id })
     }
 
     @Test
