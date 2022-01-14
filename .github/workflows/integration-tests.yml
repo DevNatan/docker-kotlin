@@ -29,6 +29,7 @@ jobs:
           server-id: github
           cache: 'gradle'
       - name: Run Gradle Check
+        uses: burrunan/gradle-cache-action@v1
         with:
           arguments: check
           gradle-version: wrapper
