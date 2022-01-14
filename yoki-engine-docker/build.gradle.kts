@@ -4,7 +4,6 @@
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
-    alias(libs.plugins.kotest)
     application
 }
 
@@ -25,16 +24,35 @@ kotlin {
 
                     dependsOn(build)
                     manifest {
-                        attributes["Main-Class"] = "me.devnatan.yoki.impl.docker.MainKt"
+                        attributes["Main-Class"] = "org.katan.yoki.engine.docker.MainKt"
                     }
                     from(configurations.getByName("runtimeClasspath").map { if (it.isDirectory) it else zipTree(it) }, main.output.classesDirs)
                     archiveBaseName.set("${project.name}-fat")
                 }
             }
         }
+        testRuns["test"].executionTask.configure {
+            useJUnitPlatform()
+            filter {
+                isFailOnNoMatchingTests = false
+            }
+            testLogging {
+                showExceptions = true
+                showStandardStreams = true
+                events = setOf(
+                    org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED,
+                    org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
+                )
+                exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+            }
+        }
     }
 
     sourceSets {
+        all {
+            languageSettings.optIn("kotlin.RequiresOptIn")
+        }
+
         val commonMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-common"))
@@ -52,8 +70,6 @@ kotlin {
                 implementation(kotlin("test-annotations-common"))
                 implementation(libs.ktx.coroutines.test)
                 implementation(libs.ktor.client.mock)
-                implementation(libs.bundles.kotest)
-                implementation(libs.kotest.assertions.ktor)
             }
         }
 
@@ -67,26 +83,8 @@ kotlin {
         val jvmTest by getting {
             dependsOn(commonTest)
             dependencies {
-                implementation(libs.kotest.runner.junit5.jvm)
+                implementation(kotlin("test-junit5"))
             }
-        }
-    }
-}
-
-tasks {
-    named<Test>("jvmTest") {
-        useJUnitPlatform()
-        filter {
-            isFailOnNoMatchingTests = false
-        }
-        testLogging {
-            showExceptions = true
-            showStandardStreams = true
-            events = setOf(
-                org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED,
-                org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
-            )
-            exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
         }
     }
 }

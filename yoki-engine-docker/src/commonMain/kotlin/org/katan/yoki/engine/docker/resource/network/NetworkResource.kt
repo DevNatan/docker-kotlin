@@ -16,6 +16,8 @@ public class NetworkResource(private val engine: DockerEngine) {
 
     private companion object {
 
+        const val BASE_PATH = "/networks"
+
         const val LIST_FILTERS = "filters"
         const val INSPECT_VERBOSE = "verbose"
         const val INSPECT_SCOPE = "scope"
@@ -33,7 +35,7 @@ public class NetworkResource(private val engine: DockerEngine) {
      */
     @JvmOverloads
     public suspend fun list(filters: NetworksFilters? = null): List<Network> {
-        return engine.httpClient.get("/networks") {
+        return engine.httpClient.get(BASE_PATH) {
             filters?.let { parameter(LIST_FILTERS, Json.Default.encodeToString(it)) }
         }
     }
@@ -47,7 +49,7 @@ public class NetworkResource(private val engine: DockerEngine) {
      */
     @JvmOverloads
     public suspend fun inspect(id: String, options: NetworkInspect? = null): Network {
-        return engine.httpClient.get("/networks/$id") {
+        return engine.httpClient.get("$BASE_PATH/$id") {
             options?.verbose?.let { parameter(INSPECT_VERBOSE, it) }
             options?.scope?.let { parameter(INSPECT_SCOPE, it) }
         }
@@ -60,7 +62,7 @@ public class NetworkResource(private val engine: DockerEngine) {
      * @see <a href="https://docs.docker.com/engine/api/latest/#operation/NetworkDelete">NetworkDelete</a>
      */
     public suspend fun remove(id: String) {
-        engine.httpClient.delete<Unit>("/networks/$id")
+        engine.httpClient.delete<Unit>("$BASE_PATH/$id")
     }
 
     /**
@@ -72,7 +74,7 @@ public class NetworkResource(private val engine: DockerEngine) {
     public suspend fun create(config: NetworkConfig): Network {
         checkNotNull(config.name) { "Network name is required and cannot be null" }
 
-        return engine.httpClient.post("/networks/create") {
+        return engine.httpClient.post("$BASE_PATH/create") {
             body = config
         }
     }
@@ -86,7 +88,7 @@ public class NetworkResource(private val engine: DockerEngine) {
      */
     @JvmOverloads
     public suspend fun prune(options: NetworkPrune? = null) {
-        engine.httpClient.post<Unit>("/networks/prune") {
+        engine.httpClient.post<Unit>("$BASE_PATH/prune") {
             parameter(PRUNE_FILTERS, options)
         }
     }
@@ -99,7 +101,7 @@ public class NetworkResource(private val engine: DockerEngine) {
      * @see <a href="https://docs.docker.com/engine/api/v1.41/#operation/NetworkConnect">NetworkConnect</a>
      */
     public suspend fun connectContainer(id: String, container: String) {
-        engine.httpClient.post<Unit>("/networks/$id/connect") {
+        engine.httpClient.post<Unit>("$BASE_PATH/$id/connect") {
             body = mapOf(CONNECT_CONTAINER_TO_NETWORK_CONTAINER to container)
         }
     }
@@ -112,11 +114,21 @@ public class NetworkResource(private val engine: DockerEngine) {
      * @see <a href="https://docs.docker.com/engine/api/latest/#operation/NetworkDisconnect">NetworkDisconnect</a>
      */
     public suspend fun disconnectContainer(id: String, container: String) {
-        engine.httpClient.post<Unit>("/networks/$id/disconnect") {
+        engine.httpClient.post<Unit>("$BASE_PATH/$id/disconnect") {
             body = mapOf(DISCONNECT_CONTAINER_TO_NETWORK_CONTAINER to container)
         }
     }
 
+}
+
+/**
+ * Creates a new network.
+ *
+ * @param config The network configuration.
+ * @see <a href="https://docs.docker.com/engine/api/latest/#operation/NetworkCreate">NetworkCreate</a>
+ */
+public suspend inline fun NetworkResource.create(config: NetworkConfig.() -> Unit): Network {
+    return create(NetworkConfig().apply(config))
 }
 
 /**
@@ -216,16 +228,16 @@ public data class NetworkInspect(
  */
 @Serializable
 public data class NetworkConfig(
-    public var name: String? = null,
-    public var checkDuplicate: Boolean? = null,
-    public var driver: String? = null,
-    public var isInternal: Boolean? = null,
-    public var isAttachable: Boolean? = null,
-    public var ingress: Boolean? = null,
-    public var ipam: IPAM? = null,
-    public var enableIpv6: Boolean? = null,
-    public var options: Map<String, String>? = null,
-    public var labels: Map<String, String>? = null
+    @SerialName("Name") public var name: String? = null,
+    @SerialName("CheckDuplicate") public var checkDuplicate: Boolean? = null,
+    @SerialName("Driver") public var driver: String? = null,
+    @SerialName("Internal") public var isInternal: Boolean? = null,
+    @SerialName("Attachable") public var isAttachable: Boolean? = null,
+    @SerialName("Ingress") public var ingress: Boolean? = null,
+    @SerialName("IPAM") public var ipam: IPAM? = null,
+    @SerialName("EnableIPV6") public var enableIpv6: Boolean? = null,
+    @SerialName("Options") public var options: Map<String, String>? = null,
+    @SerialName("Labels") public var labels: Map<String, String>? = null
 )
 
 /**
