@@ -58,19 +58,26 @@ private fun getSocketAddress(path: String): AFUNIXSocketAddress {
     return AFUNIXSocketAddress.of(socketPath)
 }
 
-private class JvmUnixSocket : Socket() {
+internal class JvmUnixSocket : Socket() {
 
     private lateinit var socket: AFUNIXSocket
 
     @Throws(IOException::class)
     override fun connect(endpoint: SocketAddress, timeout: Int) {
+        println("endpoint: $endpoint")
+
         val address = (endpoint as InetSocketAddress).address
+        println("address: $address")
+
         val socketPath = decodeHostname(address)
-        println("connect via '$socketPath'...")
+        println("connect via: $socketPath")
+
         val socketFile = File(socketPath)
+        println("socket file: $socketFile")
+        
         socket = AFUNIXSocket.newInstance()
-        socket.connect(AFUNIXSocketAddress(socketFile), timeout)
-        socket.setSoTimeout(timeout)
+        socket.connect(AFUNIXSocketAddress.of(socketFile), timeout)
+        socket.soTimeout = timeout
     }
 
     @Throws(IOException::class)

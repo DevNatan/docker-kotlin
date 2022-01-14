@@ -4,9 +4,8 @@ ktx-coroutines = "1.6.0-native-mt"
 ktx-serialization = "1.3.1"
 ktor = "1.6.7"
 junixsocket = "2.4.0"
-kotest = "5.0.3"
-kotest-assertions-ktor = "1.0.3"
 ktx-datetime = "0.3.1"
+junit = "5.6.2"
 
 [libraries.ktx-coroutines-core]
 module = "org.jetbrains.kotlinx:kotlinx-coroutines-core"
@@ -60,37 +59,19 @@ version.ref = "junixsocket"
 module = "com.kohlschutter.junixsocket:junixsocket-native-common"
 version.ref = "junixsocket"
 
-[libraries.kotest-framework-engine]
-module = "io.kotest:kotest-framework-engine"
-version.ref = "kotest"
-
-[libraries.kotest-framework-datatest]
-module = "io.kotest:kotest-framework-datatest"
-version.ref = "kotest"
-
-[libraries.kotest-assertions-core]
-module = "io.kotest:kotest-assertions-core"
-version.ref = "kotest"
-
-[libraries.kotest-assertions-ktor]
-module = "io.kotest.extensions:kotest-assertions-ktor"
-version.ref = "kotest-assertions-ktor"
-
-[libraries.kotest-runner-junit5-jvm]
-module = "io.kotest:kotest-runner-junit5-jvm"
-version.ref = "kotest"
-
 [libraries.ktx-datetime]
 module = "org.jetbrains.kotlinx:kotlinx-datetime"
 version.ref = "ktx-datetime"
+
+[libraries.junit]
+module = "org.junit.jupiter:junit-jupiter-engine"
+version.ref = "junit"
 
 [bundles]
 ktor = ["ktor-client-core", "ktor-client-okhttp", "ktor-client-serialization", "ktor-client-json", "ktor-network"]
 ktx = ["ktx-coroutines-core", "ktx-serialization-core", "ktx-serialization-json"]
 junixsocket = ["junixsocket-common", "junixsocket-native-common"]
-kotest = ["kotest-framework-engine", "kotest-framework-datatest", "kotest-assertions-core"]
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-kotest = { id = "io.kotest.multiplatform", version.ref = "kotest" }

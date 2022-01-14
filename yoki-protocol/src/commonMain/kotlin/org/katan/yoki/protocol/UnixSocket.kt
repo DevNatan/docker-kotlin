@@ -1,11 +1,10 @@
 package org.katan.yoki.protocol
 
 import kotlinx.coroutines.flow.Flow
-import org.katan.yoki.api.*
 
-public interface UnixSocket : Closeable {
+public interface UnixSocket {
 
-    public override fun close()
+    public fun close()
 
 }
 
