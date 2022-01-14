@@ -19,6 +19,9 @@ class NetworkResourceIT {
         val createdNetwork = client.networks.create { name = NETWORK_NAME }
         val inspectedNetwork = client.networks.inspect(createdNetwork.id)
         assertEquals(createdNetwork.id, inspectedNetwork.id)
+
+        // cleanup
+        client.networks.remove(inspectedNetwork.id)
     }
 
     @Test
