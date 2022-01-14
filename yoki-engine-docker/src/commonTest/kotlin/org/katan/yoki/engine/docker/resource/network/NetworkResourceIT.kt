@@ -16,10 +16,10 @@ class NetworkResourceIT {
     @Test
     fun `create network`() = runTest {
         val client = createYoki()
-        val createdNetwork = client.network.create { name = NETWORK_NAME }
+        val createdNetwork = client.networks.create { name = NETWORK_NAME }
         assertNotNull(createdNetwork)
 
-        val inspectedNetwork = client.network.inspect(createdNetwork.id)
+        val inspectedNetwork = client.networks.inspect(createdNetwork.id)
         assertNotNull(inspectedNetwork)
         assertEquals(createdNetwork, inspectedNetwork)
     }
@@ -27,28 +27,28 @@ class NetworkResourceIT {
     @Test
     fun `remove network`() = runTest {
         val client = createYoki()
-        val network = client.network.create { name = NETWORK_NAME }
+        val network = client.networks.create { name = NETWORK_NAME }
         assertNotNull(network)
-        assertFalse(client.network.list().isEmpty())
+        assertFalse(client.networks.list().isEmpty())
 
-        client.network.remove(network.id)
-        assertTrue(client.network.list().isEmpty())
+        client.networks.remove(network.id)
+        assertTrue(client.networks.list().isEmpty())
     }
 
     @Test
     fun `list networks`() = runTest {
         val client = createYoki()
-        assertTrue(client.network.list().isEmpty())
+        assertTrue(client.networks.list().isEmpty())
 
-        val network = client.network.create {
+        val network = client.networks.create {
             name = NETWORK_NAME
         }
         assertNotNull(network)
-        assertFalse(client.network.list().isEmpty())
+        assertFalse(client.networks.list().isEmpty())
 
         // cleanup for other tests
-        client.network.remove(network.id)
-        assertTrue(client.network.list().isEmpty())
+        client.networks.remove(network.id)
+        assertTrue(client.networks.list().isEmpty())
     }
 
     @Test
@@ -56,14 +56,14 @@ class NetworkResourceIT {
         val client = createYoki()
         val count = 5
         repeat(count) {
-            client.network.create { name = "$NETWORK_NAME-$it" }
+            client.networks.create { name = "$NETWORK_NAME-$it" }
         }
 
         // check for >= because docker can have default networks defined
-        assertTrue(client.network.list().size >= count)
+        assertTrue(client.networks.list().size >= count)
 
-        client.network.prune()
-        assertTrue(client.network.list().isEmpty())
+        client.networks.prune()
+        assertTrue(client.networks.list().isEmpty())
     }
 
 }
