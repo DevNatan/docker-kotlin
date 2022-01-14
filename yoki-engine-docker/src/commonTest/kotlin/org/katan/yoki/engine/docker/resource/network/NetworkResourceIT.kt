@@ -28,10 +28,10 @@ class NetworkResourceIT {
     fun `remove network`() = runTest {
         val client = createYoki()
         val network = client.networks.create { name = NETWORK_NAME }
-        assertTrue(client.networks.list().any { it.name == network.id })
+        assertTrue(client.networks.list().any { it.id == network.id })
 
         client.networks.remove(network.id)
-        assertTrue(client.networks.list().none { it.name == network.id })
+        assertTrue(client.networks.list().none { it.id == network.id })
     }
 
     @Test
