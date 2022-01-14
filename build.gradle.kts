@@ -11,7 +11,7 @@ repositories {
     mavenCentral()
 }
 
-allprojects {
+subprojects {
     apply(plugin = "org.danilopianini.publish-on-central")
 
     group = "org.katan"
@@ -35,11 +35,5 @@ allprojects {
 
         if (project.version.toString().endsWith("-SNAPSHOT"))
             mavenCentralSnapshotsRepository()
-    }
-
-    signing {
-        val signingKey: String? by project
-        val signingPassword: String? by project
-        useInMemoryPgpKeys(signingKey, signingPassword)
     }
 }

@@ -17,53 +17,45 @@ class NetworkResourceIT {
     fun `create network`() = runTest {
         val client = createYoki()
         val createdNetwork = client.networks.create { name = NETWORK_NAME }
-        assertNotNull(createdNetwork)
-
         val inspectedNetwork = client.networks.inspect(createdNetwork.id)
-        assertNotNull(inspectedNetwork)
-        assertEquals(createdNetwork, inspectedNetwork)
+        assertEquals(createdNetwork.id, inspectedNetwork.id)
+
+        // cleanup
+        client.networks.remove(inspectedNetwork.id)
     }
 
     @Test
     fun `remove network`() = runTest {
         val client = createYoki()
         val network = client.networks.create { name = NETWORK_NAME }
-        assertNotNull(network)
-        assertFalse(client.networks.list().isEmpty())
+        assertTrue(client.networks.list().any { it.id == network.id })
 
         client.networks.remove(network.id)
-        assertTrue(client.networks.list().isEmpty())
+        assertTrue(client.networks.list().none { it.id == network.id })
     }
 
     @Test
     fun `list networks`() = runTest {
         val client = createYoki()
-        assertTrue(client.networks.list().isEmpty())
 
-        val network = client.networks.create {
-            name = NETWORK_NAME
-        }
-        assertNotNull(network)
+        // the list of networks will never be empty because Docker has predefined networks that cannot be removed
         assertFalse(client.networks.list().isEmpty())
-
-        // cleanup for other tests
-        client.networks.remove(network.id)
-        assertTrue(client.networks.list().isEmpty())
     }
 
     @Test
     fun `prune networks`() = runTest {
         val client = createYoki()
-        val count = 5
-        repeat(count) {
+        val oldCount = client.networks.list().size
+        val newCount = 5
+        repeat(newCount) {
             client.networks.create { name = "$NETWORK_NAME-$it" }
         }
 
         // check for >= because docker can have default networks defined
-        assertTrue(client.networks.list().size >= count)
+        assertEquals(client.networks.list().size, oldCount + newCount)
 
         client.networks.prune()
-        assertTrue(client.networks.list().isEmpty())
+        assertEquals(client.networks.list().size, oldCount)
     }
 
 }

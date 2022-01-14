@@ -19,7 +19,6 @@ public class ContainerResource(private val engine: DockerEngine) {
         require(ContainerImage in options) { "Container Image is required" }
 
         return engine.httpClient.post<Map<String, Any>>("/containers/create") {
-            contentType(ContentType.Application.Json)
             body = options
         }["Id"] as String
     }
