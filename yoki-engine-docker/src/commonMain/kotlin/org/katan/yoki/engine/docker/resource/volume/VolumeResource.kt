@@ -1,6 +1,8 @@
 package org.katan.yoki.engine.docker.resource.volume
 
 import io.ktor.client.request.*
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import org.katan.yoki.engine.docker.*
 import org.katan.yoki.engine.docker.model.volume.*
 
@@ -91,3 +93,15 @@ public class VolumeResource(
     }
 
 }
+
+@Serializable
+public data class VolumeListResponse(
+    @SerialName("Volumes") public val volumes: Collection<Volume>,
+    @SerialName("Warnings") public val warnings: Collection<String>
+)
+
+@Serializable
+public data class VolumePruneResponse(
+    @SerialName("VolumesDeleted") public val volumesDeleted: Collection<String>,
+    @SerialName("SpaceReclaimed") public val spaceReclaimed: Long
+)
