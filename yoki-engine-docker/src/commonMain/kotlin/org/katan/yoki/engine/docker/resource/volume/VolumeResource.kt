@@ -216,7 +216,7 @@ public data class VolumePrune(
 @Serializable
 public data class VolumeListResponse(
     @SerialName("Volumes") public val volumes: Collection<Volume>,
-    @SerialName("Warnings") public val warnings: Collection<String>
+    @SerialName("Warnings") public val warnings: Collection<String>?
 )
 
 /**
@@ -228,6 +228,6 @@ public data class VolumeListResponse(
  */
 @Serializable
 public data class VolumePruneResponse(
-    @SerialName("VolumesDeleted") public val volumesDeleted: Collection<String>,
+    @SerialName("VolumesDeleted") public val volumesDeleted: Collection<String>?,
     @SerialName("SpaceReclaimed") public val spaceReclaimed: Long
 )
