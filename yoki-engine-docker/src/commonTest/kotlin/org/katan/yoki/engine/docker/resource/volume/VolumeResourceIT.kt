@@ -14,7 +14,7 @@ class VolumeResourceIT {
     }
 
     @Test
-    fun `create network`() = runTest {
+    fun `create volume`() = runTest {
         val client = createYoki()
         val createdVolume = client.volumes.create { name = VOLUME_NAME }
         val inspectedVolume = client.volumes.inspect(createdVolume.name)
@@ -25,7 +25,7 @@ class VolumeResourceIT {
     }
 
     @Test
-    fun `remove network`() = runTest {
+    fun `remove volume`() = runTest {
         val client = createYoki()
         val network = client.volumes.create { name = VOLUME_NAME }
         assertTrue(client.volumes.list().volumes.any { it.name == network.name })
@@ -35,7 +35,7 @@ class VolumeResourceIT {
     }
 
     @Test
-    fun `list networks`() = runTest {
+    fun `list volume`() = runTest {
         val client = createYoki()
 
         // the list of networks will never be empty because Docker has predefined networks that cannot be removed
@@ -43,7 +43,7 @@ class VolumeResourceIT {
     }
 
     @Test
-    fun `prune networks`() = runTest {
+    fun `prune volume`() = runTest {
         val client = createYoki()
         val oldCount = client.volumes.list().volumes.size
         val newCount = 5
