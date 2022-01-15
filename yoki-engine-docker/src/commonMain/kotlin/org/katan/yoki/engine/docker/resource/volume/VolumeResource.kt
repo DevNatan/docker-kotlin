@@ -7,6 +7,9 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.katan.yoki.engine.docker.*
 import org.katan.yoki.engine.docker.model.volume.*
+import org.katan.yoki.engine.docker.resource.network.NetworkResource
+import org.katan.yoki.engine.docker.resource.network.create
+import org.katan.yoki.engine.docker.resource.network.list
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -29,7 +32,7 @@ public class VolumeResource(
     /**
      * List volumes
      *
-     * @param options see VolumeList for options.
+     * @param filters the filters to use while listing.
      * @return VolumeListResponse
      *
      * @see <a href="https://docs.docker.com/engine/api/v1.41/#operation/VolumeList">VolumeList</a>
@@ -44,7 +47,7 @@ public class VolumeResource(
     /**
      * Create a volume
      *
-     * @param options see VolumeCreate for options.
+     * @param config the volume schema to be used while creating.
      * @return Volume
      *
      * @see <a href="https://docs.docker.com/engine/api/v1.41/#operation/VolumeCreate">VolumeCreate</a>
@@ -59,7 +62,7 @@ public class VolumeResource(
     /**
      * Inspect a volume
      *
-     * @param options see VolumeInspect for options.
+     * @param id the id of the inspected volume.
      * @return Volume
      *
      * @see <a href="https://docs.docker.com/engine/api/v1.41/#operation/VolumeInspect">VolumeInspect</a>
@@ -72,7 +75,7 @@ public class VolumeResource(
     /**
      * Remove a volume
      *
-     * @param options see VolumeDelete for options.
+     * @param options the options to be used while removing.
      *
      * @see <a href="https://docs.docker.com/engine/api/v1.41/#operation/VolumeDelete">VolumeDelete</a>
      */
@@ -86,7 +89,7 @@ public class VolumeResource(
     /**
      * Delete unused volumes
      *
-     * @param options see VolumePrune for options.
+     * @param options he options to be used while pruning.
      * @return VolumePruneResponse
      *
      * @see <a href="https://docs.docker.com/engine/api/v1.41/#operation/VolumePrune">VolumePrune</a>
@@ -100,22 +103,63 @@ public class VolumeResource(
 
 }
 
+/**
+ * List volumes
+ *
+ * @param filters the filters to use while listing.
+ * @return VolumeListResponse
+ *
+ * @see <a href="https://docs.docker.com/engine/api/v1.41/#operation/VolumeList">VolumeList</a>
+ */
 public suspend inline fun VolumeResource.list(filters: VolumeFilters.() -> Unit): VolumeListResponse {
     return list(VolumeFilters().apply(filters))
 }
 
+/**
+ * Create a volume
+ *
+ * @param config the volume schema to be used while creating.
+ * @return Volume
+ *
+ * @see <a href="https://docs.docker.com/engine/api/v1.41/#operation/VolumeCreate">VolumeCreate</a>
+ */
 public suspend inline fun VolumeResource.create(config: VolumeConfig.() -> Unit): Volume {
     return create(VolumeConfig().apply(config))
 }
 
+/**
+ * Remove a volume
+ *
+ * @param options the options to be used while removing.
+ *
+ * @see <a href="https://docs.docker.com/engine/api/v1.41/#operation/VolumeDelete">VolumeDelete</a>
+ */
 public suspend inline fun VolumeResource.remove(id: String, options: VolumeRemove.() -> Unit) {
     remove(id, VolumeRemove().apply(options))
 }
 
+/**
+ * Delete unused volumes
+ *
+ * @param options he options to be used while pruning.
+ * @return VolumePruneResponse
+ *
+ * @see <a href="https://docs.docker.com/engine/api/v1.41/#operation/VolumePrune">VolumePrune</a>
+ */
 public suspend inline fun VolumeResource.prune(options: VolumePrune.() -> Unit): VolumePruneResponse {
     return prune(VolumePrune().apply(options))
 }
 
+/**
+ * Volume list filters.
+ *
+ * @property dangling When set to `true`, returns all volumes that are not in use by a container.
+ * When set to `false`, only volumes that are in use by one or more containers are returned.
+ * @property driver Matches a network's driver.
+ * @property label matches based on the presence of a label alone or a label and a value.
+ * @property name Matches all or part of a network name.
+ * @see VolumeResource.list
+ */
 @Serializable
 public data class VolumeFilters(
     public var dangling: Boolean = false,
@@ -124,31 +168,64 @@ public data class VolumeFilters(
     public var name: String? = null,
 )
 
+/**
+ * Volume configuration.
+ *
+ * @property name The volume's name.
+ * @property driver Name of the volume driver to use.
+ * @property driverOpts A mapping of driver options and values.
+ * @property labels User-defined key/value metadata.
+ * @see VolumeResource.create
+ */
+@Serializable
 public data class VolumeConfig(
     @SerialName("Name") public var name: String? = null,
     @SerialName("Driver") public var driver: String? = null,
-    @SerialName("Scope") public var scope: String? = null,
-    @SerialName("Mountpoint") public var mountPoint: String? = null,
-    @SerialName("CreatedAt") public var createdAt: String? = null,
-    @SerialName("Labels") public var labels: Map<String, String>? = null,
-    @SerialName("Options") public var options: Map<String, String>? = null
+    @SerialName("DriverOpts") public var driverOpts: Map<String, String>? = null,
+    @SerialName("Labels") public var labels: Map<String, String>? = null
 )
 
+/**
+ * Volume remove options.
+ *
+ * @property force When set to `true` volumes will be removed even if they are in use by containers.
+ * @see VolumeResource.remove
+ */
 public data class VolumeRemove(
     var force: Boolean = false
 )
 
+/**
+ * Volume prune options.
+ *
+ * @property label Matches volumes that use a label.
+ * @see VolumeResource.remove
+ */
 @Serializable
 public data class VolumePrune(
     public var label: String? = null
 )
 
+/**
+ * Volume list response.
+ *
+ * @property volumes List of volumes.
+ * @property warnings Warnings that ocurred when fetching the list of volumes.
+ * @see VolumeResource.list
+ */
 @Serializable
 public data class VolumeListResponse(
     @SerialName("Volumes") public val volumes: Collection<Volume>,
     @SerialName("Warnings") public val warnings: Collection<String>
 )
 
+/**
+ * Volume prune response.
+ *
+ * @property volumesDeleted List of deleted volumes ids.
+ * @property spaceReclaimed Disk space reclaimed.
+ * @see VolumeResource.prune
+ */
 @Serializable
 public data class VolumePruneResponse(
     @SerialName("VolumesDeleted") public val volumesDeleted: Collection<String>,
