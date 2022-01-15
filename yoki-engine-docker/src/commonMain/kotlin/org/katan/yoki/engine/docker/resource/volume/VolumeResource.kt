@@ -96,7 +96,7 @@ public class VolumeResource(
      */
     @JvmOverloads
     public suspend fun prune(options: VolumePrune? = null): VolumePruneResponse {
-        return engine.httpClient.delete("$BASE_PATH/prune") {
+        return engine.httpClient.post("$BASE_PATH/prune") {
             options?.let { parameter(PRUNE_FILTERS, options) }
         }
     }
