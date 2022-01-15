@@ -10,6 +10,6 @@ public data class Volume(
     @SerialName("Scope") public val scope: String,
     @SerialName("Mountpoint") public val mountPoint: String,
     @SerialName("CreatedAt") public val createdAt: String?,
-    @SerialName("Labels") public val labels: Map<String, String>,
-    @SerialName("Options") public val options: Map<String, String>
+    @SerialName("Labels") public val labels: Map<String, String>?,
+    @SerialName("Options") public val options: Map<String, String>?
 )
