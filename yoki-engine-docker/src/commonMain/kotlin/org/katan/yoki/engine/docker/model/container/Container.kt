@@ -1,11 +1,30 @@
 package org.katan.yoki.engine.docker.model.container
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import org.katan.yoki.engine.docker.model.HostConfig
+import org.katan.yoki.engine.docker.model.Port
 
+/**
+ * @author João Victor Gomides Cruz
+ */
 @Serializable
 public data class Container(
-    val image: String,
-    val name: String? = null,
+    @SerialName("Id") val id: String,
+    @SerialName("Names") val names: List<String>,
+    @SerialName("Image") val image: String,
+    @SerialName("ImageID") val imageId: String,
+    @SerialName("Command") val command: String,
+    @SerialName("Created") val created: String?,
+    @SerialName("State") val state: String?,
+    @SerialName("Status") val status: String?,
+    @SerialName("Ports") val ports: List<Port>?,
+    @SerialName("Labels") val labels: Map<String, String>?,
+    @SerialName("SizeRw") val sizeRw: Long,
+    @SerialName("SizeRootFs") val sizeRootFs: Long,
+    @SerialName("HostConfig") val hostConfig: HostConfig?,
+    @SerialName("NetworkSettings") val networkSettings: NetworkSettings?,
+    @SerialName("Mounts") val mounts: List<Mount>?,
 )
 
 /**
@@ -17,11 +36,6 @@ public const val ContainerName: String = "name"
  * The namespace the container will be placed in.
  */
 public const val ContainerNamespace: String = "namespace"
-
-/**
- * ID of the pod the container will join.
- */
-public const val ContainerPod: String = "pod"
 
 /**
  * The image the container will be based on.
