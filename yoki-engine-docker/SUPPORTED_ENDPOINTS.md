@@ -1,6 +1,33 @@
 # Yoki for Docker
 
 ## Supported Endpoints
+### Containers (0/25)
+* [ ] List containers - GET **/containers/json**
+* [ ] Create a container - POST **/containers/create**
+* [ ] Inspect a container - GET **/containers/:id/json**
+* [ ] List processes running inside a container - **GET /containers/:id/top**
+* [ ] Get container logs - **GET /containers/:id/logs**
+* [ ] Get changes on container's filesystem - **GET /containers/:id/changes**
+* [ ] Export a container - **GET /containers/:id/export**
+* [ ] Get container stats based on resource usage - **GET /containers/:id/stats**
+* [ ] Resize a container TTY - **POST /containers/:id/resize**
+* [ ] Start a container - **POST /containers/:id/start**
+* [ ] Stop a container - **POST /containers/:id/stop**
+* [ ] Restart a container - **POST /containers/:id/restart**
+* [ ] Kill a container - **POST /containers/:id/kill**
+* [ ] Update a container - **POST /containers/:id/update**
+* [ ] Rename a container - **POST /containers/:id/rename**
+* [ ] Pause a container - **POST /containers/:id/pause**
+* [ ] Unpause a container - **POST /containers/:id/unpause**
+* [ ] Attach to a container - **POST /containers/:id/attach**
+* [ ] Attach to a container via a websocket - **POST /containers/:id/attach/ws**
+* [ ] Wait for a container - **POST /containers/:id/wait**
+* [ ] Remove a container - **DELETE /containers/:id**
+* [ ] Get information about files in a container - **HEAD /containers/:id/archive**
+* [ ] Get an archive of a filesystem resource in a container - **GET /containers/:id/archive**
+* [ ] Extract an archive of files or folders to a directory in a container - **PUT /containers/:id/archive**
+* [ ] Delete stopped containers - **PUT /containers/prune**
+
 ### Images (0/15)
 * [ ] List images - GET **/images/json**
 * [ ] Build an image - POST **/build**
