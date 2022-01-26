@@ -4,7 +4,7 @@
 plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.kotlinx.serialization) apply false
-    id("org.danilopianini.publish-on-central") version "0.7.11"
+    id("org.danilopianini.publish-on-central") version "0.7.12"
 }
 
 repositories {
