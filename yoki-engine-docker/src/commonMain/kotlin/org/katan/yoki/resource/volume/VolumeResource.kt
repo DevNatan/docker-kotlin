@@ -1,20 +1,14 @@
 package org.katan.yoki.resource.volume
 
 import io.ktor.client.request.*
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
-import org.katan.yoki.engine.docker.*
-import org.katan.yoki.engine.docker.model.volume.*
-import org.katan.yoki.engine.docker.resource.network.NetworkResource
-import org.katan.yoki.engine.docker.resource.network.create
-import org.katan.yoki.engine.docker.resource.network.list
-import kotlin.jvm.JvmOverloads
+import kotlinx.serialization.*
+import kotlinx.serialization.json.*
+import org.katan.yoki.*
+import org.katan.yoki.model.volume.*
+import kotlin.jvm.*
 
 /**
  * @see VolumeResource
- * @author João Victor Gomides Cruz (devwckd)
  */
 public class VolumeResource(
     private val engine: DockerEngine

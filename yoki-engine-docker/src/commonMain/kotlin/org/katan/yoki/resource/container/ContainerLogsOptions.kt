@@ -1,0 +1,45 @@
+package org.katan.yoki.resource.container
+
+import kotlinx.datetime.*
+import kotlinx.serialization.*
+
+/**
+ * Container logs endpoint options.
+ *
+ * @property follow Should keep connection after returning logs.
+ * @property stdout Returns logs from `stdout`.
+ * @property stderr Return logs from `stderr`.
+ * @property since Only return logs since this time, as a UNIX timestamp.
+ * @property until Only return logs before this time, as a UNIX timestamp.
+ * @property showTimestamps Should add timestamps to every log line.
+ * @property tail Only return this number of log lines from the end of the logs. Set to `null` to output all log lines.
+ * @property splitLineBreaks Should split lines separated by line break into multiple frames.
+ * @see ContainerResource.logs
+ */
+@Serializable
+public class ContainerLogsOptions(
+    public var follow: Boolean? = null,
+    public var stdout: Boolean? = null,
+    public var stderr: Boolean? = null,
+    public var since: Long? = null,
+    public var until: Long? = null,
+    @SerialName("timestamps") public var showTimestamps: Boolean? = null,
+    public var tail: Int? = null,
+    public var splitLineBreaks: Boolean = false
+)
+
+/**
+ * Only return logs since this time, as a UNIX timestamp.
+ * @param since The timestamp.
+ */
+public fun ContainerLogsOptions.since(since: Instant) {
+    this.since = since.toEpochMilliseconds()
+}
+
+/**
+ * Only return logs before this time, as a UNIX timestamp.
+ * @param until The timestamp.
+ */
+public fun ContainerLogsOptions.until(until: Instant) {
+    this.until = until.toEpochMilliseconds()
+}

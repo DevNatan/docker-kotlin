@@ -3,14 +3,14 @@ package org.katan.yoki.resource.network
 import io.ktor.client.request.*
 import kotlinx.serialization.*
 import kotlinx.serialization.json.*
-import org.katan.yoki.engine.docker.*
-import org.katan.yoki.engine.docker.model.network.*
-import org.katan.yoki.engine.docker.util.*
+import org.katan.yoki.*
+import org.katan.yoki.model.network.*
+import org.katan.yoki.util.*
 import kotlin.jvm.*
 
 /**
- * Networks are user-defined networks that containers can be attached to.
- * See the [networking documentation](https://docs.docker.com/network/) for more information.
+ * Networks are user-defined networks that containers can be attached to. See the [networking documentation](https://docs.docker.com/network/)
+ * for more information.
  */
 public class NetworkResource(private val engine: DockerEngine) {
 
@@ -202,7 +202,7 @@ public data class NetworkInspect(
 ) {
 
     init {
-        scope?.let { checkScope(it) }
+        scope?.let { requireNetworkScope(it) }
     }
 
 }

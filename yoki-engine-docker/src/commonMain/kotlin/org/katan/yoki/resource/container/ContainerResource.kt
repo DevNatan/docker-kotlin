@@ -5,12 +5,10 @@ import io.ktor.client.statement.*
 import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.*
-import kotlinx.datetime.*
 import kotlinx.serialization.*
-import org.katan.yoki.engine.docker.*
-import org.katan.yoki.engine.docker.model.*
-import org.katan.yoki.engine.docker.model.container.*
-import org.katan.yoki.util.*
+import org.katan.yoki.*
+import org.katan.yoki.model.*
+import org.katan.yoki.model.container.*
 import kotlin.time.*
 
 /**
@@ -105,7 +103,7 @@ public class ContainerResource(private val engine: DockerEngine) {
 
     public suspend fun remove(id: String, options: ContainerRemoveOptions) {
         engine.httpClient.delete<Unit>("$BASE_PATH/$id") {
-            parameter("v", options.removeAonymousVolumes)
+            parameter("v", options.removeAnonymousVolumes)
             parameter("force", options.force)
             parameter("link", options.unlink)
         }
@@ -221,20 +219,20 @@ public class ContainerResource(private val engine: DockerEngine) {
 
 }
 
-public suspend inline fun ContainerResource.create(block: ContainerCreateOptions.() -> Unit): String {
-    return create(ContainerCreateOptions().apply(block))
-}
-
-public suspend inline fun ContainerResource.list(block: ContainerListOptions.() -> Unit): List<Container> {
-    return list(ContainerListOptions().apply(block))
+public suspend inline fun ContainerResource.restart(id: String, timeout: Duration) {
+    return restart(id, timeout.inWholeSeconds.toInt())
 }
 
 public suspend inline fun ContainerResource.stop(id: String, timeout: Duration) {
     return stop(id, timeout.inWholeSeconds.toInt())
 }
 
-public suspend inline fun ContainerResource.restart(id: String, timeout: Duration) {
-    return restart(id, timeout.inWholeSeconds.toInt())
+public suspend inline fun ContainerResource.list(block: ContainerListOptions.() -> Unit): List<Container> {
+    return list(ContainerListOptions().apply(block))
+}
+
+public suspend inline fun ContainerResource.create(block: ContainerCreateOptions.() -> Unit): String {
+    return create(ContainerCreateOptions().apply(block))
 }
 
 public suspend inline fun ContainerResource.remove(id: String, block: ContainerRemoveOptions.() -> Unit) {
@@ -247,142 +245,4 @@ public inline fun ContainerResource.logs(id: String, block: ContainerLogsOptions
 
 public suspend inline fun ContainerResource.prune(block: ContainerPruneFilters.() -> Unit): ContainerPruneResult {
     return prune(ContainerPruneFilters().apply(block))
-}
-
-@Serializable
-public data class ContainerRemoveOptions(
-    public var removeAonymousVolumes: Boolean = false,
-    public var force: Boolean = false,
-    public var unlink: Boolean = false
-)
-
-@Serializable
-public data class ContainerListOptions(
-    public var all: Boolean? = null,
-    public var limit: Int? = null,
-    public var size: Boolean? = null,
-    public var filters: Filters? = null
-) {
-
-    @Serializable
-    public data class Filters(
-        public var ancestor: String? = null,
-        public var before: String? = null,
-        public var expose: String? = null, // TODO ExposedPort type
-        public var exited: Int? = null,
-        public var health: String? = null,
-        public var id: String? = null,
-        public var isolation: String? = null,
-        @SerialName("is-task") public var isTask: Boolean? = null,
-        public var label: String? = null,
-        public var name: String? = null,
-        public var network: String? = null,
-        public var publish: String? = null, // TODO ExposedPort type
-        public var since: String? = null,
-        public var status: String? = null,
-        public var volume: String? = null
-    )
-
-    public companion object {
-
-        public const val Ancestor: String = "ancestor"
-        public const val Before: String = "before"
-        public const val Expose: String = "expose"
-    }
-}
-
-public data class ContainerCreateOptions(
-    @SerialName("Hostname") public var hostName: String? = null,
-    @SerialName("User") public var user: String? = null,
-    @SerialName("Domainname") public var domainName: String? = null,
-    @SerialName("AttachStdin") public var attachStdin: Boolean? = null,
-    @SerialName("AttachStdout") public var attachStdout: Boolean? = null,
-    @SerialName("AttachStderr") public var attachStderr: Boolean? = null,
-    @SerialName("OpenStdin") public var openStdin: Boolean? = null,
-    @SerialName("StdinOnce") public var onceStdin: Boolean? = null,
-    // TODO exposed ports
-    @SerialName("Tty") public var tty: Boolean = false,
-    @SerialName("Env") public var env: Map<String, String>? = null,
-    @SerialName("Cmd") public var command: String? = null,
-    @SerialName("ArgsEscaped") public var escapedArgs: Boolean? = null,
-    @SerialName("Image") public var image: String? = null,
-    @SerialName("WorkingDir") public var workingDirectory: String? = null,
-    @SerialName("Entrypoint") public var entrypoint: List<String>? = null,
-    @SerialName("NetworkDisabled") public var disableNetwork: Boolean? = null,
-    @SerialName("MacAddress") public var macAddress: String? = null,
-    @SerialName("StopSignal") public var stopSignal: String? = null,
-    @SerialName("StopTimeout") public var stopTimeout: Int? = null,
-    @SerialName("Shell") public var shell: List<String>? = null,
-    @SerialName("Labels") public var labels: Map<String, String>? = null,
-    @SerialName("OnBuild") public var buildMetadata: List<String>? = null,
-    @SerialName("ExposedPorts") public var exposedPorts: Map<String, @Contextual Any>? = null
-) : Options()
-
-public fun ContainerCreateOptions.stopTimeout(stopTimeout: Duration) {
-    this.stopTimeout = stopTimeout.inWholeSeconds.toInt()
-}
-
-
-/**
- * Container logs endpoint options.
- *
- * @property follow Should keep connection after returning logs.
- * @property stdout Returns logs from `stdout`.
- * @property stderr Return logs from `stderr`.
- * @property since Only return logs since this time, as a UNIX timestamp.
- * @property until Only return logs before this time, as a UNIX timestamp.
- * @property showTimestamps Should add timestamps to every log line.
- * @property tail Only return this number of log lines from the end of the logs. Set to `null` to output all log lines.
- * @property splitLineBreaks Should split lines separated by line break into multiple frames.
- * @see ContainerResource.logs
- */
-@Serializable
-public class ContainerLogsOptions(
-    public var follow: Boolean? = null,
-    public var stdout: Boolean? = null,
-    public var stderr: Boolean? = null,
-    public var since: Long? = null,
-    public var until: Long? = null,
-    @SerialName("timestamps") public var showTimestamps: Boolean? = null,
-    public var tail: Int? = null,
-    public var splitLineBreaks: Boolean = false
-)
-
-/**
- * Only return logs since this time, as a UNIX timestamp.
- * @param since The timestamp.
- */
-public fun ContainerLogsOptions.since(since: Instant) {
-    this.since = since.toEpochMilliseconds()
-}
-
-/**
- * Only return logs before this time, as a UNIX timestamp.
- * @param until The timestamp.
- */
-public fun ContainerLogsOptions.until(until: Instant) {
-    this.until = until.toEpochMilliseconds()
-}
-
-@Serializable
-public data class ContainerPruneFilters(
-    public var until: String? = null,
-    public var label: String? = null
-)
-
-@Serializable
-public data class ContainerPruneResult internal constructor(
-    @SerialName("ContainersDeleted") public val deletedContainers: List<String>,
-    @SerialName("SpaceReclaimed") public val reclaimedSpace: Long
-)
-
-@Serializable
-public data class ContainerWaitResult internal constructor(
-    @SerialName("StatusCode") public val statusCode: Int,
-    @SerialName("Error") public val error: Error? = null
-) {
-
-    @Serializable
-    public data class Error(val message: String)
-
 }
