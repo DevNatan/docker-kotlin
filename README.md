@@ -8,7 +8,6 @@ Yoki is a multiplatform container engine API client.
   * [Project Setup](#project-setup)
   * [Initializing the Client](#initializing-the-client)
   * [Supported Engines](#supported-engines)
-* [Java integration](#java-integration)
 * [Contributing](#contributing)
 * [License](#license)
 
@@ -35,15 +34,6 @@ commonMain {
         implementation("org.katan:yoki-core:0.0.1")
     }
 }
-```
-
-#### Maven
-```xml
-<dependency>
-    <groupId>org.katan</groupId>
-    <artifactId>yoki-core-jvm</artifactId>
-    <version>0.0.1</version>
-</dependency>
 ```
 
 ### Initializing the Client
@@ -76,16 +66,6 @@ public val yoki = Yoki(Docker) {
 Before using, see if the endpoints you are targeting are supported in the Docker [Supported Endpoints](https://github.com/KatanPanel/yoki/blob/main/yoki-engine-docker/README.md) section.
 To add Yoki's Docker engine to your project, add the respective artifact.
 
-##### Maven
-```xml
-<dependency>
-    <groupId>org.katan</groupId>
-    <artifactId>yoki-engine-docker-jvm</artifactId>
-    <version>0.0.1</version>
-</dependency>
-```
-
-##### Gradle
 ```groovy
 dependencies {
     implementation("org.katan:yoki-engine-docker-jvm:0.0.1")
@@ -100,10 +80,6 @@ commonMain {
     }
 }
 ```
-
-## Java integration
-You can safely use Yoki in your Java project, we work to maintain decent compatibility with Java projects as the project is expected to be used in non-Kotlin projects too.
-If you want to use Yoki in your Java project, use the artifact suffixed with `-jvm`.
 
 ## Contributing
 Like all other Katan projects, Yoki is open-source and we lovingly accept any contribution to the project. 
