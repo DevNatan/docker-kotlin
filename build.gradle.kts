@@ -4,7 +4,8 @@
 plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.kotlinx.serialization) apply false
-    id("org.danilopianini.publish-on-central") version "0.7.11"
+    id("org.danilopianini.publish-on-central") version "0.7.11" // TODO version catalog
+    id("org.jmailen.kotlinter") version "3.8.0" // TODO version catalog
 }
 
 repositories {
@@ -13,6 +14,7 @@ repositories {
 
 subprojects {
     apply(plugin = "org.danilopianini.publish-on-central")
+    apply(plugin = "org.jmailen.kotlinter")
 
     group = "org.katan"
     version = "0.0.1"
@@ -36,4 +38,8 @@ subprojects {
         if (project.version.toString().endsWith("-SNAPSHOT"))
             mavenCentralSnapshotsRepository()
     }
+}
+
+tasks.check {
+    dependsOn("installKotlinterPrePushHook")
 }

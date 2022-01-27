@@ -1,4 +1,4 @@
-package org.katan.yoki.engine.docker.model.container
+package org.katan.yoki.model.container
 
 import kotlinx.serialization.Serializable
 

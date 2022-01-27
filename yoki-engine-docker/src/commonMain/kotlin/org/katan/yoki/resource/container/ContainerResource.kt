@@ -1,0 +1,388 @@
+package org.katan.yoki.resource.container
+
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.utils.io.*
+import io.ktor.utils.io.core.*
+import kotlinx.coroutines.flow.*
+import kotlinx.datetime.*
+import kotlinx.serialization.*
+import org.katan.yoki.engine.docker.*
+import org.katan.yoki.engine.docker.model.*
+import org.katan.yoki.engine.docker.model.container.*
+import org.katan.yoki.util.*
+import kotlin.time.*
+
+/**
+ * @see ContainerResource
+ */
+public class ContainerResource(private val engine: DockerEngine) {
+
+    private companion object {
+        private const val BASE_PATH = "/containers"
+        private val LINE_BREAK_REGEX: Regex = Regex("\\r\\n|\\n|\\r")
+    }
+
+    /**
+     * Returns a list of all containers.
+     */
+    public suspend fun list(): List<Container> {
+        return engine.httpClient.get("$BASE_PATH/json")
+    }
+
+    /**
+     * Returns a list of all containers.
+     *
+     * @param options Options to customize the listing result.
+     */
+    public suspend fun list(options: ContainerListOptions): List<Container> {
+        return engine.httpClient.get("$BASE_PATH/json") {
+            parameter("all", options.all)
+            parameter("limit", options.limit)
+            parameter("size", options.size)
+            parameter("filters", engine.json.encodeToString(options.filters))
+        }
+    }
+
+    /**
+     * Creates a new container.
+     */
+    public suspend fun create(options: ContainerCreateOptions): String {
+        requireNotNull(options.image) { "Container Image is required" }
+
+        @Serializable
+        class Result(
+            @SerialName("Id") val id: String
+        )
+
+        // TODO print warnings
+        return engine.httpClient.post<Result>("$BASE_PATH/create") {
+            body = options
+        }.id
+    }
+
+    public suspend fun start(id: String, detachKeys: String? = null) {
+        engine.httpClient.post<Unit>("$BASE_PATH/$id/start") {
+            parameter("detachKeys", detachKeys)
+        }
+    }
+
+    public suspend fun stop(id: String, timeout: Int? = null) {
+        engine.httpClient.post<Unit>("$BASE_PATH/$id/stop") {
+            parameter("t", timeout)
+        }
+    }
+
+    public suspend fun restart(id: String, timeout: Int? = null) {
+        engine.httpClient.post<Unit>("$BASE_PATH/$id/restart") {
+            parameter("t", timeout)
+        }
+    }
+
+    public suspend fun kill(id: String, signal: String? = null) {
+        engine.httpClient.post<Unit>("$BASE_PATH/$id/kill") {
+            parameter("signal", signal)
+        }
+    }
+
+    public suspend fun rename(id: String, newName: String) {
+        engine.httpClient.post<Unit>("$BASE_PATH/$id/rename") {
+            parameter("name", newName)
+        }
+    }
+
+    public suspend fun pause(id: String) {
+        engine.httpClient.post<Unit>("$BASE_PATH/$id/pause")
+    }
+
+    public suspend fun unpause(id: String) {
+        engine.httpClient.post<Unit>("$BASE_PATH/$id/unpause")
+    }
+
+    public suspend fun remove(id: String) {
+        engine.httpClient.delete<Unit>("$BASE_PATH/$id")
+    }
+
+    public suspend fun remove(id: String, options: ContainerRemoveOptions) {
+        engine.httpClient.delete<Unit>("$BASE_PATH/$id") {
+            parameter("v", options.removeAonymousVolumes)
+            parameter("force", options.force)
+            parameter("link", options.unlink)
+        }
+    }
+
+    /**
+     * Returns a low-level information about a container.
+     *
+     * @param id ID or name of the container.
+     * @param size Should return the size of container as fields `SizeRw` and `SizeRootFs`
+     */
+    public suspend fun inspect(id: String, size: Boolean = false): Container {
+        return engine.httpClient.post("$BASE_PATH/$id/json") {
+            parameter("size", size)
+        }
+    }
+
+    public fun logs(id: String): Flow<String> = flow {
+        val pipeline = engine.httpClient.get<HttpResponse>("$BASE_PATH/$id/logs") {
+            parameter("stdout", true)
+            parameter("stderr", true)
+        }
+
+        while (true) {
+            emit(pipeline.readBytes().decodeToString())
+        }
+    }
+
+    @OptIn(ExperimentalIoApi::class)
+    public fun logs(id: String, options: ContainerLogsOptions): Flow<Frame> = flow {
+        engine.httpClient.get<HttpStatement>("$BASE_PATH/$id/logs") {
+            parameter("follow", options.follow)
+            parameter("stdout", options.stdout)
+            parameter("stderr", options.stderr)
+            parameter("since", options.since)
+            parameter("until", options.until)
+            parameter("timestamps", options.showTimestamps)
+            parameter("tail", options.tail)
+        }.execute { response ->
+            val channel = response.content
+            while (!channel.isClosedForRead) {
+                val firstByte = channel.readByte()
+
+                // the first byte is the stream type
+                if (firstByte < 0)
+                    continue
+
+                val stream = Stream.typeOfOrNull(firstByte)
+
+                // tty may be enabled, just emit the raw output
+                if (stream == null) {
+                    val remaining = channel.availableForRead
+
+                    // +1 includes the first byte previously read
+                    val len = remaining + 1
+
+                    // inserts the first byte since we read it before but the type was not expected,
+                    // so this byte is actually the first character of the line
+                    val buffer = ByteArray(len)
+                    buffer[0] = firstByte
+                    channel.readAvailable(buffer, 1, remaining)
+
+                    // decodeToString is UTF-8 friendly
+                    val line = buffer.decodeToString()
+
+                    // try to determine the "correct" stream since we cannot have this information
+                    val stdoutEnabled = options.stdout ?: false
+                    val stdErrEnabled = options.stderr ?: false
+                    val expectedStream: Stream = stream ?: when {
+                        stdoutEnabled && !stdErrEnabled -> Stream.StdOut
+                        stdErrEnabled && !stdoutEnabled -> Stream.StdErr
+                        else -> Stream.Unknown
+                    }
+
+                    if (options.splitLineBreaks) {
+                        for (value in line.split(LINE_BREAK_REGEX))
+                            emit(Frame(value, len, expectedStream))
+                    } else
+                        emit(Frame(line, len, expectedStream))
+                    continue
+                }
+
+                // discard three bytes, the frame size is at the last four bytes
+                channel.discard(3)
+
+                var len = 0
+                for (size in 0 until 4) {
+                    // frame size is encoded as big endian
+                    len = len or channel.readInt(ByteOrder.BIG_ENDIAN)
+                }
+
+                val line = channel.readUTF8Line(len)!!
+                emit(Frame(line, len, stream))
+            }
+        }
+    }
+
+    public suspend fun prune(): ContainerPruneResult {
+        return engine.httpClient.post("$BASE_PATH/prune")
+    }
+
+    public suspend fun prune(filters: ContainerPruneFilters): ContainerPruneResult {
+        return engine.httpClient.post("$BASE_PATH/prune") {
+            parameter("filters", engine.json.encodeToString(filters))
+        }
+    }
+
+    public suspend fun wait(id: String, condition: String? = null): ContainerWaitResult {
+        return engine.httpClient.post("$BASE_PATH/$id/wait") {
+            parameter("condition", condition)
+        }
+    }
+
+}
+
+public suspend inline fun ContainerResource.create(block: ContainerCreateOptions.() -> Unit): String {
+    return create(ContainerCreateOptions().apply(block))
+}
+
+public suspend inline fun ContainerResource.list(block: ContainerListOptions.() -> Unit): List<Container> {
+    return list(ContainerListOptions().apply(block))
+}
+
+public suspend inline fun ContainerResource.stop(id: String, timeout: Duration) {
+    return stop(id, timeout.inWholeSeconds.toInt())
+}
+
+public suspend inline fun ContainerResource.restart(id: String, timeout: Duration) {
+    return restart(id, timeout.inWholeSeconds.toInt())
+}
+
+public suspend inline fun ContainerResource.remove(id: String, block: ContainerRemoveOptions.() -> Unit) {
+    return remove(id, ContainerRemoveOptions().apply(block))
+}
+
+public inline fun ContainerResource.logs(id: String, block: ContainerLogsOptions.() -> Unit): Flow<Frame> {
+    return logs(id, ContainerLogsOptions().apply(block))
+}
+
+public suspend inline fun ContainerResource.prune(block: ContainerPruneFilters.() -> Unit): ContainerPruneResult {
+    return prune(ContainerPruneFilters().apply(block))
+}
+
+@Serializable
+public data class ContainerRemoveOptions(
+    public var removeAonymousVolumes: Boolean = false,
+    public var force: Boolean = false,
+    public var unlink: Boolean = false
+)
+
+@Serializable
+public data class ContainerListOptions(
+    public var all: Boolean? = null,
+    public var limit: Int? = null,
+    public var size: Boolean? = null,
+    public var filters: Filters? = null
+) {
+
+    @Serializable
+    public data class Filters(
+        public var ancestor: String? = null,
+        public var before: String? = null,
+        public var expose: String? = null, // TODO ExposedPort type
+        public var exited: Int? = null,
+        public var health: String? = null,
+        public var id: String? = null,
+        public var isolation: String? = null,
+        @SerialName("is-task") public var isTask: Boolean? = null,
+        public var label: String? = null,
+        public var name: String? = null,
+        public var network: String? = null,
+        public var publish: String? = null, // TODO ExposedPort type
+        public var since: String? = null,
+        public var status: String? = null,
+        public var volume: String? = null
+    )
+
+    public companion object {
+
+        public const val Ancestor: String = "ancestor"
+        public const val Before: String = "before"
+        public const val Expose: String = "expose"
+    }
+}
+
+public data class ContainerCreateOptions(
+    @SerialName("Hostname") public var hostName: String? = null,
+    @SerialName("User") public var user: String? = null,
+    @SerialName("Domainname") public var domainName: String? = null,
+    @SerialName("AttachStdin") public var attachStdin: Boolean? = null,
+    @SerialName("AttachStdout") public var attachStdout: Boolean? = null,
+    @SerialName("AttachStderr") public var attachStderr: Boolean? = null,
+    @SerialName("OpenStdin") public var openStdin: Boolean? = null,
+    @SerialName("StdinOnce") public var onceStdin: Boolean? = null,
+    // TODO exposed ports
+    @SerialName("Tty") public var tty: Boolean = false,
+    @SerialName("Env") public var env: Map<String, String>? = null,
+    @SerialName("Cmd") public var command: String? = null,
+    @SerialName("ArgsEscaped") public var escapedArgs: Boolean? = null,
+    @SerialName("Image") public var image: String? = null,
+    @SerialName("WorkingDir") public var workingDirectory: String? = null,
+    @SerialName("Entrypoint") public var entrypoint: List<String>? = null,
+    @SerialName("NetworkDisabled") public var disableNetwork: Boolean? = null,
+    @SerialName("MacAddress") public var macAddress: String? = null,
+    @SerialName("StopSignal") public var stopSignal: String? = null,
+    @SerialName("StopTimeout") public var stopTimeout: Int? = null,
+    @SerialName("Shell") public var shell: List<String>? = null,
+    @SerialName("Labels") public var labels: Map<String, String>? = null,
+    @SerialName("OnBuild") public var buildMetadata: List<String>? = null,
+    @SerialName("ExposedPorts") public var exposedPorts: Map<String, @Contextual Any>? = null
+) : Options()
+
+public fun ContainerCreateOptions.stopTimeout(stopTimeout: Duration) {
+    this.stopTimeout = stopTimeout.inWholeSeconds.toInt()
+}
+
+
+/**
+ * Container logs endpoint options.
+ *
+ * @property follow Should keep connection after returning logs.
+ * @property stdout Returns logs from `stdout`.
+ * @property stderr Return logs from `stderr`.
+ * @property since Only return logs since this time, as a UNIX timestamp.
+ * @property until Only return logs before this time, as a UNIX timestamp.
+ * @property showTimestamps Should add timestamps to every log line.
+ * @property tail Only return this number of log lines from the end of the logs. Set to `null` to output all log lines.
+ * @property splitLineBreaks Should split lines separated by line break into multiple frames.
+ * @see ContainerResource.logs
+ */
+@Serializable
+public class ContainerLogsOptions(
+    public var follow: Boolean? = null,
+    public var stdout: Boolean? = null,
+    public var stderr: Boolean? = null,
+    public var since: Long? = null,
+    public var until: Long? = null,
+    @SerialName("timestamps") public var showTimestamps: Boolean? = null,
+    public var tail: Int? = null,
+    public var splitLineBreaks: Boolean = false
+)
+
+/**
+ * Only return logs since this time, as a UNIX timestamp.
+ * @param since The timestamp.
+ */
+public fun ContainerLogsOptions.since(since: Instant) {
+    this.since = since.toEpochMilliseconds()
+}
+
+/**
+ * Only return logs before this time, as a UNIX timestamp.
+ * @param until The timestamp.
+ */
+public fun ContainerLogsOptions.until(until: Instant) {
+    this.until = until.toEpochMilliseconds()
+}
+
+@Serializable
+public data class ContainerPruneFilters(
+    public var until: String? = null,
+    public var label: String? = null
+)
+
+@Serializable
+public data class ContainerPruneResult internal constructor(
+    @SerialName("ContainersDeleted") public val deletedContainers: List<String>,
+    @SerialName("SpaceReclaimed") public val reclaimedSpace: Long
+)
+
+@Serializable
+public data class ContainerWaitResult internal constructor(
+    @SerialName("StatusCode") public val statusCode: Int,
+    @SerialName("Error") public val error: Error? = null
+) {
+
+    @Serializable
+    public data class Error(val message: String)
+
+}

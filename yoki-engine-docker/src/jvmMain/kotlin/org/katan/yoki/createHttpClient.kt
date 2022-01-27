@@ -1,4 +1,4 @@
-package org.katan.yoki.engine.docker
+package org.katan.yoki
 
 import io.ktor.client.*
 import io.ktor.client.engine.okhttp.OkHttp
@@ -6,11 +6,14 @@ import io.ktor.client.features.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.http.*
+import io.ktor.network.selector.*
+import kotlinx.coroutines.*
 import okhttp3.*
 import okio.ByteString.Companion.encodeUtf8
 import org.katan.yoki.engine.*
 import org.katan.yoki.protocol.*
 import java.net.*
+import java.util.concurrent.*
 
 private class SocketDns : Dns {
 
@@ -25,14 +28,22 @@ private class SocketDns : Dns {
 
 }
 
-public actual fun createHttpClient(engine: YokiEngine): HttpClient {
+internal fun OkHttpClient.Builder.configureOkHttpClient() = apply {
+    socketFactory(UnixSocketFactory())
+    dns(SocketDns())
+    readTimeout(0, TimeUnit.MILLISECONDS)
+    connectTimeout(0, TimeUnit.MILLISECONDS)
+    callTimeout(0, TimeUnit.MILLISECONDS)
+}
+
+public actual fun createHttpClient(engine: DockerEngine): HttpClient {
     return HttpClient(OkHttp) {
         engine {
             config {
-                socketFactory(UnixSocketFactory())
-                dns(SocketDns())
+                configureOkHttpClient()
             }
         }
+
         defaultRequest {
             contentType(ContentType.Application.Json)
 

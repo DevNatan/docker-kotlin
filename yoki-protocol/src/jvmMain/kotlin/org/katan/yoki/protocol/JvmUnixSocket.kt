@@ -4,9 +4,8 @@ package org.katan.yoki.protocol
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import okio.ByteString.Companion.decodeHex
-import okio.ByteString.Companion.encodeUtf8
-import org.newsclub.net.unix.AFUNIXSocket
-import org.newsclub.net.unix.AFUNIXSocketAddress
+import org.katan.yoki.protocol.JvmUnixSocket.Companion.decodeHostname
+import org.newsclub.net.unix.*
 import java.io.*
 import java.net.*
 import java.nio.file.Files
@@ -24,7 +23,6 @@ public actual open class SingleUnixSocket actual constructor(socketPath: String)
     public actual override fun close() {
         // this socket connection is not persistent
     }
-
 }
 
 public actual class PersistentUnixSocket actual constructor(socketPath: String) : UnixSocket {
@@ -46,7 +44,6 @@ public actual class PersistentUnixSocket actual constructor(socketPath: String) 
     public actual suspend fun read(): Flow<String> {
         return reader.lineSequence().asFlow()
     }
-
 }
 
 private fun getSocketAddress(path: String): AFUNIXSocketAddress {
@@ -64,19 +61,11 @@ internal class JvmUnixSocket : Socket() {
 
     @Throws(IOException::class)
     override fun connect(endpoint: SocketAddress, timeout: Int) {
-        println("endpoint: $endpoint")
-
         val address = (endpoint as InetSocketAddress).address
-        println("address: $address")
+        val socketAddress = getSocketAddress(decodeHostname(address))
+        println("$endpoint ($socketAddress) - timeout: $timeout")
 
-        val socketPath = decodeHostname(address)
-        println("connect via: $socketPath")
-
-        val socketFile = File(socketPath)
-        println("socket file: $socketFile")
-        
-        socket = AFUNIXSocket.newInstance()
-        socket.connect(AFUNIXSocketAddress.of(socketFile), timeout)
+        socket = AFUNIXSocket.connectTo(socketAddress)
         socket.soTimeout = timeout
     }
 
@@ -89,60 +78,23 @@ internal class JvmUnixSocket : Socket() {
     @Throws(IOException::class) override fun getOutputStream(): OutputStream = socket.outputStream
     @Throws(IOException::class) override fun getInputStream(): InputStream = socket.inputStream
 
-    private object Encoder {
-        fun encode(text: String): String {
-            return text.encodeUtf8().hex()
-        }
-
-        fun decode(hex: String): String {
-            return hex.decodeHex().utf8()
-        }
+    override fun close() {
+        socket.close()
     }
 
     companion object {
-        fun encodeHostname(path: String): String {
-            return Encoder.encode(path) + ".socket"
+        fun decodeHostname(address: InetAddress): String {
+            return decodeHostname(address.hostName)
         }
 
-        fun decodeHostname(address: InetAddress): String {
-            val hostName = address.hostName
-            return Encoder.decode(hostName.substring(0, hostName.indexOf(".socket")))
+        fun decodeHostname(hostName: String): String {
+            return hostName.substring(0, hostName.indexOf(".socket")).decodeHex().utf8()
         }
     }
-
 }
 
-public class UnixSocketFactory : SocketFactory() {
-
-    init {
-        if (!AFUNIXSocket.isSupported()) {
-            throw UnsupportedOperationException("AFUNIXSocket.isSupported() == false")
-        }
+public class UnixSocketFactory : AFUNIXSocketFactory() {
+    override fun addressFromHost(host: String, port: Int): AFUNIXSocketAddress {
+        return getSocketAddress(decodeHostname(host))
     }
-
-    @Throws(IOException::class)
-    override fun createSocket(): Socket {
-        return JvmUnixSocket()
-    }
-
-    @Throws(IOException::class)
-    override fun createSocket(s: String, i: Int): Socket {
-        throw UnsupportedOperationException()
-    }
-
-    @Throws(IOException::class)
-    override fun createSocket(s: String, i: Int, inetAddress: InetAddress, i1: Int): Socket {
-        throw UnsupportedOperationException()
-    }
-
-    @Throws(IOException::class)
-    override fun createSocket(inetAddress: InetAddress, i: Int): Socket {
-        throw UnsupportedOperationException()
-    }
-
-    @Throws(IOException::class)
-    override fun createSocket(inetAddress: InetAddress, i: Int, inetAddress1: InetAddress, i1: Int): Socket {
-        throw UnsupportedOperationException()
-    }
-
 }

@@ -1,4 +1,4 @@
-package org.katan.yoki.engine.docker.resource.network
+package org.katan.yoki.resource.network
 
 import io.ktor.client.request.*
 import kotlinx.serialization.*

@@ -1,4 +1,4 @@
-package org.katan.yoki.engine.docker.model.network
+package org.katan.yoki.model.network
 
 import kotlinx.serialization.*
 

@@ -1,4 +1,4 @@
-package org.katan.yoki.engine.docker.resource.volume
+package org.katan.yoki.resource.volume
 
 import io.ktor.client.request.*
 import kotlinx.serialization.SerialName

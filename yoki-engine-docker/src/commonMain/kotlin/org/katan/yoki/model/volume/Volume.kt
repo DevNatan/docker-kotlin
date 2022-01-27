@@ -1,4 +1,4 @@
-package org.katan.yoki.engine.docker.model.volume
+package org.katan.yoki.model.volume
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

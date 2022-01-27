@@ -2,7 +2,6 @@ package org.katan.yoki
 
 import kotlinx.coroutines.*
 import kotlin.coroutines.*
-import org.katan.yoki.engine.*
 
 public class Yoki(
     public val engine: YokiEngine,
@@ -25,5 +24,9 @@ public fun <T : YokiEngineConfig> Yoki(
     return Yoki(engine, config)
 }
 
+/**
+ * DslMarker for Yoki.
+ */
 @DslMarker
+@Target(AnnotationTarget.CLASS, AnnotationTarget.TYPE, AnnotationTarget.FUNCTION)
 public annotation class YokiDsl
