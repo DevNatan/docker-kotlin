@@ -1,10 +1,12 @@
 package org.katan.yoki
 
 import io.ktor.client.*
+import kotlinx.serialization.json.*
 import org.katan.yoki.engine.*
-import org.katan.yoki.engine.docker.resource.container.*
-import org.katan.yoki.engine.docker.resource.network.*
-import org.katan.yoki.engine.docker.resource.volume.*
+import org.katan.yoki.resource.container.*
+import org.katan.yoki.resource.network.*
+import org.katan.yoki.resource.volume.*
+import org.katan.yoki.util.*
 import kotlin.coroutines.*
 
 public class DockerEngine(
@@ -16,10 +18,26 @@ public class DockerEngine(
 
     public override val coroutineContext: CoroutineContext by lazy { httpClient.coroutineContext }
 
-    internal val containerResource = ContainerResource(this)
-    internal val networkResource = NetworkResource(this)
-    internal val volumeResource = VolumeResource(this)
+    internal val containerResource by lazy { ContainerResource(this) }
+    internal val networkResource by lazy { NetworkResource(this) }
+    internal val volumeResource by lazy { VolumeResource(this) }
 
 }
 
-public expect fun createHttpClient(engine: YokiEngine): HttpClient
+/**
+ * Docker engine configuration
+ *
+ * @see DockerEngine
+ */
+public class DockerEngineConfig : YokiEngineConfig() {
+
+    /**
+     * The version of the Docker API that will be used during communication.
+     *
+     * @see <a href="https://docs.docker.com/engine/api/#versioned-api-and-sdk">Versioned API and SDK</a>
+     */
+    public var apiVersion: String = "1.41"
+
+    public var socketPath: String = "unix:///var/run/docker.sock"
+
+}

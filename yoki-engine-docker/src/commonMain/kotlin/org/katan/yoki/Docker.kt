@@ -1,10 +1,9 @@
 package org.katan.yoki
 
-import org.katan.yoki.*
 import org.katan.yoki.engine.*
-import org.katan.yoki.engine.docker.resource.container.*
-import org.katan.yoki.engine.docker.resource.network.*
-import org.katan.yoki.engine.docker.resource.volume.*
+import org.katan.yoki.resource.container.*
+import org.katan.yoki.resource.network.*
+import org.katan.yoki.resource.volume.*
 
 public object Docker : YokiEngineFactory<DockerEngineConfig> {
 
