@@ -2,11 +2,10 @@
 Docker Client API implementation.
 
 ```kotlin
-dependencies {
-  implementation("org.katan:yoki-engine-docker:0.0.1")
-}
+implementation("org.katan:yoki-engine-docker:0.0.1")
 ```
 
+## Engine configuration
 Create a client with default configuration.
 ```kotlin
 val client = Yoki(Docker)
@@ -21,5 +20,5 @@ val client = Yoki(Docker) {
 }
 ```
 
-You will find examples of how to use the commands in the documentation for the respective resources.
+You will find examples of how to use the commands in the documentation for the respective resources.\
 First, check if that [endpoint is supported](https://github.com/KatanPanel/yoki/blob/main/yoki-engine-docker/SUPPORTED_ENDPOINTS.md).
