@@ -33,7 +33,6 @@ public class NetworkResource(private val engine: DockerEngine) {
      * @param filters Filters to to process on the networks list.
      * @see <a href="https://docs.docker.com/engine/api/latest/#operation/NetworkList">NetworkList</a>
      */
-    @JvmOverloads
     public suspend fun list(filters: NetworksFilters? = null): List<Network> {
         return engine.httpClient.get(BASE_PATH) {
             filters?.let { parameter(LIST_FILTERS, Json.Default.encodeToString(it)) }
@@ -47,7 +46,6 @@ public class NetworkResource(private val engine: DockerEngine) {
      * @param options The network inspection options.
      * @see <a href="https://docs.docker.com/engine/api/latest/#operation/NetworkInspect">NetworkInspect</a>
      */
-    @JvmOverloads
     public suspend fun inspect(id: String, options: NetworkInspect? = null): Network {
         return engine.httpClient.get("$BASE_PATH/$id") {
             options?.verbose?.let { parameter(INSPECT_VERBOSE, it) }
@@ -86,7 +84,6 @@ public class NetworkResource(private val engine: DockerEngine) {
      *
      * @see <a href="https://docs.docker.com/engine/api/latest/#operation/NetworkPrune">NetworkPrune</a>
      */
-    @JvmOverloads
     public suspend fun prune(options: NetworkPrune? = null) {
         engine.httpClient.post<Unit>("$BASE_PATH/prune") {
             parameter(PRUNE_FILTERS, options)
