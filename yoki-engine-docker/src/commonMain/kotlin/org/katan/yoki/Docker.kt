@@ -3,6 +3,7 @@ package org.katan.yoki
 import org.katan.yoki.engine.*
 import org.katan.yoki.resource.container.*
 import org.katan.yoki.resource.network.*
+import org.katan.yoki.resource.secret.*
 import org.katan.yoki.resource.volume.*
 
 public object Docker : YokiEngineFactory<DockerEngineConfig> {
@@ -16,3 +17,4 @@ public object Docker : YokiEngineFactory<DockerEngineConfig> {
 public val Yoki.containers: ContainerResource get() = (engine as DockerEngine).containerResource
 public val Yoki.networks: NetworkResource get() = (engine as DockerEngine).networkResource
 public val Yoki.volumes: VolumeResource get() = (engine as DockerEngine).volumeResource
+public val Yoki.secrets: SecretResource get() = (engine as DockerEngine).secretResource

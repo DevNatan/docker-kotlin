@@ -5,6 +5,7 @@ import kotlinx.serialization.json.*
 import org.katan.yoki.engine.*
 import org.katan.yoki.resource.container.*
 import org.katan.yoki.resource.network.*
+import org.katan.yoki.resource.secret.*
 import org.katan.yoki.resource.volume.*
 import org.katan.yoki.util.*
 import kotlin.coroutines.*
@@ -21,6 +22,7 @@ public class DockerEngine(
     internal val containerResource by lazy { ContainerResource(this) }
     internal val networkResource by lazy { NetworkResource(this) }
     internal val volumeResource by lazy { VolumeResource(this) }
+    internal val secretResource by lazy { SecretResource(this) }
 
 }
 
