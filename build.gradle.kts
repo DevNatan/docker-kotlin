@@ -17,7 +17,7 @@ subprojects {
     apply(plugin = "org.jmailen.kotlinter")
 
     group = "org.katan"
-    version = "0.0.1"
+    version = "0.0.1-SNAPSHOT"
 
     publishOnCentral {
         configureMavenCentral.set(true)
