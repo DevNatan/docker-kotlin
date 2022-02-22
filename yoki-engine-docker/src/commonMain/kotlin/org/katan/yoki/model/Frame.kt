@@ -1,6 +1,6 @@
 package org.katan.yoki.model
 
-import kotlinx.serialization.*
+import kotlinx.serialization.Serializable
 
 /**
  * @property value The content of the frame.

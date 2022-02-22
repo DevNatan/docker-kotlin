@@ -2,12 +2,15 @@
 
 package org.katan.yoki.engine.docker.resource.network
 
-import org.katan.yoki.*
-import org.katan.yoki.engine.docker.*
-import org.katan.yoki.resource.network.*
-import kotlin.test.*
-import kotlinx.coroutines.*
-import kotlinx.coroutines.test.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
+import org.katan.yoki.engine.docker.createTestYoki
+import org.katan.yoki.networks
+import org.katan.yoki.resource.network.create
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 class NetworkResourceIT {
 

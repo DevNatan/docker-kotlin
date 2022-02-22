@@ -1,7 +1,8 @@
 package org.katan.yoki.model.secret
 
-import kotlinx.datetime.*
-import kotlinx.serialization.*
+import kotlinx.datetime.Instant
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * Secrets are sensitive data that can be used by Docker services.

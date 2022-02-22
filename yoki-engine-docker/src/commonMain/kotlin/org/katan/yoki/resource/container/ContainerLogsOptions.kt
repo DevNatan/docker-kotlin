@@ -1,7 +1,8 @@
 package org.katan.yoki.resource.container
 
-import kotlinx.datetime.*
-import kotlinx.serialization.*
+import kotlinx.datetime.Instant
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * Container logs endpoint options.

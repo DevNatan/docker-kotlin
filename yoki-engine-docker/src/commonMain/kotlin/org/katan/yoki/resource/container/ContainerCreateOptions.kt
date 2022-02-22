@@ -1,8 +1,8 @@
 package org.katan.yoki.resource.container
 
-import org.katan.yoki.util.*
-import kotlin.time.*
-import kotlinx.serialization.*
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.SerialName
+import kotlin.time.Duration
 
 public data class ContainerCreateOptions(
     @SerialName("Hostname") public var hostName: String? = null,
@@ -29,7 +29,7 @@ public data class ContainerCreateOptions(
     @SerialName("Labels") public var labels: Map<String, String>? = null,
     @SerialName("OnBuild") public var buildMetadata: List<String>? = null,
     @SerialName("ExposedPorts") public var exposedPorts: Map<String, @Contextual Any>? = null
-) : Options()
+)
 
 public fun ContainerCreateOptions.stopTimeout(stopTimeout: Duration) {
     this.stopTimeout = stopTimeout.inWholeSeconds.toInt()

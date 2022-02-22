@@ -1,11 +1,10 @@
 package org.katan.yoki.model
 
+import kotlinx.serialization.Serializable
 import org.katan.yoki.model.Stream.Companion.StdErr
 import org.katan.yoki.model.Stream.Companion.StdIn
 import org.katan.yoki.model.Stream.Companion.StdOut
 import org.katan.yoki.model.Stream.Companion.Unknown
-import kotlin.jvm.*
-import kotlinx.serialization.*
 
 @Serializable
 public data class Stream internal constructor(
@@ -20,7 +19,6 @@ public data class Stream internal constructor(
         public val StdErr: Stream = Stream(2, "STDERR")
         public val Unknown: Stream = Stream(-1, "UNKNOWN")
 
-        @JvmStatic
         public fun typeOfOrNull(code: Byte): Stream? {
             return when (code) {
                 StdIn.code -> StdIn

@@ -2,12 +2,15 @@
 
 package org.katan.yoki.engine.docker.resource.volume
 
-import org.katan.yoki.*
-import org.katan.yoki.engine.docker.*
-import org.katan.yoki.resource.volume.*
-import kotlin.test.*
-import kotlinx.coroutines.*
-import kotlinx.coroutines.test.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
+import org.katan.yoki.engine.docker.createTestYoki
+import org.katan.yoki.resource.volume.create
+import org.katan.yoki.volumes
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 class VolumeResourceIT {
 

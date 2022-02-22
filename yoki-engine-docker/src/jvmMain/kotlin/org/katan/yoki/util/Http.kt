@@ -1,17 +1,22 @@
 package org.katan.yoki.util
 
-import org.katan.yoki.*
-import org.katan.yoki.protocol.*
-import io.ktor.client.*
+import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
-import io.ktor.client.features.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
-import io.ktor.http.*
-import java.util.concurrent.*
-import kotlinx.serialization.json.*
-import okhttp3.*
+import io.ktor.client.features.UserAgent
+import io.ktor.client.features.defaultRequest
+import io.ktor.client.features.json.JsonFeature
+import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.http.ContentType
+import io.ktor.http.URLBuilder
+import io.ktor.http.URLProtocol
+import io.ktor.http.contentType
+import io.ktor.http.takeFrom
+import kotlinx.serialization.json.Json
+import okhttp3.OkHttpClient
 import okio.ByteString.Companion.encodeUtf8
+import org.katan.yoki.DockerEngine
+import org.katan.yoki.protocol.UnixSocketFactory
+import java.util.concurrent.TimeUnit
 
 internal fun OkHttpClient.Builder.configureOkHttpClient() = apply {
     socketFactory(UnixSocketFactory())
@@ -49,7 +54,7 @@ public actual fun createHttpClient(engine: DockerEngine): HttpClient {
         }
         install(JsonFeature) {
             serializer = KotlinxSerializer(
-                kotlinx.serialization.json.Json {
+                Json {
                     ignoreUnknownKeys = true
                 }
             )

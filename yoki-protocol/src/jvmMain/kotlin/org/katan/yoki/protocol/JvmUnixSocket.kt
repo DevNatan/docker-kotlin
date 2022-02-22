@@ -1,16 +1,24 @@
-@file:JvmMultifileClass
 package org.katan.yoki.protocol
 
-import org.katan.yoki.protocol.JvmUnixSocket.Companion.decodeHostname
-import java.io.*
-import java.net.*
-import java.nio.file.Files
-import java.nio.file.Paths
-import javax.net.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import okio.ByteString.Companion.decodeHex
-import org.newsclub.net.unix.*
+import org.katan.yoki.protocol.JvmUnixSocket.Companion.decodeHostname
+import org.newsclub.net.unix.AFUNIXSocket
+import org.newsclub.net.unix.AFUNIXSocketAddress
+import org.newsclub.net.unix.AFUNIXSocketFactory
+import java.io.BufferedReader
+import java.io.IOException
+import java.io.InputStream
+import java.io.OutputStream
+import java.io.OutputStreamWriter
+import java.io.Writer
+import java.net.InetAddress
+import java.net.InetSocketAddress
+import java.net.Socket
+import java.net.SocketAddress
+import java.nio.file.Files
+import java.nio.file.Paths
 
 /**
  * Thread safe non-persistent socket connection, closes the connection after a request.

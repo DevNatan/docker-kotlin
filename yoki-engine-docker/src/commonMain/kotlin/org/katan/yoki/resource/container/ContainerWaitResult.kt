@@ -1,6 +1,7 @@
 package org.katan.yoki.resource.container
 
-import kotlinx.serialization.*
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 @Serializable
 public data class ContainerWaitResult internal constructor(

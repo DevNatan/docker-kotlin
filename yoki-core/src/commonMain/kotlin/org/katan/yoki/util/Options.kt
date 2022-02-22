@@ -1,7 +1,7 @@
 package org.katan.yoki.util
 
-import kotlin.properties.*
-import kotlin.reflect.*
+import kotlin.properties.ReadWriteProperty
+import kotlin.reflect.KProperty
 
 public open class Options {
 

@@ -1,6 +1,7 @@
 package org.katan.yoki.model.network
 
-import kotlinx.serialization.*
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 /**
  * @property driver Name of the IPAM driver to use.

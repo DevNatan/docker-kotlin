@@ -1,6 +1,7 @@
 package org.katan.yoki.model.network
 
-import kotlinx.serialization.*
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 @Serializable
 public data class NetworkContainer(

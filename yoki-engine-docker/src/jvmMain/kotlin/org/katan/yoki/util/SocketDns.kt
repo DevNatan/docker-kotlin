@@ -1,7 +1,7 @@
 package org.katan.yoki.util
 
-import java.net.*
-import okhttp3.*
+import okhttp3.Dns
+import java.net.InetAddress
 
 internal class SocketDns : Dns {
 
