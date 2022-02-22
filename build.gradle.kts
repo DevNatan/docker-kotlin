@@ -13,6 +13,7 @@ repositories {
 }
 
 subprojects {
+    apply(plugin = "org.danilopianini.publish-on-central")
     apply(plugin = "org.jmailen.kotlinter")
 
     group = "org.katan"
