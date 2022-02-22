@@ -19,6 +19,7 @@ subprojects {
     group = "org.katan"
     version = "0.0.1-SNAPSHOT"
 
+    val isReleaseVersion = !version.toString().endsWith("SNAPSHOT")
     publishOnCentral {
         configureMavenCentral.set(true)
         projectDescription.set("Multiplatform Docker API client")
@@ -28,29 +29,23 @@ subprojects {
         projectUrl.set("https://github.com/KatanPanel/yoki")
         scmConnection.set("git:git@github.com:KatanPanel/yoki")
 
-        mavenCentral.user.set(System.getenv("OSSRH_USERNAME"))
-        mavenCentral.password.set(provider { System.getenv("OSSRH_PASSWORD") })
+        mavenCentral.user.set((project.findProperty("ossrh.username") as String?) ?: System.getenv("OSSRH_USERNAME"))
+        mavenCentral.password.set(provider { (project.findProperty("ossrh.password") as String?) ?: System.getenv("OSSRH_PASSWORD") })
 
         repository("https://maven.pkg.github.com/KatanPanel/yoki", "GitHub") {
             user.set(System.getenv("GITHUB_USERNAME"))
             password.set(System.getenv("GITHUB_TOKEN"))
         }
 
-        if (version.toString().endsWith("-SNAPSHOT"))
+        if (!isReleaseVersion)
             mavenCentralSnapshotsRepository()
+    }
+
+    tasks.withType<Sign>().configureEach {
+        onlyIf { isReleaseVersion }
     }
 }
 
 tasks.check {
     dependsOn("installKotlinterPrePushHook")
-}
-
-signing {
-    sign(publishing.publications)
-}
-
-signing {
-    val signingKey = System.getenv("OSSRH_SIGNING_KEY")
-    val signingPassword = System.getenv("OSSRH_SIGNING_PASSWORD")
-    useInMemoryPgpKeys(signingKey, signingPassword)
 }
