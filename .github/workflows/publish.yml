@@ -28,5 +28,5 @@ jobs:
           GITHUB_USERNAME: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          arguments: publishAllPublicationsToGithubRepository
+          arguments: publishAllPublicationsToMavenCentralRepository
           gradle-version: wrapper
