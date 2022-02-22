@@ -24,7 +24,6 @@ public class NetworkResource(private val engine: DockerEngine) {
         const val CONNECT_CONTAINER_TO_NETWORK_CONTAINER = "Container"
         const val DISCONNECT_CONTAINER_TO_NETWORK_CONTAINER = "Container"
         const val PRUNE_FILTERS = "filters"
-
     }
 
     /**
@@ -115,7 +114,6 @@ public class NetworkResource(private val engine: DockerEngine) {
             body = mapOf(DISCONNECT_CONTAINER_TO_NETWORK_CONTAINER to container)
         }
     }
-
 }
 
 /**
@@ -201,7 +199,6 @@ public data class NetworkInspect(
     init {
         scope?.let { requireNetworkScope(it) }
     }
-
 }
 
 /**

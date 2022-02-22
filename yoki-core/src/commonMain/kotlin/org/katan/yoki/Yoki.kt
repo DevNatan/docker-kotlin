@@ -1,7 +1,6 @@
 package org.katan.yoki
 
 import kotlinx.coroutines.*
-import org.katan.yoki.engine.*
 import kotlin.coroutines.*
 
 public class Yoki(
@@ -11,7 +10,6 @@ public class Yoki(
 
     private val job = Job(engine.coroutineContext[Job])
     override val coroutineContext: CoroutineContext = engine.coroutineContext + job
-
 }
 
 @YokiDsl

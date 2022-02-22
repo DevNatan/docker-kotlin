@@ -43,7 +43,6 @@ public class SecretResource(private val engine: DockerEngine) {
     public suspend fun delete(id: String) {
         engine.httpClient.delete<Unit>("$BASE_PATH/$id")
     }
-
 }
 
 /**

@@ -10,5 +10,4 @@ public data class ContainerWaitResult internal constructor(
 
     @Serializable
     public data class Error(val message: String)
-
 }

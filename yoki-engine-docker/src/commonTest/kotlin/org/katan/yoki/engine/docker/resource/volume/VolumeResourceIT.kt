@@ -57,5 +57,4 @@ class VolumeResourceIT {
         client.volumes.prune()
         assertEquals(client.volumes.list().volumes.size, oldCount)
     }
-
 }

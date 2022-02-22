@@ -37,19 +37,22 @@ public actual fun createHttpClient(engine: DockerEngine): HttpClient {
             url.takeFrom(
                 URLBuilder().takeFrom(
                     URLBuilder(
-                protocol = URLProtocol.HTTP,
-                host = "/var/run/docker.sock".encodeUtf8().hex() + ".socket",
-                port = 2375,
-                encodedPath = "/v1.40/"
-            )
+                        protocol = URLProtocol.HTTP,
+                        host = "/var/run/docker.sock".encodeUtf8().hex() + ".socket",
+                        port = 2375,
+                        encodedPath = "/v1.40/"
+                    )
                 ).apply {
-                encodedPath += url.encodedPath
-            })
+                    encodedPath += url.encodedPath
+                }
+            )
         }
         install(JsonFeature) {
-            serializer = KotlinxSerializer(kotlinx.serialization.json.Json {
-                ignoreUnknownKeys = true
-            })
+            serializer = KotlinxSerializer(
+                kotlinx.serialization.json.Json {
+                    ignoreUnknownKeys = true
+                }
+            )
         }
         install(UserAgent) { agent = "Yoki/0.0.1" }
     }

@@ -2,12 +2,10 @@ package org.katan.yoki
 
 import io.ktor.client.*
 import kotlinx.serialization.json.*
-import org.katan.yoki.engine.*
 import org.katan.yoki.resource.container.*
 import org.katan.yoki.resource.network.*
 import org.katan.yoki.resource.secret.*
 import org.katan.yoki.resource.volume.*
-import org.katan.yoki.util.*
 import kotlin.coroutines.*
 
 public class DockerEngine(
@@ -23,7 +21,6 @@ public class DockerEngine(
     internal val networkResource by lazy { NetworkResource(this) }
     internal val volumeResource by lazy { VolumeResource(this) }
     internal val secretResource by lazy { SecretResource(this) }
-
 }
 
 /**
@@ -41,5 +38,4 @@ public class DockerEngineConfig : YokiEngineConfig() {
     public var apiVersion: String = "1.41"
 
     public var socketPath: String = "unix:///var/run/docker.sock"
-
 }

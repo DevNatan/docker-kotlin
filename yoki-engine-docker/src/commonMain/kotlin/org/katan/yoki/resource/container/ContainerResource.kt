@@ -216,7 +216,6 @@ public class ContainerResource(private val engine: DockerEngine) {
             parameter("condition", condition)
         }
     }
-
 }
 
 public suspend inline fun ContainerResource.restart(id: String, timeout: Duration) {

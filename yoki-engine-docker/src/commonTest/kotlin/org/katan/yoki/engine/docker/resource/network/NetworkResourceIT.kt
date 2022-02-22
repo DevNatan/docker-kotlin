@@ -60,5 +60,4 @@ class NetworkResourceIT {
         client.networks.prune()
         assertEquals(client.networks.list().size, oldCount)
     }
-
 }

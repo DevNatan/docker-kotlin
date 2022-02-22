@@ -34,4 +34,3 @@ public data class ContainerCreateOptions(
 public fun ContainerCreateOptions.stopTimeout(stopTimeout: Duration) {
     this.stopTimeout = stopTimeout.inWholeSeconds.toInt()
 }
-

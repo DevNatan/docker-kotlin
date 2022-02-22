@@ -21,5 +21,4 @@ class SecretResourceIT {
             fail("Failed to list secrets")
         }
     }
-
 }

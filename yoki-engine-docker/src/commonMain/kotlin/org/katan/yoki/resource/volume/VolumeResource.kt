@@ -63,7 +63,7 @@ public class VolumeResource(
      */
     @JvmOverloads
     public suspend fun inspect(id: String): Volume {
-        return engine.httpClient.get("$BASE_PATH/${id}")
+        return engine.httpClient.get("$BASE_PATH/$id")
     }
 
     /**
@@ -75,7 +75,7 @@ public class VolumeResource(
      */
     @JvmOverloads
     public suspend fun remove(id: String, options: VolumeRemove? = null) {
-        engine.httpClient.delete<Unit>("$BASE_PATH/${id}") {
+        engine.httpClient.delete<Unit>("$BASE_PATH/$id") {
             options?.let { parameter(DELETE_FORCE, it) }
         }
     }
@@ -94,7 +94,6 @@ public class VolumeResource(
             options?.let { parameter(PRUNE_FILTERS, options) }
         }
     }
-
 }
 
 /**

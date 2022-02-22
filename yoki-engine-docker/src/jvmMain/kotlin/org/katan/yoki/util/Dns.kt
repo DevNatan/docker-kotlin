@@ -13,5 +13,4 @@ internal class SocketDns : Dns {
             )
         ) else Dns.SYSTEM.lookup(hostname)
     }
-
 }
