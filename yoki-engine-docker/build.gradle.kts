@@ -4,7 +4,6 @@
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
-    application
 }
 
 repositories {
@@ -14,18 +13,15 @@ repositories {
 kotlin {
     explicitApi()
     jvm {
-        withJava()
         compilations {
             val main = getByName("main")
             tasks {
                 register<Jar>("jvmFatJar") {
+                    enabled = true
                     group = "build"
                     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
                     dependsOn(build)
-                    manifest {
-                        attributes["Main-Class"] = "org.katan.yoki.engine.docker.MainKt"
-                    }
                     from(configurations.getByName("runtimeClasspath").map { if (it.isDirectory) it else zipTree(it) }, main.output.classesDirs)
                     archiveBaseName.set("${project.name}-fat")
                 }

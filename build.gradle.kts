@@ -30,7 +30,9 @@ subprojects {
         scmConnection.set("git:git@github.com:KatanPanel/yoki")
 
         mavenCentral.user.set((project.findProperty("ossrh.username") as String?) ?: System.getenv("OSSRH_USERNAME"))
-        mavenCentral.password.set(provider { (project.findProperty("ossrh.password") as String?) ?: System.getenv("OSSRH_PASSWORD") })
+        mavenCentral.password.set(provider {
+            (project.findProperty("ossrh.password") as String?) ?: System.getenv("OSSRH_PASSWORD")
+        })
 
         repository("https://maven.pkg.github.com/KatanPanel/yoki", "GitHub") {
             user.set(System.getenv("GITHUB_USERNAME"))
@@ -41,8 +43,12 @@ subprojects {
             mavenCentralSnapshotsRepository()
     }
 
-    tasks.withType<Sign>().configureEach {
-        onlyIf { isReleaseVersion }
+    signing {
+        val signingKey = project.findProperty("signing.key")?.toString()
+            ?: System.getenv("OSSRH_SIGNING_KEY")
+        val signingPassword: String = project.findProperty("signing.password")?.toString()
+            ?: System.getenv("OSSRH_SIGNING_PASSWORD")
+        useInMemoryPgpKeys(signingKey, signingPassword)
     }
 }
 
