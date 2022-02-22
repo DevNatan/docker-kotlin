@@ -16,10 +16,10 @@ class SecretResourceIT {
         val client = createTestYoki()
 
         // will throw exception on fail
-        runCatching {
+        try {
             client.secrets.list()
-        }.onFailure {
-            fail("Failed to list secrets")
+        } catch (e: Throwable) {
+            fail("failed to list secrets", e)
         }
     }
 }
