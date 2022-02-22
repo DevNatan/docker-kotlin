@@ -1,11 +1,11 @@
 package org.katan.yoki.model
 
-import kotlinx.serialization.*
 import org.katan.yoki.model.Stream.Companion.StdErr
 import org.katan.yoki.model.Stream.Companion.StdIn
 import org.katan.yoki.model.Stream.Companion.StdOut
 import org.katan.yoki.model.Stream.Companion.Unknown
 import kotlin.jvm.*
+import kotlinx.serialization.*
 
 @Serializable
 public data class Stream internal constructor(

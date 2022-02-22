@@ -1,16 +1,16 @@
 @file:JvmMultifileClass
 package org.katan.yoki.protocol
 
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
-import okio.ByteString.Companion.decodeHex
 import org.katan.yoki.protocol.JvmUnixSocket.Companion.decodeHostname
-import org.newsclub.net.unix.*
 import java.io.*
 import java.net.*
 import java.nio.file.Files
 import java.nio.file.Paths
 import javax.net.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
+import okio.ByteString.Companion.decodeHex
+import org.newsclub.net.unix.*
 
 /**
  * Thread safe non-persistent socket connection, closes the connection after a request.

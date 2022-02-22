@@ -2,11 +2,11 @@
 
 package org.katan.yoki.engine.docker.resource.secret
 
-import kotlinx.coroutines.*
-import kotlinx.coroutines.test.*
 import org.katan.yoki.*
 import org.katan.yoki.engine.docker.*
 import kotlin.test.*
+import kotlinx.coroutines.*
+import kotlinx.coroutines.test.*
 
 class SecretResourceIT {
 

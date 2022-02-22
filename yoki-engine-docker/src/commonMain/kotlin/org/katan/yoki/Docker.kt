@@ -1,9 +1,11 @@
 package org.katan.yoki
 
-import org.katan.yoki.resource.container.*
-import org.katan.yoki.resource.network.*
-import org.katan.yoki.resource.secret.*
-import org.katan.yoki.resource.volume.*
+import org.katan.yoki.engine.YokiEngine
+import org.katan.yoki.engine.YokiEngineFactory
+import org.katan.yoki.resource.container.ContainerResource
+import org.katan.yoki.resource.network.NetworkResource
+import org.katan.yoki.resource.secret.SecretResource
+import org.katan.yoki.resource.volume.VolumeResource
 
 public object Docker : YokiEngineFactory<DockerEngineConfig> {
 

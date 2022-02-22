@@ -2,12 +2,12 @@
 
 package org.katan.yoki.engine.docker.resource.volume
 
-import kotlinx.coroutines.*
-import kotlinx.coroutines.test.*
 import org.katan.yoki.*
 import org.katan.yoki.engine.docker.*
 import org.katan.yoki.resource.volume.*
 import kotlin.test.*
+import kotlinx.coroutines.*
+import kotlinx.coroutines.test.*
 
 class VolumeResourceIT {
 

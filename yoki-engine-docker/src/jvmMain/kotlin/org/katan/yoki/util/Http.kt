@@ -1,17 +1,17 @@
 package org.katan.yoki.util
 
+import org.katan.yoki.*
+import org.katan.yoki.protocol.*
 import io.ktor.client.*
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.features.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.http.*
+import java.util.concurrent.*
 import kotlinx.serialization.json.*
 import okhttp3.*
 import okio.ByteString.Companion.encodeUtf8
-import org.katan.yoki.*
-import org.katan.yoki.protocol.*
-import java.util.concurrent.*
 
 internal fun OkHttpClient.Builder.configureOkHttpClient() = apply {
     socketFactory(UnixSocketFactory())

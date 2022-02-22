@@ -1,12 +1,12 @@
 package org.katan.yoki.resource.network
 
-import io.ktor.client.request.*
-import kotlinx.serialization.*
-import kotlinx.serialization.json.*
 import org.katan.yoki.*
 import org.katan.yoki.model.network.*
 import org.katan.yoki.util.*
 import kotlin.jvm.*
+import io.ktor.client.request.*
+import kotlinx.serialization.*
+import kotlinx.serialization.json.*
 
 /**
  * Networks are user-defined networks that containers can be attached to. See the [networking documentation](https://docs.docker.com/network/)

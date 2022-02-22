@@ -1,6 +1,6 @@
 package org.katan.yoki
 
-import org.katan.yoki.engine.*
+import org.katan.yoki.engine.YokiEngineConfig
 
 public class YokiConfig<T : YokiEngineConfig> {
 

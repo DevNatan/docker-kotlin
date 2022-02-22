@@ -1,10 +1,10 @@
 package org.katan.yoki.resource.secret
 
+import org.katan.yoki.*
+import org.katan.yoki.model.secret.*
 import io.ktor.client.request.*
 import kotlinx.serialization.*
 import kotlinx.serialization.json.*
-import org.katan.yoki.*
-import org.katan.yoki.model.secret.*
 
 /**
  * Secrets are sensitive data that can be used by Docker services.
