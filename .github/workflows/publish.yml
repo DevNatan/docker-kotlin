@@ -1,13 +1,9 @@
-name: Build and Deploy
+name: Publish
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
   workflow_dispatch:
 jobs:
-  build-and-deploy:
-    name: Build and Deploy
+  publish:
+    name: Publish
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -32,5 +28,5 @@ jobs:
           GITHUB_USERNAME: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          arguments: clean publishAllPublicationsToGithubRepository
+          arguments: publishAllPublicationsToGithubRepository
           gradle-version: wrapper
