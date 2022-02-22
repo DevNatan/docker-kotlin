@@ -48,7 +48,6 @@ public class VolumeResource(
      *
      * @see <a href="https://docs.docker.com/engine/api/v1.41/#operation/VolumeCreate">VolumeCreate</a>
      */
-    @JvmOverloads
     public suspend fun create(config: VolumeConfig): Volume {
         return engine.httpClient.post("$BASE_PATH/create") {
             body = config
@@ -63,7 +62,6 @@ public class VolumeResource(
      *
      * @see <a href="https://docs.docker.com/engine/api/v1.41/#operation/VolumeInspect">VolumeInspect</a>
      */
-    @JvmOverloads
     public suspend fun inspect(id: String): Volume {
         return engine.httpClient.get("$BASE_PATH/$id")
     }
