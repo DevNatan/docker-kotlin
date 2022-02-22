@@ -7,19 +7,13 @@ import kotlinx.coroutines.test.runTest
 import org.katan.yoki.engine.docker.createTestYoki
 import org.katan.yoki.secrets
 import kotlin.test.Test
-import kotlin.test.fail
+import kotlin.test.assertFails
 
 class SecretResourceIT {
 
     @Test
-    fun `list secrets`() = runTest {
+    fun `list secrets with no swarm`() = runTest {
         val client = createTestYoki()
-
-        // will throw exception on fail
-        try {
-            client.secrets.list()
-        } catch (e: Throwable) {
-            fail("failed to list secrets", e)
-        }
+        assertFails("Secrets endpoint only work with swarm enabled") { client.secrets.list() }
     }
 }
