@@ -1,9 +1,10 @@
 package org.katan.yoki.model
 
 import kotlinx.serialization.*
-import org.katan.yoki.engine.docker.model.Stream.Companion.StdErr
-import org.katan.yoki.engine.docker.model.Stream.Companion.StdIn
-import org.katan.yoki.engine.docker.model.Stream.Companion.StdOut
+import org.katan.yoki.model.Stream.Companion.StdErr
+import org.katan.yoki.model.Stream.Companion.StdIn
+import org.katan.yoki.model.Stream.Companion.StdOut
+import org.katan.yoki.model.Stream.Companion.Unknown
 import kotlin.jvm.*
 
 @Serializable
@@ -41,6 +42,6 @@ public fun stream(name: String): Stream {
         StdIn.name -> StdIn
         StdOut.name -> StdOut
         StdErr.name -> StdErr
-        else -> Stream.Unknown
+        else -> Unknown
     }
 }
