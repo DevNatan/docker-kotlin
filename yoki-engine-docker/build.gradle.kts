@@ -13,20 +13,6 @@ repositories {
 kotlin {
     explicitApi()
     jvm {
-        compilations {
-            val main = getByName("main")
-            tasks {
-                register<Jar>("jvmFatJar") {
-                    enabled = true
-                    group = "build"
-                    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-                    dependsOn(build)
-                    from(configurations.getByName("runtimeClasspath").map { if (it.isDirectory) it else zipTree(it) }, main.output.classesDirs)
-                    archiveBaseName.set("${project.name}-fat")
-                }
-            }
-        }
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
             filter {
