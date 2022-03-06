@@ -8,5 +8,4 @@ public open class BaseYokiEngine(
 
     override val coroutineContext: CoroutineContext
         get() = error("Not implemented")
-
 }

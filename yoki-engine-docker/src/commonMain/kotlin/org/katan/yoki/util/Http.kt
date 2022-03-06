@@ -10,7 +10,7 @@ public expect fun createHttpClient(engine: DockerEngine): HttpClient
 public inline fun <T> HttpClient.requestCatching(
     block: HttpClient.() -> T,
     handle: ResponseException.() -> T
-): T = runCatching { block() }.getOrElse {
+): Result<T> = runCatching { block() }.recover {
     when (it) {
         is ResponseException -> it.handle()
         else -> throw it
