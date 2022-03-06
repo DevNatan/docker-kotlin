@@ -12,5 +12,4 @@ public interface YokiLogger {
     public val defaultLevel: LogLevel
 
     public fun log(level: LogLevel, parameters: Array<Any>)
-
 }

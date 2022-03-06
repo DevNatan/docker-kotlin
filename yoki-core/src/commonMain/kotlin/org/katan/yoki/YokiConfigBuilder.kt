@@ -12,7 +12,6 @@ public class YokiConfigFactory<T : YokiEngineConfig> {
 
     internal var engineConfig: T.() -> Unit = {}
     internal var logger: YokiLogger = NoopYokiLogger
-
 }
 
 public fun <T : YokiEngineConfig> YokiConfigFactory<T>.engine(block: T.() -> Unit) {
@@ -30,5 +29,4 @@ private object NoopYokiLogger : YokiLogger {
 
     override fun log(level: LogLevel, parameters: Array<Any>) {
     }
-
 }
