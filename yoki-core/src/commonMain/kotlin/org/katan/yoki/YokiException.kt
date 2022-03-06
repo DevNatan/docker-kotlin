@@ -6,3 +6,11 @@ public open class YokiException : Exception {
     public constructor(message: String?, cause: Throwable?) : super(message, cause)
     public constructor(cause: Throwable?) : super(cause)
 }
+
+public class ContainerAlreadyStartedException(
+    public val containerId: String
+) : YokiException()
+
+public class ContainerNotFoundException(
+    public val containerId: String
+) : YokiException()

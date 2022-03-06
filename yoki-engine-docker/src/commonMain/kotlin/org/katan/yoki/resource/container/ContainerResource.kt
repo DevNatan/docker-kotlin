@@ -7,6 +7,7 @@ import io.ktor.client.request.post
 import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.HttpStatement
 import io.ktor.client.statement.readBytes
+import io.ktor.http.HttpStatusCode
 import io.ktor.utils.io.core.ByteOrder
 import io.ktor.utils.io.core.ExperimentalIoApi
 import io.ktor.utils.io.readInt
@@ -15,10 +16,13 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
+import org.katan.yoki.ContainerAlreadyStartedException
+import org.katan.yoki.ContainerNotFoundException
 import org.katan.yoki.DockerEngine
 import org.katan.yoki.model.Frame
 import org.katan.yoki.model.Stream
 import org.katan.yoki.model.container.Container
+import org.katan.yoki.util.requestCatching
 import kotlin.time.Duration
 
 /**
@@ -70,9 +74,16 @@ public class ContainerResource(private val engine: DockerEngine) {
     }
 
     public suspend fun start(id: String, detachKeys: String? = null) {
-        engine.httpClient.post<Unit>("$BASE_PATH/$id/start") {
-            parameter("detachKeys", detachKeys)
-        }
+        engine.httpClient.requestCatching({
+            post<Unit>("$BASE_PATH/$id/start") {
+                parameter("detachKeys", detachKeys)
+            }
+        }, {
+            when (response.status) {
+                HttpStatusCode.NotModified -> throw ContainerAlreadyStartedException(id)
+                HttpStatusCode.NotFound -> throw ContainerNotFoundException(id)
+            }
+        })
     }
 
     public suspend fun stop(id: String, timeout: Int? = null) {
