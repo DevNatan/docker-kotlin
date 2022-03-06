@@ -16,6 +16,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("stdlib-common"))
                 implementation(libs.ktx.coroutines.core)
+                compileOnly(project(":yoki-logging"))
             }
         }
 
