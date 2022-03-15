@@ -1,9 +1,11 @@
 package org.katan.yoki.resource.container
 
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.SerialName
 import kotlin.time.Duration
 
+@Serializable
 public data class ContainerCreateOptions(
     @SerialName("Hostname") public var hostName: String? = null,
     @SerialName("User") public var user: String? = null,
