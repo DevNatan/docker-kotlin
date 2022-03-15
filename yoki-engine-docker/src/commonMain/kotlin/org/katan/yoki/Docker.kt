@@ -15,7 +15,7 @@ public object Docker : YokiEngineFactory<DockerEngineConfig> {
     }
 }
 
-public val Yoki.containers: ContainerResource get() = (engine as DockerEngine).containerResource
+public val Yoki.container: ContainerResource get() = (engine as DockerEngine).containerResource
 public val Yoki.networks: NetworkResource get() = (engine as DockerEngine).networkResource
 public val Yoki.volumes: VolumeResource get() = (engine as DockerEngine).volumeResource
 public val Yoki.secrets: SecretResource get() = (engine as DockerEngine).secretResource
