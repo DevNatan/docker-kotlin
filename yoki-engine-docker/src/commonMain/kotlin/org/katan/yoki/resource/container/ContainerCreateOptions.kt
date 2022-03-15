@@ -1,8 +1,8 @@
 package org.katan.yoki.resource.container
 
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import kotlin.time.Duration
 
 @Serializable
@@ -15,7 +15,6 @@ public data class ContainerCreateOptions(
     @SerialName("AttachStderr") public var attachStderr: Boolean? = null,
     @SerialName("OpenStdin") public var openStdin: Boolean? = null,
     @SerialName("StdinOnce") public var onceStdin: Boolean? = null,
-    // TODO exposed ports
     @SerialName("Tty") public var tty: Boolean = false,
     @SerialName("Env") public var env: Map<String, String>? = null,
     @SerialName("Cmd") public var command: String? = null,
