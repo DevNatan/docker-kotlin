@@ -1,3 +1,5 @@
+@file:JvmName("JvmHttp")
+
 package org.katan.yoki.util
 
 import io.ktor.client.HttpClient
