@@ -20,6 +20,9 @@ import org.katan.yoki.DockerEngine
 import org.katan.yoki.protocol.UnixSocketFactory
 import java.util.concurrent.TimeUnit
 
+/**
+ * Configures a [OkHttpClient] to work with Unix Sockets.
+ */
 internal fun OkHttpClient.Builder.configureOkHttpClient() = apply {
     socketFactory(UnixSocketFactory())
     dns(SocketDns())
@@ -28,7 +31,12 @@ internal fun OkHttpClient.Builder.configureOkHttpClient() = apply {
     callTimeout(0, TimeUnit.MILLISECONDS)
 }
 
+/**
+ * Creates a new [HttpClient] to the given [engine].
+ */
 public actual fun createHttpClient(engine: DockerEngine): HttpClient {
+    // cannot use CIO due to a Ktor Client bug related to data streaming
+    // https://youtrack.jetbrains.com/issue/KTOR-2494
     return HttpClient(OkHttp) {
         engine {
             config {
