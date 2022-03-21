@@ -16,13 +16,9 @@ The initial purpose of creating the project was to have integration with other p
 * [Get Started](#get-started)
 
 ## Project Setup
-This library is published to Maven Central.\
+**This library is published to Maven Central**.\
 Remember to add the Maven Central repository if it isn't already there:
 ```groovy
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     implementation("org.katan:yoki-core-jvm:0.0.1")
 }
@@ -43,12 +39,12 @@ The Yoki client is the central point of all its operation, it is through it that
 
 We will explain more about engines later on.
 ```kotlin
-public val yoki = Yoki(...)
+val yoki = Yoki(...)
 ```
 
 Specify client configurations by expanding the function.
 ```kotlin
-public val yoki = Yoki(...) {
+val yoki = Yoki(...) {
     // ...
 }
 ```
@@ -58,7 +54,7 @@ Yoki's first functionality intention was for it to be a client that only interac
 
 For now, only Docker is supported, feel free to contribute if you want to make your own engine implementation which is not yet supported.
 
-### Docker
+#### Docker Engine
 Before using, see if the endpoints you are targeting are supported in the Docker [Supported Endpoints](https://github.com/KatanPanel/yoki/blob/main/yoki-engine-docker/README.md) section.\
 We expect to achieve 100% coverage over the entire Docker API for all versions starting with v1.41, soon.
 
@@ -81,20 +77,14 @@ commonMain {
 
 Then configure in the client initialization step.
 ```kotlin
-public val yoki = Yoki(Docker) {
+import org.katan.yoki.Docker
+
+val yoki = Yoki(Docker) {
     engine { 
-        // DockerEngineConfig
+        // this: DockerEngineConfig
     }
 }
 ```
-
-## Contributing
-Yoki is open-source and we lovingly accept any contribution to the project. 
-
-If you are thinking of contributing to the project, check out the [Contribution Guide](https://github.com/KatanPanel/yoki/blob/main/CONTRIBUTING.md) to ensure that everything looks good for everyone who will use it and that the project remains consistent and maintainable.
-
-## Third Party
-Third party software used in Katan is listed in [this file](THIRDPARTY.md).
 
 ## License
 Yoki is licensed under the MIT license.
