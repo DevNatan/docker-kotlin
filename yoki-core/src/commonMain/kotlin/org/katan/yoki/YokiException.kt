@@ -7,10 +7,40 @@ public open class YokiException : Exception {
     public constructor(cause: Throwable?) : super(cause)
 }
 
+public open class YokiResourceException(
+    message: String?,
+    cause: Throwable?,
+    public val properties: Map<String, Any?>
+) : YokiException(message, cause)
+
+public open class ContainerException(
+    message: String?,
+    cause: Throwable?,
+    properties: Map<String, Any?>
+) : YokiResourceException(message, cause, properties) {
+
+    public val containerId: String by properties
+
+    public companion object {
+        public const val CONTAINER_ID_PROPERTY: String = "containerId"
+    }
+
+}
+
 public class ContainerAlreadyStartedException(
-    public val containerId: String
-) : YokiException()
+    message: String?,
+    cause: Throwable?,
+    properties: Map<String, Any?>
+) : ContainerException(message, cause, properties)
 
 public class ContainerNotFoundException(
-    public val containerId: String
-) : YokiException()
+    message: String?,
+    cause: Throwable?,
+    properties: Map<String, Any?>
+) : ContainerException(message, cause, properties)
+
+public class ContainerRemoveConflictException(
+    message: String?,
+    cause: Throwable?,
+    properties: Map<String, Any?>
+) : ContainerException(message, cause, properties)

@@ -1,28 +1,26 @@
 package org.katan.yoki.resource.container
 
-import io.ktor.client.request.delete
-import io.ktor.client.request.get
-import io.ktor.client.request.parameter
-import io.ktor.client.request.post
-import io.ktor.client.statement.HttpResponse
-import io.ktor.client.statement.HttpStatement
-import io.ktor.client.statement.readBytes
-import io.ktor.http.HttpStatusCode
-import io.ktor.utils.io.core.ByteOrder
-import io.ktor.utils.io.core.ExperimentalIoApi
-import io.ktor.utils.io.readInt
+import io.ktor.client.features.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
+import io.ktor.utils.io.*
+import io.ktor.utils.io.core.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import org.katan.yoki.ContainerAlreadyStartedException
+import org.katan.yoki.ContainerException.Companion.CONTAINER_ID_PROPERTY
 import org.katan.yoki.ContainerNotFoundException
+import org.katan.yoki.ContainerRemoveConflictException
 import org.katan.yoki.DockerEngine
 import org.katan.yoki.model.Frame
 import org.katan.yoki.model.Stream
 import org.katan.yoki.model.container.Container
 import org.katan.yoki.util.requestCatching
+import org.katan.yoki.util.throwResourceException
 import kotlin.time.Duration
 
 /**
@@ -74,15 +72,24 @@ public class ContainerResource(private val engine: DockerEngine) {
         }.id
     }
 
+    /**
+     * Starts a container.
+     *
+     * @param id The container id to be started.
+     * @param detachKeys The key sequence for detaching a container.
+     * @throws ContainerAlreadyStartedException If the container was already started.
+     * @throws ContainerNotFoundException If container was not found.
+     */
     public suspend fun start(id: String, detachKeys: String? = null) {
         engine.httpClient.requestCatching({
             post<Unit>("$BASE_PATH/$id/start") {
                 parameter("detachKeys", detachKeys)
             }
         }, {
+            val props: Map<String, Any?> = mapOf(CONTAINER_ID_PROPERTY to id, "detachKeys" to detachKeys)
             when (response.status) {
-                HttpStatusCode.NotModified -> throw ContainerAlreadyStartedException(id)
-                HttpStatusCode.NotFound -> throw ContainerNotFoundException(id)
+                HttpStatusCode.NotModified -> throwResourceException(::ContainerAlreadyStartedException, props)
+                HttpStatusCode.NotFound -> throwResourceException(::ContainerNotFoundException, props)
             }
         })
     }
@@ -120,7 +127,15 @@ public class ContainerResource(private val engine: DockerEngine) {
     }
 
     public suspend fun remove(id: String) {
-        engine.httpClient.delete<Unit>("$BASE_PATH/$id")
+        engine.httpClient.requestCatching({
+            delete<Unit>("$BASE_PATH/$id")
+        }, {
+            val props: Map<String, Any?> = mapOf(CONTAINER_ID_PROPERTY to id)
+            when (response.status) {
+                HttpStatusCode.NotFound -> throwResourceException(::ContainerNotFoundException, props)
+                HttpStatusCode.Conflict -> throwResourceException(::ContainerRemoveConflictException, props)
+            }
+        })
     }
 
     public suspend fun remove(id: String, options: ContainerRemoveOptions) {
@@ -132,7 +147,7 @@ public class ContainerResource(private val engine: DockerEngine) {
     }
 
     /**
-     * Returns a low-level information about a container.
+     * Returns low-level information about a container.
      *
      * @param id ID or name of the container.
      * @param size Should return the size of container as fields `SizeRw` and `SizeRootFs`

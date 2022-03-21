@@ -2,6 +2,10 @@ package org.katan.yoki.util
 
 import io.ktor.client.HttpClient
 import io.ktor.client.features.ResponseException
+import io.ktor.utils.io.*
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import org.katan.yoki.DockerEngine
 import org.katan.yoki.YokiResourceException
 
@@ -30,4 +34,13 @@ public suspend inline fun <T> HttpClient.requestCatching(
         }
         else -> throw it
     }
+}
+
+public suspend fun <T : YokiResourceException> ResponseException.throwResourceException(
+    factory: (message: String?, cause: Throwable?, properties: Map<String, Any?>) -> T,
+    properties: Map<String, Any?>
+): Nothing {
+    throw factory(response.content.readUTF8Line()?.let {
+        (resourceExceptionJsonDeserializer.decodeFromString(it) as Map<String, @Contextual Any?>)["message"] as? String?
+    }, this, properties)
 }
