@@ -24,7 +24,6 @@ public open class ContainerException(
     public companion object {
         public const val CONTAINER_ID_PROPERTY: String = "containerId"
     }
-
 }
 
 public class ContainerAlreadyStartedException(

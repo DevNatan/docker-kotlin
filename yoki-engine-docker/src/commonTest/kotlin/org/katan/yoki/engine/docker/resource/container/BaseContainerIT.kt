@@ -21,5 +21,4 @@ open class BaseContainerIT internal constructor() {
             }
         } catch (ignored: Throwable) {}
     }
-
 }
