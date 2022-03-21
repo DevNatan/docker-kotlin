@@ -7,8 +7,12 @@ import kotlinx.coroutines.test.runTest
 import org.katan.yoki.ContainerAlreadyStartedException
 import org.katan.yoki.ContainerNotFoundException
 import org.katan.yoki.containers
+import org.katan.yoki.engine.docker.TEST_CONTAINER_NAME
 import org.katan.yoki.engine.docker.createTestContainer
 import org.katan.yoki.engine.docker.createTestYoki
+import org.katan.yoki.engine.docker.keepStartedForever
+import org.katan.yoki.resource.container.remove
+import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
 import kotlin.test.fail
@@ -39,7 +43,9 @@ class StartContainerIT {
     @Test
     fun `throws ContainerAlreadyStartedException on try to start a already started container`() = runTest {
         val client = createTestYoki()
-        val containerId = createTestContainer(client)
+        val containerId = createTestContainer(client) {
+            keepStartedForever()
+        }
 
         try {
             client.containers.start(containerId)
@@ -51,4 +57,15 @@ class StartContainerIT {
             client.containers.start(containerId)
         }
     }
+
+    @AfterTest
+    fun cleanup() = runTest {
+        try {
+            createTestYoki().containers.remove(TEST_CONTAINER_NAME) {
+                removeAnonymousVolumes = true
+                force = true
+            }
+        } catch (ignored: Throwable) {}
+    }
+
 }

@@ -69,6 +69,7 @@ public class ContainerResource(private val engine: DockerEngine) {
 
         // TODO print warnings
         return engine.httpClient.post<Result>("$BASE_PATH/create") {
+            options.name?.let { parameter("name", it) }
             body = options
         }.id
     }

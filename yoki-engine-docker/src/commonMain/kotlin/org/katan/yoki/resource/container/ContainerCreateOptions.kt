@@ -7,6 +7,7 @@ import kotlin.time.Duration
 
 @Serializable
 public data class ContainerCreateOptions(
+    public var name: String? = null,
     @SerialName("Hostname") public var hostName: String? = null,
     @SerialName("User") public var user: String? = null,
     @SerialName("Domainname") public var domainName: String? = null,

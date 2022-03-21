@@ -8,10 +8,13 @@ import org.katan.yoki.DockerEngineConfig
 import org.katan.yoki.Yoki
 import org.katan.yoki.YokiConfig
 import org.katan.yoki.containers
+import org.katan.yoki.resource.container.ContainerCreateOptions
 import org.katan.yoki.resource.container.create
 import kotlin.test.fail
 import org.katan.yoki.images
 import kotlin.test.fail
+
+internal const val TEST_CONTAINER_NAME = "yoki-test"
 
 /**
  * Creates a new Yoki instance for testing.
@@ -36,10 +39,20 @@ suspend fun Yoki.withImage(imageName: String, block: suspend (String) -> Unit) {
  * Creates a simple test container with no name and "hello-world" image.
  */
 @OptIn(ExperimentalCoroutinesApi::class)
-suspend fun TestScope.createTestContainer(client: Yoki): String {
+suspend fun TestScope.createTestContainer(client: Yoki, options: ContainerCreateOptions.() -> Unit = {}): String {
     return runCatching {
         client.containers.create {
-            image = "hello-world"
+            name = TEST_CONTAINER_NAME
+            image = "busybox"
+            apply(options)
         }
-    }.onFailure { fail("Failed to create test container", it) }.getOrThrow()
+    }.onFailure { fail("Failed to create test container: $it", it) }.getOrThrow()
+}
+
+/**
+ * Make a container keep started forever.
+ */
+fun ContainerCreateOptions.keepStartedForever() {
+    openStdin = true
+    tty = true
 }
