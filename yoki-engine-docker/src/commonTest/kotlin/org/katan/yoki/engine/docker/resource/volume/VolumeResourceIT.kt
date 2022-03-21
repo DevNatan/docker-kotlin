@@ -40,10 +40,10 @@ class VolumeResourceIT {
     }
 
     @Test
-    fun `list volume`() = runTest {
+    fun `list volumes`() = runTest {
         val client = createTestYoki()
 
-        assertFalse(client.volumes.list().volumes.isEmpty())
+        assertTrue(client.volumes.list().volumes.isEmpty())
     }
 
     @Test
