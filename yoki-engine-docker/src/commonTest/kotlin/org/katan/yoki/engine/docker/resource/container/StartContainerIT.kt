@@ -17,7 +17,7 @@ import kotlin.test.Test
 import kotlin.test.assertFailsWith
 import kotlin.test.fail
 
-class StartContainerIT {
+class StartContainerIT : BaseContainerIT() {
 
     @Test
     fun `successfully starts a container`() = runTest {
@@ -36,7 +36,7 @@ class StartContainerIT {
         val client = createTestYoki()
 
         assertFailsWith(ContainerNotFoundException::class) {
-            client.containers.start("michael-jackson")
+            client.containers.start(TEST_CONTAINER_NAME)
         }
     }
 
@@ -56,16 +56,6 @@ class StartContainerIT {
         assertFailsWith(ContainerAlreadyStartedException::class) {
             client.containers.start(containerId)
         }
-    }
-
-    @AfterTest
-    fun cleanup() = runTest {
-        try {
-            createTestYoki().containers.remove(TEST_CONTAINER_NAME) {
-                removeAnonymousVolumes = true
-                force = true
-            }
-        } catch (ignored: Throwable) {}
     }
 
 }

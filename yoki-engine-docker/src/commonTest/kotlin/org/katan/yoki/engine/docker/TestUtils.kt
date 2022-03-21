@@ -50,7 +50,7 @@ suspend fun TestScope.createTestContainer(client: Yoki, options: ContainerCreate
 }
 
 /**
- * Make a container keep started forever.
+ * Make a container started forever.
  */
 fun ContainerCreateOptions.keepStartedForever() {
     openStdin = true
