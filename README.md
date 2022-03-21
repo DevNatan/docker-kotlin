@@ -1,21 +1,19 @@
-# Yoki
+<p align="center">
+    <img alt="Yoki logo" src="https://user-images.githubusercontent.com/24600258/159191738-7b3d9a65-d78b-4cb2-b02f-49c09732852e.png" width="300">
+</p>
+
 [![Build](https://github.com/KatanPanel/yoki/actions/workflows/build.yml/badge.svg)](https://github.com/KatanPanel/yoki/actions/workflows/build.yml)
 [![Integration Tests](https://github.com/KatanPanel/yoki/actions/workflows/integration-tests.yml/badge.svg)](https://github.com/KatanPanel/yoki/actions/workflows/integration-tests.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/org.katan/yoki)](https://mvnrepository.com/artifact/org.katan)
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
+</center>
 
-**Yoki is a multiplatform Docker API client.**
+Yoki allows you to interact with the container runtimes API like Docker Engine API in a simplified and fast way, Yoki was built under Kotlin Multiplatform so you can use it either in Kotlin or Kotlin Native projects. 
 
-This project allows you to interact with the container runtimes API like Docker Engine API in a simplified and fast way, Yoki was built under Kotlin Multiplatform so you can use it either in JVM projects with Kotlin or Kotlin Native. 
-
-The initial purpose of creating the project was to have integration with other projects of the Katan organization, since existing projects that implemented clients for the Docker API always had some problems, the most common of which being lack of support, lack of documentation and poor performance. 
+The initial purpose of creating the project was to have integration with other projects of the Katan organization, since existing projects that implemented clients for the Docker API always had some problems, the most common of which being bad of support, lack of documentation and specially poor performance.
 
 * [Project Setup](#project-setup)
-* [Initializing the Client](#initializing-the-client)
-* [Engines](#engines)
-* [Contributing](#contributing)
-* [Third Party](#third-party)
-* [License](#license)
+* [Get Started](#get-started)
 
 ## Project Setup
 This library is published to Maven Central.\
@@ -40,7 +38,7 @@ commonMain {
 }
 ```
 
-## Initializing the Client
+## Get Started
 The Yoki client is the central point of all its operation, it is through it that you will access the API of the resources that are currently supported by Yoki and its configuration as well. For the Yoki client to work, you need a container engine that you specify when creating the client instance.
 
 We will explain more about engines later on.
@@ -55,7 +53,7 @@ public val yoki = Yoki(...) {
 }
 ```
 
-## Engines
+### Engines
 Yoki's first functionality intention was for it to be a client that only interacted with the Docker API, but we realized that other engines were emerging over time and that eventually we would want to add support for them in the future, so we prepared the code to accept it. different types of engines besides Docker, that's why you have to specify an engine in the client as said before.
 
 For now, only Docker is supported, feel free to contribute if you want to make your own engine implementation which is not yet supported.
