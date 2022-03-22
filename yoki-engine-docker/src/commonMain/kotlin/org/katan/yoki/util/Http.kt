@@ -2,7 +2,7 @@ package org.katan.yoki.util
 
 import io.ktor.client.HttpClient
 import io.ktor.client.features.ResponseException
-import io.ktor.utils.io.*
+import io.ktor.utils.io.readUTF8Line
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import org.katan.yoki.DockerEngine
