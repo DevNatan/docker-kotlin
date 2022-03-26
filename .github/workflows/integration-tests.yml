@@ -19,8 +19,7 @@ jobs:
     steps:
       - name: Setup Docker
         uses: docker-practice/actions-setup-docker@master
-        run: | 
-          docker system prune -a -f
+        run: docker system prune -a -f
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup JDK 8
