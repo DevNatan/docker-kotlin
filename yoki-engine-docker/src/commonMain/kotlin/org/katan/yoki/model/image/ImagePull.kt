@@ -16,4 +16,5 @@ public data class ImagePull(
         public val current: Int? = null,
         public val total: Int? = null
     )
+
 }

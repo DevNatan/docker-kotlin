@@ -25,4 +25,5 @@ class RemoveImageIT {
 
         client.images.remove(image)
     }
+
 }
