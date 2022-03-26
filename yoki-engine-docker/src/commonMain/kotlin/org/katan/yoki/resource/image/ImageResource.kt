@@ -20,7 +20,6 @@ public class ImageResource(private val engine: DockerEngine) {
         private const val BASE_PATH = "/images"
         private val json: Json = Json {
             ignoreUnknownKeys = true
-            isLenient = true
         }
     }
 

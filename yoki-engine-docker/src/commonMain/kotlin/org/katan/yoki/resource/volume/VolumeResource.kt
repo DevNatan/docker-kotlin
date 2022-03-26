@@ -206,7 +206,7 @@ public data class VolumePrune(
  * Volume list response.
  *
  * @property volumes List of volumes.
- * @property warnings Warnings that ocurred when fetching the list of volumes.
+ * @property warnings Warnings that occurred when fetching the list of volumes.
  * @see VolumeResource.list
  */
 @Serializable

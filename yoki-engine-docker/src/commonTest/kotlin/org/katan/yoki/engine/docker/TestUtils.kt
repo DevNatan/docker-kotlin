@@ -1,8 +1,6 @@
 package org.katan.yoki.engine.docker
 
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.test.TestScope
 import org.katan.yoki.Docker
 import org.katan.yoki.DockerEngineConfig
 import org.katan.yoki.Yoki
@@ -17,8 +15,6 @@ import org.katan.yoki.resource.volume.create
 import org.katan.yoki.resource.volume.remove
 import org.katan.yoki.volumes
 import kotlin.test.fail
-
-internal const val TEST_CONTAINER_NAME = "yoki-test"
 
 /**
  * Creates a new Yoki instance for testing.
@@ -71,22 +67,6 @@ suspend fun <R> Yoki.withVolume(
         }
     } catch (e: Throwable) {
         fail("Failed to create volume", e)
-    }
-}
-
-/**
- * Creates a simple test container with no name and "hello-world" image.
- */
-@OptIn(ExperimentalCoroutinesApi::class)
-suspend fun TestScope.createTestContainer(client: Yoki, options: ContainerCreateOptions.() -> Unit = {}): String {
-    return client.withImage("busybox:latest") { pulledImageTag ->
-        runCatching {
-            client.containers.create {
-                name = TEST_CONTAINER_NAME
-                image = pulledImageTag
-                apply(options)
-            }
-        }.onFailure { fail("Failed to create test container: $it", it) }.getOrThrow()
     }
 }
 

@@ -7,15 +7,13 @@ import kotlinx.coroutines.test.runTest
 import org.katan.yoki.ContainerAlreadyStartedException
 import org.katan.yoki.ContainerNotFoundException
 import org.katan.yoki.containers
-import org.katan.yoki.engine.docker.TEST_CONTAINER_NAME
-import org.katan.yoki.engine.docker.createTestContainer
 import org.katan.yoki.engine.docker.createTestYoki
 import org.katan.yoki.engine.docker.keepStartedForever
 import org.katan.yoki.engine.docker.withContainer
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
 
-class StartContainerIT : BaseContainerIT() {
+class StartContainerIT {
 
     @Test
     fun `successfully starts a container`() = runTest {
@@ -31,21 +29,21 @@ class StartContainerIT : BaseContainerIT() {
         val client = createTestYoki()
 
         assertFailsWith(ContainerNotFoundException::class) {
-            client.containers.start(TEST_CONTAINER_NAME)
+            client.containers.start("jao-gomides")
         }
     }
 
     @Test
     fun `throws ContainerAlreadyStartedException on start a already started container`() = runTest {
         val client = createTestYoki()
-        val containerId = createTestContainer(client) {
+        client.withContainer("busybox:latest", {
             keepStartedForever()
-        }
+        }) { container ->
+            client.containers.start(container)
 
-        client.containers.start(containerId)
-
-        assertFailsWith(ContainerAlreadyStartedException::class) {
-            client.containers.start(containerId)
+            assertFailsWith(ContainerAlreadyStartedException::class) {
+                client.containers.start(container)
+            }
         }
     }
 }
