@@ -26,7 +26,7 @@ public inline fun <T> HttpClient.requestCatching(
 }
 
 public suspend fun <T : YokiResourceException> ResponseException.throwResourceException(
-    factory: (message: String?, cause: Throwable?, properties: Map<String, Any?>) -> T,
+    factory: (String?, Throwable?, Map<String, Any?>) -> T,
     properties: Map<String, Any?>
 ): Nothing {
     throw factory(
