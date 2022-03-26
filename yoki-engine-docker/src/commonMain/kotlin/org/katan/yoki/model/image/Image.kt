@@ -1,6 +1,5 @@
 package org.katan.yoki.model.image
 
-import kotlinx.serialization.Contextual
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -14,6 +13,6 @@ public data class Image(
     @SerialName("Size") public val size: Int,
     @SerialName("SharedSize") public val sharedSize: Int,
     @SerialName("VirtualSize") public val virtualSize: Int,
-    @SerialName("Labels") public val labels: Map<String, @Contextual Any?>?,
+    @SerialName("Labels") public val labels: Map<String, String?>?,
     @SerialName("Containers") public val containers: Int
 )
