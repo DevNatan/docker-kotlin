@@ -14,6 +14,7 @@ import org.katan.yoki.resource.container.ContainerCreateOptions
 import org.katan.yoki.resource.container.create
 import org.katan.yoki.resource.volume.VolumeConfig
 import org.katan.yoki.resource.volume.create
+import org.katan.yoki.resource.volume.remove
 import org.katan.yoki.volumes
 import kotlin.test.fail
 
@@ -65,7 +66,9 @@ suspend fun <R> Yoki.withVolume(
     try {
         val volume = volumes.create(config)
         block(volume)
-        volumes.remove(volume.name)
+        volumes.remove(volume.name) {
+            force = true
+        }
     } catch (e: Throwable) {
         fail("Failed to create volume", e)
     }
