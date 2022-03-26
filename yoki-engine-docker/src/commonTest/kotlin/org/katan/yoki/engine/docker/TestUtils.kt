@@ -9,8 +9,12 @@ import org.katan.yoki.Yoki
 import org.katan.yoki.YokiConfig
 import org.katan.yoki.containers
 import org.katan.yoki.images
+import org.katan.yoki.model.volume.Volume
 import org.katan.yoki.resource.container.ContainerCreateOptions
 import org.katan.yoki.resource.container.create
+import org.katan.yoki.resource.volume.VolumeConfig
+import org.katan.yoki.resource.volume.create
+import org.katan.yoki.volumes
 import kotlin.test.fail
 
 internal const val TEST_CONTAINER_NAME = "yoki-test"
@@ -51,6 +55,19 @@ suspend fun <R> Yoki.withContainer(
         containers.remove(id)
     } catch (e: Throwable) {
         fail("Failed to create container", e)
+    }
+}
+
+suspend fun <R> Yoki.withVolume(
+    config: VolumeConfig.() -> Unit = {},
+    block: suspend (Volume) -> R
+) {
+    try {
+        val volume = volumes.create(config)
+        block(volume)
+        volumes.remove(volume.name)
+    } catch (e: Throwable) {
+        fail("Failed to create volume", e)
     }
 }
 

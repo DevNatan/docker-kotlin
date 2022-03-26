@@ -119,7 +119,7 @@ public suspend inline fun VolumeResource.list(filters: VolumeFilters.() -> Unit)
  *
  * @see <a href="https://docs.docker.com/engine/api/v1.41/#operation/VolumeCreate">VolumeCreate</a>
  */
-public suspend inline fun VolumeResource.create(config: VolumeConfig.() -> Unit): Volume {
+public suspend inline fun VolumeResource.create(config: VolumeConfig.() -> Unit = {}): Volume {
     return create(VolumeConfig().apply(config))
 }
 
