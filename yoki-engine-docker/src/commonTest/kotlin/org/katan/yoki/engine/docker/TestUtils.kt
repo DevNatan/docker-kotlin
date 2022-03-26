@@ -10,6 +10,7 @@ import org.katan.yoki.images
 import org.katan.yoki.model.volume.Volume
 import org.katan.yoki.resource.container.ContainerCreateOptions
 import org.katan.yoki.resource.container.create
+import org.katan.yoki.resource.container.remove
 import org.katan.yoki.resource.volume.VolumeConfig
 import org.katan.yoki.resource.volume.create
 import org.katan.yoki.resource.volume.remove
@@ -49,7 +50,10 @@ suspend fun <R> Yoki.withContainer(
             apply(options)
         }
         block(id)
-        containers.remove(id)
+        containers.remove(id) {
+            force = true
+            removeAnonymousVolumes = true
+        }
     } catch (e: Throwable) {
         fail("Failed to create container", e)
     }
