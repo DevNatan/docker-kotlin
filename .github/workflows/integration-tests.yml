@@ -21,7 +21,6 @@ jobs:
     steps:
       - name: Setup Docker
         uses: docker-practice/actions-setup-docker@master
-        run: docker system prune -a -f
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup JDK 8
@@ -31,9 +30,10 @@ jobs:
           distribution: 'adopt'
           server-id: github
           cache: 'gradle'
+      - name: Prune Docker System
+        run: docker system prune -a -f
       - name: Run Gradle Check
         uses: burrunan/gradle-cache-action@v1
         with:
           arguments: check
           gradle-version: wrapper
-        
