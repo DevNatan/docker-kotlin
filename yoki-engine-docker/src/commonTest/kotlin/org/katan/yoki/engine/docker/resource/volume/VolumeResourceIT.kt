@@ -40,7 +40,12 @@ class VolumeResourceIT {
     @Test
     fun `list volumes`() = runTest {
         val client = createTestYoki()
-        assertTrue(client.volumes.list().volumes.isEmpty())
+        val response = client.volumes.list()
+        println(response.toString())
+
+        val volumes = response.volumes
+        println(volumes.toString())
+        assertTrue(volumes.isEmpty())
     }
 
     @Test
