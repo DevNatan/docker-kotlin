@@ -1,17 +1,16 @@
 package org.katan.yoki.engine.docker
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.test.TestScope
 import org.katan.yoki.Docker
 import org.katan.yoki.DockerEngineConfig
 import org.katan.yoki.Yoki
 import org.katan.yoki.YokiConfig
 import org.katan.yoki.containers
+import org.katan.yoki.images
 import org.katan.yoki.resource.container.ContainerCreateOptions
 import org.katan.yoki.resource.container.create
-import kotlin.test.fail
-import org.katan.yoki.images
 import kotlin.test.fail
 
 internal const val TEST_CONTAINER_NAME = "yoki-test"
@@ -24,15 +23,35 @@ fun createTestYoki(block: YokiConfig<DockerEngineConfig>.() -> Unit = {}): Yoki 
     return Yoki(Docker) { apply(block) }
 }
 
-suspend fun Yoki.withImage(imageName: String, block: suspend (String) -> Unit) {
+suspend fun <R> Yoki.withImage(imageName: String, block: suspend (String) -> R): R {
     try {
         images.pull(imageName).collect()
     } catch (e: Throwable) {
         fail("Failed to pull image", e)
     }
 
-    block(imageName)
-    images.remove(imageName, force = true)
+    try {
+        return block(imageName)
+    } finally {
+        images.remove(imageName, force = true)
+    }
+}
+
+suspend fun <R> Yoki.withContainer(
+    image: String,
+    options: ContainerCreateOptions.() -> Unit = {},
+    block: suspend (String) -> R
+) = withImage(image) { imageTag ->
+    try {
+        val id = containers.create {
+            this.image = imageTag
+            apply(options)
+        }
+        block(id)
+        containers.remove(id)
+    } catch (e: Throwable) {
+        fail("Failed to create container", e)
+    }
 }
 
 /**
@@ -40,13 +59,15 @@ suspend fun Yoki.withImage(imageName: String, block: suspend (String) -> Unit) {
  */
 @OptIn(ExperimentalCoroutinesApi::class)
 suspend fun TestScope.createTestContainer(client: Yoki, options: ContainerCreateOptions.() -> Unit = {}): String {
-    return runCatching {
-        client.containers.create {
-            name = TEST_CONTAINER_NAME
-            image = "busybox"
-            apply(options)
-        }
-    }.onFailure { fail("Failed to create test container: $it", it) }.getOrThrow()
+    return client.withImage("busybox:latest") { pulledImageTag ->
+        runCatching {
+            client.containers.create {
+                name = TEST_CONTAINER_NAME
+                image = pulledImageTag
+                apply(options)
+            }
+        }.onFailure { fail("Failed to create test container: $it", it) }.getOrThrow()
+    }
 }
 
 /**

@@ -11,26 +11,23 @@ import org.katan.yoki.engine.docker.TEST_CONTAINER_NAME
 import org.katan.yoki.engine.docker.createTestContainer
 import org.katan.yoki.engine.docker.createTestYoki
 import org.katan.yoki.engine.docker.keepStartedForever
+import org.katan.yoki.engine.docker.withContainer
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
-import kotlin.test.fail
 
 class StartContainerIT : BaseContainerIT() {
 
     @Test
     fun `successfully starts a container`() = runTest {
         val client = createTestYoki()
-        val containerId = createTestContainer(client)
 
-        try {
-            client.containers.start(containerId)
-        } catch (e: Throwable) {
-            fail("Failed to start container", e)
+        client.withContainer("busybox:latest") { id ->
+            client.containers.start(id)
         }
     }
 
     @Test
-    fun `throws ContainerNotFoundException on try to start unknown container`() = runTest {
+    fun `throws ContainerNotFoundException on start unknown container`() = runTest {
         val client = createTestYoki()
 
         assertFailsWith(ContainerNotFoundException::class) {
@@ -39,17 +36,13 @@ class StartContainerIT : BaseContainerIT() {
     }
 
     @Test
-    fun `throws ContainerAlreadyStartedException on try to start a already started container`() = runTest {
+    fun `throws ContainerAlreadyStartedException on start a already started container`() = runTest {
         val client = createTestYoki()
         val containerId = createTestContainer(client) {
             keepStartedForever()
         }
 
-        try {
-            client.containers.start(containerId)
-        } catch (e: Throwable) {
-            fail("Failed to start container", e)
-        }
+        client.containers.start(containerId)
 
         assertFailsWith(ContainerAlreadyStartedException::class) {
             client.containers.start(containerId)
