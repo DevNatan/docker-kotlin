@@ -23,6 +23,4 @@ class PullImageIT {
             )
         }
     }
-
-
 }
