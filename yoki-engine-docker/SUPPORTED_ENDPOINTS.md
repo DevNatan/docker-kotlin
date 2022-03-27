@@ -28,16 +28,17 @@
 * [ ] Extract an archive of files or folders to a directory in a container - **PUT /containers/:id/archive**
 * [x] Delete stopped containers - **PUT /containers/prune**
 
-### Images (0/15)
-* [ ] List images - GET **/images/json**
+### Images (3/15)
+* [x] List images - GET **/images/json**
 * [ ] Build an image - POST **/build**
 * [ ] Delete builder cache - POST **/build/prune**
 * [ ] Create an image - POST **/images/create**
+* [x] Pull an image - POST **/images/create**
 * [ ] Inspect an image - GET **/images/:name/json**
 * [ ] Get the history of an image - GET **/images/:name/history**
 * [ ] Push an image to a registry - POST **/images/:name/push**
 * [ ] Tag an image - POST **/images/:name/tag**
-* [ ] Remove an image - DELETE **/images/:name**
+* [x] Remove an image - DELETE **/images/:name**
 * [ ] Search images - GET **/images/search**
 * [ ] Delete unused images - POST **/images/prune**
 * [ ] Create a new image from a container - POST **/commit**
