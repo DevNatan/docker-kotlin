@@ -14,6 +14,7 @@ The initial purpose of creating the project was to have integration with other p
 
 * [Project Setup](#project-setup)
 * [Get Started](#get-started)
+* [Error Handling](#error-handling)
 
 ## Project Setup
 Remember to add the [Maven Central](https://search.maven.org/) repository if it isn't already there:
@@ -85,6 +86,9 @@ val yoki = Yoki(Docker) {
     }
 }
 ```
+
+## Error Handling
+TBD
 
 ## License
 Yoki is licensed under the MIT license.
