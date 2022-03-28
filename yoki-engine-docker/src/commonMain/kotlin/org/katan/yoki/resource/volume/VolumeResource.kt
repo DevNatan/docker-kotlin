@@ -119,7 +119,7 @@ public suspend inline fun VolumeResource.list(filters: VolumeFilters.() -> Unit)
  *
  * @see <a href="https://docs.docker.com/engine/api/v1.41/#operation/VolumeCreate">VolumeCreate</a>
  */
-public suspend inline fun VolumeResource.create(config: VolumeConfig.() -> Unit): Volume {
+public suspend inline fun VolumeResource.create(config: VolumeConfig.() -> Unit = {}): Volume {
     return create(VolumeConfig().apply(config))
 }
 
@@ -206,13 +206,13 @@ public data class VolumePrune(
  * Volume list response.
  *
  * @property volumes List of volumes.
- * @property warnings Warnings that ocurred when fetching the list of volumes.
+ * @property warnings Warnings that occurred when fetching the list of volumes.
  * @see VolumeResource.list
  */
 @Serializable
 public data class VolumeListResponse(
-    @SerialName("Volumes") public val volumes: Collection<Volume>,
-    @SerialName("Warnings") public val warnings: Collection<String>?
+    @SerialName("Volumes") public val volumes: List<Volume>,
+    @SerialName("Warnings") public val warnings: List<String>?
 )
 
 /**
@@ -224,6 +224,6 @@ public data class VolumeListResponse(
  */
 @Serializable
 public data class VolumePruneResponse(
-    @SerialName("VolumesDeleted") public val volumesDeleted: Collection<String>?,
+    @SerialName("VolumesDeleted") public val volumesDeleted: List<String>?,
     @SerialName("SpaceReclaimed") public val spaceReclaimed: Long
 )

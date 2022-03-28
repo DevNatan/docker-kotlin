@@ -5,11 +5,11 @@ package org.katan.yoki.engine.docker.resource.volume
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.katan.yoki.engine.docker.createTestYoki
+import org.katan.yoki.engine.docker.withVolume
 import org.katan.yoki.resource.volume.create
 import org.katan.yoki.volumes
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
 class VolumeResourceIT {
@@ -21,12 +21,10 @@ class VolumeResourceIT {
     @Test
     fun `create volume`() = runTest {
         val client = createTestYoki()
-        val createdVolume = client.volumes.create { name = VOLUME_NAME }
-        val inspectedVolume = client.volumes.inspect(createdVolume.name)
-        assertEquals(createdVolume.name, inspectedVolume.name)
-
-        // cleanup
-        client.volumes.remove(inspectedVolume.name)
+        client.withVolume { volume ->
+            val inspection = client.volumes.inspect(volume.name)
+            assertEquals(volume.name, inspection.name)
+        }
     }
 
     @Test
@@ -40,10 +38,10 @@ class VolumeResourceIT {
     }
 
     @Test
-    fun `list volume`() = runTest {
+    fun `list volumes`() = runTest {
         val client = createTestYoki()
-
-        assertFalse(client.volumes.list().volumes.isEmpty())
+        val volumes = client.volumes.list().volumes
+        assertTrue("Volumes must be empty, given: $volumes") { volumes.isEmpty() }
     }
 
     @Test
@@ -52,7 +50,7 @@ class VolumeResourceIT {
         val oldCount = client.volumes.list().volumes.size
         val newCount = 5
         repeat(newCount) {
-            client.volumes.create { name = "$VOLUME_NAME-$it" }
+            client.volumes.create()
         }
 
         assertEquals(client.volumes.list().volumes.size, oldCount + newCount)

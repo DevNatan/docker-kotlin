@@ -2,9 +2,10 @@ package org.katan.yoki
 
 import io.ktor.client.HttpClient
 import kotlinx.serialization.json.Json
-import org.katan.yoki.engine.YokiEngine
+import org.katan.yoki.engine.BaseYokiEngine
 import org.katan.yoki.engine.YokiEngineConfig
 import org.katan.yoki.resource.container.ContainerResource
+import org.katan.yoki.resource.image.ImageResource
 import org.katan.yoki.resource.network.NetworkResource
 import org.katan.yoki.resource.secret.SecretResource
 import org.katan.yoki.resource.volume.VolumeResource
@@ -13,17 +14,18 @@ import kotlin.coroutines.CoroutineContext
 
 public class DockerEngine(
     public override val config: DockerEngineConfig
-) : YokiEngine {
+) : BaseYokiEngine(config) {
 
     public val json: Json = Json { ignoreUnknownKeys = true }
     public val httpClient: HttpClient by lazy { createHttpClient(this) }
 
-    public override val coroutineContext: CoroutineContext by lazy { httpClient.coroutineContext }
+    override val coroutineContext: CoroutineContext by lazy { httpClient.coroutineContext }
 
     internal val containerResource by lazy { ContainerResource(this) }
     internal val networkResource by lazy { NetworkResource(this) }
     internal val volumeResource by lazy { VolumeResource(this) }
     internal val secretResource by lazy { SecretResource(this) }
+    internal val imageResource by lazy { ImageResource(this) }
 }
 
 /**

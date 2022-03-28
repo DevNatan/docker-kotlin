@@ -9,13 +9,15 @@ on:
 
 jobs:
   docker:
-    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
+        docker_version:
+          - "20.10"
         os:
           - ubuntu-latest
           - macos-latest
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Setup Docker
         uses: docker-practice/actions-setup-docker@master

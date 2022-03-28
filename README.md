@@ -8,25 +8,27 @@
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
 </center>
 
-Yoki allows you to interact with the container runtimes API like Docker Engine API in a simplified and fast way, Yoki was built under Kotlin Multiplatform so you can use it either in Kotlin or Kotlin Native projects. 
+Yoki allows you to interact with the container runtimes API like Docker Engine API in a simplified and fast way, Yoki was built under Kotlin Multiplatform so you can use it either in Kotlin or Kotlin Native projects.
 
 The initial purpose of creating the project was to have integration with other projects of the Katan organization, since existing projects that implemented clients for the Docker API always had some problems, the most common of which being bad of support, lack of documentation and specially poor performance.
 
 * [Project Setup](#project-setup)
 * [Get Started](#get-started)
+* [Error Handling](#error-handling)
 
 ## Project Setup
-**This library is published to Maven Central**.\
-Remember to add the Maven Central repository if it isn't already there:
+Remember to add the [Maven Central](https://search.maven.org/) repository if it isn't already there:
 ```groovy
+repositories {
+    mavenCentral()
+}
+
+// JVM
 dependencies {
     implementation("org.katan:yoki-core-jvm:0.0.1")
 }
-```
 
-###### Multiplatform
-In multiplatform projects, add a dependency to the commonMain source set dependencies.
-```kotlin
+// Kotlin Multiplatform
 commonMain {
     dependencies {
         implementation("org.katan:yoki-core:0.0.1")
@@ -39,13 +41,13 @@ The Yoki client is the central point of all its operation, it is through it that
 
 We will explain more about engines later on.
 ```kotlin
-val yoki = Yoki(...)
+val yoki = Yoki()
 ```
 
 Specify client configurations by expanding the function.
 ```kotlin
-val yoki = Yoki(...) {
-    // ...
+val yoki = Yoki {
+    // this: YokiConfig
 }
 ```
 
@@ -61,13 +63,12 @@ We expect to achieve 100% coverage over the entire Docker API for all versions s
 To add Yoki's Docker engine to your project, add the respective artifact.
 
 ```groovy
+// JVM
 dependencies {
     implementation("org.katan:yoki-engine-docker-jvm:0.0.1")
 }
-```
 
-In multiplatform projects, add a dependency to the commonMain source set dependencies.
-```kotlin
+// Multiplatform
 commonMain {
     dependencies {
         implementation("org.katan:yoki-engine-docker:0.0.1")
@@ -80,11 +81,14 @@ Then configure in the client initialization step.
 import org.katan.yoki.Docker
 
 val yoki = Yoki(Docker) {
-    engine { 
+    engine {
         // this: DockerEngineConfig
     }
 }
 ```
+
+## Error Handling
+TBD
 
 ## License
 Yoki is licensed under the MIT license.
