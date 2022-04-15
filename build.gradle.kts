@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.kotlinx.serialization) apply false
     id("org.jmailen.kotlinter") version "3.9.0" // TODO version catalog
-    id("org.danilopianini.publish-on-central") version "0.7.16" // TODO version catalog
+    id("org.danilopianini.publish-on-central") version "0.7.17" // TODO version catalog
 }
 
 repositories {
