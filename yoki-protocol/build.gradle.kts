@@ -29,7 +29,7 @@ kotlin {
         val jvmMain by getting {
             dependsOn(commonMain)
             dependencies {
-                api(libs.bundles.junixsocket)
+                compileOnly(libs.bundles.junixsocket)
                 implementation(libs.ktor.client.okhttp)
             }
         }
