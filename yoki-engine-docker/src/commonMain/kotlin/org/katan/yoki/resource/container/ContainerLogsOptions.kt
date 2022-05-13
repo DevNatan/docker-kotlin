@@ -25,9 +25,17 @@ public class ContainerLogsOptions(
     public var since: Long? = null,
     public var until: Long? = null,
     @SerialName("timestamps") public var showTimestamps: Boolean? = null,
-    public var tail: Int? = null,
+    public var tail: String? = null,
     public var splitLineBreaks: Boolean = false
 )
+
+public fun ContainerLogsOptions.tailAll() {
+    this.tail = "all"
+}
+
+public fun ContainerLogsOptions.tail(size: Int) {
+    this.tail = size.toString()
+}
 
 /**
  * Only return logs since this time, as a UNIX timestamp.

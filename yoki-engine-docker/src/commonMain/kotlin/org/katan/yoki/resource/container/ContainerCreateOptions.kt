@@ -17,8 +17,8 @@ public data class ContainerCreateOptions(
     @SerialName("OpenStdin") public var openStdin: Boolean? = null,
     @SerialName("StdinOnce") public var onceStdin: Boolean? = null,
     @SerialName("Tty") public var tty: Boolean = false,
-    @SerialName("Env") public var env: Map<String, String>? = null,
-    @SerialName("Cmd") public var command: String? = null,
+    @SerialName("Env") public var env: List<String>? = null,
+    @SerialName("Cmd") public var command: List<String>? = null,
     @SerialName("ArgsEscaped") public var escapedArgs: Boolean? = null,
     @SerialName("Image") public var image: String? = null,
     @SerialName("WorkingDir") public var workingDirectory: String? = null,
@@ -35,4 +35,8 @@ public data class ContainerCreateOptions(
 
 public fun ContainerCreateOptions.stopTimeout(stopTimeout: Duration) {
     this.stopTimeout = stopTimeout.inWholeSeconds.toInt()
+}
+
+public fun ContainerCreateOptions.env(environmentValues: Map<String, String?>) {
+    this.env = environmentValues.entries.map { (k, v) -> "$k=$v" }
 }

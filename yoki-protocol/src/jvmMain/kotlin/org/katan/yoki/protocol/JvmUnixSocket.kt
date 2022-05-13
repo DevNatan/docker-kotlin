@@ -96,6 +96,7 @@ internal class JvmUnixSocket : Socket() {
         }
 
         fun decodeHostname(hostName: String): String {
+            println("hostname: $hostName")
             return hostName.substring(0, hostName.indexOf(".socket")).decodeHex().utf8()
         }
     }

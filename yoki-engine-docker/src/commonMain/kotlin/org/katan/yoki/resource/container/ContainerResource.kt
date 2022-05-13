@@ -1,16 +1,18 @@
 package org.katan.yoki.resource.container
 
+import io.ktor.client.call.receive
 import io.ktor.client.request.delete
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.request.post
-import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.HttpStatement
-import io.ktor.client.statement.readBytes
 import io.ktor.http.HttpStatusCode
+import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.core.ByteOrder
 import io.ktor.utils.io.core.ExperimentalIoApi
-import io.ktor.utils.io.readInt
+import io.ktor.utils.io.core.readInt
+import io.ktor.utils.io.readPacket
+import io.ktor.utils.io.readUTF8Line
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.SerialName
@@ -163,14 +165,11 @@ public class ContainerResource(private val engine: DockerEngine) {
         }
     }
 
-    public fun logs(id: String): Flow<String> = flow {
-        val pipeline = engine.httpClient.get<HttpResponse>("$BASE_PATH/$id/logs") {
-            parameter("stdout", true)
-            parameter("stderr", true)
-        }
-
-        while (true) {
-            emit(pipeline.readBytes().decodeToString())
+    public fun logs(id: String): Flow<Frame> {
+        return logs(id) {
+            follow = true
+            stderr = true
+            stdout = true
         }
     }
 
@@ -187,31 +186,26 @@ public class ContainerResource(private val engine: DockerEngine) {
         }.execute { response ->
             val channel = response.content
             while (!channel.isClosedForRead) {
-                val firstByte = channel.readByte()
+                val fb = channel.readByte()
+                val stream = Stream.typeOfOrNull(fb)
+                // println("[debug] TTY: ${stream == null}")
 
-                // the first byte is the stream type
-                if (firstByte < 0)
-                    continue
-
-                val stream = Stream.typeOfOrNull(firstByte)
-
-                // tty may be enabled, just emit the raw output
+                // Unknown stream = tty enabled
                 if (stream == null) {
                     val remaining = channel.availableForRead
 
-                    // +1 includes the first byte previously read
+                    // Remaining +1 includes the previously read first byte. Reinsert the first byte since we read it
+                    // before but the type was not expected, so this byte is actually the first character of the line.
                     val len = remaining + 1
+                    val payload = ByteReadChannel(
+                        ByteArray(len) {
+                            if (it == 0) fb else channel.readByte()
+                        }
+                    )
 
-                    // inserts the first byte since we read it before but the type was not expected,
-                    // so this byte is actually the first character of the line
-                    val buffer = ByteArray(len)
-                    buffer[0] = firstByte
-                    channel.readAvailable(buffer, 1, remaining)
+                    val line = payload.readUTF8Line() ?: error("Payload cannot be null")
 
-                    // decodeToString is UTF-8 friendly
-                    val line = buffer.decodeToString()
-
-                    // try to determine the "correct" stream since we cannot have this information
+                    // Try to determine the "correct" stream since we cannot have this information.
                     val stdoutEnabled = options.stdout ?: false
                     val stdErrEnabled = options.stderr ?: false
                     val expectedStream: Stream = stream ?: when {
@@ -220,25 +214,19 @@ public class ContainerResource(private val engine: DockerEngine) {
                         else -> Stream.Unknown
                     }
 
-                    if (options.splitLineBreaks) {
-                        for (value in line.split(LINE_BREAK_REGEX))
-                            emit(Frame(value, len, expectedStream))
-                    } else
-                        emit(Frame(line, len, expectedStream))
+                    emit(Frame(line, len, expectedStream))
                     continue
                 }
 
-                // discard three bytes, the frame size is at the last four bytes
-                channel.discard(3)
+                val header = channel.readPacket(7)
 
-                var len = 0
-                for (size in 0 until 4) {
-                    // frame size is encoded as big endian
-                    len = len or channel.readInt(ByteOrder.BIG_ENDIAN)
-                }
+                // We discard the first three bytes because the payload size is in the last four bytes
+                // and the total header size is 8.
+                header.discard(3)
 
-                val line = channel.readUTF8Line(len)!!
-                emit(Frame(line, len, stream))
+                val payloadLength = header.readInt(ByteOrder.BIG_ENDIAN)
+                val payloadData = channel.readUTF8Line(payloadLength)!!
+                emit(Frame(payloadData, payloadLength, stream))
             }
         }
     }
@@ -256,6 +244,31 @@ public class ContainerResource(private val engine: DockerEngine) {
     public suspend fun wait(id: String, condition: String? = null): ContainerWaitResult {
         return engine.httpClient.post("$BASE_PATH/$id/wait") {
             parameter("condition", condition)
+        }
+    }
+
+    public fun attach(containerIdOrName: String): Flow<Frame> = flow {
+        engine.httpClient.post<HttpStatement>("$BASE_PATH/$containerIdOrName/attach") {
+            parameter("stream", "true")
+            parameter("stdin", "true")
+            parameter("stdout", "true")
+            parameter("stderr", "true")
+        }.execute { response ->
+            val channel = response.receive<ByteReadChannel>()
+            while (!channel.isClosedForRead) {
+                val line = channel.readUTF8Line()
+                if (line == null) {
+                    println("Null")
+                    break
+                }
+
+                println("Remaining: ${channel.availableForRead}")
+
+                // TODO handle stream type
+                emit(Frame(line, line.length, Stream.StdOut))
+            }
+
+            println("End")
         }
     }
 }
