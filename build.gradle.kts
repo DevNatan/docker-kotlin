@@ -1,11 +1,10 @@
 // https://youtrack.jetbrains.com/issue/KTIJ-19369
-@Suppress("DSL_SCOPE_VIOLATION")
-
+@Suppress("DSL_SCOPE_VIOLATION", "UnstableApiUsage")
 plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.kotlinx.serialization) apply false
-    id("org.jmailen.kotlinter") version "3.11.1" // TODO version catalog
-    id("org.danilopianini.publish-on-central") version "2.0.2" // TODO version catalog
+    alias(libs.plugins.kotlinter)
+    alias(libs.plugins.publishOnCentral)
 }
 
 repositories {
@@ -13,8 +12,8 @@ repositories {
 }
 
 subprojects {
-    apply(plugin = "org.danilopianini.publish-on-central")
-    apply(plugin = "org.jmailen.kotlinter")
+    // apply(plugin = "org.danilopianini.publish-on-central")
+    // apply(plugin = "org.jmailen.kotlinter")
 
     group = "org.katan"
     version = "0.0.1-SNAPSHOT"
