@@ -1,6 +1,4 @@
-<p align="center">
-    <img alt="Yoki logo" src="https://user-images.githubusercontent.com/24600258/159191738-7b3d9a65-d78b-4cb2-b02f-49c09732852e.png" width="300">
-</p>
+# Yoki
 
 [![Build](https://github.com/KatanPanel/yoki/actions/workflows/build.yml/badge.svg)](https://github.com/KatanPanel/yoki/actions/workflows/build.yml)
 [![Integration Tests](https://github.com/KatanPanel/yoki/actions/workflows/integration-tests.yml/badge.svg)](https://github.com/KatanPanel/yoki/actions/workflows/integration-tests.yml)
