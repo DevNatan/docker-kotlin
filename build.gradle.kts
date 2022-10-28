@@ -25,7 +25,7 @@ subprojects {
         publishOnCentral {
             configureMavenCentral.set(true)
             projectDescription.set("Multiplatform Docker API client")
-            projectLongName.set(project.name)
+            projectLongName.set(if (project.name == "lib") "yoki" else project.name)
             licenseName.set("MIT")
             licenseUrl.set("https://github.com/KatanPanel/yoki/blob/main/LICENSE")
             projectUrl.set("https://github.com/KatanPanel/yoki")

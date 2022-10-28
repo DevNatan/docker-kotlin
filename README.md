@@ -6,9 +6,7 @@
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
 </center>
 
-Yoki allows you to interact with the container runtimes API like Docker Engine API in a simplified and fast way, Yoki was built under Kotlin Multiplatform so you can use it either in Kotlin or Kotlin Native projects.
-
-The initial purpose of creating the project was to have integration with other projects of the Katan organization, since existing projects that implemented clients for the Docker API always had some problems, the most common of which being bad of support, lack of documentation and specially poor performance.
+Yoki allows you to interact with the Docker Engine API.
 
 ```groovy
 repositories {
