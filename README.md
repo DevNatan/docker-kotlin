@@ -8,14 +8,14 @@
 
 Yoki allows you to interact with the Docker Engine API.
 
+Only snapshots available for now
 ```groovy
 repositories {
-    mavenCentral()
+    maven("https://s01.oss.sonatype.org/content/repositories/snapshots/")
 }
 
 dependencies {
-    implementation("org.katan:yoki:0.0.1") // KMP
-    implementation("org.katan:yoki-jvm:0.0.1") // JVM
+    implementation("org.katan:yoki:0.0.1-SNAPSHOT")
 }
 ```
 
