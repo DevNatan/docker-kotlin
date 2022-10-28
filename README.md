@@ -10,34 +10,20 @@ Yoki allows you to interact with the container runtimes API like Docker Engine A
 
 The initial purpose of creating the project was to have integration with other projects of the Katan organization, since existing projects that implemented clients for the Docker API always had some problems, the most common of which being bad of support, lack of documentation and specially poor performance.
 
-* [Project Setup](#project-setup)
-* [Get Started](#get-started)
-* [Error Handling](#error-handling)
-
-## Project Setup
-Remember to add the [Maven Central](https://search.maven.org/) repository if it isn't already there:
 ```groovy
 repositories {
     mavenCentral()
 }
 
-// JVM
 dependencies {
-    implementation("org.katan:yoki-core-jvm:0.0.1")
-}
-
-// Kotlin Multiplatform
-commonMain {
-    dependencies {
-        implementation("org.katan:yoki-core:0.0.1")
-    }
+    implementation("org.katan:yoki:0.0.1") // KMP
+    implementation("org.katan:yoki-jvm:0.0.1") // JVM
 }
 ```
 
-## Get Started
-The Yoki client is the central point of all its operation, it is through it that you will access the API of the resources that are currently supported by Yoki and its configuration as well. For the Yoki client to work, you need a container engine that you specify when creating the client instance.
+## Usage
+The Yoki client, it is through it that you will access the API of the resources that are currently supported by Yoki.
 
-We will explain more about engines later on.
 ```kotlin
 val yoki = Yoki()
 ```
@@ -49,44 +35,63 @@ val yoki = Yoki {
 }
 ```
 
-### Engines
-Yoki's first functionality intention was for it to be a client that only interacted with the Docker API, but we realized that other engines were emerging over time and that eventually we would want to add support for them in the future, so we prepared the code to accept it. different types of engines besides Docker, that's why you have to specify an engine in the client as said before.
+## Code samples
+#### Listing containers
 
-For now, only Docker is supported, feel free to contribute if you want to make your own engine implementation which is not yet supported.
-
-#### Docker Engine
-Before using, see if the endpoints you are targeting are supported in the Docker [Supported Endpoints](https://github.com/KatanPanel/yoki/blob/main/yoki-engine-docker/README.md) section.\
-We expect to achieve 100% coverage over the entire Docker API for all versions starting with v1.41, soon.
-
-To add Yoki's Docker engine to your project, add the respective artifact.
-
-```groovy
-// JVM
-dependencies {
-    implementation("org.katan:yoki-engine-docker-jvm:0.0.1")
-}
-
-// Multiplatform
-commonMain {
-    dependencies {
-        implementation("org.katan:yoki-engine-docker:0.0.1")
-    }
-}
-```
-
-Then configure in the client initialization step.
 ```kotlin
-import org.katan.yoki.Docker
+yoki.containers.list() // List<Container>
+```
 
-val yoki = Yoki(Docker) {
-    engine {
-        // this: DockerEngineConfig
+Up to 5 containers
+```kotlin
+yoki.containers.list {
+    limit = 5
+}
+```
+
+From a specific network
+```kotlin
+yoki.containers.list {
+    filters {
+        network = "octopus-network"
     }
 }
 ```
 
-## Error Handling
-TBD
+#### Creating a container
+```kotlin
+// will return the newly created container id
+yoki.containers.create {
+    name = "billie-jean"
+}
+```
+
+#### Fetching containers logs
+Streaming methods will always return a [Flow](https://kotlinlang.org/docs/flow.html).
+
+You need to specify where the logs can come from (stdout/stderr)
+```kotlin
+yoki.containers.logs("floral-fury") {
+    stderr = true
+    stdout = true
+}
+```
+
+Fetching only STDERR
+```kotlin
+yoki.containers.logs("ruze-of-an-ooze") {
+    stderr = true
+}
+```
+
+From an instant. `long` and [kotlinx-datetime.Instant](https://github.com/Kotlin/kotlinx-datetime) types are supported. 
+```kotlin
+yoki.containers.logs("botanic-panic") {
+    stdout = true
+    since = 1666999925L // long
+    since = "2022-10-28T22:19:44.475Z".toInstant() // kotlinx-datetime.Instant
+}
+```
 
 ## License
 Yoki is licensed under the MIT license.

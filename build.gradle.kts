@@ -19,7 +19,7 @@ subprojects {
     group = "org.katan"
     version = "0.0.1-SNAPSHOT"
 
-    // some GH actions do not have OSSRH_SIGNING_KEY env var so we need to check it otherwise they will fail :(
+    // some GH actions do not have OSSRH_SIGNING_KEY env var, so we need to check it otherwise they will fail :(
     if (System.getenv("OSSRH_SIGNING_KEY") != null) {
         val isReleaseVersion = !version.toString().endsWith("SNAPSHOT")
         publishOnCentral {

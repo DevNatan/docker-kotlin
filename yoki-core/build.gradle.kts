@@ -9,13 +9,20 @@ repositories {
 
 kotlin {
     explicitApi()
-    jvm()
+    jvm {
+        testRuns["test"].executionTask.configure {
+            useJUnitPlatform()
+        }
+    }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-common"))
                 implementation(libs.ktx.coroutines.core)
+                implementation(libs.ktx.datetime)
+                implementation(libs.bundles.ktor)
+                implementation(libs.bundles.ktx)
             }
         }
 
@@ -27,12 +34,20 @@ kotlin {
             }
         }
 
+        @Suppress("UNUSED_VARIABLE")
         val jvmMain by getting {
             dependsOn(commonMain)
+            dependencies {
+                compileOnly(libs.bundles.junixsocket)
+            }
         }
 
+        @Suppress("UNUSED_VARIABLE")
         val jvmTest by getting {
             dependsOn(commonTest)
+            dependencies {
+                implementation(kotlin("test-junit"))
+            }
         }
     }
 }

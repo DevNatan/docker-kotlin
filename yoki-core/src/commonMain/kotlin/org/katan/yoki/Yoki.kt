@@ -1,30 +1,40 @@
 package org.katan.yoki
 
+import io.ktor.client.HttpClient
+import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
-import org.katan.yoki.engine.YokiEngine
-import org.katan.yoki.engine.YokiEngineConfig
-import org.katan.yoki.engine.YokiEngineFactory
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.serialization.json.Json
+import org.katan.yoki.io.createHttpClient
+import org.katan.yoki.io.resourceExceptionJsonDeserializer
+import org.katan.yoki.resource.container.ContainerResource
+import org.katan.yoki.resource.image.ImageResource
+import org.katan.yoki.resource.network.NetworkResource
+import org.katan.yoki.resource.secret.SecretResource
+import org.katan.yoki.resource.volume.VolumeResource
 import kotlin.coroutines.CoroutineContext
 
-public class Yoki(
-    public val engine: YokiEngine,
-    public val config: YokiConfig<*>
+public class Yoki @PublishedApi internal constructor(
+    public val config: YokiConfig
 ) : CoroutineScope {
 
-    private val job = Job(engine.coroutineContext[Job])
-    override val coroutineContext: CoroutineContext = engine.coroutineContext + job
+    private val job = SupervisorJob()
+    override val coroutineContext: CoroutineContext = CoroutineName("Yoki") + job
+
+    private val httpClient: HttpClient = createHttpClient(this)
+    internal val json: Json = resourceExceptionJsonDeserializer
+
+    public val containers: ContainerResource = ContainerResource(httpClient, json)
+    public val networks: NetworkResource = NetworkResource(httpClient, json)
+    public val volumes: VolumeResource = VolumeResource(httpClient, json)
+    public val secrets: SecretResource = SecretResource(httpClient, json)
+    public val images: ImageResource = ImageResource(httpClient, json)
 }
 
 @YokiDsl
-public fun <T : YokiEngineConfig> Yoki(
-    factory: YokiEngineFactory<T>,
-    block: YokiConfig<T>.() -> Unit = {}
-): Yoki {
-    val config = YokiConfig<T>().apply(block)
-    val engine = factory.create(config.engineConfig)
-
-    return Yoki(engine, config)
+public inline fun Yoki(block: YokiConfig.() -> Unit = {}): Yoki {
+    val config = YokiConfig().apply(block)
+    return Yoki(config)
 }
 
 /**
