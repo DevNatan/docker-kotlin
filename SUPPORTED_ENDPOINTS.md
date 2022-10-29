@@ -94,12 +94,12 @@
 * [ ] Inspect a task - GET **/tasks:id**
 * [ ] Get task logs - GET **/tasks/:id/logs**
 
-### Secrets (1/5)
+### Secrets (3/5)
 * [x] List secrets - GET **/secrets**
-* [ ] Create a secret - POST **/secrets/create**
-* [ ] Inspect a secret - GET **/secrets/:id**
-* [ ] Delete a secret - DELETE **/secrets/:id**
-* [ ] Update a secret - POST **/secrets/:id/update**
+* [x] Create a secret - POST **/secrets/create**
+* [x] Inspect a secret - GET **/secrets/:id**
+* [x] Delete a secret - DELETE **/secrets/:id**
+* [x] Update a secret - POST **/secrets/:id/update**
 
 ### Configs (0/5)
 * [ ] List configs - GET **/configs**

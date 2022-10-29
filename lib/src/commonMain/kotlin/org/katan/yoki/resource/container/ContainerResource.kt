@@ -63,6 +63,7 @@ public class ContainerResource internal constructor(
     public suspend fun create(options: ContainerCreateOptions): String {
         requireNotNull(options.image) { "Container Image is required" }
 
+        // TODO use IdOnlyResponse
         @Serializable
         class Result(
             @SerialName("Id") val id: String

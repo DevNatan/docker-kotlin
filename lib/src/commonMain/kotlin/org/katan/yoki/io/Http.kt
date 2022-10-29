@@ -13,9 +13,9 @@ internal val resourceExceptionJsonDeserializer = Json {
 
 // https://stackoverflow.com/a/65579343
 public inline fun <T> HttpClient.requestCatching(
-    block: HttpClient.() -> T,
+    request: HttpClient.() -> T,
     handle: ResponseException.() -> T
-): Result<T> = runCatching { block() }.recover {
+): Result<T> = runCatching { request() }.recover {
     when (it) {
         is ResponseException -> it.handle()
         else -> throw it
