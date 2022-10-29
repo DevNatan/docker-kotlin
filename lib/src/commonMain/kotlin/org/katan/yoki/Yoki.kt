@@ -1,9 +1,7 @@
 package org.katan.yoki
 
 import io.ktor.client.HttpClient
-import kotlinx.coroutines.CoroutineName
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.SupervisorJob
+import io.ktor.utils.io.core.Closeable
 import kotlinx.serialization.json.Json
 import org.katan.yoki.io.createHttpClient
 import org.katan.yoki.resource.container.ContainerResource
@@ -11,17 +9,14 @@ import org.katan.yoki.resource.image.ImageResource
 import org.katan.yoki.resource.network.NetworkResource
 import org.katan.yoki.resource.secret.SecretResource
 import org.katan.yoki.resource.volume.VolumeResource
-import kotlin.coroutines.CoroutineContext
 
+@YokiDsl
 public class Yoki @PublishedApi internal constructor(
     public val config: YokiConfig
-) : CoroutineScope {
-
-    private val job = SupervisorJob()
-    override val coroutineContext: CoroutineContext = CoroutineName("Yoki") + job
+) : Closeable {
 
     private val httpClient: HttpClient = createHttpClient(this)
-    internal val json: Json = Json {
+    private val json: Json = Json {
         ignoreUnknownKeys = true
     }
 
@@ -30,9 +25,12 @@ public class Yoki @PublishedApi internal constructor(
     public val volumes: VolumeResource = VolumeResource(httpClient, json)
     public val secrets: SecretResource = SecretResource(httpClient, json)
     public val images: ImageResource = ImageResource(httpClient, json)
+
+    override fun close() {
+        httpClient.close()
+    }
 }
 
-@YokiDsl
 public inline fun Yoki(block: YokiConfig.() -> Unit = {}): Yoki {
     val config = YokiConfig().apply(block)
     return Yoki(config)
@@ -42,5 +40,4 @@ public inline fun Yoki(block: YokiConfig.() -> Unit = {}): Yoki {
  * DslMarker for Yoki.
  */
 @DslMarker
-@Target(AnnotationTarget.CLASS, AnnotationTarget.TYPE, AnnotationTarget.FUNCTION)
 public annotation class YokiDsl

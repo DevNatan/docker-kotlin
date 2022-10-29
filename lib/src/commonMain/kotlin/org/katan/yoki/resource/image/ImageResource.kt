@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
-public class ImageResource(
+public class ImageResource internal constructor(
     private val httpClient: HttpClient,
     private val json: Json,
 ) {

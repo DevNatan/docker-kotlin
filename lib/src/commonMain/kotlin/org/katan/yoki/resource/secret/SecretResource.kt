@@ -20,7 +20,7 @@ import org.katan.yoki.resource.swarm.NodeNotPartOfSwarmException
  * Secrets are sensitive data that can be used by Docker services.
  * Swarm mode must be enabled for these endpoints to work.
  */
-public class SecretResource(
+public class SecretResource internal constructor(
     private val httpClient: HttpClient,
     private val json: Json,
 ) {

@@ -17,16 +17,13 @@ private fun checkSocketPath(config: YokiConfig) {
     check(config.socketPath.isNotBlank()) { "Socket path cannot be blank" }
 }
 
-public fun createHttpClient(client: Yoki): HttpClient {
+internal fun createHttpClient(client: Yoki): HttpClient {
     checkSocketPath(client.config)
 
     // cannot use CIO due to a Ktor Client bug related to data streaming
     // https://youtrack.jetbrains.com/issue/KTOR-2494
     return HttpClient {
         configureHttpClient(client)
-        // install(JsonFeature) {
-        //     serializer = KotlinxSerializer(client.json)
-        // }
         install(ContentNegotiation) {
             json()
         }
