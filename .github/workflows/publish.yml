@@ -1,4 +1,6 @@
 name: Publish
+
+# TODO trigger publish on release as well
 on:
   workflow_dispatch:
 jobs:
