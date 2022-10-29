@@ -1,11 +1,11 @@
 # Yoki supported Docker API endpoints
 
-### Containers (13/25)
+### Containers (14/25)
 * [x] List containers - GET **/containers/json**
 * [x] Create a container - POST **/containers/create**
 * [x] Inspect a container - GET **/containers/:id/json**
 * [ ] List processes running inside a container - **GET /containers/:id/top**
-* [ ] Get container logs - **GET /containers/:id/logs**
+* [x] Get container logs - **GET /containers/:id/logs**
 * [ ] Get changes on container's filesystem - **GET /containers/:id/changes**
 * [ ] Export a container - **GET /containers/:id/export**
 * [ ] Get container stats based on resource usage - **GET /containers/:id/stats**
@@ -94,7 +94,7 @@
 * [ ] Inspect a task - GET **/tasks:id**
 * [ ] Get task logs - GET **/tasks/:id/logs**
 
-### Secrets (3/5)
+### Secrets (5/5)
 * [x] List secrets - GET **/secrets**
 * [x] Create a secret - POST **/secrets/create**
 * [x] Inspect a secret - GET **/secrets/:id**
