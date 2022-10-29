@@ -1,8 +1,8 @@
 package org.katan.yoki.io
 
 import io.ktor.client.HttpClient
-import io.ktor.client.features.ResponseException
-import io.ktor.utils.io.readUTF8Line
+import io.ktor.client.plugins.ResponseException
+import io.ktor.client.statement.bodyAsText
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import org.katan.yoki.YokiResourceException
@@ -27,7 +27,7 @@ public suspend fun <T : YokiResourceException> ResponseException.throwResourceEx
     properties: Map<String, Any?>
 ): Nothing {
     throw factory(
-        response.content.readUTF8Line()?.let { content ->
+        response.bodyAsText().let { content ->
             (resourceExceptionJsonDeserializer.decodeFromString(content) as Map<String, String?>)["message"]
         },
         this, properties

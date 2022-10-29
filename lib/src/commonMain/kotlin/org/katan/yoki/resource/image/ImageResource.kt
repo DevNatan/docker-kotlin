@@ -1,11 +1,12 @@
 package org.katan.yoki.resource.image
 
 import io.ktor.client.HttpClient
+import io.ktor.client.call.body
 import io.ktor.client.request.delete
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
-import io.ktor.client.request.post
-import io.ktor.client.statement.HttpStatement
+import io.ktor.client.request.preparePost
+import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.readUTF8Line
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -22,14 +23,14 @@ public class ImageResource(
     }
 
     public suspend fun list(): List<Image> {
-        return httpClient.get("$BASE_PATH/json")
+        return httpClient.get("$BASE_PATH/json").body()
     }
 
     public fun pull(image: String): Flow<ImagePull> = flow {
-        httpClient.post<HttpStatement>("$BASE_PATH/create") {
+        httpClient.preparePost("$BASE_PATH/create") {
             parameter("fromImage", image)
         }.execute { response ->
-            val channel = response.content
+            val channel = response.body<ByteReadChannel>()
             while (true) {
                 emit(json.decodeFromString(channel.readUTF8Line() ?: break))
             }
@@ -37,7 +38,7 @@ public class ImageResource(
     }
 
     public suspend fun remove(name: String, force: Boolean? = false, noprune: Boolean? = false) {
-        return httpClient.delete("$BASE_PATH/$name") {
+        httpClient.delete("$BASE_PATH/$name") {
             parameter("force", force)
             parameter("noprune", noprune)
         }

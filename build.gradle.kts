@@ -4,7 +4,7 @@
 plugins {
     alias(libs.plugins.kotlin.multiplatform) apply false
     alias(libs.plugins.kotlinx.serialization) apply false
-    alias(libs.plugins.kotlinter)
+    alias(libs.plugins.kotlinter) apply false
     alias(libs.plugins.publishOnCentral)
 }
 
@@ -13,7 +13,7 @@ repositories {
 }
 
 subprojects {
-    apply(plugin = rootProject.libs.plugins.publishOnCentral.get().pluginId)
+    // apply(plugin = rootProject.libs.plugins.publishOnCentral.get().pluginId)
     apply(plugin = rootProject.libs.plugins.kotlinter.get().pluginId)
 
     group = "org.katan"

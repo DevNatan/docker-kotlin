@@ -1,28 +1,28 @@
 package org.katan.yoki.resource.container
 
 import io.ktor.client.HttpClient
-import io.ktor.client.call.receive
+import io.ktor.client.call.body
 import io.ktor.client.request.delete
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.request.post
-import io.ktor.client.statement.HttpStatement
+import io.ktor.client.request.prepareGet
+import io.ktor.client.request.preparePost
+import io.ktor.client.request.setBody
 import io.ktor.http.HttpStatusCode
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.core.ByteOrder
-import io.ktor.utils.io.core.ExperimentalIoApi
 import io.ktor.utils.io.core.readInt
-import io.ktor.utils.io.readPacket
 import io.ktor.utils.io.readUTF8Line
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import org.katan.yoki.UnhandledYokiResourceException
 import org.katan.yoki.io.requestCatching
 import org.katan.yoki.io.throwResourceException
 import org.katan.yoki.resource.Frame
+import org.katan.yoki.resource.IdOnlyResponse
 import org.katan.yoki.resource.Stream
 import kotlin.time.Duration
 
@@ -40,7 +40,7 @@ public class ContainerResource internal constructor(
      * Returns a list of all containers.
      */
     public suspend fun list(): List<Container> {
-        return httpClient.get("$BASE_PATH/json")
+        return httpClient.get("$BASE_PATH/json").body()
     }
 
     /**
@@ -54,7 +54,7 @@ public class ContainerResource internal constructor(
             parameter("limit", options.limit)
             parameter("size", options.size)
             parameter("filters", json.encodeToString(options.filters))
-        }
+        }.body()
     }
 
     /**
@@ -63,17 +63,11 @@ public class ContainerResource internal constructor(
     public suspend fun create(options: ContainerCreateOptions): String {
         requireNotNull(options.image) { "Container Image is required" }
 
-        // TODO use IdOnlyResponse
-        @Serializable
-        class Result(
-            @SerialName("Id") val id: String
-        )
-
         // TODO print warnings
-        return httpClient.post<Result>("$BASE_PATH/create") {
-            options.name?.let { parameter("name", it) }
-            body = options
-        }.id
+        return httpClient.post("$BASE_PATH/create") {
+            parameter("name", options.name)
+            setBody(options)
+        }.body<IdOnlyResponse>().id
     }
 
     /**
@@ -86,64 +80,72 @@ public class ContainerResource internal constructor(
      */
     public suspend fun start(id: String, detachKeys: String? = null) {
         httpClient.requestCatching({
-            post<Unit>("$BASE_PATH/$id/start") {
+            post("$BASE_PATH/$id/start") {
                 parameter("detachKeys", detachKeys)
             }
         }, {
             val props: Map<String, Any?> = mapOf("containerId" to id, "detachKeys" to detachKeys)
-            when (response.status) {
-                HttpStatusCode.NotModified -> throwResourceException(::ContainerAlreadyStartedException, props)
-                HttpStatusCode.NotFound -> throwResourceException(::ContainerNotFoundException, props)
-            }
+            throwResourceException(
+                when (response.status) {
+                    HttpStatusCode.NotModified -> ::ContainerAlreadyStartedException
+                    HttpStatusCode.NotFound -> ::ContainerNotFoundException
+                    else -> ::UnhandledYokiResourceException
+                },
+                props
+            )
         })
     }
 
     public suspend fun stop(id: String, timeout: Int? = null) {
-        httpClient.post<Unit>("$BASE_PATH/$id/stop") {
+        httpClient.post("$BASE_PATH/$id/stop") {
             parameter("t", timeout)
         }
     }
 
     public suspend fun restart(id: String, timeout: Int? = null) {
-        httpClient.post<Unit>("$BASE_PATH/$id/restart") {
+        httpClient.post("$BASE_PATH/$id/restart") {
             parameter("t", timeout)
         }
     }
 
     public suspend fun kill(id: String, signal: String? = null) {
-        httpClient.post<Unit>("$BASE_PATH/$id/kill") {
+        httpClient.post("$BASE_PATH/$id/kill") {
             parameter("signal", signal)
         }
     }
 
     public suspend fun rename(id: String, newName: String) {
-        httpClient.post<Unit>("$BASE_PATH/$id/rename") {
+        httpClient.post("$BASE_PATH/$id/rename") {
             parameter("name", newName)
         }
     }
 
     public suspend fun pause(id: String) {
-        httpClient.post<Unit>("$BASE_PATH/$id/pause")
+        httpClient.post("$BASE_PATH/$id/pause")
     }
 
     public suspend fun unpause(id: String) {
-        httpClient.post<Unit>("$BASE_PATH/$id/unpause")
+        httpClient.post("$BASE_PATH/$id/unpause")
     }
 
     public suspend fun remove(id: String) {
         httpClient.requestCatching({
-            delete<Unit>("$BASE_PATH/$id")
+            delete("$BASE_PATH/$id")
         }, {
             val props: Map<String, Any?> = mapOf("containerId" to id)
-            when (response.status) {
-                HttpStatusCode.NotFound -> throwResourceException(::ContainerNotFoundException, props)
-                HttpStatusCode.Conflict -> throwResourceException(::ContainerRemoveConflictException, props)
-            }
+            throwResourceException(
+                when (response.status) {
+                    HttpStatusCode.NotFound -> ::ContainerNotFoundException
+                    HttpStatusCode.Conflict -> ::ContainerRemoveConflictException
+                    else -> ::UnhandledYokiResourceException
+                },
+                props,
+            )
         })
     }
 
     public suspend fun remove(id: String, options: ContainerRemoveOptions) {
-        httpClient.delete<Unit>("$BASE_PATH/$id") {
+        httpClient.delete("$BASE_PATH/$id") {
             parameter("v", options.removeAnonymousVolumes)
             parameter("force", options.force)
             parameter("link", options.unlink)
@@ -159,7 +161,7 @@ public class ContainerResource internal constructor(
     public suspend fun inspect(id: String, size: Boolean = false): Container {
         return httpClient.post("$BASE_PATH/$id/json") {
             parameter("size", size)
-        }
+        }.body()
     }
 
     public fun logs(id: String): Flow<Frame> {
@@ -170,9 +172,8 @@ public class ContainerResource internal constructor(
         }
     }
 
-    @OptIn(ExperimentalIoApi::class)
     public fun logs(id: String, options: ContainerLogsOptions): Flow<Frame> = flow {
-        httpClient.get<HttpStatement>("$BASE_PATH/$id/logs") {
+        httpClient.prepareGet("$BASE_PATH/$id/logs") {
             parameter("follow", options.follow)
             parameter("stdout", options.stdout)
             parameter("stderr", options.stderr)
@@ -181,7 +182,7 @@ public class ContainerResource internal constructor(
             parameter("timestamps", options.showTimestamps)
             parameter("tail", options.tail)
         }.execute { response ->
-            val channel = response.content
+            val channel = response.body<ByteReadChannel>()
             while (!channel.isClosedForRead) {
                 val fb = channel.readByte()
                 val stream = Stream.typeOfOrNull(fb)
@@ -229,29 +230,29 @@ public class ContainerResource internal constructor(
     }
 
     public suspend fun prune(): ContainerPruneResult {
-        return httpClient.post("$BASE_PATH/prune")
+        return httpClient.post("$BASE_PATH/prune").body()
     }
 
     public suspend fun prune(filters: ContainerPruneFilters): ContainerPruneResult {
         return httpClient.post("$BASE_PATH/prune") {
             parameter("filters", json.encodeToString(filters))
-        }
+        }.body()
     }
 
     public suspend fun wait(id: String, condition: String? = null): ContainerWaitResult {
         return httpClient.post("$BASE_PATH/$id/wait") {
             parameter("condition", condition)
-        }
+        }.body()
     }
 
     public fun attach(containerIdOrName: String): Flow<Frame> = flow {
-        httpClient.post<HttpStatement>("$BASE_PATH/$containerIdOrName/attach") {
+        httpClient.preparePost("$BASE_PATH/$containerIdOrName/attach") {
             parameter("stream", "true")
             parameter("stdin", "true")
             parameter("stdout", "true")
             parameter("stderr", "true")
         }.execute { response ->
-            val channel = response.receive<ByteReadChannel>()
+            val channel = response.body<ByteReadChannel>()
             while (!channel.isClosedForRead) {
                 val line = channel.readUTF8Line()
                 if (line == null) {

@@ -39,6 +39,7 @@ kotlin {
             dependsOn(commonMain)
             dependencies {
                 compileOnly(libs.bundles.junixsocket)
+                implementation(libs.ktor.client.okhttp)
             }
         }
 

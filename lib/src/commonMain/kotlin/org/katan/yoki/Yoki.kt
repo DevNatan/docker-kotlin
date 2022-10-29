@@ -6,7 +6,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.serialization.json.Json
 import org.katan.yoki.io.createHttpClient
-import org.katan.yoki.io.resourceExceptionJsonDeserializer
 import org.katan.yoki.resource.container.ContainerResource
 import org.katan.yoki.resource.image.ImageResource
 import org.katan.yoki.resource.network.NetworkResource
@@ -22,7 +21,9 @@ public class Yoki @PublishedApi internal constructor(
     override val coroutineContext: CoroutineContext = CoroutineName("Yoki") + job
 
     private val httpClient: HttpClient = createHttpClient(this)
-    internal val json: Json = resourceExceptionJsonDeserializer
+    internal val json: Json = Json {
+        ignoreUnknownKeys = true
+    }
 
     public val containers: ContainerResource = ContainerResource(httpClient, json)
     public val networks: NetworkResource = NetworkResource(httpClient, json)

@@ -1,10 +1,12 @@
 package org.katan.yoki.resource.network
 
 import io.ktor.client.HttpClient
+import io.ktor.client.call.body
 import io.ktor.client.request.delete
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.request.post
+import io.ktor.client.request.setBody
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
@@ -31,7 +33,7 @@ public class NetworkResource internal constructor(
     public suspend fun list(filters: NetworkListFilters? = null): List<Network> {
         return httpClient.get(BASE_PATH) {
             parameter("filters", filters?.let(json::encodeToString))
-        }
+        }.body()
     }
 
     /**
@@ -45,7 +47,7 @@ public class NetworkResource internal constructor(
         return httpClient.get("$BASE_PATH/$id") {
             parameter("verbose", options?.verbose)
             parameter("scope", options?.scope)
-        }
+        }.body()
     }
 
     /**
@@ -55,7 +57,7 @@ public class NetworkResource internal constructor(
      * @see <a href="https://docs.docker.com/engine/api/latest/#operation/NetworkDelete">NetworkDelete</a>
      */
     public suspend fun remove(id: String) {
-        httpClient.delete<Unit>("$BASE_PATH/$id")
+        httpClient.delete("$BASE_PATH/$id")
     }
 
     /**
@@ -68,8 +70,8 @@ public class NetworkResource internal constructor(
         checkNotNull(config.name) { "Network name is required and cannot be null" }
 
         return httpClient.post("$BASE_PATH/create") {
-            body = config
-        }
+            setBody(config)
+        }.body()
     }
 
     /**
@@ -80,7 +82,7 @@ public class NetworkResource internal constructor(
      * @see <a href="https://docs.docker.com/engine/api/latest/#operation/NetworkPrune">NetworkPrune</a>
      */
     public suspend fun prune(options: NetworkPruneOptions? = null) {
-        httpClient.post<Unit>("$BASE_PATH/prune") {
+        httpClient.post("$BASE_PATH/prune") {
             parameter("filters", options)
         }
     }
@@ -93,8 +95,8 @@ public class NetworkResource internal constructor(
      * @see <a href="https://docs.docker.com/engine/api/v1.41/#operation/NetworkConnect">NetworkConnect</a>
      */
     public suspend fun connectContainer(id: String, container: String) {
-        httpClient.post<Unit>("$BASE_PATH/$id/connect") {
-            body = mapOf("Container" to container)
+        httpClient.post("$BASE_PATH/$id/connect") {
+            setBody(mapOf("Container" to container))
         }
     }
 
@@ -106,8 +108,8 @@ public class NetworkResource internal constructor(
      * @see <a href="https://docs.docker.com/engine/api/latest/#operation/NetworkDisconnect">NetworkDisconnect</a>
      */
     public suspend fun disconnectContainer(id: String, container: String) {
-        httpClient.post<Unit>("$BASE_PATH/$id/disconnect") {
-            body = mapOf("Container" to container)
+        httpClient.post("$BASE_PATH/$id/disconnect") {
+            setBody(mapOf("Container" to container))
         }
     }
 }
