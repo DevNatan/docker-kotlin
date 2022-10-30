@@ -4,12 +4,13 @@
 [![Integration Tests](https://github.com/KatanPanel/yoki/actions/workflows/integration-tests.yml/badge.svg)](https://github.com/KatanPanel/yoki/actions/workflows/integration-tests.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/org.katan/yoki)](https://mvnrepository.com/artifact/org.katan)
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
-</center>
 
-Yoki allows you to interact with the Docker Engine API.
+Yoki allows you to interact with the Docker Remote API.
 
-Only snapshots available for now
-```groovy
+## Using in your projects
+
+Only snapshots repository available for now
+```kotlin
 repositories {
     maven("https://s01.oss.sonatype.org/content/repositories/snapshots/")
 }
@@ -21,23 +22,33 @@ dependencies {
 
 ## Usage
 The Yoki client, it is through it that you will access the API of the resources that are currently supported by Yoki.
-
 ```kotlin
-val yoki = Yoki()
-```
-
-Specify client configurations by expanding the function.
-```kotlin
-val yoki = Yoki {
+Yoki {
     // this: YokiConfig
-}
+}.use { ... }
 ```
 
-## Code samples
-#### Listing containers
+Configure Yoki to use UNIX defaults
+```kotlin
+Yoki { useUnixDefaults() }
+```
+
+Configure Yoki to use HTTP defaults
+```kotlin
+Yoki { useHTTPDefaults() }
+```
+
+## Calling from regular Java code
+Yoki was not made exclusively for Kotlin, although we have support for Coroutines, there are plans for regular Java code 
+to be able to call them and so the API will start to be designed with that in mind.
+
+We haven't done anything yet, but in the future we will support calls using only Java.
+
+## Examples
+### Listing containers
 
 ```kotlin
-yoki.containers.list() // List<Container>
+yoki.containers.list()
 ```
 
 Up to 5 containers
@@ -56,7 +67,7 @@ yoki.containers.list {
 }
 ```
 
-#### Creating a container
+### Creating a container
 ```kotlin
 // will return the newly created container id
 yoki.containers.create {
@@ -64,7 +75,7 @@ yoki.containers.create {
 }
 ```
 
-#### Fetching containers logs
+### Fetching containers logs
 Streaming methods will always return a [Flow](https://kotlinlang.org/docs/flow.html).
 
 You need to specify where the logs can come from (stdout/stderr)
@@ -87,7 +98,7 @@ From an instant. `long` and [kotlinx-datetime.Instant](https://github.com/Kotlin
 yoki.containers.logs("botanic-panic") {
     stdout = true
     since = 1666999925L // long
-    since = "2022-10-28T22:19:44.475Z".toInstant() // kotlinx-datetime.Instant
+    setSince("2022-10-28T22:19:44.475Z".toInstant()) // kotlinx-datetime.Instant
 }
 ```
 
