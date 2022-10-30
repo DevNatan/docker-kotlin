@@ -56,8 +56,6 @@ public class ContainerResource internal constructor(
             parameter("all", options.all)
             parameter("limit", options.limit)
             parameter("size", options.size)
-            val raw = options.filters
-            println("encoded raw: " + json.encodeToString(raw))
             parameter("filters", json.encodeToString(raw))
         }.body()
     }
@@ -181,7 +179,6 @@ public class ContainerResource internal constructor(
             while (!channel.isClosedForRead) {
                 val fb = channel.readByte()
                 val stream = Stream.typeOfOrNull(fb)
-                // println("[debug] TTY: ${stream == null}")
 
                 // Unknown stream = tty enabled
                 if (stream == null) {
@@ -251,17 +248,12 @@ public class ContainerResource internal constructor(
             while (!channel.isClosedForRead) {
                 val line = channel.readUTF8Line()
                 if (line == null) {
-                    println("Null")
                     break
                 }
-
-                println("Remaining: ${channel.availableForRead}")
 
                 // TODO handle stream type
                 emit(Frame(line, line.length, Stream.StdOut))
             }
-
-            println("End")
         }
     }
 
