@@ -1,6 +1,9 @@
 package org.katan.yoki
 
-public open class YokiException : Exception {
+import io.ktor.http.HttpStatusCode
+import kotlinx.serialization.Serializable
+
+public open class YokiException : RuntimeException {
     public constructor() : super()
     public constructor(message: String?) : super(message)
     public constructor(message: String?, cause: Throwable?) : super(message, cause)

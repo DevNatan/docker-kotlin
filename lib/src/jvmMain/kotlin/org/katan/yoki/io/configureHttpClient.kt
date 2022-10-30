@@ -18,7 +18,10 @@ internal actual fun <T : HttpClientEngineConfig> HttpClientConfig<out T>.configu
     client: Yoki
 ) {
     engine {
+        // ensure that current engine is OkHttp, cannot use CIO due to a Ktor Client bug related to data streaming
+        // https://youtrack.jetbrains.com/issue/KTOR-2494
         require(this is OkHttpConfig) { "Only OkHttp engine is supported for now" }
+
         config {
             if (isUnixSocket(client.config.socketPath))
                 socketFactory(UnixSocketFactory())
