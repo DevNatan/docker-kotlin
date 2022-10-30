@@ -28,12 +28,26 @@ public data class ContainerListOptions(
         public var since: String? = null,
         public var status: String? = null,
         public var volume: String? = null
-    )
+    ) {
 
-    public companion object {
+        public companion object {
 
-        public const val Ancestor: String = "ancestor"
-        public const val Before: String = "before"
-        public const val Expose: String = "expose"
+            public const val ANCESTOR: String = "ancestor"
+            public const val BEFORE: String = "before"
+            public const val EXPOSE: String = "expose"
+            public const val EXITED: String = "exited"
+            public const val HEALTH: String = "health"
+            public const val ID: String = "id"
+            public const val ISOLATION: String = "isolation"
+            public const val IS_TASK: String = "is-task"
+            public const val LABEL: String = "label"
+            public const val NAME: String = "name"
+            public const val NETWORK: String = "network"
+            public const val PUBLISH: String = "publish"
+            public const val SINCE: String = "since"
+            public const val STATUS: String = "status"
+            public const val VOLUME: String = "volume"
+        }
+
     }
 }
