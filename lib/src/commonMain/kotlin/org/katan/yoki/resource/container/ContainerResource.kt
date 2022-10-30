@@ -22,6 +22,7 @@ import org.katan.yoki.YokiResponseException
 import org.katan.yoki.io.requestCatching
 import org.katan.yoki.resource.Frame
 import org.katan.yoki.resource.IdOnlyResponse
+import org.katan.yoki.resource.ResizeTTYOptions
 import org.katan.yoki.resource.Stream
 import kotlin.time.Duration
 
@@ -267,7 +268,7 @@ public class ContainerResource internal constructor(
      */
     public suspend fun resizeTTY(
         container: String,
-        options: ContainerResizeTTYOptions,
+        options: ResizeTTYOptions,
     ) {
         requestCatching(
             HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, container) }
@@ -276,6 +277,23 @@ public class ContainerResource internal constructor(
                 setBody(options)
             }
         }
+    }
+
+    /**
+     * Runs a command inside a running container.
+     *
+     * @param container Unique identifier or name of the container.
+     * @param options Exec instance command options.
+     */
+    public suspend fun exec(container: String, options: ExecCreateOptions): String {
+        return requestCatching(
+            HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, container) },
+            HttpStatusCode.Conflict to { exception -> ContainerNotRunningException(exception, container) }
+        ) {
+            httpClient.post("$BASE_PATH/$container/exec") {
+                setBody(options)
+            }
+        }.body<IdOnlyResponse>().id
     }
 }
 
@@ -316,7 +334,20 @@ public suspend inline fun ContainerResource.prune(block: ContainerPruneFilters.(
  */
 public suspend inline fun ContainerResource.resizeTTY(
     container: String,
-    block: ContainerResizeTTYOptions.() -> Unit,
+    block: ResizeTTYOptions.() -> Unit,
 ) {
-    resizeTTY(container, ContainerResizeTTYOptions().apply(block))
+    resizeTTY(container, ResizeTTYOptions().apply(block))
+}
+
+/**
+ * Runs a command inside a running container.
+ *
+ * @param container Unique identifier or name of the container.
+ * @param block Exec instance command options.
+ */
+public suspend inline fun ContainerResource.exec(
+    container: String,
+    block: ExecCreateOptions.() -> Unit,
+) {
+    exec(container, ExecCreateOptions().apply(block))
 }

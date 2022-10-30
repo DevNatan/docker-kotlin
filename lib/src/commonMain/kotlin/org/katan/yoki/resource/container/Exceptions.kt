@@ -4,20 +4,24 @@ import org.katan.yoki.YokiResourceException
 
 public open class ContainerException(
     cause: Throwable?,
-    public val containerId: String,
 ) : YokiResourceException(cause)
 
 public class ContainerAlreadyStartedException(
     cause: Throwable?,
-    containerId: String,
-) : ContainerException(cause, containerId)
+    public val containerId: String,
+) : ContainerException(cause)
 
 public class ContainerNotFoundException(
     cause: Throwable?,
-    containerId: String,
-) : ContainerException(cause, containerId)
+    public val containerId: String,
+) : ContainerException(cause)
 
 public class ContainerRemoveConflictException(
     cause: Throwable?,
-    containerId: String,
-) : ContainerException(cause, containerId)
+    public val containerId: String,
+) : ContainerException(cause)
+
+public class ContainerNotRunningException(
+    cause: Throwable?,
+    public val containerId: String?,
+) : ContainerException(cause)

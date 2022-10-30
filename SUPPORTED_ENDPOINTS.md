@@ -61,10 +61,11 @@
 * [x] Remove a volume - DELETE **/volumes/:name**
 * [x] Delete unused volumes - POST **/volumes/prune**
 
-### Exec (0/3)
-* [ ] Start an exec instance - POST **/exec/:id/start**
-* [ ] Resize an exec instance - POST **/exec/:id/resize**
-* [ ] Inspect an exec instance - GET **/exec/:id/json**
+### Exec (4/4)
+* [x] Create a nexec instance - POST **/containers/:id/exec**
+* [x] Start an exec instance - POST **/exec/:id/start**
+* [x] Resize an exec instance - POST **/exec/:id/resize**
+* [x] Inspect an exec instance - GET **/exec/:id/json**
 
 ### Swarm (0/7)
 * [ ] Inspect swarm - GET **/swarm**
