@@ -14,7 +14,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class Secret(
     @SerialName("ID") public val id: String,
-    @SerialName("CreatedAt") public val createdAt: Instant,
-    @SerialName("UpdatedAt") public val updatedAt: Instant
+    @SerialName("CreatedAt") public val createdAtRaw: String,
+    @SerialName("UpdatedAt") public val updatedAtRaw: String
     // TODO version
-)
+) {
+
+    val createdAt: Instant by lazy { Instant.parse(createdAtRaw) }
+    val updatedAt: Instant by lazy { Instant.parse(updatedAtRaw) }
+}

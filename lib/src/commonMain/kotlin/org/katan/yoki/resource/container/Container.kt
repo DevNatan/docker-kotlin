@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class Container internal constructor(
     @SerialName("Id") val id: String,
-    @SerialName("Created") val createdString: String,
+    @SerialName("Created") val createdAtRaw: String,
     @SerialName("Path") val path: String? = null,
     @SerialName("Args") val args: List<String> = emptyList(),
     @SerialName("State") val state: ContainerState,
@@ -28,5 +28,5 @@ public data class Container internal constructor(
     @SerialName("SizeRootFs") val sizeRootFs: Long? = null,
 ) {
 
-    val createdAt: Instant by lazy { Instant.parse(createdString) }
+    val createdAt: Instant by lazy { Instant.parse(createdAtRaw) }
 }

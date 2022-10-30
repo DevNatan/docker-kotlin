@@ -19,8 +19,6 @@ public data class ContainerBasicInfo internal constructor(
     @SerialName("Labels") val labels: Map<String, String>,
 ) {
 
-    public val name: String get() = names?.firstOrNull() ?: id
-
-    public val createdAt: Instant
-        get() = Instant.fromEpochMilliseconds(createdLong)
+    public val name: String by lazy { names?.firstOrNull() ?: id }
+    public val createdAt: Instant by lazy { Instant.fromEpochMilliseconds(createdLong) }
 }
