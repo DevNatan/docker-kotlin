@@ -55,7 +55,9 @@ public class ContainerResource internal constructor(
             parameter("all", options.all)
             parameter("limit", options.limit)
             parameter("size", options.size)
-            parameter("filters", json.encodeToString(options.filters))
+            val raw = options.filters
+            println("encoded raw: " + json.encodeToString(raw))
+            parameter("filters", json.encodeToString(raw))
         }.body()
     }
 

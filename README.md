@@ -82,7 +82,7 @@ From a specific network
 ```kotlin
 yoki.containers.list {
     filters {
-        network = "octopus-network"
+        network = listOf("octopus-network")
     }
 }
 ```
