@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class ContainerBasicInfo internal constructor(
+public data class ContainerSummary internal constructor(
     @SerialName("Id") val id: String,
     @SerialName("Image") val image: String,
     @SerialName("ImageID") val imageCreatedFrom: String? = null,
@@ -17,6 +17,7 @@ public data class ContainerBasicInfo internal constructor(
     @SerialName("State") val state: String,
     @SerialName("Status") val status: String,
     @SerialName("Labels") val labels: Map<String, String>,
+    // TODO Ports, HostConfig, NetworkConfig, Mounts
 ) {
 
     public val name: String by lazy { names?.firstOrNull() ?: id }

@@ -37,7 +37,7 @@ public class ContainerResource internal constructor(
     /**
      * Returns a list of all created containers.
      */
-    public suspend fun list(): List<ContainerBasicInfo> {
+    public suspend fun list(): List<ContainerSummary> {
         return list(
             ContainerListOptions(
                 all = true
@@ -50,7 +50,7 @@ public class ContainerResource internal constructor(
      *
      * @param options Options to customize the listing result.
      */
-    public suspend fun list(options: ContainerListOptions): List<ContainerBasicInfo> {
+    public suspend fun list(options: ContainerListOptions): List<ContainerSummary> {
         return httpClient.get("$BASE_PATH/json") {
             parameter("all", options.all)
             parameter("limit", options.limit)
@@ -271,7 +271,7 @@ public suspend inline fun ContainerResource.stop(id: String, timeout: Duration) 
     return stop(id, timeout.inWholeSeconds.toInt())
 }
 
-public suspend inline fun ContainerResource.list(block: ContainerListOptions.() -> Unit): List<ContainerBasicInfo> {
+public suspend inline fun ContainerResource.list(block: ContainerListOptions.() -> Unit): List<ContainerSummary> {
     return list(ContainerListOptions().apply(block))
 }
 
