@@ -25,17 +25,37 @@ The Yoki client, it is through it that you will access the API of the resources 
 ```kotlin
 Yoki {
     // this: YokiConfig
-}.use { ... }
+}
+```
+
+Specifying a socket path
+```kotlin
+Yoki {
+    socketPath = "..."
+    version = "1.40"
+}
 ```
 
 Configure Yoki to use UNIX defaults
 ```kotlin
-Yoki { useUnixDefaults() }
+Yoki { 
+    useUnixDefaults()
+}
+
+// equivalent to
+Yoki {
+    socketPath = "unix:///var/run/docker.sock"
+}
 ```
 
 Configure Yoki to use HTTP defaults
 ```kotlin
 Yoki { useHTTPDefaults() }
+
+// equivalent to
+Yoki {
+    socketPath = "tcp://localhost:2375"
+}
 ```
 
 ## Calling from regular Java code
