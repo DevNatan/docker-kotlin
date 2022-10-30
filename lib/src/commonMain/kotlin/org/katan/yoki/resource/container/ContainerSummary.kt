@@ -7,11 +7,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class ContainerSummary internal constructor(
     @SerialName("Id") val id: String,
+    @SerialName("Names") val names: List<String>? = null,
     @SerialName("Image") val image: String,
     @SerialName("ImageID") val imageCreatedFrom: String? = null,
-    @SerialName("Names") val names: List<String>? = null,
     @SerialName("Command") val command: String? = null,
-    @SerialName("Created") val createdLong: Long,
+    @SerialName("Created") val createdAtRaw: Long,
     @SerialName("SizeRw") val sizeRw: Long? = null,
     @SerialName("SizeRootFs") val sizeRootFs: Long? = null,
     @SerialName("State") val state: String,
@@ -21,5 +21,5 @@ public data class ContainerSummary internal constructor(
 ) {
 
     public val name: String by lazy { names?.firstOrNull() ?: id }
-    public val createdAt: Instant by lazy { Instant.fromEpochMilliseconds(createdLong) }
+    public val createdAt: Instant by lazy { Instant.fromEpochMilliseconds(createdAtRaw) }
 }
