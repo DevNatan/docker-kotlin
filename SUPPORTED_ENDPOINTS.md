@@ -1,6 +1,6 @@
 # Yoki supported Docker API endpoints
 
-### Containers (14/25)
+### Containers (15/25)
 * [x] List containers - GET **/containers/json**
 * [x] Create a container - POST **/containers/create**
 * [x] Inspect a container - GET **/containers/:id/json**
@@ -9,7 +9,7 @@
 * [ ] Get changes on container's filesystem - **GET /containers/:id/changes**
 * [ ] Export a container - **GET /containers/:id/export**
 * [ ] Get container stats based on resource usage - **GET /containers/:id/stats**
-* [ ] Resize a container TTY - **POST /containers/:id/resize**
+* [x] Resize a container TTY - **POST /containers/:id/resize**
 * [x] Start a container - **POST /containers/:id/start**
 * [x] Stop a container - **POST /containers/:id/stop**
 * [x] Restart a container - **POST /containers/:id/restart**

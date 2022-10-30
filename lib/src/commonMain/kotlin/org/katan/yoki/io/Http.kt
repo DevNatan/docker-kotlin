@@ -23,6 +23,4 @@ internal fun <T> Result<T>.mapFailureToHttpStatus(
 internal inline fun requestCatching(
     vararg errors: Pair<HttpStatusCode, (YokiResponseException) -> Throwable>,
     request: () -> HttpResponse
-) = runCatching(request)
-    .mapFailureToHttpStatus(errors.toMap())
-    .getOrThrow()
+) = runCatching(request).mapFailureToHttpStatus(errors.toMap()).getOrThrow()

@@ -18,6 +18,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import org.katan.yoki.YokiResponseException
 import org.katan.yoki.io.requestCatching
 import org.katan.yoki.resource.Frame
 import org.katan.yoki.resource.IdOnlyResponse
@@ -263,6 +264,27 @@ public class ContainerResource internal constructor(
             println("End")
         }
     }
+
+    /**
+     * Resizes the TTY for a container.
+     *
+     * @param container Unique identifier or name of the container.
+     * @param options Resize options like width and height.
+     * @throws ContainerNotFoundException If the container is not found.
+     * @throws YokiResponseException If the container cannot be resized or if an error occurs in the request.
+     */
+    public suspend fun resizeTTY(
+        container: String,
+        options: ContainerResizeTTYOptions,
+    ) {
+        requestCatching(
+            HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, container) }
+        ) {
+            httpClient.post("$BASE_PATH/$container/resize") {
+                setBody(options)
+            }
+        }
+    }
 }
 
 public suspend inline fun ContainerResource.restart(id: String, timeout: Duration) {
@@ -291,4 +313,18 @@ public inline fun ContainerResource.logs(id: String, block: ContainerLogsOptions
 
 public suspend inline fun ContainerResource.prune(block: ContainerPruneFilters.() -> Unit): ContainerPruneResult {
     return prune(ContainerPruneFilters().apply(block))
+}
+
+/**
+ * Resizes the TTY for a container.
+ *
+ * @param container Unique identifier or name of the container.
+ * @param block Resize options like width and height.
+ * @throws ContainerNotFoundException If the container is not found.
+ */
+public suspend inline fun ContainerResource.resizeTTY(
+    container: String,
+    block: ContainerResizeTTYOptions.() -> Unit,
+) {
+    resizeTTY(container, ContainerResizeTTYOptions().apply(block))
 }
