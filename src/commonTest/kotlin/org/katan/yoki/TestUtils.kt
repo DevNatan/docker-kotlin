@@ -14,7 +14,7 @@ import kotlin.test.fail
  * Creates a new Yoki instance for testing.
  * @param block The client configuration factory.
  */
-fun createTestYoki(block: YokiConfig.() -> Unit = {}): Yoki {
+fun createTestYoki(block: YokiConfigBuilder.() -> Unit = {}): Yoki {
     return Yoki { apply(block) }
 }
 

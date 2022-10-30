@@ -39,7 +39,7 @@ internal fun createHttpClient(client: Yoki): HttpClient {
         configureHttpClient(client)
 
         HttpResponseValidator {
-            handleResponseExceptionWithRequest { exception, request ->
+            handleResponseExceptionWithRequest { exception, _ ->
                 val clientException = exception as? ClientRequestException ?: return@handleResponseExceptionWithRequest
                 val exceptionResponse = clientException.response
 
