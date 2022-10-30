@@ -1,35 +1,28 @@
 package org.katan.yoki.io
 
-import io.ktor.client.HttpClient
-import io.ktor.client.plugins.ResponseException
-import io.ktor.client.statement.bodyAsText
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
-import org.katan.yoki.YokiResourceException
+import io.ktor.client.statement.HttpResponse
+import io.ktor.http.HttpStatusCode
+import org.katan.yoki.YokiResponseException
 
-internal val resourceExceptionJsonDeserializer = Json {
-    ignoreUnknownKeys = true
+internal fun <T> Result<T>.mapFailureToHttpStatus(
+    statuses: Map<HttpStatusCode, (YokiResponseException) -> Throwable>
+) = onFailure { exception ->
+    if (exception !is YokiResponseException)
+        throw exception
+
+    val resourceException = statuses.entries.firstOrNull { (code, _) ->
+        code == exception.statusCode
+    }?.value
+
+    throw resourceException
+        ?.invoke(exception)
+        ?.also { it.addSuppressed(exception) }
+        ?: exception
 }
 
-// https://stackoverflow.com/a/65579343
-public inline fun <T> HttpClient.requestCatching(
-    request: HttpClient.() -> T,
-    handle: ResponseException.() -> T
-): Result<T> = runCatching { request() }.recover {
-    when (it) {
-        is ResponseException -> it.handle()
-        else -> throw it
-    }
-}
-
-public suspend fun <T : YokiResourceException> ResponseException.throwResourceException(
-    factory: (String?, Throwable?, Map<String, Any?>) -> T,
-    properties: Map<String, Any?>
-): Nothing {
-    throw factory(
-        response.bodyAsText().let { content ->
-            (resourceExceptionJsonDeserializer.decodeFromString(content) as Map<String, String?>)["message"]
-        },
-        this, properties
-    )
-}
+internal inline fun requestCatching(
+    vararg errors: Pair<HttpStatusCode, (YokiResponseException) -> Throwable>,
+    request: () -> HttpResponse
+) = runCatching(request)
+    .mapFailureToHttpStatus(errors.toMap())
+    .getOrThrow()

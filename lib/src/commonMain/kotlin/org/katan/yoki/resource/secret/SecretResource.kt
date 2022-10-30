@@ -10,9 +10,7 @@ import io.ktor.client.request.setBody
 import io.ktor.http.HttpStatusCode
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.katan.yoki.UnhandledYokiResourceException
 import org.katan.yoki.io.requestCatching
-import org.katan.yoki.io.throwResourceException
 import org.katan.yoki.resource.IdOnlyResponse
 import org.katan.yoki.resource.swarm.NodeNotPartOfSwarmException
 
@@ -63,24 +61,14 @@ public class SecretResource internal constructor(
      * @param options The secret spec.
      */
     public suspend fun create(options: SecretSpec): String {
-        return httpClient.requestCatching(
-            {
-                post("$BASE_PATH/create") {
-                    setBody(options)
-                }.body<IdOnlyResponse>()
-            },
-            {
-                val props = mapOf("secretName" to options.name)
-                throwResourceException(
-                    when (response.status) {
-                        HttpStatusCode.Conflict -> ::SecretNameConflictException
-                        HttpStatusCode.ServiceUnavailable -> ::NodeNotPartOfSwarmException
-                        else -> ::UnhandledYokiResourceException
-                    },
-                    props,
-                )
-            },
-        ).getOrThrow().id
+        return requestCatching(
+            HttpStatusCode.Conflict to { SecretNameConflictException(it, options.name) },
+            HttpStatusCode.ServiceUnavailable to ::NodeNotPartOfSwarmException
+        ) {
+            httpClient.post("$BASE_PATH/create") {
+                setBody(options)
+            }
+        }.body<IdOnlyResponse>().id
     }
 
     /**
@@ -91,25 +79,15 @@ public class SecretResource internal constructor(
      * @param options The new secret spec.
      */
     public suspend fun update(id: String, version: Long, options: SecretSpec) {
-        httpClient.requestCatching(
-            {
-                post("$BASE_PATH/$id/update") {
-                    parameter("version", version)
-                    setBody(options)
-                }
-            },
-            {
-                val props = mapOf("id" to id, "version" to version)
-                throwResourceException(
-                    when (response.status) {
-                        HttpStatusCode.NotFound -> ::SecretNotFoundException
-                        HttpStatusCode.ServiceUnavailable -> ::NodeNotPartOfSwarmException
-                        else -> ::UnhandledYokiResourceException
-                    },
-                    props
-                )
-            },
-        )
+        requestCatching(
+            HttpStatusCode.NotFound to { SecretNotFoundException(it, id, version) },
+            HttpStatusCode.ServiceUnavailable to ::NodeNotPartOfSwarmException
+        ) {
+            httpClient.post("$BASE_PATH/$id/update") {
+                parameter("version", version)
+                setBody(options)
+            }
+        }
     }
 }
 

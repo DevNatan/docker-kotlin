@@ -18,9 +18,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.katan.yoki.UnhandledYokiResourceException
 import org.katan.yoki.io.requestCatching
-import org.katan.yoki.io.throwResourceException
 import org.katan.yoki.resource.Frame
 import org.katan.yoki.resource.IdOnlyResponse
 import org.katan.yoki.resource.Stream
@@ -37,10 +35,14 @@ public class ContainerResource internal constructor(
     }
 
     /**
-     * Returns a list of all containers.
+     * Returns a list of all created containers.
      */
-    public suspend fun list(): List<Container> {
-        return httpClient.get("$BASE_PATH/json").body()
+    public suspend fun list(): List<ContainerBasicInfo> {
+        return list(
+            ContainerListOptions(
+                all = true
+            )
+        )
     }
 
     /**
@@ -48,7 +50,7 @@ public class ContainerResource internal constructor(
      *
      * @param options Options to customize the listing result.
      */
-    public suspend fun list(options: ContainerListOptions): List<Container> {
+    public suspend fun list(options: ContainerListOptions): List<ContainerBasicInfo> {
         return httpClient.get("$BASE_PATH/json") {
             parameter("all", options.all)
             parameter("limit", options.limit)
@@ -79,21 +81,14 @@ public class ContainerResource internal constructor(
      * @throws ContainerNotFoundException If container was not found.
      */
     public suspend fun start(id: String, detachKeys: String? = null) {
-        httpClient.requestCatching({
-            post("$BASE_PATH/$id/start") {
+        requestCatching(
+            HttpStatusCode.NotModified to { ContainerAlreadyStartedException(it, id) },
+            HttpStatusCode.NotFound to { ContainerNotFoundException(it, id) },
+        ) {
+            httpClient.post("$BASE_PATH/$id/start") {
                 parameter("detachKeys", detachKeys)
             }
-        }, {
-            val props: Map<String, Any?> = mapOf("containerId" to id, "detachKeys" to detachKeys)
-            throwResourceException(
-                when (response.status) {
-                    HttpStatusCode.NotModified -> ::ContainerAlreadyStartedException
-                    HttpStatusCode.NotFound -> ::ContainerNotFoundException
-                    else -> ::UnhandledYokiResourceException
-                },
-                props
-            )
-        })
+        }
     }
 
     public suspend fun stop(id: String, timeout: Int? = null) {
@@ -129,19 +124,12 @@ public class ContainerResource internal constructor(
     }
 
     public suspend fun remove(id: String) {
-        httpClient.requestCatching({
-            delete("$BASE_PATH/$id")
-        }, {
-            val props: Map<String, Any?> = mapOf("containerId" to id)
-            throwResourceException(
-                when (response.status) {
-                    HttpStatusCode.NotFound -> ::ContainerNotFoundException
-                    HttpStatusCode.Conflict -> ::ContainerRemoveConflictException
-                    else -> ::UnhandledYokiResourceException
-                },
-                props,
-            )
-        })
+        requestCatching(
+            HttpStatusCode.NotFound to { ContainerNotFoundException(it, id) },
+            HttpStatusCode.Conflict to { ContainerRemoveConflictException(it, id) }
+        ) {
+            httpClient.delete("$BASE_PATH/$id")
+        }
     }
 
     public suspend fun remove(id: String, options: ContainerRemoveOptions) {
@@ -159,8 +147,12 @@ public class ContainerResource internal constructor(
      * @param size Should return the size of container as fields `SizeRw` and `SizeRootFs`
      */
     public suspend fun inspect(id: String, size: Boolean = false): Container {
-        return httpClient.post("$BASE_PATH/$id/json") {
-            parameter("size", size)
+        return requestCatching(
+            HttpStatusCode.NotFound to { ContainerNotFoundException(it, id) }
+        ) {
+            httpClient.get("$BASE_PATH/$id/json") {
+                parameter("size", size)
+            }
         }.body()
     }
 
@@ -279,7 +271,7 @@ public suspend inline fun ContainerResource.stop(id: String, timeout: Duration) 
     return stop(id, timeout.inWholeSeconds.toInt())
 }
 
-public suspend inline fun ContainerResource.list(block: ContainerListOptions.() -> Unit): List<Container> {
+public suspend inline fun ContainerResource.list(block: ContainerListOptions.() -> Unit): List<ContainerBasicInfo> {
     return list(ContainerListOptions().apply(block))
 }
 

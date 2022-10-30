@@ -16,7 +16,7 @@ public class Yoki @PublishedApi internal constructor(
 ) : Closeable {
 
     private val httpClient: HttpClient = createHttpClient(this)
-    private val json: Json = Json {
+    internal val json: Json = Json {
         ignoreUnknownKeys = true
     }
 
