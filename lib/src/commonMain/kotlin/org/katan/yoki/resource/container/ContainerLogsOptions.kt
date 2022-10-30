@@ -18,7 +18,7 @@ import kotlinx.serialization.Serializable
  * @see ContainerResource.logs
  */
 @Serializable
-public class ContainerLogsOptions(
+public class ContainerLogsOptions @JvmOverloads constructor(
     public var follow: Boolean? = null,
     public var stdout: Boolean? = null,
     public var stderr: Boolean? = null,
@@ -27,21 +27,22 @@ public class ContainerLogsOptions(
     @SerialName("timestamps") public var showTimestamps: Boolean? = null,
     public var tail: String? = null,
     public var splitLineBreaks: Boolean = false
-)
+) {
 
-public fun ContainerLogsOptions.tailAll() {
-    this.tail = "all"
-}
+    public fun setTailAll() {
+        this.tail = "all"
+    }
 
-public fun ContainerLogsOptions.tail(size: Int) {
-    this.tail = size.toString()
+    public fun setTail(size: Int) {
+        this.tail = size.toString()
+    }
 }
 
 /**
  * Only return logs since this time, as a UNIX timestamp.
  * @param since The timestamp.
  */
-public fun ContainerLogsOptions.since(since: Instant) {
+public fun ContainerLogsOptions.setSince(since: Instant) {
     this.since = since.toEpochMilliseconds()
 }
 
@@ -49,6 +50,6 @@ public fun ContainerLogsOptions.since(since: Instant) {
  * Only return logs before this time, as a UNIX timestamp.
  * @param until The timestamp.
  */
-public fun ContainerLogsOptions.until(until: Instant) {
+public fun ContainerLogsOptions.setUntil(until: Instant) {
     this.until = until.toEpochMilliseconds()
 }

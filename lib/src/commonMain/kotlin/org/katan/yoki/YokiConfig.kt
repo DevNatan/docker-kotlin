@@ -7,7 +7,7 @@ import org.katan.yoki.io.UNIX_SOCKET_PREFIX
 
 private const val DOCKER_HOST_ENV_KEY = "DOCKER_HOST"
 
-public class YokiConfig @PublishedApi internal constructor() {
+public class YokiConfig {
 
     public var socketPath: String = ""
 
@@ -23,15 +23,30 @@ public class YokiConfig @PublishedApi internal constructor() {
      *
      * The socket path is defined to [DEFAULT_DOCKER_UNIX_SOCKET] if `DOCKER_HOST` env var is not set,
      * or it doesn't have the [UNIX_SOCKET_PREFIX].
+     *
+     * Equivalent to:
+     * ```kotlin
+     * Yoki {
+     *     socketPath = "unix:///var/run/docker.sock"
+     * }
+     * ```
      */
-    public fun withUnixDefaults() {
+    public fun useUnixDefaults() {
         socketPath = dockerHostOrFallback(
             fallback = DEFAULT_DOCKER_UNIX_SOCKET,
             prefix = UNIX_SOCKET_PREFIX,
         )
     }
 
-    public fun withHttpDefaults() {
+    /**
+     * Equivalent to:
+     * ```kotlin
+     * Yoki {
+     *     socketPath = "tcp://localhost:2375"
+     * }
+     * ```
+     */
+    public fun useHttpDefaults() {
         socketPath = dockerHostOrFallback(
             fallback = DEFAULT_DOCKER_HTTP_SOCKET,
             prefix = HTTP_SOCKET_PREFIX,

@@ -127,7 +127,7 @@ public suspend inline fun NetworkResource.create(config: NetworkCreateConfig.() 
 /**
  * Returns a list of networks.
  *
- * @param filters Filters to to process on the networks list.
+ * @param filters Filters to process on the networks list.
  * @see <a href="https://docs.docker.com/engine/api/latest/#operation/NetworkList">NetworkList</a>
  */
 public suspend inline fun NetworkResource.list(filters: NetworkListFilters.() -> Unit): List<Network> {

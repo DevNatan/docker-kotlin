@@ -23,7 +23,7 @@ import kotlinx.serialization.Serializable
  * @see NetworkResource.create
  */
 @Serializable
-public data class NetworkCreateConfig(
+public data class NetworkCreateConfig @JvmOverloads public constructor(
     @SerialName("Name") public var name: String? = null,
     @SerialName("CheckDuplicate") public var checkDuplicate: Boolean? = null,
     @SerialName("Driver") public var driver: String? = null,
@@ -33,5 +33,5 @@ public data class NetworkCreateConfig(
     @SerialName("IPAM") public var ipam: IPAM? = null,
     @SerialName("EnableIPV6") public var enableIpv6: Boolean? = null,
     @SerialName("Options") public var options: Map<String, String>? = null,
-    @SerialName("Labels") public var labels: Map<String, String>? = null
+    @SerialName("Labels") public var labels: Map<String, String>? = null,
 )

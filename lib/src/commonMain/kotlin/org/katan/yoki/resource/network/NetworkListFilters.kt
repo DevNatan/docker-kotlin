@@ -15,7 +15,7 @@ import kotlinx.serialization.Serializable
  * @see NetworkResource.list
  */
 @Serializable
-public data class NetworkListFilters(
+public data class NetworkListFilters @JvmOverloads public constructor(
     public var dangling: Boolean = false,
     public var driver: String? = null,
     public var id: String? = null,

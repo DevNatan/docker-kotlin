@@ -15,8 +15,32 @@ public class Yoki @PublishedApi internal constructor(
     public val config: YokiConfig
 ) : Closeable {
 
+    public companion object {
+        @JvmStatic
+        public fun create(config: YokiConfig): Yoki {
+            return Yoki(config)
+        }
+
+        @JvmStatic
+        public fun create(socketPath: String): Yoki {
+            return Yoki {
+                this.socketPath = socketPath
+            }
+        }
+
+        @JvmStatic
+        public fun createWithUnixDefaults(): Yoki {
+            return Yoki { useUnixDefaults() }
+        }
+
+        @JvmStatic
+        public fun createWithHttpDefaults(): Yoki {
+            return Yoki { useHttpDefaults() }
+        }
+    }
+
     private val httpClient: HttpClient = createHttpClient(this)
-    internal val json: Json = Json {
+    private val json: Json = Json {
         ignoreUnknownKeys = true
     }
 
