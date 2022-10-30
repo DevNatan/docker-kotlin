@@ -11,6 +11,7 @@ import io.ktor.http.Url
 import io.ktor.http.contentType
 import io.ktor.http.encodedPath
 import io.ktor.http.takeFrom
+import okio.ByteString.Companion.encodeUtf8
 import org.katan.yoki.Yoki
 import java.util.concurrent.TimeUnit
 
@@ -23,9 +24,11 @@ internal actual fun <T : HttpClientEngineConfig> HttpClientConfig<out T>.configu
         require(this is OkHttpConfig) { "Only OkHttp engine is supported for now" }
 
         config {
-            if (isUnixSocket(client.config.socketPath))
+            val isUnixSocket = isUnixSocket(client.config.socketPath)
+            if (isUnixSocket) {
                 socketFactory(UnixSocketFactory())
-            dns(SocketDns())
+            }
+            dns(SocketDns(isUnixSocket))
             readTimeout(0, TimeUnit.MILLISECONDS)
             connectTimeout(0, TimeUnit.MILLISECONDS)
             callTimeout(0, TimeUnit.MILLISECONDS)
@@ -54,13 +57,14 @@ private fun isUnixSocket(input: String): Boolean {
 }
 
 private fun createUrlBuilder(socketPath: String): URLBuilder {
-    val url = Url(socketPath)
     return if (isUnixSocket(socketPath)) {
         URLBuilder(
             protocol = URLProtocol.HTTP,
-            host = "docker.socket"
+            port = 2375,
+            host = socketPath.substringAfter(UNIX_SOCKET_PREFIX).encodeUtf8().hex() + ".socket"
         )
     } else {
+        val url = Url(socketPath)
         URLBuilder(
             protocol = URLProtocol.HTTP,
             host = url.host,

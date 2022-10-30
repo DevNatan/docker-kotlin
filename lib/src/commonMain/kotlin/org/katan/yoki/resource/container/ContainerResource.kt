@@ -56,7 +56,7 @@ public class ContainerResource internal constructor(
             parameter("all", options.all)
             parameter("limit", options.limit)
             parameter("size", options.size)
-            parameter("filters", json.encodeToString(raw))
+            parameter("filters", options.filters?.let(json::encodeToString))
         }.body()
     }
 

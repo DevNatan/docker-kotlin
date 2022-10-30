@@ -9,7 +9,7 @@ private const val DOCKER_HOST_ENV_KEY = "DOCKER_HOST"
 
 public class YokiConfig {
 
-    public var socketPath: String = ""
+    public var socketPath: String = DEFAULT_DOCKER_UNIX_SOCKET
 
     /**
      * The version of the Docker API that will be used during communication.
@@ -27,7 +27,7 @@ public class YokiConfig {
      * Equivalent to:
      * ```kotlin
      * Yoki {
-     *     socketPath = "unix:///var/run/docker.sock"
+     *     socketPath = "unix://var/run/docker.sock"
      * }
      * ```
      */
