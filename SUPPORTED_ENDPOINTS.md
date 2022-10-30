@@ -1,5 +1,7 @@
 # Yoki supported Docker API endpoints
 
+Supports 39 of 106 endpoints
+
 ### Containers (15/25)
 * [x] List containers - GET **/containers/json**
 * [x] Create a container - POST **/containers/create**
