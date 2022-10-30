@@ -6,7 +6,6 @@ import io.ktor.client.request.get
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.http.HttpStatusCode
-import kotlinx.serialization.json.Json
 import org.katan.yoki.io.requestCatching
 import org.katan.yoki.resource.ResizeTTYOptions
 import org.katan.yoki.resource.container.ContainerNotRunningException
@@ -20,7 +19,6 @@ import org.katan.yoki.resource.container.ContainerNotRunningException
  */
 public class ExecResource internal constructor(
     private val httpClient: HttpClient,
-    private val json: Json,
 ) {
 
     private companion object {

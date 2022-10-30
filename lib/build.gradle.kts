@@ -9,6 +9,8 @@ repositories {
 
 kotlin {
     explicitApi()
+
+    // TODO linuxX64 and macosX64
     jvm {
         testRuns["test"].executionTask.configure {
             useJUnitPlatform()
