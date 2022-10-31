@@ -1,6 +1,8 @@
 // https://youtrack.jetbrains.com/issue/KTIJ-19369
 @file:Suppress("DSL_SCOPE_VIOLATION", "UnstableApiUsage")
 
+import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
+
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlinx.serialization)
@@ -30,12 +32,20 @@ kotlin {
         }
     }
 
-    val hostOs = System.getProperty("os.name")
-    val isMingwX64 = hostOs.startsWith("Windows")
-    when {
-        hostOs == "Mac OS X" -> macosX64("native")
-        isMingwX64 || hostOs == "Linux" -> linuxX64("native")
-        else -> throw GradleException("Host OS is not supported in Kotlin Native: $hostOs")
+    val isNativeTargetsEnabled: Boolean = project.property("yoki.native-targets")
+        ?.toString()
+        ?.toBoolean()
+        ?: false
+
+    if (isNativeTargetsEnabled) {
+        val hostOs = System.getProperty("os.name")
+        val isMingwX64 = hostOs.startsWith("Windows")
+        when {
+            hostOs == "Mac OS X" -> macosX64("native")
+            hostOs == "Linux" -> linuxX64("native")
+            isMingwX64 -> mingwX64("native")
+            else -> throw GradleException("Host OS is not supported in Kotlin Native: $hostOs")
+        }
     }
 
     sourceSets {
@@ -76,17 +86,19 @@ kotlin {
             }
         }
 
-        @Suppress("UNUSED_VARIABLE")
-        val nativeMain by getting {
-            dependsOn(commonMain)
-            dependencies {
-                implementation(libs.ktor.client.engine.cio)
+        if (isNativeTargetsEnabled) {
+            @Suppress("UNUSED_VARIABLE")
+            val nativeMain by getting {
+                dependsOn(commonMain)
+                dependencies {
+                    implementation(libs.ktor.client.engine.cio)
+                }
             }
-        }
 
-        @Suppress("UNUSED_VARIABLE")
-        val nativeTest by getting {
-            dependsOn(commonTest)
+            @Suppress("UNUSED_VARIABLE")
+            val nativeTest by getting {
+                dependsOn(commonTest)
+            }
         }
     }
 }
