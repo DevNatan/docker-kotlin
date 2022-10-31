@@ -5,23 +5,22 @@ package org.katan.yoki.resource.image
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.test.runTest
-import org.katan.yoki.createTestYoki
+import org.katan.yoki.resource.ResourceIT
 import kotlin.test.Test
 import kotlin.test.fail
 
-class RemoveImageIT {
+class RemoveImageIT : ResourceIT() {
 
     @Test
-    fun `remove image`() = runTest {
-        val client = createTestYoki()
+    fun `image remove`() = runTest {
         val image = "busybox:latest"
 
         try {
-            client.images.pull(image).collect()
+            testClient.images.pull(image).collect()
         } catch (e: Throwable) {
             fail("Failed to pull image", e)
         }
 
-        client.images.remove(image)
+        testClient.images.remove(image)
     }
 }

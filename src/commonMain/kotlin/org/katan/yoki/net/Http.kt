@@ -4,8 +4,8 @@ import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.call.body
 import io.ktor.client.engine.HttpClientEngineConfig
-import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.HttpResponseValidator
+import io.ktor.client.plugins.ResponseException
 import io.ktor.client.plugins.UserAgent
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
@@ -52,8 +52,8 @@ internal fun createHttpClient(client: Yoki): HttpClient {
 
         HttpResponseValidator {
             handleResponseExceptionWithRequest { exception, _ ->
-                val clientException = exception as? ClientRequestException ?: return@handleResponseExceptionWithRequest
-                val exceptionResponse = clientException.response
+                val responseException = exception as? ResponseException ?: return@handleResponseExceptionWithRequest
+                val exceptionResponse = responseException.response
 
                 val error = exceptionResponse.body<GenericDockerErrorResponse>()
                 throw YokiResponseException(

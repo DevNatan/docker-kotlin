@@ -32,8 +32,12 @@ public class SecretResource internal constructor(
      * @param filters Filters to process on the secrets list.
      */
     public suspend fun list(filters: SecretListFilters? = null): List<Secret> {
-        return httpClient.get(BASE_PATH) {
-            parameter("filters", filters?.let(json::encodeToString))
+        return requestCatching(
+            HttpStatusCode.ServiceUnavailable to ::NodeNotPartOfSwarmException
+        ) {
+            httpClient.get(BASE_PATH) {
+                parameter("filters", filters?.let(json::encodeToString))
+            }
         }.body()
     }
 

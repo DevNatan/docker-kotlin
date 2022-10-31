@@ -4,18 +4,16 @@ package org.katan.yoki.resource.container
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import org.katan.yoki.createTestYoki
+import org.katan.yoki.resource.ResourceIT
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
 
-class RemoveContainerIT {
+class RemoveContainerIT : ResourceIT() {
 
     @Test
     fun `throws ContainerNotFoundException on remove a unknown container`() = runTest {
-        val client = createTestYoki()
-
-        assertFailsWith(ContainerNotFoundException::class) {
-            client.containers.remove("santo-bastao"/* TODO generate random id */)
+        assertFailsWith<ContainerNotFoundException>() {
+            testClient.containers.remove("santo-bastao"/* TODO generate random id */)
         }
     }
 }
