@@ -3,6 +3,7 @@ package org.katan.yoki.resource.system
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
+import io.ktor.client.request.head
 import org.katan.yoki.net.requestCatching
 
 /**
@@ -11,6 +12,10 @@ import org.katan.yoki.net.requestCatching
 public class SystemResource internal constructor(
     private val httpClient: HttpClient,
 ) {
+
+    private companion object {
+        const val PING_ENDPOINT = "/_ping"
+    }
 
     /**
      * Gets the version of Docker that is running and information about the system that Docker is running on.
@@ -26,5 +31,26 @@ public class SystemResource internal constructor(
         return requestCatching {
             httpClient.get("/version")
         }.body()
+    }
+
+    /**
+     * Pings the server completing successfully if the server is accessible.
+     *
+     * @param head Should use `HEAD` instead of `GET` HTTP method to ping.
+     */
+    @JvmOverloads
+    public suspend fun ping(head: Boolean = true): SystemPingData {
+        return requestCatching {
+            if (head)
+                httpClient.head(PING_ENDPOINT)
+            else
+                httpClient.get(PING_ENDPOINT)
+        }.headers.let { headers ->
+            SystemPingData(
+                apiVersion = headers["API-Version"].orEmpty(),
+                builderVersion = headers["Builder-Version"].orEmpty(),
+                experimental = headers["Docker-Experimental"]?.toBooleanStrict() ?: false
+            )
+        }
     }
 }
