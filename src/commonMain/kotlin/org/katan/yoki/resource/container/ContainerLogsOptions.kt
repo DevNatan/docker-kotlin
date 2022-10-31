@@ -3,6 +3,7 @@ package org.katan.yoki.resource.container
 import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmOverloads
 
 /**
  * Container logs endpoint options.

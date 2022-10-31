@@ -18,10 +18,31 @@ repositories {
 kotlin {
     explicitApi()
 
-    // TODO linuxX64 and macosX64
     jvm {
-        testRuns["test"].executionTask.configure {
+        tasks.named<Test>("jvmTest") {
             useJUnitPlatform()
+            testLogging {
+                showExceptions = true
+                showStandardStreams = true
+                events = setOf(org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED, org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED)
+                exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+            }
+        }
+    }
+
+    val hostOs = System.getProperty("os.name")
+    val isMingwX64 = hostOs.startsWith("Windows")
+    val nativeTarget = when {
+        hostOs == "Mac OS X" -> macosX64("native")
+        isMingwX64 || hostOs == "Linux" -> linuxX64("native")
+        else -> throw GradleException("Host OS is not supported in Kotlin Native: $hostOs")
+    }
+
+    nativeTarget.apply {
+        binaries {
+            executable {
+                entryPoint = "main"
+            }
         }
     }
 
@@ -33,6 +54,7 @@ kotlin {
                 implementation(libs.ktx.datetime)
                 implementation(libs.bundles.ktor)
                 implementation(libs.bundles.ktx)
+                implementation(libs.okio)
             }
         }
 
@@ -48,8 +70,9 @@ kotlin {
         val jvmMain by getting {
             dependsOn(commonMain)
             dependencies {
-                compileOnly(libs.bundles.junixsocket)
-                implementation(libs.ktor.client.okhttp)
+                runtimeOnly(libs.junixsocket.native)
+                implementation(libs.junixsocket.common)
+                implementation(libs.ktor.client.engine.okhttp)
             }
         }
 
@@ -57,8 +80,21 @@ kotlin {
         val jvmTest by getting {
             dependsOn(commonTest)
             dependencies {
-                implementation(kotlin("test-junit"))
+                implementation(kotlin("test-junit5"))
             }
+        }
+
+        @Suppress("UNUSED_VARIABLE")
+        val nativeMain by getting {
+            dependsOn(commonMain)
+            dependencies {
+                implementation(libs.ktor.client.engine.cio)
+            }
+        }
+
+        @Suppress("UNUSED_VARIABLE")
+        val nativeTest by getting {
+            dependsOn(commonTest)
         }
     }
 }

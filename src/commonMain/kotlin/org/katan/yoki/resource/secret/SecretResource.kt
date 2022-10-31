@@ -10,7 +10,7 @@ import io.ktor.client.request.setBody
 import io.ktor.http.HttpStatusCode
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.katan.yoki.io.requestCatching
+import org.katan.yoki.net.requestCatching
 import org.katan.yoki.resource.IdOnlyResponse
 import org.katan.yoki.resource.swarm.NodeNotPartOfSwarmException
 

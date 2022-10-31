@@ -3,10 +3,12 @@
 
 package org.katan.yoki
 
-import org.katan.yoki.io.DEFAULT_DOCKER_HTTP_SOCKET
-import org.katan.yoki.io.DEFAULT_DOCKER_UNIX_SOCKET
-import org.katan.yoki.io.HTTP_SOCKET_PREFIX
-import org.katan.yoki.io.UNIX_SOCKET_PREFIX
+import org.katan.yoki.net.DEFAULT_DOCKER_HTTP_SOCKET
+import org.katan.yoki.net.DEFAULT_DOCKER_UNIX_SOCKET
+import org.katan.yoki.net.HTTP_SOCKET_PREFIX
+import org.katan.yoki.net.UNIX_SOCKET_PREFIX
+import kotlin.jvm.JvmMultifileClass
+import kotlin.jvm.JvmName
 
 private const val DOCKER_HOST_ENV_KEY = "DOCKER_HOST"
 

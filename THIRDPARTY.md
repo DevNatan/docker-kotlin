@@ -8,3 +8,6 @@ This document contains a list of third-party libraries that Yoki uses.
 * [kotlinx-serialization](https://github.com/Kotlin/kotlinx.serialization)
 * [kotlinx-datetime](https://github.com/Kotlin/kotlinx-datetime)
 * [JetBrains Annotations](https://github.com/JetBrains/java-annotations)
+* [Okio](https://github.com/square/okio)
+* [publish-on-central](https://github.com/DanySK/publish-on-central)
+* [kotlinter](https://github.com/jeremymailen/kotlinter-gradle)

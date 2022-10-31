@@ -1,6 +1,7 @@
 package org.katan.yoki.resource.network
 
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmOverloads
 
 /**
  * Network list filters.

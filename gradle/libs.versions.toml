@@ -6,6 +6,7 @@ ktor = "2.1.2"
 junixsocket = "2.6.1"
 ktx-datetime = "0.4.0"
 junit = "5.6.2"
+okio = "3.2.0"
 plugin-kotlinter = "3.9.0"
 plugin-publishOnCentral = "2.0.8"
 
@@ -29,8 +30,12 @@ version.ref = "ktx-serialization"
 module = "io.ktor:ktor-client-core"
 version.ref = "ktor"
 
-[libraries.ktor-client-okhttp]
+[libraries.ktor-client-engine-okhttp]
 module = "io.ktor:ktor-client-okhttp"
+version.ref = "ktor"
+
+[libraries.ktor-client-engine-cio]
+module = "io.ktor:ktor-client-cio"
 version.ref = "ktor"
 
 [libraries.ktor-client-serialization]
@@ -61,7 +66,7 @@ version.ref = "ktor"
 module = "com.kohlschutter.junixsocket:junixsocket-common"
 version.ref = "junixsocket"
 
-[libraries.junixsocket-native-common]
+[libraries.junixsocket-native]
 module = "com.kohlschutter.junixsocket:junixsocket-native-common"
 version.ref = "junixsocket"
 
@@ -73,10 +78,13 @@ version.ref = "ktx-datetime"
 module = "org.junit.jupiter:junit-jupiter-engine"
 version.ref = "junit"
 
+[libraries.okio]
+module = "com.squareup.okio:okio"
+version.ref = "okio"
+
 [bundles]
 ktor = ["ktor-client-core", "ktor-client-serialization", "ktor-client-json", "ktor-client-content-negotiation", "ktor-serialization-kotlinx-json", "ktor-network"]
 ktx = ["ktx-coroutines-core", "ktx-serialization-core", "ktx-serialization-json"]
-junixsocket = ["junixsocket-common", "junixsocket-native-common"]
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }

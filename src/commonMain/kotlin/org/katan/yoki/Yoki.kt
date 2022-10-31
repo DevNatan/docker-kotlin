@@ -4,13 +4,15 @@ import io.ktor.client.HttpClient
 import io.ktor.utils.io.core.Closeable
 import kotlinx.serialization.json.Json
 import org.katan.yoki.YokiConfigBuilder.Companion.DEFAULT_DOCKER_API_VERSION
-import org.katan.yoki.io.createHttpClient
+import org.katan.yoki.net.createHttpClient
 import org.katan.yoki.resource.container.ContainerResource
 import org.katan.yoki.resource.exec.ExecResource
 import org.katan.yoki.resource.image.ImageResource
 import org.katan.yoki.resource.network.NetworkResource
 import org.katan.yoki.resource.secret.SecretResource
 import org.katan.yoki.resource.volume.VolumeResource
+import kotlin.jvm.JvmField
+import kotlin.jvm.JvmStatic
 
 /**
  * Creates a new Yoki instance with platform default socket path and [DEFAULT_DOCKER_API_VERSION] Docker API version

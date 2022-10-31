@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.katan.yoki.YokiResponseException
-import org.katan.yoki.io.requestCatching
+import org.katan.yoki.net.requestCatching
 import org.katan.yoki.resource.Frame
 import org.katan.yoki.resource.IdOnlyResponse
 import org.katan.yoki.resource.ResizeTTYOptions

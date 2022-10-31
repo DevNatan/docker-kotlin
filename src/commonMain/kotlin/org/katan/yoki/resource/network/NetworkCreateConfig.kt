@@ -2,6 +2,7 @@ package org.katan.yoki.resource.network
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmOverloads
 
 /**
  * Network configuration.

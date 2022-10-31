@@ -10,14 +10,6 @@ import org.katan.yoki.resource.volume.create
 import org.katan.yoki.resource.volume.remove
 import kotlin.test.fail
 
-/**
- * Creates a new Yoki instance for testing.
- * @param block The client configuration factory.
- */
-fun createTestYoki(block: YokiConfigBuilder.() -> Unit = {}): Yoki {
-    return Yoki { apply(block) }
-}
-
 suspend fun <R> Yoki.withImage(imageName: String, block: suspend (String) -> R): R {
     try {
         images.pull(imageName).collect()

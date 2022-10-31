@@ -6,7 +6,7 @@ import io.ktor.client.request.get
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.http.HttpStatusCode
-import org.katan.yoki.io.requestCatching
+import org.katan.yoki.net.requestCatching
 import org.katan.yoki.resource.ResizeTTYOptions
 import org.katan.yoki.resource.container.ContainerNotRunningException
 
