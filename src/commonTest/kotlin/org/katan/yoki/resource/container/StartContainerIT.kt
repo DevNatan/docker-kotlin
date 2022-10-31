@@ -13,7 +13,7 @@ import kotlin.test.assertFailsWith
 class StartContainerIT {
 
     @Test
-    fun `successfully starts a container`() = runTest {
+    fun `start a container`() = runTest {
         val client = createTestYoki()
 
         client.withContainer("busybox:latest") { id ->
@@ -26,7 +26,7 @@ class StartContainerIT {
         val client = createTestYoki()
 
         assertFailsWith(ContainerNotFoundException::class) {
-            client.containers.start("jao-gomides")
+            client.containers.start("jao-gomides" /* TODO generate random id */)
         }
     }
 

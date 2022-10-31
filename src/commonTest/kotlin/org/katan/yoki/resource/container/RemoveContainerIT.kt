@@ -15,7 +15,7 @@ class RemoveContainerIT {
         val client = createTestYoki()
 
         assertFailsWith(ContainerNotFoundException::class) {
-            client.containers.remove("santo-bastao")
+            client.containers.remove("santo-bastao"/* TODO generate random id */)
         }
     }
 }
