@@ -10,6 +10,7 @@ import org.katan.yoki.resource.exec.ExecResource
 import org.katan.yoki.resource.image.ImageResource
 import org.katan.yoki.resource.network.NetworkResource
 import org.katan.yoki.resource.secret.SecretResource
+import org.katan.yoki.resource.system.SystemResource
 import org.katan.yoki.resource.volume.VolumeResource
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
@@ -112,6 +113,8 @@ public class Yoki @PublishedApi internal constructor(
     public val images: ImageResource = ImageResource(httpClient, json)
     @JvmField
     public val exec: ExecResource = ExecResource(httpClient)
+    @JvmField
+    public val system: SystemResource = SystemResource(httpClient)
 
     override fun close() {
         httpClient.close()

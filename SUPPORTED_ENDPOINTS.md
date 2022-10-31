@@ -1,6 +1,6 @@
 # Yoki supported Docker API endpoints
 
-Supports 39 of 106 endpoints
+Supports 40 of 106 endpoints
 
 ### Containers (15/25)
 * [x] List containers - GET **/containers/json**
@@ -124,10 +124,10 @@ Supports 39 of 106 endpoints
 * [ ] Push a plugin - POST **/plugins/:name/push**
 * [ ] Configure a plugin - POST **/plugins/:name/set**
 
-### System (0/7)
+### System (1/7)
 * [ ] Check auth configuration - POST **/auth**
 * [ ] Get system information - GET **/info**
-* [ ] Get version - GET **/version**
+* [x] Get version - GET **/version**
 * [ ] Ping - GET **/_ping**
 * [ ] Ping - HEAD **/_ping**
 * [ ] Monitor events - GET **/events**
