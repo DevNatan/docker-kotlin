@@ -25,10 +25,10 @@ import org.katan.yoki.models.ResizeTTYOptions
 import org.katan.yoki.models.Stream
 import org.katan.yoki.models.exec.ExecCreateOptions
 import org.katan.yoki.net.requestCatching
-import org.katan.yoki.resource.container.ContainerAlreadyStartedException
-import org.katan.yoki.resource.container.ContainerNotFoundException
-import org.katan.yoki.resource.container.ContainerNotRunningException
-import org.katan.yoki.resource.container.ContainerRemoveConflictException
+import org.katan.yoki.resource.ContainerAlreadyStartedException
+import org.katan.yoki.resource.ContainerNotFoundException
+import org.katan.yoki.resource.ContainerNotRunningException
+import org.katan.yoki.resource.ContainerRemoveConflictException
 import kotlin.time.Duration
 
 public class ContainerResource internal constructor(

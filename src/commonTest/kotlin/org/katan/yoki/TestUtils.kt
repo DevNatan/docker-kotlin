@@ -6,8 +6,8 @@ import org.katan.yoki.models.container.create
 import org.katan.yoki.models.container.remove
 import org.katan.yoki.models.volume.Volume
 import org.katan.yoki.models.volume.VolumeCreateOptions
-import org.katan.yoki.resource.volume.create
-import org.katan.yoki.resource.volume.remove
+import org.katan.yoki.resource.create
+import org.katan.yoki.resource.remove
 import kotlin.test.fail
 
 suspend fun <R> Yoki.withImage(imageName: String, block: suspend (String) -> R): R {

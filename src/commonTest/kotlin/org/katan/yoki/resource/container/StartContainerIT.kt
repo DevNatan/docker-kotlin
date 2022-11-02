@@ -5,6 +5,8 @@ package org.katan.yoki.resource.container
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.katan.yoki.keepStartedForever
+import org.katan.yoki.resource.ContainerAlreadyStartedException
+import org.katan.yoki.resource.ContainerNotFoundException
 import org.katan.yoki.resource.ResourceIT
 import org.katan.yoki.withContainer
 import kotlin.test.Test

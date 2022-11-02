@@ -10,8 +10,6 @@ import org.katan.yoki.models.ResizeTTYOptions
 import org.katan.yoki.models.exec.ExecInspectResponse
 import org.katan.yoki.models.exec.ExecStartOptions
 import org.katan.yoki.net.requestCatching
-import org.katan.yoki.resource.container.ContainerNotRunningException
-import org.katan.yoki.resource.exec.ExecNotFoundException
 
 /**
  * Exec runs new commands inside running containers.

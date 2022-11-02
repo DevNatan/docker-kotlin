@@ -8,10 +8,10 @@ import org.katan.yoki.models.container.ContainerResource
 import org.katan.yoki.net.createHttpClient
 import org.katan.yoki.resource.ExecResource
 import org.katan.yoki.resource.ImageResource
+import org.katan.yoki.resource.NetworkResource
+import org.katan.yoki.resource.SecretResource
 import org.katan.yoki.resource.SystemResource
-import org.katan.yoki.resource.network.NetworkResource
-import org.katan.yoki.resource.secret.SecretResource
-import org.katan.yoki.resource.volume.VolumeResource
+import org.katan.yoki.resource.VolumeResource
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
