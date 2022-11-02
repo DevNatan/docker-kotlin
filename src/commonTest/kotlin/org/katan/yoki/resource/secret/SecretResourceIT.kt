@@ -4,8 +4,8 @@ package org.katan.yoki.resource.secret
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
+import org.katan.yoki.resource.NodeNotPartOfSwarmException
 import org.katan.yoki.resource.ResourceIT
-import org.katan.yoki.resource.swarm.NodeNotPartOfSwarmException
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
 
