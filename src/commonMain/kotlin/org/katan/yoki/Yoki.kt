@@ -1,19 +1,16 @@
 package org.katan.yoki
 
 import io.ktor.client.HttpClient
-import io.ktor.utils.io.core.Closeable
 import kotlinx.serialization.json.Json
 import org.katan.yoki.YokiConfigBuilder.Companion.DEFAULT_DOCKER_API_VERSION
-import org.katan.yoki.models.container.ContainerResource
 import org.katan.yoki.net.createHttpClient
+import org.katan.yoki.resource.ContainerResource
 import org.katan.yoki.resource.ExecResource
 import org.katan.yoki.resource.ImageResource
 import org.katan.yoki.resource.NetworkResource
 import org.katan.yoki.resource.SecretResource
 import org.katan.yoki.resource.SystemResource
 import org.katan.yoki.resource.VolumeResource
-import kotlin.jvm.JvmField
-import kotlin.jvm.JvmStatic
 
 /**
  * Creates a new Yoki instance with platform default socket path and [DEFAULT_DOCKER_API_VERSION] Docker API version
@@ -103,16 +100,22 @@ public class Yoki @PublishedApi internal constructor(
 
     @JvmField
     public val containers: ContainerResource = ContainerResource(httpClient, json)
+
     @JvmField
     public val networks: NetworkResource = NetworkResource(httpClient, json)
+
     @JvmField
     public val volumes: VolumeResource = VolumeResource(httpClient, json)
+
     @JvmField
     public val secrets: SecretResource = SecretResource(httpClient, json)
+
     @JvmField
     public val images: ImageResource = ImageResource(httpClient, json)
+
     @JvmField
     public val exec: ExecResource = ExecResource(httpClient)
+
     @JvmField
     public val system: SystemResource = SystemResource(httpClient)
 

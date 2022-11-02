@@ -1,4 +1,4 @@
-package org.katan.yoki.models.container
+package org.katan.yoki.resource
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -23,12 +23,17 @@ import org.katan.yoki.models.Frame
 import org.katan.yoki.models.IdOnlyResponse
 import org.katan.yoki.models.ResizeTTYOptions
 import org.katan.yoki.models.Stream
+import org.katan.yoki.models.container.Container
+import org.katan.yoki.models.container.ContainerCreateOptions
+import org.katan.yoki.models.container.ContainerListOptions
+import org.katan.yoki.models.container.ContainerLogsOptions
+import org.katan.yoki.models.container.ContainerPruneFilters
+import org.katan.yoki.models.container.ContainerPruneResult
+import org.katan.yoki.models.container.ContainerRemoveOptions
+import org.katan.yoki.models.container.ContainerSummary
+import org.katan.yoki.models.container.ContainerWaitResult
 import org.katan.yoki.models.exec.ExecCreateOptions
 import org.katan.yoki.net.requestCatching
-import org.katan.yoki.resource.ContainerAlreadyStartedException
-import org.katan.yoki.resource.ContainerNotFoundException
-import org.katan.yoki.resource.ContainerNotRunningException
-import org.katan.yoki.resource.ContainerRemoveConflictException
 import kotlin.time.Duration
 
 public class ContainerResource internal constructor(

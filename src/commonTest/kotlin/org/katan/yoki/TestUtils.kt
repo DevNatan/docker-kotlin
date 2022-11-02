@@ -2,8 +2,6 @@ package org.katan.yoki
 
 import kotlinx.coroutines.flow.collect
 import org.katan.yoki.models.container.ContainerCreateOptions
-import org.katan.yoki.models.container.create
-import org.katan.yoki.models.container.remove
 import org.katan.yoki.models.volume.Volume
 import org.katan.yoki.models.volume.VolumeCreateOptions
 import org.katan.yoki.resource.create

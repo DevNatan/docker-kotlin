@@ -1,0 +1,2365 @@
+public final class me/devnatan/yokitest/Main2Kt {
+	public static final fun main ()V
+	public static synthetic fun main ([Ljava/lang/String;)V
+}
+
+public final class org/katan/yoki/Yoki : java/io/Closeable {
+	public static final field Companion Lorg/katan/yoki/Yoki$Companion;
+	public final field containers Lorg/katan/yoki/resource/ContainerResource;
+	public final field exec Lorg/katan/yoki/resource/ExecResource;
+	public final field images Lorg/katan/yoki/resource/ImageResource;
+	public final field networks Lorg/katan/yoki/resource/NetworkResource;
+	public final field secrets Lorg/katan/yoki/resource/SecretResource;
+	public final field system Lorg/katan/yoki/resource/SystemResource;
+	public final field volumes Lorg/katan/yoki/resource/VolumeResource;
+	public fun <init> (Lorg/katan/yoki/YokiConfig;)V
+	public fun close ()V
+	public static final fun create ()Lorg/katan/yoki/Yoki;
+	public static final fun create (Ljava/lang/String;)Lorg/katan/yoki/Yoki;
+	public static final fun create (Lorg/katan/yoki/YokiConfig;)Lorg/katan/yoki/Yoki;
+	public static final fun createWithHttpDefaults ()Lorg/katan/yoki/Yoki;
+	public static final fun createWithUnixDefaults ()Lorg/katan/yoki/Yoki;
+	public final fun getConfig ()Lorg/katan/yoki/YokiConfig;
+}
+
+public final class org/katan/yoki/Yoki$Companion {
+	public final fun create ()Lorg/katan/yoki/Yoki;
+	public final fun create (Ljava/lang/String;)Lorg/katan/yoki/Yoki;
+	public final fun create (Lorg/katan/yoki/YokiConfig;)Lorg/katan/yoki/Yoki;
+	public final fun createWithHttpDefaults ()Lorg/katan/yoki/Yoki;
+	public final fun createWithUnixDefaults ()Lorg/katan/yoki/Yoki;
+}
+
+public final class org/katan/yoki/YokiConfig {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun getApiVersion ()Ljava/lang/String;
+	public final fun getSocketPath ()Ljava/lang/String;
+}
+
+public final class org/katan/yoki/YokiConfigBuilder {
+	public static final field Companion Lorg/katan/yoki/YokiConfigBuilder$Companion;
+	public static final field DEFAULT_DOCKER_API_VERSION Ljava/lang/String;
+	public fun <init> ()V
+	public final fun apiVersion (Ljava/lang/String;)Lorg/katan/yoki/YokiConfigBuilder;
+	public final fun build ()Lorg/katan/yoki/YokiConfig;
+	public final fun forCurrentPlatform ()Lorg/katan/yoki/YokiConfigBuilder;
+	public final fun getApiVersion ()Ljava/lang/String;
+	public final fun getSocketPath ()Ljava/lang/String;
+	public final fun setApiVersion (Ljava/lang/String;)V
+	public final fun setSocketPath (Ljava/lang/String;)V
+	public final fun socketPath (Ljava/lang/String;)Lorg/katan/yoki/YokiConfigBuilder;
+	public final fun useHttpDefaults ()Lorg/katan/yoki/YokiConfigBuilder;
+	public final fun useUnixDefaults ()Lorg/katan/yoki/YokiConfigBuilder;
+}
+
+public final class org/katan/yoki/YokiConfigBuilder$Companion {
+}
+
+public abstract interface annotation class org/katan/yoki/YokiDsl : java/lang/annotation/Annotation {
+}
+
+public class org/katan/yoki/YokiException : java/lang/RuntimeException {
+}
+
+public final class org/katan/yoki/YokiKt {
+	public static final fun Yoki (Lkotlin/jvm/functions/Function1;)Lorg/katan/yoki/Yoki;
+	public static synthetic fun Yoki$default (Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)Lorg/katan/yoki/Yoki;
+}
+
+public class org/katan/yoki/YokiResourceException : org/katan/yoki/YokiException {
+	public fun getMessage ()Ljava/lang/String;
+}
+
+public final class org/katan/yoki/YokiResponseException : org/katan/yoki/YokiResourceException {
+	public fun getMessage ()Ljava/lang/String;
+	public final fun getStatusCode ()Lio/ktor/http/HttpStatusCode;
+}
+
+public final class org/katan/yoki/models/ExposedPort {
+	public static final field Companion Lorg/katan/yoki/models/ExposedPort$Companion;
+	public synthetic fun <init> (ILjava/lang/String;SLkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()S
+	public final fun copy (Ljava/lang/String;S)Lorg/katan/yoki/models/ExposedPort;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/ExposedPort;Ljava/lang/String;SILjava/lang/Object;)Lorg/katan/yoki/models/ExposedPort;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getPort ()S
+	public final fun getProtocol ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/ExposedPort;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/ExposedPort$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/ExposedPort$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/ExposedPort;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/ExposedPort;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/ExposedPort$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/ExposedPortKt {
+	public static final fun exposedPort (S)Lorg/katan/yoki/models/ExposedPort;
+	public static final fun exposedPort (SLjava/lang/String;)Lorg/katan/yoki/models/ExposedPort;
+}
+
+public final class org/katan/yoki/models/Frame {
+	public static final field Companion Lorg/katan/yoki/models/Frame$Companion;
+	public synthetic fun <init> (ILjava/lang/String;ILorg/katan/yoki/models/Stream;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;ILorg/katan/yoki/models/Stream;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()I
+	public final fun component3 ()Lorg/katan/yoki/models/Stream;
+	public final fun copy (Ljava/lang/String;ILorg/katan/yoki/models/Stream;)Lorg/katan/yoki/models/Frame;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/Frame;Ljava/lang/String;ILorg/katan/yoki/models/Stream;ILjava/lang/Object;)Lorg/katan/yoki/models/Frame;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getLength ()I
+	public final fun getStream ()Lorg/katan/yoki/models/Stream;
+	public final fun getValue ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/Frame;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/Frame$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/Frame$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/Frame;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/Frame;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/Frame$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/Healthcheck {
+	public static final field Companion Lorg/katan/yoki/models/Healthcheck$Companion;
+	public synthetic fun <init> (ILjava/lang/String;ILjava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()I
+	public final fun component3 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;ILjava/util/List;)Lorg/katan/yoki/models/Healthcheck;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/Healthcheck;Ljava/lang/String;ILjava/util/List;ILjava/lang/Object;)Lorg/katan/yoki/models/Healthcheck;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getFailingStreak ()I
+	public final fun getLogs ()Ljava/util/List;
+	public final fun getStatusString ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/Healthcheck;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/Healthcheck$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/Healthcheck$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/Healthcheck;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/Healthcheck;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/Healthcheck$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/HealthcheckResult {
+	public static final field Companion Lorg/katan/yoki/models/HealthcheckResult$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/Integer;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;)Lorg/katan/yoki/models/HealthcheckResult;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/HealthcheckResult;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;ILjava/lang/Object;)Lorg/katan/yoki/models/HealthcheckResult;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEndedAt ()Lkotlinx/datetime/Instant;
+	public final fun getEndedAtString ()Ljava/lang/String;
+	public final fun getExitCode ()Ljava/lang/Integer;
+	public final fun getOutput ()Ljava/lang/String;
+	public final fun getStartedAt ()Lkotlinx/datetime/Instant;
+	public final fun getStartedAtString ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/HealthcheckResult;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/HealthcheckResult$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/HealthcheckResult$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/HealthcheckResult;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/HealthcheckResult;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/HealthcheckResult$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/ProcessConfig {
+	public static final field Companion Lorg/katan/yoki/models/ProcessConfig$Companion;
+	public synthetic fun <init> (IZLjava/lang/String;ZLjava/lang/String;Ljava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()Z
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Z
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/util/List;
+	public final fun copy (ZLjava/lang/String;ZLjava/lang/String;Ljava/util/List;)Lorg/katan/yoki/models/ProcessConfig;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/ProcessConfig;ZLjava/lang/String;ZLjava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lorg/katan/yoki/models/ProcessConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getArguments ()Ljava/util/List;
+	public final fun getEntrypoint ()Ljava/lang/String;
+	public final fun getPrivileged ()Z
+	public final fun getTty ()Z
+	public final fun getUser ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/ProcessConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/ProcessConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/ProcessConfig$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/ProcessConfig;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/ProcessConfig;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/ProcessConfig$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/ResizeTTYOptions {
+	public static final field Companion Lorg/katan/yoki/models/ResizeTTYOptions$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/lang/Integer;Ljava/lang/Integer;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/Integer;Ljava/lang/Integer;)V
+	public synthetic fun <init> (Ljava/lang/Integer;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/Integer;
+	public final fun component2 ()Ljava/lang/Integer;
+	public final fun copy (Ljava/lang/Integer;Ljava/lang/Integer;)Lorg/katan/yoki/models/ResizeTTYOptions;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/ResizeTTYOptions;Ljava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Lorg/katan/yoki/models/ResizeTTYOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getHeight ()Ljava/lang/Integer;
+	public final fun getWidth ()Ljava/lang/Integer;
+	public fun hashCode ()I
+	public final fun setHeight (Ljava/lang/Integer;)V
+	public final fun setWidth (Ljava/lang/Integer;)V
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/ResizeTTYOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/ResizeTTYOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/ResizeTTYOptions$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/ResizeTTYOptions;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/ResizeTTYOptions;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/ResizeTTYOptions$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/Stream {
+	public static final field Companion Lorg/katan/yoki/models/Stream$Companion;
+	public synthetic fun <init> (IBLjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (BLjava/lang/String;)Lorg/katan/yoki/models/Stream;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/Stream;BLjava/lang/String;ILjava/lang/Object;)Lorg/katan/yoki/models/Stream;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/Stream;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/Stream$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/Stream$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/Stream;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/Stream;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/Stream$Companion {
+	public final fun getStdErr ()Lorg/katan/yoki/models/Stream;
+	public final fun getStdIn ()Lorg/katan/yoki/models/Stream;
+	public final fun getStdOut ()Lorg/katan/yoki/models/Stream;
+	public final fun getUnknown ()Lorg/katan/yoki/models/Stream;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+	public final fun typeOfOrNull (B)Lorg/katan/yoki/models/Stream;
+}
+
+public final class org/katan/yoki/models/StreamingKt {
+	public static final fun stream (Ljava/lang/String;)Lorg/katan/yoki/models/Stream;
+}
+
+public final class org/katan/yoki/models/container/Container {
+	public static final field Companion Lorg/katan/yoki/models/container/Container$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lorg/katan/yoki/models/container/ContainerState;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Long;Ljava/lang/Long;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Ljava/lang/String;
+	public final fun component11 ()Ljava/lang/String;
+	public final fun component12 ()I
+	public final fun component13 ()Ljava/lang/String;
+	public final fun component14 ()Ljava/lang/String;
+	public final fun component15 ()Ljava/lang/String;
+	public final fun component16 ()Ljava/lang/String;
+	public final fun component17 ()Ljava/lang/String;
+	public final fun component18 ()Ljava/util/List;
+	public final fun component19 ()Ljava/lang/Long;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component20 ()Ljava/lang/Long;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/util/List;
+	public final fun component5 ()Lorg/katan/yoki/models/container/ContainerState;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun component9 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lorg/katan/yoki/models/container/ContainerState;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Long;Ljava/lang/Long;)Lorg/katan/yoki/models/container/Container;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/container/Container;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Lorg/katan/yoki/models/container/ContainerState;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Long;Ljava/lang/Long;ILjava/lang/Object;)Lorg/katan/yoki/models/container/Container;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAppArmorProfile ()Ljava/lang/String;
+	public final fun getArgs ()Ljava/util/List;
+	public final fun getCreatedAt ()Lkotlinx/datetime/Instant;
+	public final fun getCreatedAtRaw ()Ljava/lang/String;
+	public final fun getDriver ()Ljava/lang/String;
+	public final fun getExecIds ()Ljava/util/List;
+	public final fun getHostnamePath ()Ljava/lang/String;
+	public final fun getHostsPath ()Ljava/lang/String;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getImage ()Ljava/lang/String;
+	public final fun getLogsPath ()Ljava/lang/String;
+	public final fun getMountLabel ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getPath ()Ljava/lang/String;
+	public final fun getPlatform ()Ljava/lang/String;
+	public final fun getProcessLabel ()Ljava/lang/String;
+	public final fun getResolvConfPath ()Ljava/lang/String;
+	public final fun getRestartCount ()I
+	public final fun getSizeRootFs ()Ljava/lang/Long;
+	public final fun getSizeRw ()Ljava/lang/Long;
+	public final fun getState ()Lorg/katan/yoki/models/container/ContainerState;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/container/Container;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/container/Container$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/container/Container$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/container/Container;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/container/Container;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/Container$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerCreateOptions {
+	public static final field Companion Lorg/katan/yoki/models/container/ContainerCreateOptions$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ZLjava/util/List;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Ljava/util/Map;Ljava/util/List;Ljava/util/Map;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ZLjava/util/List;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Ljava/util/Map;Ljava/util/List;Ljava/util/Map;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ZLjava/util/List;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Ljava/util/Map;Ljava/util/List;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Z
+	public final fun component11 ()Ljava/util/List;
+	public final fun component12 ()Ljava/util/List;
+	public final fun component13 ()Ljava/lang/Boolean;
+	public final fun component14 ()Ljava/lang/String;
+	public final fun component15 ()Ljava/lang/String;
+	public final fun component16 ()Ljava/util/List;
+	public final fun component17 ()Ljava/lang/Boolean;
+	public final fun component18 ()Ljava/lang/String;
+	public final fun component19 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component20 ()Ljava/lang/Integer;
+	public final fun component21 ()Ljava/util/List;
+	public final fun component22 ()Ljava/util/Map;
+	public final fun component23 ()Ljava/util/List;
+	public final fun component24 ()Ljava/util/Map;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/Boolean;
+	public final fun component6 ()Ljava/lang/Boolean;
+	public final fun component7 ()Ljava/lang/Boolean;
+	public final fun component8 ()Ljava/lang/Boolean;
+	public final fun component9 ()Ljava/lang/Boolean;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ZLjava/util/List;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Ljava/util/Map;Ljava/util/List;Ljava/util/Map;)Lorg/katan/yoki/models/container/ContainerCreateOptions;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/container/ContainerCreateOptions;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;ZLjava/util/List;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Ljava/util/Map;Ljava/util/List;Ljava/util/Map;ILjava/lang/Object;)Lorg/katan/yoki/models/container/ContainerCreateOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAttachStderr ()Ljava/lang/Boolean;
+	public final fun getAttachStdin ()Ljava/lang/Boolean;
+	public final fun getAttachStdout ()Ljava/lang/Boolean;
+	public final fun getBuildMetadata ()Ljava/util/List;
+	public final fun getCommand ()Ljava/util/List;
+	public final fun getDisableNetwork ()Ljava/lang/Boolean;
+	public final fun getDomainName ()Ljava/lang/String;
+	public final fun getEntrypoint ()Ljava/util/List;
+	public final fun getEnv ()Ljava/util/List;
+	public final fun getEscapedArgs ()Ljava/lang/Boolean;
+	public final fun getExposedPorts ()Ljava/util/Map;
+	public final fun getHostName ()Ljava/lang/String;
+	public final fun getImage ()Ljava/lang/String;
+	public final fun getLabels ()Ljava/util/Map;
+	public final fun getMacAddress ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getOnceStdin ()Ljava/lang/Boolean;
+	public final fun getOpenStdin ()Ljava/lang/Boolean;
+	public final fun getShell ()Ljava/util/List;
+	public final fun getStopSignal ()Ljava/lang/String;
+	public final fun getStopTimeout ()Ljava/lang/Integer;
+	public final fun getTty ()Z
+	public final fun getUser ()Ljava/lang/String;
+	public final fun getWorkingDirectory ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun setAttachStderr (Ljava/lang/Boolean;)V
+	public final fun setAttachStdin (Ljava/lang/Boolean;)V
+	public final fun setAttachStdout (Ljava/lang/Boolean;)V
+	public final fun setBuildMetadata (Ljava/util/List;)V
+	public final fun setCommand (Ljava/util/List;)V
+	public final fun setDisableNetwork (Ljava/lang/Boolean;)V
+	public final fun setDomainName (Ljava/lang/String;)V
+	public final fun setEntrypoint (Ljava/util/List;)V
+	public final fun setEnv (Ljava/util/List;)V
+	public final fun setEscapedArgs (Ljava/lang/Boolean;)V
+	public final fun setExposedPorts (Ljava/util/Map;)V
+	public final fun setHostName (Ljava/lang/String;)V
+	public final fun setImage (Ljava/lang/String;)V
+	public final fun setLabels (Ljava/util/Map;)V
+	public final fun setMacAddress (Ljava/lang/String;)V
+	public final fun setName (Ljava/lang/String;)V
+	public final fun setOnceStdin (Ljava/lang/Boolean;)V
+	public final fun setOpenStdin (Ljava/lang/Boolean;)V
+	public final fun setShell (Ljava/util/List;)V
+	public final fun setStopSignal (Ljava/lang/String;)V
+	public final fun setStopTimeout (Ljava/lang/Integer;)V
+	public final fun setTty (Z)V
+	public final fun setUser (Ljava/lang/String;)V
+	public final fun setWorkingDirectory (Ljava/lang/String;)V
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/container/ContainerCreateOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/container/ContainerCreateOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/container/ContainerCreateOptions$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/container/ContainerCreateOptions;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/container/ContainerCreateOptions;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerCreateOptions$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerCreateOptionsKt {
+	public static final fun env (Lorg/katan/yoki/models/container/ContainerCreateOptions;Ljava/util/Map;)V
+	public static final fun stopTimeout-HG0u8IE (Lorg/katan/yoki/models/container/ContainerCreateOptions;J)V
+}
+
+public final class org/katan/yoki/models/container/ContainerListOptions {
+	public static final field Companion Lorg/katan/yoki/models/container/ContainerListOptions$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Lorg/katan/yoki/models/container/ContainerListOptions$Filters;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Lorg/katan/yoki/models/container/ContainerListOptions$Filters;)V
+	public synthetic fun <init> (Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Lorg/katan/yoki/models/container/ContainerListOptions$Filters;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/Boolean;
+	public final fun component2 ()Ljava/lang/Integer;
+	public final fun component3 ()Ljava/lang/Boolean;
+	public final fun component4 ()Lorg/katan/yoki/models/container/ContainerListOptions$Filters;
+	public final fun copy (Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Lorg/katan/yoki/models/container/ContainerListOptions$Filters;)Lorg/katan/yoki/models/container/ContainerListOptions;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/container/ContainerListOptions;Ljava/lang/Boolean;Ljava/lang/Integer;Ljava/lang/Boolean;Lorg/katan/yoki/models/container/ContainerListOptions$Filters;ILjava/lang/Object;)Lorg/katan/yoki/models/container/ContainerListOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAll ()Ljava/lang/Boolean;
+	public final fun getFilters ()Lorg/katan/yoki/models/container/ContainerListOptions$Filters;
+	public final fun getLimit ()Ljava/lang/Integer;
+	public final fun getSize ()Ljava/lang/Boolean;
+	public fun hashCode ()I
+	public final fun setAll (Ljava/lang/Boolean;)V
+	public final fun setFilters (Lorg/katan/yoki/models/container/ContainerListOptions$Filters;)V
+	public final fun setLimit (Ljava/lang/Integer;)V
+	public final fun setSize (Ljava/lang/Boolean;)V
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/container/ContainerListOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/container/ContainerListOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/container/ContainerListOptions$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/container/ContainerListOptions;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/container/ContainerListOptions;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerListOptions$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerListOptions$Filters {
+	public static final field Companion Lorg/katan/yoki/models/container/ContainerListOptions$Filters$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;)V
+	public synthetic fun <init> (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component10 ()Ljava/util/List;
+	public final fun component11 ()Ljava/util/List;
+	public final fun component12 ()Ljava/util/List;
+	public final fun component13 ()Ljava/util/List;
+	public final fun component14 ()Ljava/util/List;
+	public final fun component15 ()Ljava/util/List;
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()Ljava/util/List;
+	public final fun component4 ()Ljava/util/List;
+	public final fun component5 ()Ljava/util/List;
+	public final fun component6 ()Ljava/util/List;
+	public final fun component7 ()Ljava/util/List;
+	public final fun component8 ()Ljava/util/List;
+	public final fun component9 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;)Lorg/katan/yoki/models/container/ContainerListOptions$Filters;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/container/ContainerListOptions$Filters;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)Lorg/katan/yoki/models/container/ContainerListOptions$Filters;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAncestor ()Ljava/util/List;
+	public final fun getBefore ()Ljava/util/List;
+	public final fun getExited ()Ljava/util/List;
+	public final fun getExpose ()Ljava/util/List;
+	public final fun getHealth ()Ljava/util/List;
+	public final fun getId ()Ljava/util/List;
+	public final fun getIsolation ()Ljava/util/List;
+	public final fun getLabel ()Ljava/util/List;
+	public final fun getName ()Ljava/util/List;
+	public final fun getNetwork ()Ljava/util/List;
+	public final fun getPublish ()Ljava/util/List;
+	public final fun getSince ()Ljava/util/List;
+	public final fun getStatus ()Ljava/util/List;
+	public final fun getVolume ()Ljava/util/List;
+	public fun hashCode ()I
+	public final fun isTask ()Ljava/util/List;
+	public final fun setAncestor (Ljava/util/List;)V
+	public final fun setBefore (Ljava/util/List;)V
+	public final fun setExited (Ljava/util/List;)V
+	public final fun setExpose (Ljava/util/List;)V
+	public final fun setHealth (Ljava/util/List;)V
+	public final fun setId (Ljava/util/List;)V
+	public final fun setIsolation (Ljava/util/List;)V
+	public final fun setLabel (Ljava/util/List;)V
+	public final fun setName (Ljava/util/List;)V
+	public final fun setNetwork (Ljava/util/List;)V
+	public final fun setPublish (Ljava/util/List;)V
+	public final fun setSince (Ljava/util/List;)V
+	public final fun setStatus (Ljava/util/List;)V
+	public final fun setTask (Ljava/util/List;)V
+	public final fun setVolume (Ljava/util/List;)V
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/container/ContainerListOptions$Filters;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/container/ContainerListOptions$Filters$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/container/ContainerListOptions$Filters$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/container/ContainerListOptions$Filters;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/container/ContainerListOptions$Filters;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerListOptions$Filters$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerListOptionsKt {
+	public static final fun filters (Lorg/katan/yoki/models/container/ContainerListOptions;Lkotlin/jvm/functions/Function1;)V
+}
+
+public final class org/katan/yoki/models/container/ContainerLogsOptions {
+	public static final field Companion Lorg/katan/yoki/models/container/ContainerLogsOptions$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Boolean;Ljava/lang/String;ZLkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/Boolean;)V
+	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;)V
+	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)V
+	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;)V
+	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Long;)V
+	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Boolean;)V
+	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Boolean;Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Boolean;Ljava/lang/String;Z)V
+	public synthetic fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Long;Ljava/lang/Long;Ljava/lang/Boolean;Ljava/lang/String;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getFollow ()Ljava/lang/Boolean;
+	public final fun getShowTimestamps ()Ljava/lang/Boolean;
+	public final fun getSince ()Ljava/lang/Long;
+	public final fun getSplitLineBreaks ()Z
+	public final fun getStderr ()Ljava/lang/Boolean;
+	public final fun getStdout ()Ljava/lang/Boolean;
+	public final fun getTail ()Ljava/lang/String;
+	public final fun getUntil ()Ljava/lang/Long;
+	public final fun setFollow (Ljava/lang/Boolean;)V
+	public final fun setShowTimestamps (Ljava/lang/Boolean;)V
+	public final fun setSince (Ljava/lang/Long;)V
+	public final fun setSplitLineBreaks (Z)V
+	public final fun setStderr (Ljava/lang/Boolean;)V
+	public final fun setStdout (Ljava/lang/Boolean;)V
+	public final fun setTail (I)V
+	public final fun setTail (Ljava/lang/String;)V
+	public final fun setTailAll ()V
+	public final fun setUntil (Ljava/lang/Long;)V
+	public static final fun write$Self (Lorg/katan/yoki/models/container/ContainerLogsOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/container/ContainerLogsOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/container/ContainerLogsOptions$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/container/ContainerLogsOptions;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/container/ContainerLogsOptions;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerLogsOptions$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerLogsOptionsKt {
+	public static final fun setSince (Lorg/katan/yoki/models/container/ContainerLogsOptions;Lkotlinx/datetime/Instant;)V
+	public static final fun setUntil (Lorg/katan/yoki/models/container/ContainerLogsOptions;Lkotlinx/datetime/Instant;)V
+}
+
+public final class org/katan/yoki/models/container/ContainerPruneFilters {
+	public static final field Companion Lorg/katan/yoki/models/container/ContainerPruneFilters$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lorg/katan/yoki/models/container/ContainerPruneFilters;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/container/ContainerPruneFilters;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/katan/yoki/models/container/ContainerPruneFilters;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getLabel ()Ljava/lang/String;
+	public final fun getUntil ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun setLabel (Ljava/lang/String;)V
+	public final fun setUntil (Ljava/lang/String;)V
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/container/ContainerPruneFilters;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/container/ContainerPruneFilters$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/container/ContainerPruneFilters$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/container/ContainerPruneFilters;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/container/ContainerPruneFilters;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerPruneFilters$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerPruneResult {
+	public static final field Companion Lorg/katan/yoki/models/container/ContainerPruneResult$Companion;
+	public synthetic fun <init> (ILjava/util/List;JLkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()J
+	public final fun copy (Ljava/util/List;J)Lorg/katan/yoki/models/container/ContainerPruneResult;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/container/ContainerPruneResult;Ljava/util/List;JILjava/lang/Object;)Lorg/katan/yoki/models/container/ContainerPruneResult;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDeletedContainers ()Ljava/util/List;
+	public final fun getReclaimedSpace ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/container/ContainerPruneResult;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/container/ContainerPruneResult$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/container/ContainerPruneResult$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/container/ContainerPruneResult;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/container/ContainerPruneResult;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerPruneResult$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerRemoveOptions {
+	public static final field Companion Lorg/katan/yoki/models/container/ContainerRemoveOptions$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (IZZZLkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (ZZZ)V
+	public synthetic fun <init> (ZZZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Z
+	public final fun component2 ()Z
+	public final fun component3 ()Z
+	public final fun copy (ZZZ)Lorg/katan/yoki/models/container/ContainerRemoveOptions;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/container/ContainerRemoveOptions;ZZZILjava/lang/Object;)Lorg/katan/yoki/models/container/ContainerRemoveOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getForce ()Z
+	public final fun getRemoveAnonymousVolumes ()Z
+	public final fun getUnlink ()Z
+	public fun hashCode ()I
+	public final fun setForce (Z)V
+	public final fun setRemoveAnonymousVolumes (Z)V
+	public final fun setUnlink (Z)V
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/container/ContainerRemoveOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/container/ContainerRemoveOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/container/ContainerRemoveOptions$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/container/ContainerRemoveOptions;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/container/ContainerRemoveOptions;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerRemoveOptions$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerState {
+	public static final field Companion Lorg/katan/yoki/models/container/ContainerState$Companion;
+	public synthetic fun <init> (ILjava/lang/String;ZZZZLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;ZLorg/katan/yoki/models/Healthcheck;Lorg/katan/yoki/models/container/ContainerState$Status;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Ljava/lang/String;
+	public final fun component11 ()Z
+	public final fun component12 ()Lorg/katan/yoki/models/Healthcheck;
+	public final fun component2 ()Z
+	public final fun component3 ()Z
+	public final fun component4 ()Z
+	public final fun component5 ()Z
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/Integer;
+	public final fun component9 ()Ljava/lang/Integer;
+	public final fun copy (Ljava/lang/String;ZZZZLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;ZLorg/katan/yoki/models/Healthcheck;)Lorg/katan/yoki/models/container/ContainerState;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/container/ContainerState;Ljava/lang/String;ZZZZLjava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;ZLorg/katan/yoki/models/Healthcheck;ILjava/lang/Object;)Lorg/katan/yoki/models/container/ContainerState;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getError ()Ljava/lang/String;
+	public final fun getExitCode ()Ljava/lang/Integer;
+	public final fun getFinishedAt ()Lkotlinx/datetime/Instant;
+	public final fun getFinishedAtRaw ()Ljava/lang/String;
+	public final fun getHealth ()Lorg/katan/yoki/models/Healthcheck;
+	public final fun getOomKilled ()Z
+	public final fun getPid ()Ljava/lang/Integer;
+	public final fun getStartedAt ()Lkotlinx/datetime/Instant;
+	public final fun getStartedAtRaw ()Ljava/lang/String;
+	public final fun getStatus ()Lorg/katan/yoki/models/container/ContainerState$Status;
+	public final fun getStatusString ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun isDead ()Z
+	public final fun isPaused ()Z
+	public final fun isRestarting ()Z
+	public final fun isRunning ()Z
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/container/ContainerState;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/container/ContainerState$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/container/ContainerState$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/container/ContainerState;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/container/ContainerState;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerState$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public abstract class org/katan/yoki/models/container/ContainerState$Status {
+	public static final field Companion Lorg/katan/yoki/models/container/ContainerState$Status$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getValue ()Ljava/lang/String;
+	public static final fun parse (Ljava/lang/String;)Lorg/katan/yoki/models/container/ContainerState$Status;
+	public static final fun write$Self (Lorg/katan/yoki/models/container/ContainerState$Status;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/container/ContainerState$Status$Companion {
+	public final fun getAll ()Ljava/util/Set;
+	public final fun parse (Ljava/lang/String;)Lorg/katan/yoki/models/container/ContainerState$Status;
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerState$Status$Created : org/katan/yoki/models/container/ContainerState$Status {
+	public static final field INSTANCE Lorg/katan/yoki/models/container/ContainerState$Status$Created;
+}
+
+public final class org/katan/yoki/models/container/ContainerState$Status$Dead : org/katan/yoki/models/container/ContainerState$Status {
+	public static final field INSTANCE Lorg/katan/yoki/models/container/ContainerState$Status$Dead;
+}
+
+public final class org/katan/yoki/models/container/ContainerState$Status$Exited : org/katan/yoki/models/container/ContainerState$Status {
+	public static final field INSTANCE Lorg/katan/yoki/models/container/ContainerState$Status$Exited;
+}
+
+public final class org/katan/yoki/models/container/ContainerState$Status$Other : org/katan/yoki/models/container/ContainerState$Status {
+	public fun <init> (Ljava/lang/String;)V
+}
+
+public final class org/katan/yoki/models/container/ContainerState$Status$Paused : org/katan/yoki/models/container/ContainerState$Status {
+	public static final field INSTANCE Lorg/katan/yoki/models/container/ContainerState$Status$Paused;
+}
+
+public final class org/katan/yoki/models/container/ContainerState$Status$Removing : org/katan/yoki/models/container/ContainerState$Status {
+	public static final field INSTANCE Lorg/katan/yoki/models/container/ContainerState$Status$Removing;
+}
+
+public final class org/katan/yoki/models/container/ContainerState$Status$Restarting : org/katan/yoki/models/container/ContainerState$Status {
+	public static final field INSTANCE Lorg/katan/yoki/models/container/ContainerState$Status$Restarting;
+}
+
+public final class org/katan/yoki/models/container/ContainerState$Status$Running : org/katan/yoki/models/container/ContainerState$Status {
+	public static final field INSTANCE Lorg/katan/yoki/models/container/ContainerState$Status$Running;
+}
+
+public final class org/katan/yoki/models/container/ContainerSummary {
+	public static final field Companion Lorg/katan/yoki/models/container/ContainerSummary$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JLjava/lang/Long;Ljava/lang/Long;Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;Lorg/katan/yoki/models/container/ContainerSummary$HostConfig;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Ljava/lang/String;
+	public final fun component11 ()Ljava/lang/String;
+	public final fun component12 ()Lorg/katan/yoki/models/container/ContainerSummary$HostConfig;
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()J
+	public final fun component7 ()Ljava/lang/Long;
+	public final fun component8 ()Ljava/lang/Long;
+	public final fun component9 ()Ljava/util/Map;
+	public final fun copy (Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JLjava/lang/Long;Ljava/lang/Long;Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;Lorg/katan/yoki/models/container/ContainerSummary$HostConfig;)Lorg/katan/yoki/models/container/ContainerSummary;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/container/ContainerSummary;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JLjava/lang/Long;Ljava/lang/Long;Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;Lorg/katan/yoki/models/container/ContainerSummary$HostConfig;ILjava/lang/Object;)Lorg/katan/yoki/models/container/ContainerSummary;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCommand ()Ljava/lang/String;
+	public final fun getCreatedAt ()Lkotlinx/datetime/Instant;
+	public final fun getCreatedAtRaw ()J
+	public final fun getHostConfig ()Lorg/katan/yoki/models/container/ContainerSummary$HostConfig;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getImage ()Ljava/lang/String;
+	public final fun getImageCreatedFrom ()Ljava/lang/String;
+	public final fun getLabels ()Ljava/util/Map;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getNames ()Ljava/util/List;
+	public final fun getSizeRootFs ()Ljava/lang/Long;
+	public final fun getSizeRw ()Ljava/lang/Long;
+	public final fun getState ()Ljava/lang/String;
+	public final fun getStatus ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/container/ContainerSummary;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/container/ContainerSummary$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/container/ContainerSummary$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/container/ContainerSummary;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/container/ContainerSummary;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerSummary$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerSummary$HostConfig {
+	public static final field Companion Lorg/katan/yoki/models/container/ContainerSummary$HostConfig$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lorg/katan/yoki/models/container/ContainerSummary$HostConfig;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/container/ContainerSummary$HostConfig;Ljava/lang/String;ILjava/lang/Object;)Lorg/katan/yoki/models/container/ContainerSummary$HostConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getNetworkMode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/container/ContainerSummary$HostConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/container/ContainerSummary$HostConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/container/ContainerSummary$HostConfig$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/container/ContainerSummary$HostConfig;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/container/ContainerSummary$HostConfig;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerSummary$HostConfig$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerWaitResult {
+	public static final field Companion Lorg/katan/yoki/models/container/ContainerWaitResult$Companion;
+	public synthetic fun <init> (IILorg/katan/yoki/models/container/ContainerWaitResult$Error;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()I
+	public final fun component2 ()Lorg/katan/yoki/models/container/ContainerWaitResult$Error;
+	public final fun copy (ILorg/katan/yoki/models/container/ContainerWaitResult$Error;)Lorg/katan/yoki/models/container/ContainerWaitResult;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/container/ContainerWaitResult;ILorg/katan/yoki/models/container/ContainerWaitResult$Error;ILjava/lang/Object;)Lorg/katan/yoki/models/container/ContainerWaitResult;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getError ()Lorg/katan/yoki/models/container/ContainerWaitResult$Error;
+	public final fun getStatusCode ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/container/ContainerWaitResult;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/container/ContainerWaitResult$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/container/ContainerWaitResult$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/container/ContainerWaitResult;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/container/ContainerWaitResult;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerWaitResult$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerWaitResult$Error {
+	public static final field Companion Lorg/katan/yoki/models/container/ContainerWaitResult$Error$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lorg/katan/yoki/models/container/ContainerWaitResult$Error;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/container/ContainerWaitResult$Error;Ljava/lang/String;ILjava/lang/Object;)Lorg/katan/yoki/models/container/ContainerWaitResult$Error;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getMessage ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/container/ContainerWaitResult$Error;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/container/ContainerWaitResult$Error$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/container/ContainerWaitResult$Error$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/container/ContainerWaitResult$Error;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/container/ContainerWaitResult$Error;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/container/ContainerWaitResult$Error$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/exec/ExecCreateOptions {
+	public static final field Companion Lorg/katan/yoki/models/exec/ExecCreateOptions$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/Boolean;
+	public final fun component10 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/Boolean;
+	public final fun component3 ()Ljava/lang/Boolean;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/Boolean;
+	public final fun component6 ()Ljava/util/List;
+	public final fun component7 ()Ljava/util/List;
+	public final fun component8 ()Ljava/lang/Boolean;
+	public final fun component9 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;)Lorg/katan/yoki/models/exec/ExecCreateOptions;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/exec/ExecCreateOptions;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/katan/yoki/models/exec/ExecCreateOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAttachStderr ()Ljava/lang/Boolean;
+	public final fun getAttachStdin ()Ljava/lang/Boolean;
+	public final fun getAttachStdout ()Ljava/lang/Boolean;
+	public final fun getCommand ()Ljava/util/List;
+	public final fun getDetachKeys ()Ljava/lang/String;
+	public final fun getEnv ()Ljava/util/List;
+	public final fun getPrivileged ()Ljava/lang/Boolean;
+	public final fun getTty ()Ljava/lang/Boolean;
+	public final fun getUser ()Ljava/lang/String;
+	public final fun getWorkingDir ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun setAttachStderr (Ljava/lang/Boolean;)V
+	public final fun setAttachStdin (Ljava/lang/Boolean;)V
+	public final fun setAttachStdout (Ljava/lang/Boolean;)V
+	public final fun setCommand (Ljava/lang/String;)V
+	public final fun setCommand (Ljava/util/List;)V
+	public final fun setDetachKeys (Ljava/lang/String;)V
+	public final fun setEnv (Ljava/util/List;)V
+	public final fun setPrivileged (Ljava/lang/Boolean;)V
+	public final fun setTty (Ljava/lang/Boolean;)V
+	public final fun setUser (Ljava/lang/String;)V
+	public final fun setWorkingDir (Ljava/lang/String;)V
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/exec/ExecCreateOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/exec/ExecCreateOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/exec/ExecCreateOptions$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/exec/ExecCreateOptions;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/exec/ExecCreateOptions;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/exec/ExecCreateOptions$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/exec/ExecInspectResponse {
+	public static final field Companion Lorg/katan/yoki/models/exec/ExecInspectResponse$Companion;
+	public synthetic fun <init> (IZLjava/lang/String;Ljava/lang/String;ZILorg/katan/yoki/models/ProcessConfig;ZZZLjava/lang/String;ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()Z
+	public final fun component10 ()Ljava/lang/String;
+	public final fun component11 ()I
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Z
+	public final fun component5 ()I
+	public final fun component6 ()Lorg/katan/yoki/models/ProcessConfig;
+	public final fun component7 ()Z
+	public final fun component8 ()Z
+	public final fun component9 ()Z
+	public final fun copy (ZLjava/lang/String;Ljava/lang/String;ZILorg/katan/yoki/models/ProcessConfig;ZZZLjava/lang/String;I)Lorg/katan/yoki/models/exec/ExecInspectResponse;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/exec/ExecInspectResponse;ZLjava/lang/String;Ljava/lang/String;ZILorg/katan/yoki/models/ProcessConfig;ZZZLjava/lang/String;IILjava/lang/Object;)Lorg/katan/yoki/models/exec/ExecInspectResponse;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCanRemove ()Z
+	public final fun getContainerId ()Ljava/lang/String;
+	public final fun getDetachKeys ()Ljava/lang/String;
+	public final fun getExitCode ()I
+	public final fun getId ()Ljava/lang/String;
+	public final fun getOpenStdErr ()Z
+	public final fun getOpenStdin ()Z
+	public final fun getOpenStdout ()Z
+	public final fun getPid ()I
+	public final fun getProcessConfig ()Lorg/katan/yoki/models/ProcessConfig;
+	public final fun getRunning ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/exec/ExecInspectResponse;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/exec/ExecInspectResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/exec/ExecInspectResponse$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/exec/ExecInspectResponse;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/exec/ExecInspectResponse;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/exec/ExecInspectResponse$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/exec/ExecStartOptions {
+	public static final field Companion Lorg/katan/yoki/models/exec/ExecStartOptions$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/lang/Boolean;Ljava/lang/Boolean;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Ljava/lang/Boolean;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/Boolean;
+	public final fun component2 ()Ljava/lang/Boolean;
+	public final fun copy (Ljava/lang/Boolean;Ljava/lang/Boolean;)Lorg/katan/yoki/models/exec/ExecStartOptions;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/exec/ExecStartOptions;Ljava/lang/Boolean;Ljava/lang/Boolean;ILjava/lang/Object;)Lorg/katan/yoki/models/exec/ExecStartOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDetach ()Ljava/lang/Boolean;
+	public final fun getTty ()Ljava/lang/Boolean;
+	public fun hashCode ()I
+	public final fun setDetach (Ljava/lang/Boolean;)V
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/exec/ExecStartOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/exec/ExecStartOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/exec/ExecStartOptions$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/exec/ExecStartOptions;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/exec/ExecStartOptions;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/exec/ExecStartOptions$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/image/Image {
+	public static final field Companion Lorg/katan/yoki/models/image/Image$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;IIIILjava/util/Map;ILkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;IIIILjava/util/Map;I)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()I
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/util/List;
+	public final fun component4 ()Ljava/util/List;
+	public final fun component5 ()I
+	public final fun component6 ()I
+	public final fun component7 ()I
+	public final fun component8 ()I
+	public final fun component9 ()Ljava/util/Map;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;IIIILjava/util/Map;I)Lorg/katan/yoki/models/image/Image;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/image/Image;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/util/List;IIIILjava/util/Map;IILjava/lang/Object;)Lorg/katan/yoki/models/image/Image;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getContainers ()I
+	public final fun getCreated ()I
+	public final fun getId ()Ljava/lang/String;
+	public final fun getLabels ()Ljava/util/Map;
+	public final fun getParentId ()Ljava/lang/String;
+	public final fun getRepositoryDigests ()Ljava/util/List;
+	public final fun getRepositoryTags ()Ljava/util/List;
+	public final fun getSharedSize ()I
+	public final fun getSize ()I
+	public final fun getVirtualSize ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/image/Image;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/image/Image$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/image/Image$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/image/Image;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/image/Image;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/image/Image$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/image/ImagePull {
+	public static final field Companion Lorg/katan/yoki/models/image/ImagePull$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lorg/katan/yoki/models/image/ImagePull$ProgressDetail;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lorg/katan/yoki/models/image/ImagePull$ProgressDetail;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lorg/katan/yoki/models/image/ImagePull$ProgressDetail;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lorg/katan/yoki/models/image/ImagePull$ProgressDetail;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lorg/katan/yoki/models/image/ImagePull$ProgressDetail;Ljava/lang/String;)Lorg/katan/yoki/models/image/ImagePull;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/image/ImagePull;Ljava/lang/String;Ljava/lang/String;Lorg/katan/yoki/models/image/ImagePull$ProgressDetail;Ljava/lang/String;ILjava/lang/Object;)Lorg/katan/yoki/models/image/ImagePull;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getId ()Ljava/lang/String;
+	public final fun getProgressDetail ()Lorg/katan/yoki/models/image/ImagePull$ProgressDetail;
+	public final fun getProgressText ()Ljava/lang/String;
+	public final fun getStatusText ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/image/ImagePull;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/image/ImagePull$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/image/ImagePull$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/image/ImagePull;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/image/ImagePull;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/image/ImagePull$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/image/ImagePull$ProgressDetail {
+	public static final field Companion Lorg/katan/yoki/models/image/ImagePull$ProgressDetail$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/lang/Integer;Ljava/lang/Integer;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/Integer;Ljava/lang/Integer;)V
+	public synthetic fun <init> (Ljava/lang/Integer;Ljava/lang/Integer;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/Integer;
+	public final fun component2 ()Ljava/lang/Integer;
+	public final fun copy (Ljava/lang/Integer;Ljava/lang/Integer;)Lorg/katan/yoki/models/image/ImagePull$ProgressDetail;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/image/ImagePull$ProgressDetail;Ljava/lang/Integer;Ljava/lang/Integer;ILjava/lang/Object;)Lorg/katan/yoki/models/image/ImagePull$ProgressDetail;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCurrent ()Ljava/lang/Integer;
+	public final fun getTotal ()Ljava/lang/Integer;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/image/ImagePull$ProgressDetail;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/image/ImagePull$ProgressDetail$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/image/ImagePull$ProgressDetail$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/image/ImagePull$ProgressDetail;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/image/ImagePull$ProgressDetail;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/image/ImagePull$ProgressDetail$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/network/IPAM {
+	public static final field Companion Lorg/katan/yoki/models/network/IPAM$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/util/List;Ljava/util/Map;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/util/List;Ljava/util/Map;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/List;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()Ljava/util/Map;
+	public final fun copy (Ljava/lang/String;Ljava/util/List;Ljava/util/Map;)Lorg/katan/yoki/models/network/IPAM;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/network/IPAM;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;ILjava/lang/Object;)Lorg/katan/yoki/models/network/IPAM;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getConfig ()Ljava/util/List;
+	public final fun getDriver ()Ljava/lang/String;
+	public final fun getOptions ()Ljava/util/Map;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/network/IPAM;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/network/IPAM$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/network/IPAM$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/network/IPAM;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/network/IPAM;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/network/IPAM$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/network/Network {
+	public static final field Companion Lorg/katan/yoki/models/network/Network$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZZZZLjava/util/Map;Ljava/util/Map;Ljava/util/Map;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZZZZLjava/util/Map;Ljava/util/Map;Ljava/util/Map;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZZZZLjava/util/Map;Ljava/util/Map;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Ljava/util/Map;
+	public final fun component11 ()Ljava/util/Map;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Z
+	public final fun component6 ()Z
+	public final fun component7 ()Z
+	public final fun component8 ()Z
+	public final fun component9 ()Ljava/util/Map;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZZZZLjava/util/Map;Ljava/util/Map;Ljava/util/Map;)Lorg/katan/yoki/models/network/Network;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/network/Network;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZZZZLjava/util/Map;Ljava/util/Map;Ljava/util/Map;ILjava/lang/Object;)Lorg/katan/yoki/models/network/Network;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getContainers ()Ljava/util/Map;
+	public final fun getDriver ()Ljava/lang/String;
+	public final fun getEnableIPv6 ()Z
+	public final fun getId ()Ljava/lang/String;
+	public final fun getIngress ()Z
+	public final fun getLabels ()Ljava/util/Map;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getOptions ()Ljava/util/Map;
+	public final fun getScope ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun isAttachable ()Z
+	public final fun isInternal ()Z
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/network/Network;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/network/Network$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/network/Network$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/network/Network;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/network/Network;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/network/Network$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/network/NetworkContainer {
+	public static final field Companion Lorg/katan/yoki/models/network/NetworkContainer$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;ZZLkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZZ)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Z
+	public final fun component5 ()Z
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZZ)Lorg/katan/yoki/models/network/NetworkContainer;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/network/NetworkContainer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZZILjava/lang/Object;)Lorg/katan/yoki/models/network/NetworkContainer;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEndpointId ()Ljava/lang/String;
+	public final fun getIpv4Address ()Z
+	public final fun getIpv6Address ()Z
+	public final fun getMacAddress ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/network/NetworkContainer;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/network/NetworkContainer$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/network/NetworkContainer$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/network/NetworkContainer;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/network/NetworkContainer;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/network/NetworkContainer$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/network/NetworkCreateConfig {
+	public static final field Companion Lorg/katan/yoki/models/network/NetworkCreateConfig$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/katan/yoki/models/network/IPAM;Ljava/lang/Boolean;Ljava/util/Map;Ljava/util/Map;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Boolean;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/katan/yoki/models/network/IPAM;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/katan/yoki/models/network/IPAM;Ljava/lang/Boolean;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/katan/yoki/models/network/IPAM;Ljava/lang/Boolean;Ljava/util/Map;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/katan/yoki/models/network/IPAM;Ljava/lang/Boolean;Ljava/util/Map;Ljava/util/Map;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/katan/yoki/models/network/IPAM;Ljava/lang/Boolean;Ljava/util/Map;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Ljava/util/Map;
+	public final fun component2 ()Ljava/lang/Boolean;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/Boolean;
+	public final fun component5 ()Ljava/lang/Boolean;
+	public final fun component6 ()Ljava/lang/Boolean;
+	public final fun component7 ()Lorg/katan/yoki/models/network/IPAM;
+	public final fun component8 ()Ljava/lang/Boolean;
+	public final fun component9 ()Ljava/util/Map;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/katan/yoki/models/network/IPAM;Ljava/lang/Boolean;Ljava/util/Map;Ljava/util/Map;)Lorg/katan/yoki/models/network/NetworkCreateConfig;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/network/NetworkCreateConfig;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/katan/yoki/models/network/IPAM;Ljava/lang/Boolean;Ljava/util/Map;Ljava/util/Map;ILjava/lang/Object;)Lorg/katan/yoki/models/network/NetworkCreateConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCheckDuplicate ()Ljava/lang/Boolean;
+	public final fun getDriver ()Ljava/lang/String;
+	public final fun getEnableIpv6 ()Ljava/lang/Boolean;
+	public final fun getIngress ()Ljava/lang/Boolean;
+	public final fun getIpam ()Lorg/katan/yoki/models/network/IPAM;
+	public final fun getLabels ()Ljava/util/Map;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getOptions ()Ljava/util/Map;
+	public fun hashCode ()I
+	public final fun isAttachable ()Ljava/lang/Boolean;
+	public final fun isInternal ()Ljava/lang/Boolean;
+	public final fun setAttachable (Ljava/lang/Boolean;)V
+	public final fun setCheckDuplicate (Ljava/lang/Boolean;)V
+	public final fun setDriver (Ljava/lang/String;)V
+	public final fun setEnableIpv6 (Ljava/lang/Boolean;)V
+	public final fun setIngress (Ljava/lang/Boolean;)V
+	public final fun setInternal (Ljava/lang/Boolean;)V
+	public final fun setIpam (Lorg/katan/yoki/models/network/IPAM;)V
+	public final fun setLabels (Ljava/util/Map;)V
+	public final fun setName (Ljava/lang/String;)V
+	public final fun setOptions (Ljava/util/Map;)V
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/network/NetworkCreateConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/network/NetworkCreateConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/network/NetworkCreateConfig$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/network/NetworkCreateConfig;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/network/NetworkCreateConfig;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/network/NetworkCreateConfig$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/network/NetworkInspectOptions {
+	public static final field Companion Lorg/katan/yoki/models/network/NetworkInspectOptions$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/lang/Boolean;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/Boolean;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/Boolean;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/Boolean;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/Boolean;Ljava/lang/String;)Lorg/katan/yoki/models/network/NetworkInspectOptions;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/network/NetworkInspectOptions;Ljava/lang/Boolean;Ljava/lang/String;ILjava/lang/Object;)Lorg/katan/yoki/models/network/NetworkInspectOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getScope ()Ljava/lang/String;
+	public final fun getVerbose ()Ljava/lang/Boolean;
+	public fun hashCode ()I
+	public final fun setScope (Ljava/lang/String;)V
+	public final fun setVerbose (Ljava/lang/Boolean;)V
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/network/NetworkInspectOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/network/NetworkInspectOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/network/NetworkInspectOptions$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/network/NetworkInspectOptions;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/network/NetworkInspectOptions;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/network/NetworkInspectOptions$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/network/NetworkKt {
+	public static final field NetworkBridgeDriver Ljava/lang/String;
+	public static final field NetworkBuiltinType Ljava/lang/String;
+	public static final field NetworkCustomType Ljava/lang/String;
+	public static final field NetworkGlobalScope Ljava/lang/String;
+	public static final field NetworkHostDriver Ljava/lang/String;
+	public static final field NetworkIPvlanDriver Ljava/lang/String;
+	public static final field NetworkLocalScope Ljava/lang/String;
+	public static final field NetworkMacvlanDriver Ljava/lang/String;
+	public static final field NetworkNoneDriver Ljava/lang/String;
+	public static final field NetworkOverlayDriver Ljava/lang/String;
+	public static final field NetworkSwarmScope Ljava/lang/String;
+}
+
+public final class org/katan/yoki/models/network/NetworkListFilters {
+	public static final field Companion Lorg/katan/yoki/models/network/NetworkListFilters$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (IZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Z)V
+	public fun <init> (ZLjava/lang/String;)V
+	public fun <init> (ZLjava/lang/String;Ljava/lang/String;)V
+	public fun <init> (ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Z
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun copy (ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/katan/yoki/models/network/NetworkListFilters;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/network/NetworkListFilters;ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/katan/yoki/models/network/NetworkListFilters;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDangling ()Z
+	public final fun getDriver ()Ljava/lang/String;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getScope ()Ljava/lang/String;
+	public final fun getType ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun setDangling (Z)V
+	public final fun setDriver (Ljava/lang/String;)V
+	public final fun setId (Ljava/lang/String;)V
+	public final fun setName (Ljava/lang/String;)V
+	public final fun setScope (Ljava/lang/String;)V
+	public final fun setType (Ljava/lang/String;)V
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/network/NetworkListFilters;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/network/NetworkListFilters$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/network/NetworkListFilters$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/network/NetworkListFilters;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/network/NetworkListFilters;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/network/NetworkListFilters$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/network/NetworkPruneOptions {
+	public static final field Companion Lorg/katan/yoki/models/network/NetworkPruneOptions$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Lorg/katan/yoki/models/network/NetworkPruneOptions;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/network/NetworkPruneOptions;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/katan/yoki/models/network/NetworkPruneOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getLabel ()Ljava/lang/String;
+	public final fun getUntil ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun setLabel (Ljava/lang/String;)V
+	public final fun setUntil (Ljava/lang/String;)V
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/network/NetworkPruneOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/network/NetworkPruneOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/network/NetworkPruneOptions$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/network/NetworkPruneOptions;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/network/NetworkPruneOptions;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/network/NetworkPruneOptions$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/secret/Secret {
+	public static final field Companion Lorg/katan/yoki/models/secret/Secret$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/katan/yoki/models/secret/Secret;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/secret/Secret;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/katan/yoki/models/secret/Secret;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCreatedAt ()Lkotlinx/datetime/Instant;
+	public final fun getCreatedAtRaw ()Ljava/lang/String;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getUpdatedAt ()Lkotlinx/datetime/Instant;
+	public final fun getUpdatedAtRaw ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/secret/Secret;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/secret/Secret$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/secret/Secret$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/secret/Secret;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/secret/Secret;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/secret/Secret$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/secret/SecretListFilters {
+	public static final field Companion Lorg/katan/yoki/models/secret/SecretListFilters$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/katan/yoki/models/secret/SecretListFilters;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/secret/SecretListFilters;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/katan/yoki/models/secret/SecretListFilters;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getId ()Ljava/lang/String;
+	public final fun getLabel ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun setId (Ljava/lang/String;)V
+	public final fun setLabel (Ljava/lang/String;)V
+	public final fun setName (Ljava/lang/String;)V
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/secret/SecretListFilters;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/secret/SecretListFilters$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/secret/SecretListFilters$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/secret/SecretListFilters;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/secret/SecretListFilters;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/secret/SecretListFilters$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/secret/SecretSpec {
+	public static final field Companion Lorg/katan/yoki/models/secret/SecretSpec$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lorg/katan/yoki/models/secret/SecretSpec$Driver;Lorg/katan/yoki/models/secret/SecretSpec$Driver;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lorg/katan/yoki/models/secret/SecretSpec$Driver;Lorg/katan/yoki/models/secret/SecretSpec$Driver;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lorg/katan/yoki/models/secret/SecretSpec$Driver;Lorg/katan/yoki/models/secret/SecretSpec$Driver;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lorg/katan/yoki/models/secret/SecretSpec$Driver;
+	public final fun component4 ()Lorg/katan/yoki/models/secret/SecretSpec$Driver;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lorg/katan/yoki/models/secret/SecretSpec$Driver;Lorg/katan/yoki/models/secret/SecretSpec$Driver;)Lorg/katan/yoki/models/secret/SecretSpec;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/secret/SecretSpec;Ljava/lang/String;Ljava/lang/String;Lorg/katan/yoki/models/secret/SecretSpec$Driver;Lorg/katan/yoki/models/secret/SecretSpec$Driver;ILjava/lang/Object;)Lorg/katan/yoki/models/secret/SecretSpec;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getData ()Ljava/lang/String;
+	public final fun getDriver ()Lorg/katan/yoki/models/secret/SecretSpec$Driver;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getTemplating ()Lorg/katan/yoki/models/secret/SecretSpec$Driver;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/secret/SecretSpec;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/secret/SecretSpec$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/secret/SecretSpec$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/secret/SecretSpec;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/secret/SecretSpec;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/secret/SecretSpec$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/secret/SecretSpec$Driver {
+	public static final field Companion Lorg/katan/yoki/models/secret/SecretSpec$Driver$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/util/Map;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/util/Map;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/util/Map;
+	public final fun copy (Ljava/lang/String;Ljava/util/Map;)Lorg/katan/yoki/models/secret/SecretSpec$Driver;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/secret/SecretSpec$Driver;Ljava/lang/String;Ljava/util/Map;ILjava/lang/Object;)Lorg/katan/yoki/models/secret/SecretSpec$Driver;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getName ()Ljava/lang/String;
+	public final fun getOptions ()Ljava/util/Map;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/secret/SecretSpec$Driver;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/secret/SecretSpec$Driver$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/secret/SecretSpec$Driver$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/secret/SecretSpec$Driver;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/secret/SecretSpec$Driver;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/secret/SecretSpec$Driver$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/system/SystemPingData {
+	public static final field Companion Lorg/katan/yoki/models/system/SystemPingData$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;ZLkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Z
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Z)Lorg/katan/yoki/models/system/SystemPingData;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/system/SystemPingData;Ljava/lang/String;Ljava/lang/String;ZILjava/lang/Object;)Lorg/katan/yoki/models/system/SystemPingData;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getApiVersion ()Ljava/lang/String;
+	public final fun getBuilderVersion ()Ljava/lang/String;
+	public final fun getExperimental ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/system/SystemPingData;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/system/SystemPingData$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/system/SystemPingData$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/system/SystemPingData;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/system/SystemPingData;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/system/SystemPingData$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/system/SystemVersion {
+	public static final field Companion Lorg/katan/yoki/models/system/SystemVersion$Companion;
+	public synthetic fun <init> (ILorg/katan/yoki/models/system/SystemVersion$Platform;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()Lorg/katan/yoki/models/system/SystemVersion$Platform;
+	public final fun component10 ()Ljava/lang/String;
+	public final fun component11 ()Z
+	public final fun component12 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/String;
+	public final fun component9 ()Ljava/lang/String;
+	public final fun copy (Lorg/katan/yoki/models/system/SystemVersion$Platform;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;)Lorg/katan/yoki/models/system/SystemVersion;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/system/SystemVersion;Lorg/katan/yoki/models/system/SystemVersion$Platform;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;ILjava/lang/Object;)Lorg/katan/yoki/models/system/SystemVersion;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getApiVersion ()Ljava/lang/String;
+	public final fun getArch ()Ljava/lang/String;
+	public final fun getBuildTime ()Lkotlinx/datetime/Instant;
+	public final fun getBuildTimeRaw ()Ljava/lang/String;
+	public final fun getComponents ()Ljava/util/List;
+	public final fun getExperimental ()Z
+	public final fun getGitCommit ()Ljava/lang/String;
+	public final fun getGoVersion ()Ljava/lang/String;
+	public final fun getKernelVersion ()Ljava/lang/String;
+	public final fun getMinApiVersion ()Ljava/lang/String;
+	public final fun getOs ()Ljava/lang/String;
+	public final fun getPlatform ()Lorg/katan/yoki/models/system/SystemVersion$Platform;
+	public final fun getVersion ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/system/SystemVersion;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/system/SystemVersion$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/system/SystemVersion$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/system/SystemVersion;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/system/SystemVersion;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/system/SystemVersion$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/system/SystemVersion$Component {
+	public static final field Companion Lorg/katan/yoki/models/system/SystemVersion$Component$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Lorg/katan/yoki/models/system/SystemVersion$Component$Details;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lorg/katan/yoki/models/system/SystemVersion$Component$Details;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lorg/katan/yoki/models/system/SystemVersion$Component$Details;)Lorg/katan/yoki/models/system/SystemVersion$Component;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/system/SystemVersion$Component;Ljava/lang/String;Ljava/lang/String;Lorg/katan/yoki/models/system/SystemVersion$Component$Details;ILjava/lang/Object;)Lorg/katan/yoki/models/system/SystemVersion$Component;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDetails ()Lorg/katan/yoki/models/system/SystemVersion$Component$Details;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getVersion ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/system/SystemVersion$Component;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/system/SystemVersion$Component$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/system/SystemVersion$Component$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/system/SystemVersion$Component;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/system/SystemVersion$Component;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/system/SystemVersion$Component$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/system/SystemVersion$Component$Details {
+	public static final field Companion Lorg/katan/yoki/models/system/SystemVersion$Component$Details$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lorg/katan/yoki/models/system/SystemVersion$Component$Details;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/system/SystemVersion$Component$Details;Ljava/lang/String;ILjava/lang/Object;)Lorg/katan/yoki/models/system/SystemVersion$Component$Details;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getGitCommit ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/system/SystemVersion$Component$Details;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/system/SystemVersion$Component$Details$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/system/SystemVersion$Component$Details$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/system/SystemVersion$Component$Details;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/system/SystemVersion$Component$Details;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/system/SystemVersion$Component$Details$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/system/SystemVersion$Platform {
+	public static final field Companion Lorg/katan/yoki/models/system/SystemVersion$Platform$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lorg/katan/yoki/models/system/SystemVersion$Platform;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/system/SystemVersion$Platform;Ljava/lang/String;ILjava/lang/Object;)Lorg/katan/yoki/models/system/SystemVersion$Platform;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/system/SystemVersion$Platform;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/system/SystemVersion$Platform$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/system/SystemVersion$Platform$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/system/SystemVersion$Platform;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/system/SystemVersion$Platform;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/system/SystemVersion$Platform$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/volume/Volume {
+	public static final field Companion Lorg/katan/yoki/models/volume/Volume$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/Map;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/Map;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/util/Map;
+	public final fun component7 ()Ljava/util/Map;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/Map;)Lorg/katan/yoki/models/volume/Volume;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/volume/Volume;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/Map;ILjava/lang/Object;)Lorg/katan/yoki/models/volume/Volume;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCreatedAt ()Ljava/lang/String;
+	public final fun getDriver ()Ljava/lang/String;
+	public final fun getLabels ()Ljava/util/Map;
+	public final fun getMountPoint ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getOptions ()Ljava/util/Map;
+	public final fun getScope ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/volume/Volume;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/volume/Volume$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/volume/Volume$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/volume/Volume;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/volume/Volume;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/volume/Volume$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/volume/VolumeCreateOptions {
+	public static final field Companion Lorg/katan/yoki/models/volume/VolumeCreateOptions$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/Map;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/Map;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/util/Map;
+	public final fun component4 ()Ljava/util/Map;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/Map;)Lorg/katan/yoki/models/volume/VolumeCreateOptions;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/volume/VolumeCreateOptions;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/util/Map;ILjava/lang/Object;)Lorg/katan/yoki/models/volume/VolumeCreateOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDriver ()Ljava/lang/String;
+	public final fun getDriverOpts ()Ljava/util/Map;
+	public final fun getLabels ()Ljava/util/Map;
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun setDriver (Ljava/lang/String;)V
+	public final fun setDriverOpts (Ljava/util/Map;)V
+	public final fun setLabels (Ljava/util/Map;)V
+	public final fun setName (Ljava/lang/String;)V
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/volume/VolumeCreateOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/volume/VolumeCreateOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/volume/VolumeCreateOptions$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/volume/VolumeCreateOptions;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/volume/VolumeCreateOptions;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/volume/VolumeCreateOptions$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/volume/VolumeListOptions {
+	public static final field Companion Lorg/katan/yoki/models/volume/VolumeListOptions$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/Boolean;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/katan/yoki/models/volume/VolumeListOptions;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/volume/VolumeListOptions;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/katan/yoki/models/volume/VolumeListOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDangling ()Ljava/lang/Boolean;
+	public final fun getDriver ()Ljava/lang/String;
+	public final fun getLabel ()Ljava/lang/String;
+	public final fun getName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun setDangling (Ljava/lang/Boolean;)V
+	public final fun setDriver (Ljava/lang/String;)V
+	public final fun setLabel (Ljava/lang/String;)V
+	public final fun setName (Ljava/lang/String;)V
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/volume/VolumeListOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/volume/VolumeListOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/volume/VolumeListOptions$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/volume/VolumeListOptions;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/volume/VolumeListOptions;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/volume/VolumeListOptions$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/volume/VolumeListResponse {
+	public static final field Companion Lorg/katan/yoki/models/volume/VolumeListResponse$Companion;
+	public synthetic fun <init> (ILjava/util/List;Ljava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/util/List;Ljava/util/List;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()Ljava/util/List;
+	public final fun copy (Ljava/util/List;Ljava/util/List;)Lorg/katan/yoki/models/volume/VolumeListResponse;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/volume/VolumeListResponse;Ljava/util/List;Ljava/util/List;ILjava/lang/Object;)Lorg/katan/yoki/models/volume/VolumeListResponse;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getVolumes ()Ljava/util/List;
+	public final fun getWarnings ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/volume/VolumeListResponse;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/volume/VolumeListResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/volume/VolumeListResponse$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/volume/VolumeListResponse;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/volume/VolumeListResponse;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/volume/VolumeListResponse$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/volume/VolumePruneOptions {
+	public static final field Companion Lorg/katan/yoki/models/volume/VolumePruneOptions$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lorg/katan/yoki/models/volume/VolumePruneOptions;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/volume/VolumePruneOptions;Ljava/lang/String;ILjava/lang/Object;)Lorg/katan/yoki/models/volume/VolumePruneOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getLabel ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun setLabel (Ljava/lang/String;)V
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/volume/VolumePruneOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/volume/VolumePruneOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/volume/VolumePruneOptions$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/volume/VolumePruneOptions;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/volume/VolumePruneOptions;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/volume/VolumePruneOptions$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/volume/VolumePruneResponse {
+	public static final field Companion Lorg/katan/yoki/models/volume/VolumePruneResponse$Companion;
+	public synthetic fun <init> (ILjava/util/List;JLkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()Ljava/util/List;
+	public final fun component2 ()J
+	public final fun copy (Ljava/util/List;J)Lorg/katan/yoki/models/volume/VolumePruneResponse;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/volume/VolumePruneResponse;Ljava/util/List;JILjava/lang/Object;)Lorg/katan/yoki/models/volume/VolumePruneResponse;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getSpaceReclaimed ()J
+	public final fun getVolumesDeleted ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/volume/VolumePruneResponse;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/volume/VolumePruneResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/volume/VolumePruneResponse$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/volume/VolumePruneResponse;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/volume/VolumePruneResponse;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/volume/VolumePruneResponse$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/volume/VolumeRemoveOptions {
+	public fun <init> ()V
+	public fun <init> (Z)V
+	public synthetic fun <init> (ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Z
+	public final fun copy (Z)Lorg/katan/yoki/models/volume/VolumeRemoveOptions;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/volume/VolumeRemoveOptions;ZILjava/lang/Object;)Lorg/katan/yoki/models/volume/VolumeRemoveOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getForce ()Z
+	public fun hashCode ()I
+	public final fun setForce (Z)V
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class org/katan/yoki/net/SocketUtils {
+	public static final field DEFAULT_DOCKER_HTTP_SOCKET Ljava/lang/String;
+	public static final field DEFAULT_DOCKER_UNIX_SOCKET Ljava/lang/String;
+}
+
+public final class org/katan/yoki/resource/ContainerAlreadyStartedException : org/katan/yoki/resource/ContainerException {
+	public final fun getContainerId ()Ljava/lang/String;
+}
+
+public class org/katan/yoki/resource/ContainerException : org/katan/yoki/YokiResourceException {
+}
+
+public final class org/katan/yoki/resource/ContainerNotFoundException : org/katan/yoki/resource/ContainerException {
+	public final fun getContainerId ()Ljava/lang/String;
+}
+
+public final class org/katan/yoki/resource/ContainerNotRunningException : org/katan/yoki/resource/ContainerException {
+	public final fun getContainerId ()Ljava/lang/String;
+}
+
+public final class org/katan/yoki/resource/ContainerRemoveConflictException : org/katan/yoki/resource/ContainerException {
+	public final fun getContainerId ()Ljava/lang/String;
+}
+
+public final class org/katan/yoki/resource/ContainerResource {
+	public final fun attach (Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
+	public final fun create (Lorg/katan/yoki/models/container/ContainerCreateOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun exec (Ljava/lang/String;Lorg/katan/yoki/models/exec/ExecCreateOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun inspect (Ljava/lang/String;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun inspect$default (Lorg/katan/yoki/resource/ContainerResource;Ljava/lang/String;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun kill (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun kill$default (Lorg/katan/yoki/resource/ContainerResource;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun list (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun list (Lorg/katan/yoki/models/container/ContainerListOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun logs (Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
+	public final fun logs (Ljava/lang/String;Lorg/katan/yoki/models/container/ContainerLogsOptions;)Lkotlinx/coroutines/flow/Flow;
+	public final fun pause (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun prune (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun prune (Lorg/katan/yoki/models/container/ContainerPruneFilters;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun remove (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun remove (Ljava/lang/String;Lorg/katan/yoki/models/container/ContainerRemoveOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun rename (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun resizeTTY (Ljava/lang/String;Lorg/katan/yoki/models/ResizeTTYOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun restart (Ljava/lang/String;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun restart$default (Lorg/katan/yoki/resource/ContainerResource;Ljava/lang/String;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun start (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun start$default (Lorg/katan/yoki/resource/ContainerResource;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun stop (Ljava/lang/String;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun stop$default (Lorg/katan/yoki/resource/ContainerResource;Ljava/lang/String;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun unpause (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun wait (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun wait$default (Lorg/katan/yoki/resource/ContainerResource;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class org/katan/yoki/resource/ContainerResourceKt {
+	public static final fun create (Lorg/katan/yoki/resource/ContainerResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun exec (Lorg/katan/yoki/resource/ContainerResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun list (Lorg/katan/yoki/resource/ContainerResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun logs (Lorg/katan/yoki/resource/ContainerResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lkotlinx/coroutines/flow/Flow;
+	public static final fun prune (Lorg/katan/yoki/resource/ContainerResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun remove (Lorg/katan/yoki/resource/ContainerResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun resizeTTY (Lorg/katan/yoki/resource/ContainerResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun restart-exY8QGI (Lorg/katan/yoki/resource/ContainerResource;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun stop-exY8QGI (Lorg/katan/yoki/resource/ContainerResource;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public class org/katan/yoki/resource/ExecException : org/katan/yoki/YokiResourceException {
+}
+
+public final class org/katan/yoki/resource/ExecNotFoundException : org/katan/yoki/resource/ExecException {
+	public final fun getExecId ()Ljava/lang/String;
+}
+
+public final class org/katan/yoki/resource/ExecResource {
+	public static final field BASE_PATH Ljava/lang/String;
+	public final fun inspect (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun resize (Ljava/lang/String;Lorg/katan/yoki/models/ResizeTTYOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun start (Ljava/lang/String;Lorg/katan/yoki/models/exec/ExecStartOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/katan/yoki/resource/ImageResource {
+	public static final field Companion Lorg/katan/yoki/resource/ImageResource$Companion;
+	public final fun list (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun pull (Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
+	public final fun remove (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun remove$default (Lorg/katan/yoki/resource/ImageResource;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class org/katan/yoki/resource/ImageResource$Companion {
+}
+
+public final class org/katan/yoki/resource/NetworkResource {
+	public static final field BASE_PATH Ljava/lang/String;
+	public final fun connectContainer (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun create (Lorg/katan/yoki/models/network/NetworkCreateConfig;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun disconnectContainer (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun inspect (Ljava/lang/String;Lorg/katan/yoki/models/network/NetworkInspectOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun inspect$default (Lorg/katan/yoki/resource/NetworkResource;Ljava/lang/String;Lorg/katan/yoki/models/network/NetworkInspectOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun list (Lorg/katan/yoki/models/network/NetworkListFilters;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun list$default (Lorg/katan/yoki/resource/NetworkResource;Lorg/katan/yoki/models/network/NetworkListFilters;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun prune (Lorg/katan/yoki/models/network/NetworkPruneOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun prune$default (Lorg/katan/yoki/resource/NetworkResource;Lorg/katan/yoki/models/network/NetworkPruneOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun remove (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/katan/yoki/resource/NetworkResourceKt {
+	public static final fun create (Lorg/katan/yoki/resource/NetworkResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun inspect (Lorg/katan/yoki/resource/NetworkResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun list (Lorg/katan/yoki/resource/NetworkResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun prune (Lorg/katan/yoki/resource/NetworkResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/katan/yoki/resource/NodeNotPartOfSwarmException : org/katan/yoki/resource/SwarmException {
+}
+
+public class org/katan/yoki/resource/SecretException : org/katan/yoki/YokiResourceException {
+}
+
+public final class org/katan/yoki/resource/SecretNameConflictException : org/katan/yoki/resource/SecretException {
+	public final fun getSecretName ()Ljava/lang/String;
+}
+
+public final class org/katan/yoki/resource/SecretNotFoundException : org/katan/yoki/resource/SecretException {
+	public final fun getSecretId ()Ljava/lang/String;
+	public final fun getVersion ()J
+}
+
+public final class org/katan/yoki/resource/SecretResource {
+	public static final field BASE_PATH Ljava/lang/String;
+	public final fun create (Lorg/katan/yoki/models/secret/SecretSpec;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun delete (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun inspect (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun list (Lorg/katan/yoki/models/secret/SecretListFilters;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun list$default (Lorg/katan/yoki/resource/SecretResource;Lorg/katan/yoki/models/secret/SecretListFilters;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun update (Ljava/lang/String;JLorg/katan/yoki/models/secret/SecretSpec;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/katan/yoki/resource/SecretResourceKt {
+	public static final fun create (Lorg/katan/yoki/resource/SecretResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun label (Lorg/katan/yoki/models/secret/SecretListFilters;Lkotlin/Pair;)V
+	public static final fun list (Lorg/katan/yoki/resource/SecretResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun update (Lorg/katan/yoki/resource/SecretResource;Ljava/lang/String;JLkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public class org/katan/yoki/resource/SwarmException : org/katan/yoki/YokiResourceException {
+}
+
+public final class org/katan/yoki/resource/SystemResource {
+	public static final field PING_ENDPOINT Ljava/lang/String;
+	public final fun ping (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun ping (ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun ping$default (Lorg/katan/yoki/resource/SystemResource;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun version (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/katan/yoki/resource/VolumeResource {
+	public static final field BASE_PATH Ljava/lang/String;
+	public final fun create (Lorg/katan/yoki/models/volume/VolumeCreateOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun inspect (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun list (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun list (Lorg/katan/yoki/models/volume/VolumeListOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun list$default (Lorg/katan/yoki/resource/VolumeResource;Lorg/katan/yoki/models/volume/VolumeListOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun prune (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun prune (Lorg/katan/yoki/models/volume/VolumePruneOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun prune$default (Lorg/katan/yoki/resource/VolumeResource;Lorg/katan/yoki/models/volume/VolumePruneOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun remove (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun remove (Ljava/lang/String;Lorg/katan/yoki/models/volume/VolumeRemoveOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun remove$default (Lorg/katan/yoki/resource/VolumeResource;Ljava/lang/String;Lorg/katan/yoki/models/volume/VolumeRemoveOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class org/katan/yoki/resource/VolumeResourceKt {
+	public static final fun create (Lorg/katan/yoki/resource/VolumeResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun create$default (Lorg/katan/yoki/resource/VolumeResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun list (Lorg/katan/yoki/resource/VolumeResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun prune (Lorg/katan/yoki/resource/VolumeResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun remove (Lorg/katan/yoki/resource/VolumeResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class org/katan/yoki/util/RequireNetworkScopeKt {
+	public static final fun requireNetworkScope (Ljava/lang/String;)V
+}
+

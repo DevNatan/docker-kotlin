@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.kotlinter)
     alias(libs.plugins.publishOnCentral)
+    alias(libs.plugins.binaryCompatibilityValidator)
 }
 
 group = "org.katan"
