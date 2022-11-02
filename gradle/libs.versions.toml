@@ -10,6 +10,7 @@ okio = "3.2.0"
 plugin-kotlinter = "3.9.0"
 plugin-publishOnCentral = "2.0.8"
 plugin-binaryCompatibilityValidator = "0.12.1"
+plugin-kover = "0.6.1"
 
 [libraries.ktx-coroutines-core]
 module = "org.jetbrains.kotlinx:kotlinx-coroutines-core"
@@ -93,3 +94,4 @@ kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", vers
 kotlinter = { id = "org.jmailen.kotlinter", version.ref = "plugin-kotlinter" }
 publishOnCentral = { id = "org.danilopianini.publish-on-central", version.ref = "plugin-publishOnCentral" }
 binaryCompatibilityValidator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "plugin-binaryCompatibilityValidator" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "plugin-kover" }

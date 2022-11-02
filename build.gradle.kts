@@ -1,14 +1,13 @@
 // https://youtrack.jetbrains.com/issue/KTIJ-19369
 @file:Suppress("DSL_SCOPE_VIOLATION", "UnstableApiUsage")
 
-import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
-
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.kotlinter)
     alias(libs.plugins.publishOnCentral)
     alias(libs.plugins.binaryCompatibilityValidator)
+    alias(libs.plugins.kover)
 }
 
 group = "org.katan"
