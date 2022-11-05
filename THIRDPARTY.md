@@ -11,3 +11,6 @@ This document contains a list of third-party libraries that Yoki uses.
 * [Okio](https://github.com/square/okio)
 * [publish-on-central](https://github.com/DanySK/publish-on-central)
 * [kotlinter](https://github.com/jeremymailen/kotlinter-gradle)
+* [detekt](https://github.com/detekt/detekt)
+* [slf4j](https://www.slf4j.org/)
+* [OkHttp](https://square.github.io/okhttp/)
