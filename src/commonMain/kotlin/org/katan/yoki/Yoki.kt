@@ -3,6 +3,8 @@ package org.katan.yoki
 import io.ktor.client.HttpClient
 import kotlinx.serialization.json.Json
 import org.katan.yoki.YokiConfigBuilder.Companion.DEFAULT_DOCKER_API_VERSION
+import org.katan.yoki.logging.Logger
+import org.katan.yoki.logging.createLogger
 import org.katan.yoki.net.createHttpClient
 import org.katan.yoki.resource.ContainerResource
 import org.katan.yoki.resource.ExecResource
@@ -11,6 +13,8 @@ import org.katan.yoki.resource.NetworkResource
 import org.katan.yoki.resource.SecretResource
 import org.katan.yoki.resource.SystemResource
 import org.katan.yoki.resource.VolumeResource
+import kotlin.jvm.JvmField
+import kotlin.jvm.JvmStatic
 
 /**
  * Creates a new Yoki instance with platform default socket path and [DEFAULT_DOCKER_API_VERSION] Docker API version
@@ -36,12 +40,43 @@ public inline fun Yoki(
  * Create and configure a fresh Yoki instance by calling [Yoki.create] or [org.katan.yoki.Yoki]
  *
  * Note: This class must be a singleton, that is, don't instantiate it more than once in your code, and, implements
- * [Closeable] so be sure to [close] it after use, we recommend you to use [use] block to this.
+ * [Closeable] so be sure to [close] it after use.
  */
 @YokiDsl
 public class Yoki @PublishedApi internal constructor(
     public val config: YokiConfig
 ) : Closeable {
+
+    private val httpClient: HttpClient = createHttpClient(this)
+    private val json: Json = Json {
+        ignoreUnknownKeys = true
+    }
+    private val logger: Logger = createLogger()
+
+    @JvmField
+    public val containers: ContainerResource = ContainerResource(httpClient, json, logger)
+
+    @JvmField
+    public val networks: NetworkResource = NetworkResource(httpClient, json)
+
+    @JvmField
+    public val volumes: VolumeResource = VolumeResource(httpClient, json)
+
+    @JvmField
+    public val secrets: SecretResource = SecretResource(httpClient, json)
+
+    @JvmField
+    public val images: ImageResource = ImageResource(httpClient, json)
+
+    @JvmField
+    public val exec: ExecResource = ExecResource(httpClient)
+
+    @JvmField
+    public val system: SystemResource = SystemResource(httpClient)
+
+    public override fun close() {
+        httpClient.close()
+    }
 
     public companion object {
 
@@ -91,36 +126,6 @@ public class Yoki @PublishedApi internal constructor(
         public fun createWithHttpDefaults(): Yoki {
             return Yoki { useHttpDefaults() }
         }
-    }
-
-    private val httpClient: HttpClient = createHttpClient(this)
-    private val json: Json = Json {
-        ignoreUnknownKeys = true
-    }
-
-    @JvmField
-    public val containers: ContainerResource = ContainerResource(httpClient, json)
-
-    @JvmField
-    public val networks: NetworkResource = NetworkResource(httpClient, json)
-
-    @JvmField
-    public val volumes: VolumeResource = VolumeResource(httpClient, json)
-
-    @JvmField
-    public val secrets: SecretResource = SecretResource(httpClient, json)
-
-    @JvmField
-    public val images: ImageResource = ImageResource(httpClient, json)
-
-    @JvmField
-    public val exec: ExecResource = ExecResource(httpClient)
-
-    @JvmField
-    public val system: SystemResource = SystemResource(httpClient)
-
-    override fun close() {
-        httpClient.close()
     }
 }
 

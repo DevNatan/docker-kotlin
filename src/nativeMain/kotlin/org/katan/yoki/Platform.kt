@@ -7,7 +7,8 @@ import platform.posix.getenv
  * Returns if the current platform is a UNIX-based platform.
  */
 internal actual fun isUnixPlatform(): Boolean {
-    TODO()
+    // all native platforms supported are unix
+    return true
 }
 
 /**
@@ -16,4 +17,8 @@ internal actual fun isUnixPlatform(): Boolean {
  */
 internal actual fun env(key: String): String? {
     return getenv(key)?.toKString()
+}
+
+public actual interface Closeable {
+    public actual fun close()
 }

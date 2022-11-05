@@ -19,12 +19,14 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.katan.yoki.YokiResponseException
+import org.katan.yoki.logging.Logger
 import org.katan.yoki.models.Frame
 import org.katan.yoki.models.IdOnlyResponse
 import org.katan.yoki.models.ResizeTTYOptions
 import org.katan.yoki.models.Stream
 import org.katan.yoki.models.container.Container
 import org.katan.yoki.models.container.ContainerCreateOptions
+import org.katan.yoki.models.container.ContainerCreateResult
 import org.katan.yoki.models.container.ContainerListOptions
 import org.katan.yoki.models.container.ContainerLogsOptions
 import org.katan.yoki.models.container.ContainerPruneFilters
@@ -39,6 +41,7 @@ import kotlin.time.Duration
 public class ContainerResource internal constructor(
     private val httpClient: HttpClient,
     private val json: Json,
+    private val logger: Logger,
 ) {
 
     private companion object {
@@ -78,10 +81,13 @@ public class ContainerResource internal constructor(
         requireNotNull(options.image) { "Container image is required in ContainerCreateOptions" }
 
         // TODO print warnings
-        return httpClient.post("$BASE_PATH/create") {
+        val result = httpClient.post("$BASE_PATH/create") {
             parameter("name", options.name)
             setBody(options)
-        }.body<IdOnlyResponse>().id
+        }.body<ContainerCreateResult>()
+
+        result.warnings.forEach(logger::warn)
+        return result.id
     }
 
     /**

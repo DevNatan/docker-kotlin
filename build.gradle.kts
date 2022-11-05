@@ -79,7 +79,7 @@ kotlin {
                 runtimeOnly(libs.junixsocket.native)
                 implementation(libs.junixsocket.common)
                 implementation(libs.ktor.client.engine.okhttp)
-                implementation("org.apache.logging.log4j:log4j-core:2.19.0")
+                implementation(libs.slf4j.api)
             }
         }
 
