@@ -30,8 +30,8 @@ jobs:
           cache: 'gradle'
       - name: Prune Docker System
         run: docker system prune -a -f
-      - name: Run Gradle Check
+      - name: Run Tests
         uses: burrunan/gradle-cache-action@v1
         with:
-          arguments: check
+          arguments: allTests
           gradle-version: wrapper
