@@ -40,8 +40,8 @@ public final class org/katan/yoki/YokiConfigBuilder {
 	public final fun forCurrentPlatform ()Lorg/katan/yoki/YokiConfigBuilder;
 	public final fun getApiVersion ()Ljava/lang/String;
 	public final fun getSocketPath ()Ljava/lang/String;
-	public final fun setApiVersion (Ljava/lang/String;)V
-	public final fun setSocketPath (Ljava/lang/String;)V
+	public final synthetic fun setApiVersion (Ljava/lang/String;)V
+	public final synthetic fun setSocketPath (Ljava/lang/String;)V
 	public final fun socketPath (Ljava/lang/String;)Lorg/katan/yoki/YokiConfigBuilder;
 	public final fun useHttpDefaults ()Lorg/katan/yoki/YokiConfigBuilder;
 	public final fun useUnixDefaults ()Lorg/katan/yoki/YokiConfigBuilder;

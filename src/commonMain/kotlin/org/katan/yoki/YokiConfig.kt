@@ -1,16 +1,10 @@
-@file:JvmMultifileClass
-@file:JvmName("SocketPathUtils")
-
 package org.katan.yoki
 
 import org.katan.yoki.net.DEFAULT_DOCKER_HTTP_SOCKET
 import org.katan.yoki.net.DEFAULT_DOCKER_UNIX_SOCKET
 import org.katan.yoki.net.HTTP_SOCKET_PREFIX
 import org.katan.yoki.net.UNIX_SOCKET_PREFIX
-import kotlin.jvm.JvmMultifileClass
-import kotlin.jvm.JvmName
-
-private const val DOCKER_HOST_ENV_KEY = "DOCKER_HOST"
+import kotlin.jvm.JvmSynthetic
 
 /**
  * Class to store all Yoki configurations.
@@ -38,6 +32,19 @@ public class YokiConfig(
 public class YokiConfigBuilder {
 
     public companion object {
+        /**
+         * Daemon socket to connect to.
+         */
+        private const val DOCKER_HOST_ENV_KEY = "DOCKER_HOST"
+
+        /**
+         * Override the negotiated Docker Remote API version.
+         */
+        private const val DOCKER_API_VERSION_ENV_KEY = "DOCKER_API_VERSION"
+
+        /**
+         * Minimum Docker Remote API version supported by Yoki.
+         */
         public const val DEFAULT_DOCKER_API_VERSION: String = "1.41"
     }
 
@@ -45,11 +52,18 @@ public class YokiConfigBuilder {
      * Docker socket file used to communicate with main Docker daemon.
      */
     public var socketPath: String = ""
+        @JvmSynthetic
+        public set
 
     /**
      * The version of the Docker API that will be used during communication.
      */
-    public var apiVersion: String = ""
+    public var apiVersion: String = envOrFallback(
+        key = DOCKER_API_VERSION_ENV_KEY,
+        fallback = DEFAULT_DOCKER_API_VERSION,
+        prefix = null,
+    ) @JvmSynthetic
+    public set
 
     /**
      * Sets the Docker socket path.
@@ -78,7 +92,8 @@ public class YokiConfigBuilder {
      * have the [UNIX_SOCKET_PREFIX] on its prefix.
      */
     public fun useUnixDefaults(): YokiConfigBuilder {
-        socketPath = dockerHostOrFallback(
+        socketPath = envOrFallback(
+            key = DOCKER_HOST_ENV_KEY,
             fallback = DEFAULT_DOCKER_UNIX_SOCKET,
             prefix = UNIX_SOCKET_PREFIX,
         )
@@ -92,7 +107,8 @@ public class YokiConfigBuilder {
      * have the [HTTP_SOCKET_PREFIX] on its prefix.
      */
     public fun useHttpDefaults(): YokiConfigBuilder {
-        socketPath = dockerHostOrFallback(
+        socketPath = envOrFallback(
+            key = DOCKER_HOST_ENV_KEY,
             fallback = DEFAULT_DOCKER_HTTP_SOCKET,
             prefix = HTTP_SOCKET_PREFIX,
         )
@@ -100,10 +116,15 @@ public class YokiConfigBuilder {
     }
 
     /**
-     * Configures the [socketPath] based on the current platform. See [selectDockerSocketPath] for implementation details.
+     * Configures the [socketPath] based on the current platform.
+     * See [selectDockerSocketPath] for implementation details.
      */
     public fun forCurrentPlatform(): YokiConfigBuilder {
-        socketPath = dockerHostOrFallback(selectDockerSocketPath(), null)
+        socketPath = envOrFallback(
+            key = DOCKER_HOST_ENV_KEY,
+            fallback = selectDockerSocketPath(),
+            prefix = null
+        )
         return this
     }
 
@@ -113,30 +134,32 @@ public class YokiConfigBuilder {
     public fun build(): YokiConfig {
         return YokiConfig(socketPath, apiVersion)
     }
-}
 
-/**
- * Returns the Docker socket path defined on [DOCKER_HOST_ENV_KEY] environment variable, [fallback] if it isn't set.
- *
- * @param fallback Fallback value if environment key is not set, or it's value don't start with [prefix].
- * @param prefix Prefix to check if the environment variable starts with.
- */
-private fun dockerHostOrFallback(
-    fallback: String,
-    prefix: String?,
-): String {
-    return env(DOCKER_HOST_ENV_KEY)?.ifBlank { null }?.let { path ->
-        if (prefix == null || path.startsWith(prefix)) path
-        else null
-    } ?: fallback
-}
+    /**
+     * Returns the value for the given environment variable [key] or [fallback] if it isn't set.
+     *
+     * @param key The environment variable key.
+     * @param fallback Fallback value if environment key is not set, or it's value don't start with [prefix].
+     * @param prefix Prefix to check if the environment variable starts with.
+     */
+    private fun envOrFallback(
+        key: String,
+        fallback: String,
+        prefix: String?,
+    ): String {
+        return env(key)?.ifBlank { null }?.let { path ->
+            if (prefix == null || path.startsWith(prefix)) path
+            else null
+        } ?: fallback
+    }
 
-/**
- * Selects a Docker socket path based on current OS.
- */
-private fun selectDockerSocketPath(): String {
-    return if (isUnixPlatform())
-        DEFAULT_DOCKER_UNIX_SOCKET
-    else
-        DEFAULT_DOCKER_HTTP_SOCKET
+    /**
+     * Selects a Docker socket path based on current OS.
+     */
+    private fun selectDockerSocketPath(): String {
+        return if (isUnixPlatform())
+            DEFAULT_DOCKER_UNIX_SOCKET
+        else
+            DEFAULT_DOCKER_HTTP_SOCKET
+    }
 }

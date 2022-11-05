@@ -28,7 +28,6 @@ public inline fun Yoki(
     return Yoki(
         YokiConfigBuilder()
             .forCurrentPlatform()
-            .apply { apiVersion = DEFAULT_DOCKER_API_VERSION }
             .apply(config)
             .build()
     )
