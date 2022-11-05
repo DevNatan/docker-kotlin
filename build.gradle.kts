@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.publishOnCentral)
     alias(libs.plugins.binaryCompatibilityValidator)
     alias(libs.plugins.kover)
+    alias(libs.plugins.detekt)
 }
 
 group = "org.katan"
@@ -26,7 +27,10 @@ kotlin {
             testLogging {
                 showExceptions = true
                 showStandardStreams = true
-                events = setOf(org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED, org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED)
+                events = setOf(
+                    org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED,
+                    org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED,
+                )
                 exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
             }
         }
@@ -75,6 +79,7 @@ kotlin {
                 runtimeOnly(libs.junixsocket.native)
                 implementation(libs.junixsocket.common)
                 implementation(libs.ktor.client.engine.okhttp)
+                implementation("org.apache.logging.log4j:log4j-core:2.19.0")
             }
         }
 
@@ -156,4 +161,9 @@ tasks {
     check {
         dependsOn("installKotlinterPrePushHook")
     }
+}
+
+detekt {
+    buildUponDefaultConfig = true
+    allRules = false
 }
