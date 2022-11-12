@@ -2,6 +2,7 @@ package org.katan.yoki.models.network
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import org.katan.yoki.models.UserDefinedMetadata
 import kotlin.jvm.JvmOverloads
 
 public typealias NetworkDriver = String
@@ -35,8 +36,8 @@ public data class NetworkCreateOptions @JvmOverloads public constructor(
     @SerialName("Ingress") public var ingress: Boolean? = null,
     @SerialName("IPAM") public var ipam: IPAM? = null,
     @SerialName("EnableIPV6") public var enableIpv6: Boolean? = null,
-    @SerialName("Options") public var options: Map<String, String>? = null,
-    @SerialName("Labels") public var labels: Map<String, String>? = null,
+    @SerialName("Options") public var options: UserDefinedMetadata? = null,
+    @SerialName("Labels") public var labels: UserDefinedMetadata? = null,
 ) {
 
     public companion object {

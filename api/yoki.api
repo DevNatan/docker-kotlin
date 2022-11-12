@@ -1337,6 +1337,40 @@ public final class org/katan/yoki/models/network/IPAM$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
+public final class org/katan/yoki/models/network/IPAMConfig {
+	public static final field Companion Lorg/katan/yoki/models/network/IPAMConfig$Companion;
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lorg/katan/yoki/models/network/IPAMConfig;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/network/IPAMConfig;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lorg/katan/yoki/models/network/IPAMConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getGateway ()Ljava/lang/String;
+	public final fun getIpRange ()Ljava/lang/String;
+	public final fun getSubnet ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lorg/katan/yoki/models/network/IPAMConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class org/katan/yoki/models/network/IPAMConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/network/IPAMConfig$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/network/IPAMConfig;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/network/IPAMConfig;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class org/katan/yoki/models/network/IPAMConfig$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class org/katan/yoki/models/network/Network {
 	public static final field Companion Lorg/katan/yoki/models/network/Network$Companion;
 	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZZZZLjava/util/Map;Ljava/util/Map;Ljava/util/Map;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
@@ -1426,8 +1460,14 @@ public final class org/katan/yoki/models/network/NetworkContainer$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class org/katan/yoki/models/network/NetworkCreateConfig {
-	public static final field Companion Lorg/katan/yoki/models/network/NetworkCreateConfig$Companion;
+public final class org/katan/yoki/models/network/NetworkCreateOptions {
+	public static final field BRIDGE Ljava/lang/String;
+	public static final field Companion Lorg/katan/yoki/models/network/NetworkCreateOptions$Companion;
+	public static final field HOST Ljava/lang/String;
+	public static final field IPVLAN Ljava/lang/String;
+	public static final field MACVLAN Ljava/lang/String;
+	public static final field NONE Ljava/lang/String;
+	public static final field OVERLAY Ljava/lang/String;
 	public fun <init> ()V
 	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/katan/yoki/models/network/IPAM;Ljava/lang/Boolean;Ljava/util/Map;Ljava/util/Map;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
 	public fun <init> (Ljava/lang/String;)V
@@ -1451,8 +1491,8 @@ public final class org/katan/yoki/models/network/NetworkCreateConfig {
 	public final fun component7 ()Lorg/katan/yoki/models/network/IPAM;
 	public final fun component8 ()Ljava/lang/Boolean;
 	public final fun component9 ()Ljava/util/Map;
-	public final fun copy (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/katan/yoki/models/network/IPAM;Ljava/lang/Boolean;Ljava/util/Map;Ljava/util/Map;)Lorg/katan/yoki/models/network/NetworkCreateConfig;
-	public static synthetic fun copy$default (Lorg/katan/yoki/models/network/NetworkCreateConfig;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/katan/yoki/models/network/IPAM;Ljava/lang/Boolean;Ljava/util/Map;Ljava/util/Map;ILjava/lang/Object;)Lorg/katan/yoki/models/network/NetworkCreateConfig;
+	public final fun copy (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/katan/yoki/models/network/IPAM;Ljava/lang/Boolean;Ljava/util/Map;Ljava/util/Map;)Lorg/katan/yoki/models/network/NetworkCreateOptions;
+	public static synthetic fun copy$default (Lorg/katan/yoki/models/network/NetworkCreateOptions;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Lorg/katan/yoki/models/network/IPAM;Ljava/lang/Boolean;Ljava/util/Map;Ljava/util/Map;ILjava/lang/Object;)Lorg/katan/yoki/models/network/NetworkCreateOptions;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getCheckDuplicate ()Ljava/lang/Boolean;
 	public final fun getDriver ()Ljava/lang/String;
@@ -1476,22 +1516,22 @@ public final class org/katan/yoki/models/network/NetworkCreateConfig {
 	public final fun setName (Ljava/lang/String;)V
 	public final fun setOptions (Ljava/util/Map;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lorg/katan/yoki/models/network/NetworkCreateConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final fun write$Self (Lorg/katan/yoki/models/network/NetworkCreateOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
-public final class org/katan/yoki/models/network/NetworkCreateConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lorg/katan/yoki/models/network/NetworkCreateConfig$$serializer;
+public final class org/katan/yoki/models/network/NetworkCreateOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lorg/katan/yoki/models/network/NetworkCreateOptions$$serializer;
 	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/network/NetworkCreateConfig;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/models/network/NetworkCreateOptions;
 	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/network/NetworkCreateConfig;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lorg/katan/yoki/models/network/NetworkCreateOptions;)V
 	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
-public final class org/katan/yoki/models/network/NetworkCreateConfig$Companion {
+public final class org/katan/yoki/models/network/NetworkCreateOptions$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
@@ -2286,7 +2326,7 @@ public final class org/katan/yoki/resource/ImageResource$Companion {
 public final class org/katan/yoki/resource/NetworkResource {
 	public static final field BASE_PATH Ljava/lang/String;
 	public final fun connectContainer (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun create (Lorg/katan/yoki/models/network/NetworkCreateConfig;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun create (Lorg/katan/yoki/models/network/NetworkCreateOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun disconnectContainer (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun inspect (Ljava/lang/String;Lorg/katan/yoki/models/network/NetworkInspectOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun inspect$default (Lorg/katan/yoki/resource/NetworkResource;Ljava/lang/String;Lorg/katan/yoki/models/network/NetworkInspectOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
