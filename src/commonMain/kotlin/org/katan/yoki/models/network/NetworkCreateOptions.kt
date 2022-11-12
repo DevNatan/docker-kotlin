@@ -24,7 +24,7 @@ import kotlin.jvm.JvmOverloads
  * @see NetworkResource.create
  */
 @Serializable
-public data class NetworkCreateConfig @JvmOverloads public constructor(
+public data class NetworkCreateOptions @JvmOverloads public constructor(
     @SerialName("Name") public var name: String? = null,
     @SerialName("CheckDuplicate") public var checkDuplicate: Boolean? = null,
     @SerialName("Driver") public var driver: String? = null,

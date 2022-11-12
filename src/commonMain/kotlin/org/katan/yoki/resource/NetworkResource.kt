@@ -10,7 +10,7 @@ import io.ktor.client.request.setBody
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.katan.yoki.models.network.Network
-import org.katan.yoki.models.network.NetworkCreateConfig
+import org.katan.yoki.models.network.NetworkCreateOptions
 import org.katan.yoki.models.network.NetworkInspectOptions
 import org.katan.yoki.models.network.NetworkListFilters
 import org.katan.yoki.models.network.NetworkPruneOptions
@@ -71,7 +71,7 @@ public class NetworkResource internal constructor(
      * @param config The network configuration.
      * @see <a href="https://docs.docker.com/engine/api/latest/#operation/NetworkCreate">NetworkCreate</a>
      */
-    public suspend fun create(config: NetworkCreateConfig): Network {
+    public suspend fun create(config: NetworkCreateOptions): Network {
         checkNotNull(config.name) { "Network name is required and cannot be null" }
 
         return httpClient.post("$BASE_PATH/create") {
@@ -125,8 +125,8 @@ public class NetworkResource internal constructor(
  * @param config The network configuration.
  * @see <a href="https://docs.docker.com/engine/api/latest/#operation/NetworkCreate">NetworkCreate</a>
  */
-public suspend inline fun NetworkResource.create(config: NetworkCreateConfig.() -> Unit): Network {
-    return create(NetworkCreateConfig().apply(config))
+public suspend inline fun NetworkResource.create(config: NetworkCreateOptions.() -> Unit): Network {
+    return create(NetworkCreateOptions().apply(config))
 }
 
 /**
