@@ -2,125 +2,120 @@
 
 [![Build](https://github.com/KatanPanel/yoki/actions/workflows/build.yml/badge.svg)](https://github.com/KatanPanel/yoki/actions/workflows/build.yml)
 [![Integration Tests](https://github.com/KatanPanel/yoki/actions/workflows/integration-tests.yml/badge.svg)](https://github.com/KatanPanel/yoki/actions/workflows/integration-tests.yml)
-[![Maven Central](https://img.shields.io/maven-central/v/org.katan/yoki)](https://mvnrepository.com/artifact/org.katan)
-[![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
-Yoki allows you to interact with the Docker Remote API.
+Yoki allows you to interact with the Docker Engine Remote API in a simplified and fast way.
 
-## Using in your projects
+* [Configuration](#configuration)
+* [Basic Usage](#basic-usage)
+* [Versions Compatibility](#versions-compatibility)
+* [Native Targets](#native-targets)
+* [Interoperability](#interoperability)
 
-Only snapshots repository available for now
-```kotlin
-repositories {
-    maven("https://s01.oss.sonatype.org/content/repositories/snapshots/")
-}
-
+```gradle
 dependencies {
-    implementation("org.katan:yoki:0.0.1-SNAPSHOT")
+    implementation("org.katan:yoki:0.0.1")
 }
 ```
 
-## Usage
-The Yoki client, it is through it that you will access the API of the resources that are currently supported by Yoki.
+## Configuration
+By default, at client startup if no configuration parameters are passed, the settings that will be applied will depend on the current platform and environment variables.
+
+For example, the socket path will be set to the value of the [`DOCKER_HOST` environment variable](https://docs.docker.com/compose/reference/envvars/#docker_host) if set, otherwise it will use the platform default.
+```kotlin
+import org.katan.yoki
+
+val client = Yoki()
+```
+
+You can still configure the client by expanding the initialization block
 ```kotlin
 Yoki {
-    // this: YokiConfig
+    // this: YokiConfigBuilder
 }
 ```
 
-Specifying a socket path
+Change socket path (docker host) or target api version
 ```kotlin
-Yoki {
-    socketPath = "..."
-    version = "1.40"
-}
-```
-
-Configure Yoki to use UNIX defaults
-```kotlin
-Yoki { 
-    useUnixDefaults()
-}
-
-// equivalent to
 Yoki {
     socketPath = "unix:///var/run/docker.sock"
+    apiVersion = "1.40"
 }
 ```
 
-Configure Yoki to use HTTP defaults
-```kotlin
-Yoki { useHTTPDefaults() }
+## Basic Usage
+The way to access resources is straight to the point, all functions (for Kotlin) are suspend.
 
-// equivalent to
-Yoki {
-    socketPath = "tcp://localhost:2375"
+##### Get info about system version
+
+```kotlin
+import org.katan.yoki
+import org.katan.yoki.models.system.SystemVersion
+import org.katan.yoki.resource.list
+
+val client = Yoki()
+
+val version: SystemVersion = client.system.version()
+```
+
+##### Listing all containers
+
+```kotlin
+import org.katan.yoki
+import org.katan.yoki.resource.list
+
+val client = Yoki()
+
+client.containers.list(ContainerListOptions(
+    all = true
+))
+
+// DSL
+client.containers.list {
+    all = true
 }
 ```
 
-## Calling from regular Java code
-Yoki was not made exclusively for Kotlin, although we have support for Coroutines, there are plans for regular Java code 
-to be able to call them and so the API will start to be designed with that in mind.
-
-We haven't done anything yet, but in the future we will support calls using only Java.
-
-## Examples
-### Listing containers
+##### Creating a new network
 
 ```kotlin
-yoki.containers.list()
-```
+import org.katan.yoki
+import org.katan.yoki.resource.create
 
-Up to 5 containers
-```kotlin
-yoki.containers.list {
-    limit = 5
+val client = Yoki()
+
+client.networks.create {
+    name = "octopus-net"
+    driver = "overlay"
 }
 ```
 
-From a specific network
-```kotlin
-yoki.containers.list {
-    filters {
-        network = listOf("octopus-network")
-    }
-}
-```
-
-### Creating a container
-```kotlin
-// will return the newly created container id
-yoki.containers.create {
-    name = "billie-jean"
-}
-```
-
-### Fetching containers logs
+##### Streaming container logs
 Streaming methods will always return a [Flow](https://kotlinlang.org/docs/flow.html).
 
-You need to specify where the logs can come from (stdout/stderr)
 ```kotlin
-yoki.containers.logs("floral-fury") {
+import org.katan.yoki
+import org.katan.yoki.models.Frame
+import org.katan.yoki.resource.create
+
+val client = Yoki()
+
+val flow: Flow<Frame> = yoki.containers.logs("floral-fury") {
     stderr = true
     stdout = true
 }
 ```
 
-Fetching only STDERR
-```kotlin
-yoki.containers.logs("ruze-of-an-ooze") {
-    stderr = true
-}
-```
+#### Fallback to version-specific parameter value
+By default, all options parameters for accessing a resource use `null`, that is, *null value* means that it will use the value defined by the Docker API as the default value for that property.
 
-From an instant. `long` and [kotlinx-datetime.Instant](https://github.com/Kotlin/kotlinx-datetime) types are supported. 
-```kotlin
-yoki.containers.logs("botanic-panic") {
-    stdout = true
-    since = 1666999925L // long
-    setSince("2022-10-28T22:19:44.475Z".toInstant()) // kotlinx-datetime.Instant
-}
-```
+## Versions Compatibility
+TODO
+
+## Native Targets
+For now the only supported native targets are: macosX64, linuxX64 and mingwX64.
+
+## Interoperability
+TODO
 
 ## License
 Yoki is licensed under the MIT license.
