@@ -7,7 +7,7 @@ import platform.posix.getenv
  * Returns if the current platform is a UNIX-based platform.
  */
 internal actual fun isUnixPlatform(): Boolean {
-    // all native platforms supported are unix
+    // TODO check if current platform is unix
     return true
 }
 
