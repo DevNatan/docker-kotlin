@@ -33,5 +33,5 @@ jobs:
           GITHUB_USERNAME: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          arguments: --no-configuration-cache publishAllPublicationsToMavenCentralRepository
+          arguments: --no-configuration-cache publish
           gradle-version: wrapper
