@@ -78,9 +78,8 @@ public class ContainerResource internal constructor(
      * Creates a new container.
      */
     public suspend fun create(options: ContainerCreateOptions): String {
-        requireNotNull(options.image) { "Container image is required in ContainerCreateOptions" }
+        requireNotNull(options.image) { "Container image is required" }
 
-        // TODO print warnings
         val result = httpClient.post("$BASE_PATH/create") {
             parameter("name", options.name)
             setBody(options)
