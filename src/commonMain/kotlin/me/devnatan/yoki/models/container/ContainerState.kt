@@ -1,9 +1,9 @@
-package org.katan.yoki.models.container
+package me.devnatan.yoki.models.container
 
 import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import org.katan.yoki.models.Healthcheck
+import me.devnatan.yoki.models.Healthcheck
 import kotlin.jvm.JvmStatic
 
 @Serializable

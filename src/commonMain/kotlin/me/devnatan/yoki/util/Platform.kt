@@ -1,4 +1,4 @@
-package org.katan.yoki.util
+package me.devnatan.yoki.util
 
 /**
  * Gets the value of the specified environment variable.

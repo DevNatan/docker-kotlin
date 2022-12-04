@@ -1,11 +1,11 @@
 @file:JvmName("HttpJVM")
 
-package org.katan.yoki.net
+package me.devnatan.yoki.net
 
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.HttpClientEngineConfig
 import io.ktor.client.engine.okhttp.OkHttpConfig
-import org.katan.yoki.Yoki
+import me.devnatan.yoki.Yoki
 import java.util.concurrent.TimeUnit
 
 internal actual fun <T : HttpClientEngineConfig> HttpClientConfig<out T>.configureHttpClient(

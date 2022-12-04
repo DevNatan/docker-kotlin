@@ -1,6 +1,6 @@
-package org.katan.yoki.resource
+package me.devnatan.yoki.resource
 
-import org.katan.yoki.YokiResourceException
+import me.devnatan.yoki.YokiResourceException
 
 public open class ContainerException internal constructor(
     cause: Throwable?,

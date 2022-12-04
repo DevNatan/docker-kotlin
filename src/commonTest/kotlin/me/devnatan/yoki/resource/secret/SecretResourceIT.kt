@@ -1,11 +1,11 @@
 @file:OptIn(ExperimentalCoroutinesApi::class)
 
-package org.katan.yoki.resource.secret
+package me.devnatan.yoki.resource.secret
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import org.katan.yoki.resource.NodeNotPartOfSwarmException
-import org.katan.yoki.resource.ResourceIT
+import me.devnatan.yoki.resource.NodeNotPartOfSwarmException
+import me.devnatan.yoki.resource.ResourceIT
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
 

@@ -1,4 +1,4 @@
-package org.katan.yoki.models.system
+package me.devnatan.yoki.models.system
 
 import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName

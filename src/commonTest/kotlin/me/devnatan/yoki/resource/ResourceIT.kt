@@ -1,7 +1,7 @@
-package org.katan.yoki.resource
+package me.devnatan.yoki.resource
 
-import org.katan.yoki.Yoki
-import org.katan.yoki.createTestYoki
+import me.devnatan.yoki.Yoki
+import me.devnatan.yoki.createTestYoki
 
 open class ResourceIT {
 

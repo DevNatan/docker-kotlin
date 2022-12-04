@@ -1,19 +1,19 @@
-package org.katan.yoki
+package me.devnatan.yoki
 
 import io.ktor.client.HttpClient
 import kotlinx.serialization.json.Json
-import org.katan.yoki.YokiConfigBuilder.Companion.DEFAULT_DOCKER_API_VERSION
-import org.katan.yoki.logging.Logger
-import org.katan.yoki.logging.createLogger
-import org.katan.yoki.net.createHttpClient
-import org.katan.yoki.resource.ContainerResource
-import org.katan.yoki.resource.ExecResource
-import org.katan.yoki.resource.ImageResource
-import org.katan.yoki.resource.NetworkResource
-import org.katan.yoki.resource.SecretResource
-import org.katan.yoki.resource.SystemResource
-import org.katan.yoki.resource.VolumeResource
-import org.katan.yoki.util.Closeable
+import me.devnatan.yoki.YokiConfigBuilder.Companion.DEFAULT_DOCKER_API_VERSION
+import me.devnatan.yoki.logging.Logger
+import me.devnatan.yoki.logging.createLogger
+import me.devnatan.yoki.net.createHttpClient
+import me.devnatan.yoki.resource.ContainerResource
+import me.devnatan.yoki.resource.ExecResource
+import me.devnatan.yoki.resource.ImageResource
+import me.devnatan.yoki.resource.NetworkResource
+import me.devnatan.yoki.resource.SecretResource
+import me.devnatan.yoki.resource.SystemResource
+import me.devnatan.yoki.resource.VolumeResource
+import me.devnatan.yoki.util.Closeable
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 

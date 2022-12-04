@@ -1,4 +1,4 @@
-package org.katan.yoki.resource
+package me.devnatan.yoki.resource
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -18,24 +18,24 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.katan.yoki.YokiResponseException
-import org.katan.yoki.logging.Logger
-import org.katan.yoki.models.Frame
-import org.katan.yoki.models.IdOnlyResponse
-import org.katan.yoki.models.ResizeTTYOptions
-import org.katan.yoki.models.Stream
-import org.katan.yoki.models.container.Container
-import org.katan.yoki.models.container.ContainerCreateOptions
-import org.katan.yoki.models.container.ContainerCreateResult
-import org.katan.yoki.models.container.ContainerListOptions
-import org.katan.yoki.models.container.ContainerLogsOptions
-import org.katan.yoki.models.container.ContainerPruneFilters
-import org.katan.yoki.models.container.ContainerPruneResult
-import org.katan.yoki.models.container.ContainerRemoveOptions
-import org.katan.yoki.models.container.ContainerSummary
-import org.katan.yoki.models.container.ContainerWaitResult
-import org.katan.yoki.models.exec.ExecCreateOptions
-import org.katan.yoki.net.requestCatching
+import me.devnatan.yoki.YokiResponseException
+import me.devnatan.yoki.logging.Logger
+import me.devnatan.yoki.models.Frame
+import me.devnatan.yoki.models.IdOnlyResponse
+import me.devnatan.yoki.models.ResizeTTYOptions
+import me.devnatan.yoki.models.Stream
+import me.devnatan.yoki.models.container.Container
+import me.devnatan.yoki.models.container.ContainerCreateOptions
+import me.devnatan.yoki.models.container.ContainerCreateResult
+import me.devnatan.yoki.models.container.ContainerListOptions
+import me.devnatan.yoki.models.container.ContainerLogsOptions
+import me.devnatan.yoki.models.container.ContainerPruneFilters
+import me.devnatan.yoki.models.container.ContainerPruneResult
+import me.devnatan.yoki.models.container.ContainerRemoveOptions
+import me.devnatan.yoki.models.container.ContainerSummary
+import me.devnatan.yoki.models.container.ContainerWaitResult
+import me.devnatan.yoki.models.exec.ExecCreateOptions
+import me.devnatan.yoki.net.requestCatching
 import kotlin.time.Duration
 
 public class ContainerResource internal constructor(

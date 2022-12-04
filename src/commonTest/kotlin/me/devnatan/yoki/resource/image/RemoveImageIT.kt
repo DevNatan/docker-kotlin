@@ -1,11 +1,11 @@
 @file:OptIn(ExperimentalCoroutinesApi::class)
 
-package org.katan.yoki.resource.image
+package me.devnatan.yoki.resource.image
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.test.runTest
-import org.katan.yoki.resource.ResourceIT
+import me.devnatan.yoki.resource.ResourceIT
 import kotlin.test.Test
 import kotlin.test.fail
 

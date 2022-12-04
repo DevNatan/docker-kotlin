@@ -1,10 +1,10 @@
-package org.katan.yoki.models
+package me.devnatan.yoki.models
 
 import kotlinx.serialization.Serializable
-import org.katan.yoki.models.Stream.Companion.StdErr
-import org.katan.yoki.models.Stream.Companion.StdIn
-import org.katan.yoki.models.Stream.Companion.StdOut
-import org.katan.yoki.models.Stream.Companion.Unknown
+import me.devnatan.yoki.models.Stream.Companion.StdErr
+import me.devnatan.yoki.models.Stream.Companion.StdIn
+import me.devnatan.yoki.models.Stream.Companion.StdOut
+import me.devnatan.yoki.models.Stream.Companion.Unknown
 
 @Serializable
 public data class Stream internal constructor(

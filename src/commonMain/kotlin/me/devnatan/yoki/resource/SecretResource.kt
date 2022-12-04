@@ -1,4 +1,4 @@
-package org.katan.yoki.resource
+package me.devnatan.yoki.resource
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -10,11 +10,11 @@ import io.ktor.client.request.setBody
 import io.ktor.http.HttpStatusCode
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.katan.yoki.models.IdOnlyResponse
-import org.katan.yoki.models.secret.Secret
-import org.katan.yoki.models.secret.SecretListFilters
-import org.katan.yoki.models.secret.SecretSpec
-import org.katan.yoki.net.requestCatching
+import me.devnatan.yoki.models.IdOnlyResponse
+import me.devnatan.yoki.models.secret.Secret
+import me.devnatan.yoki.models.secret.SecretListFilters
+import me.devnatan.yoki.models.secret.SecretSpec
+import me.devnatan.yoki.net.requestCatching
 
 /**
  * Secrets are sensitive data that can be used by Docker services.

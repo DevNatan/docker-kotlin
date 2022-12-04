@@ -1,4 +1,4 @@
-package org.katan.yoki.models.network
+package me.devnatan.yoki.models.network
 
 import kotlinx.serialization.Serializable
 import kotlin.jvm.JvmOverloads

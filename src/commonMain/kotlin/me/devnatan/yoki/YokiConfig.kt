@@ -1,11 +1,11 @@
-package org.katan.yoki
+package me.devnatan.yoki
 
-import org.katan.yoki.net.DEFAULT_DOCKER_HTTP_SOCKET
-import org.katan.yoki.net.DEFAULT_DOCKER_UNIX_SOCKET
-import org.katan.yoki.net.HTTP_SOCKET_PREFIX
-import org.katan.yoki.net.UNIX_SOCKET_PREFIX
-import org.katan.yoki.util.env
-import org.katan.yoki.util.isUnixPlatform
+import me.devnatan.yoki.net.DEFAULT_DOCKER_HTTP_SOCKET
+import me.devnatan.yoki.net.DEFAULT_DOCKER_UNIX_SOCKET
+import me.devnatan.yoki.net.HTTP_SOCKET_PREFIX
+import me.devnatan.yoki.net.UNIX_SOCKET_PREFIX
+import me.devnatan.yoki.util.env
+import me.devnatan.yoki.util.isUnixPlatform
 import kotlin.jvm.JvmSynthetic
 
 /**

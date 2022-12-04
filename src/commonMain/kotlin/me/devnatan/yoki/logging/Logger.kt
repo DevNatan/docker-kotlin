@@ -1,4 +1,4 @@
-package org.katan.yoki.logging
+package me.devnatan.yoki.logging
 
 public expect class Logger {
 

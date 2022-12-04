@@ -1,11 +1,10 @@
 @file:OptIn(ExperimentalCoroutinesApi::class)
 
-package org.katan.yoki.resource.network
+package me.devnatan.yoki.resource.network
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import org.katan.yoki.resource.ResourceIT
-import org.katan.yoki.resource.create
+import me.devnatan.yoki.resource.ResourceIT
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse

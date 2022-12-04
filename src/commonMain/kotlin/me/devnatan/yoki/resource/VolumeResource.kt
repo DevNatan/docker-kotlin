@@ -1,4 +1,4 @@
-package org.katan.yoki.resource
+package me.devnatan.yoki.resource
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -9,13 +9,13 @@ import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.katan.yoki.models.volume.Volume
-import org.katan.yoki.models.volume.VolumeCreateOptions
-import org.katan.yoki.models.volume.VolumeListOptions
-import org.katan.yoki.models.volume.VolumeListResponse
-import org.katan.yoki.models.volume.VolumePruneOptions
-import org.katan.yoki.models.volume.VolumePruneResponse
-import org.katan.yoki.models.volume.VolumeRemoveOptions
+import me.devnatan.yoki.models.volume.Volume
+import me.devnatan.yoki.models.volume.VolumeCreateOptions
+import me.devnatan.yoki.models.volume.VolumeListOptions
+import me.devnatan.yoki.models.volume.VolumeListResponse
+import me.devnatan.yoki.models.volume.VolumePruneOptions
+import me.devnatan.yoki.models.volume.VolumePruneResponse
+import me.devnatan.yoki.models.volume.VolumeRemoveOptions
 import kotlin.jvm.JvmOverloads
 
 public class VolumeResource internal constructor(

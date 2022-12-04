@@ -1,8 +1,8 @@
-package org.katan.yoki.models.exec
+package me.devnatan.yoki.models.exec
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import org.katan.yoki.models.ProcessConfig
+import me.devnatan.yoki.models.ProcessConfig
 
 @Serializable
 public data class ExecInspectResponse internal constructor(

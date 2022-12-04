@@ -1,10 +1,10 @@
-package org.katan.yoki.models.container
+package me.devnatan.yoki.models.container
 
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import org.katan.yoki.models.HealthConfig
-import org.katan.yoki.models.HostConfig
+import me.devnatan.yoki.models.HealthConfig
+import me.devnatan.yoki.models.HostConfig
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration

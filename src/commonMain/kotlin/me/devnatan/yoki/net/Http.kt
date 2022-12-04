@@ -1,4 +1,4 @@
-package org.katan.yoki.net
+package me.devnatan.yoki.net
 
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
@@ -20,12 +20,12 @@ import io.ktor.http.encodedPath
 import io.ktor.http.takeFrom
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
+import me.devnatan.yoki.GenericDockerErrorResponse
+import me.devnatan.yoki.Yoki
+import me.devnatan.yoki.YokiConfig
+import me.devnatan.yoki.YokiResponseException
 import okio.ByteString.Companion.decodeHex
 import okio.ByteString.Companion.encodeUtf8
-import org.katan.yoki.GenericDockerErrorResponse
-import org.katan.yoki.Yoki
-import org.katan.yoki.YokiConfig
-import org.katan.yoki.YokiResponseException
 
 internal expect fun <T : HttpClientEngineConfig> HttpClientConfig<out T>.configureHttpClient(
     client: Yoki,

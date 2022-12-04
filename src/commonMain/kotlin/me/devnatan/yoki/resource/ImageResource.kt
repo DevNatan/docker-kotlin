@@ -1,4 +1,4 @@
-package org.katan.yoki.resource
+package me.devnatan.yoki.resource
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -12,8 +12,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import org.katan.yoki.models.image.Image
-import org.katan.yoki.models.image.ImagePull
+import me.devnatan.yoki.models.image.Image
+import me.devnatan.yoki.models.image.ImagePull
 
 public class ImageResource internal constructor(
     private val httpClient: HttpClient,

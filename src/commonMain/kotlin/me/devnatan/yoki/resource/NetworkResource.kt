@@ -1,4 +1,4 @@
-package org.katan.yoki.resource
+package me.devnatan.yoki.resource
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -9,11 +9,11 @@ import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.katan.yoki.models.network.Network
-import org.katan.yoki.models.network.NetworkCreateOptions
-import org.katan.yoki.models.network.NetworkInspectOptions
-import org.katan.yoki.models.network.NetworkListFilters
-import org.katan.yoki.models.network.NetworkPruneOptions
+import me.devnatan.yoki.models.network.Network
+import me.devnatan.yoki.models.network.NetworkCreateOptions
+import me.devnatan.yoki.models.network.NetworkInspectOptions
+import me.devnatan.yoki.models.network.NetworkListFilters
+import me.devnatan.yoki.models.network.NetworkPruneOptions
 
 /**
  * Networks are user-defined networks that containers can be attached to.

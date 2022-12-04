@@ -13,7 +13,7 @@ plugins {
     alias(libs.plugins.detekt)
 }
 
-group = "org.katan"
+group = "me.devnatan"
 version = "0.0.1-SNAPSHOT"
 
 repositories {

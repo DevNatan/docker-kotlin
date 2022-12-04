@@ -1,12 +1,11 @@
 @file:OptIn(ExperimentalCoroutinesApi::class)
 
-package org.katan.yoki.resource.volume
+package me.devnatan.yoki.resource.volume
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import org.katan.yoki.resource.ResourceIT
-import org.katan.yoki.resource.create
-import org.katan.yoki.withVolume
+import me.devnatan.yoki.resource.ResourceIT
+import me.devnatan.yoki.withVolume
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue

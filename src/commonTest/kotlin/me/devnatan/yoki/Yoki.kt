@@ -1,4 +1,4 @@
-package org.katan.yoki
+package me.devnatan.yoki
 
 /**
  * Creates a new Yoki instance for testing.

@@ -1,8 +1,8 @@
-package org.katan.yoki.resource.system
+package me.devnatan.yoki.resource.system
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import org.katan.yoki.resource.ResourceIT
+import me.devnatan.yoki.resource.ResourceIT
 import kotlin.test.Test
 import kotlin.test.fail
 

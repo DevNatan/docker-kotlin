@@ -1,7 +1,7 @@
 # Yoki
 
-[![Build](https://github.com/KatanPanel/yoki/actions/workflows/build.yml/badge.svg)](https://github.com/KatanPanel/yoki/actions/workflows/build.yml)
-[![Integration Tests](https://github.com/KatanPanel/yoki/actions/workflows/integration-tests.yml/badge.svg)](https://github.com/KatanPanel/yoki/actions/workflows/integration-tests.yml)
+[![Build](https://github.com/DevNatan/yoki/actions/workflows/build.yml/badge.svg)](https://github.com/DevNatan/yoki/actions/workflows/build.yml)
+[![Integration Tests](https://github.com/DevNatan/yoki/actions/workflows/integration-tests.yml/badge.svg)](https://github.com/DevNatan/yoki/actions/workflows/integration-tests.yml)
 
 Yoki allows you to interact with the Docker Engine Remote API in a simplified and fast way.
 
@@ -11,9 +11,13 @@ Yoki allows you to interact with the Docker Engine Remote API in a simplified an
 * [Native Targets](#native-targets)
 * [Interoperability](#interoperability)
 
-```gradle
+```kotlin
+repositories {
+    maven("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+}
+
 dependencies {
-    implementation("org.katan:yoki:0.0.1")
+    implementation("me.devnatan:yoki:0.0.1-SNAPSHOT")
 }
 ```
 
@@ -27,7 +31,7 @@ the [`DOCKER_HOST` environment variable](https://docs.docker.com/compose/referen
 otherwise it will use the platform default.
 
 ```kotlin
-import org.katan.yoki
+import me.devnatan.yoki
 
 val client = Yoki()
 ```
@@ -56,9 +60,9 @@ The way to access resources is straight to the point, all functions (for Kotlin)
 ##### Get info about system version
 
 ```kotlin
-import org.katan.yoki
-import org.katan.yoki.models.system.SystemVersion
-import org.katan.yoki.resource.list
+import me.devnatan.yoki
+import me.devnatan.yoki.models.system.SystemVersion
+import me.devnatan.yoki.resource.list
 
 val client = Yoki()
 
@@ -68,8 +72,8 @@ val version: SystemVersion = client.system.version()
 ##### Listing all containers
 
 ```kotlin
-import org.katan.yoki
-import org.katan.yoki.resource.list
+import me.devnatan.yoki
+import me.devnatan.yoki.resource.list
 
 val client = Yoki()
 
@@ -81,8 +85,8 @@ client.containers.list {
 ##### Creating a new network
 
 ```kotlin
-import org.katan.yoki
-import org.katan.yoki.resource.create
+import me.devnatan.yoki
+import me.devnatan.yoki.resource.create
 
 val client = Yoki()
 
@@ -97,9 +101,9 @@ client.networks.create {
 Streaming methods will always return a [Flow](https://kotlinlang.org/docs/flow.html).
 
 ```kotlin
-import org.katan.yoki
-import org.katan.yoki.models.Frame
-import org.katan.yoki.resource.logs
+import me.devnatan.yoki
+import me.devnatan.yoki.models.Frame
+import me.devnatan.yoki.resource.logs
 
 val client = Yoki()
 

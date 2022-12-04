@@ -1,4 +1,4 @@
-package org.katan.yoki.util
+package me.devnatan.yoki.util
 
 public expect fun toJsonEncodedString(value: Any): String
 

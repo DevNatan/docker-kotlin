@@ -1,4 +1,4 @@
-package org.katan.yoki
+package me.devnatan.yoki
 
 import io.ktor.http.HttpStatusCode
 import kotlinx.serialization.Serializable

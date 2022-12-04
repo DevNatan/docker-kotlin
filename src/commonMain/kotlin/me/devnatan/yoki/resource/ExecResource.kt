@@ -1,4 +1,4 @@
-package org.katan.yoki.resource
+package me.devnatan.yoki.resource
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -6,10 +6,10 @@ import io.ktor.client.request.get
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.http.HttpStatusCode
-import org.katan.yoki.models.ResizeTTYOptions
-import org.katan.yoki.models.exec.ExecInspectResponse
-import org.katan.yoki.models.exec.ExecStartOptions
-import org.katan.yoki.net.requestCatching
+import me.devnatan.yoki.models.ResizeTTYOptions
+import me.devnatan.yoki.models.exec.ExecInspectResponse
+import me.devnatan.yoki.models.exec.ExecStartOptions
+import me.devnatan.yoki.net.requestCatching
 
 /**
  * Exec runs new commands inside running containers.

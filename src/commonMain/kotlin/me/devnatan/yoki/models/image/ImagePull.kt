@@ -1,4 +1,4 @@
-package org.katan.yoki.models.image
+package me.devnatan.yoki.models.image
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

@@ -1,4 +1,4 @@
-package org.katan.yoki.models
+package me.devnatan.yoki.models
 
 public open class Resource internal constructor() {
 

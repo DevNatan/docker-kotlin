@@ -1,14 +1,14 @@
 @file:OptIn(ExperimentalCoroutinesApi::class)
 
-package org.katan.yoki.resource.container
+package me.devnatan.yoki.resource.container
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import org.katan.yoki.keepStartedForever
-import org.katan.yoki.resource.ContainerAlreadyStartedException
-import org.katan.yoki.resource.ContainerNotFoundException
-import org.katan.yoki.resource.ResourceIT
-import org.katan.yoki.withContainer
+import me.devnatan.yoki.keepStartedForever
+import me.devnatan.yoki.resource.ContainerAlreadyStartedException
+import me.devnatan.yoki.resource.ContainerNotFoundException
+import me.devnatan.yoki.resource.ResourceIT
+import me.devnatan.yoki.withContainer
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
 

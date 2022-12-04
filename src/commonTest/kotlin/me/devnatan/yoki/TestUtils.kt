@@ -1,11 +1,10 @@
-package org.katan.yoki
+package me.devnatan.yoki
 
 import kotlinx.coroutines.flow.collect
-import org.katan.yoki.models.container.ContainerCreateOptions
-import org.katan.yoki.models.volume.Volume
-import org.katan.yoki.models.volume.VolumeCreateOptions
-import org.katan.yoki.resource.create
-import org.katan.yoki.resource.remove
+import me.devnatan.yoki.models.container.ContainerCreateOptions
+import me.devnatan.yoki.models.volume.Volume
+import me.devnatan.yoki.models.volume.VolumeCreateOptions
+import me.devnatan.yoki.resource.remove
 import kotlin.test.fail
 
 suspend fun <R> Yoki.withImage(imageName: String, block: suspend (String) -> R): R {

@@ -1,8 +1,8 @@
 // ktlint-disable filename
 
-package org.katan.yoki.logging
+package me.devnatan.yoki.logging
 
-import org.katan.yoki.Yoki
+import me.devnatan.yoki.Yoki
 import org.slf4j.LoggerFactory
 import org.slf4j.Logger as SLF4JLogger
 
@@ -31,5 +31,5 @@ public actual class Logger {
 }
 
 internal actual fun createLogger(): Logger {
-    return Logger()
+    return me.devnatan.yoki.logging.Logger()
 }

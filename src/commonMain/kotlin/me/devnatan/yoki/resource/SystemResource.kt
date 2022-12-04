@@ -1,12 +1,12 @@
-package org.katan.yoki.resource
+package me.devnatan.yoki.resource
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.head
-import org.katan.yoki.models.system.SystemPingData
-import org.katan.yoki.models.system.SystemVersion
-import org.katan.yoki.net.requestCatching
+import me.devnatan.yoki.models.system.SystemPingData
+import me.devnatan.yoki.models.system.SystemVersion
+import me.devnatan.yoki.net.requestCatching
 
 /**
  * Resource responsible for getting information from the operating system and the Docker daemon it is running on.
