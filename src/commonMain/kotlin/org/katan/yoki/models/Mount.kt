@@ -17,10 +17,17 @@ public data class Mount internal constructor(
 
     @Serializable
     public enum class Type {
-        @SerialName("bind") Bind,
-        @SerialName("volume") Volume,
-        @SerialName("tmpfs") Tmpfs,
-        @SerialName("npipe") NamedPipe,
+        @SerialName("bind")
+        Bind,
+
+        @SerialName("volume")
+        Volume,
+
+        @SerialName("tmpfs")
+        Tmpfs,
+
+        @SerialName("npipe")
+        NamedPipe,
     }
 }
 
@@ -35,46 +42,53 @@ public data class MountBindOptions(
 ) {
 
     /**
-     * Bind propagation refers to whether or not mounts created within a given bind-mount can be propagated to replicas
-     * of a given [Mount].
+     * Bind propagation refers to whether or not mounts created within a given bind-mount can be
+     * propagated to replicas of a given [Mount].
      */
     @Serializable
     public enum class Propagation {
         /**
-         * The mount is private. Sub-mounts within it are not exposed to replica mounts, and sub-mounts of replica
-         * mounts are not exposed to the original mount.
+         * The mount is private. Sub-mounts within it are not exposed to replica mounts, and
+         * sub-mounts of replica mounts are not exposed to the original mount.
          */
-        @SerialName("private") Private,
+        @SerialName("private")
+        Private,
 
         /**
-         * Sub-mounts of the original mount are exposed to replica mounts, and sub-mounts of replica mounts are also
-         * propagated to the original mount.
+         * Sub-mounts of the original mount are exposed to replica mounts, and sub-mounts of replica
+         * mounts are also propagated to the original mount.
          */
-        @SerialName("shared") Shared,
+        @SerialName("shared")
+        Shared,
 
         /**
-         * Similar to a [Shared] mount, but only in one direction. If the original mount exposes a sub-mount, the
-         * replica mount can see it. However, if the replica mount exposes a sub-mount, the original mount cannot see it.
+         * Similar to a [Shared] mount, but only in one direction. If the original mount exposes a
+         * sub-mount, the replica mount can see it. However, if the replica mount exposes a
+         * sub-mount, the original mount cannot  see it.
          */
-        @SerialName("slave") Slave,
+        @SerialName("slave")
+        Slave,
 
         /**
-         * The default. The same as [Private], meaning that no mount points anywhere within the original or replica mount
-         * points propagate in either direction.
+         * The default. The same as [Private], meaning that no mount points anywhere within the
+         * original or replica mount points propagate in either direction.
          */
-        @SerialName("rprivate") RPrivate,
+        @SerialName("rprivate")
+        RPrivate,
 
         /**
-         * The same as [Shared], but the propagation also extends to and from mount points nested within any of the
-         * original or replica mount points.
+         * The same as [Shared], but the propagation also extends to and from mount points nested
+         * within any of the original or replica mount points.
          */
-        @SerialName("rshared") RShared,
+        @SerialName("rshared")
+        RShared,
 
         /**
-         * The same as [Slave], but the propagation also extends to and from mount points nested within any of the
-         * original or replica mount points.
+         * The same as [Slave], but the propagation also extends to and from mount points nested
+         * within any of the original or replica mount points.
          */
-        @SerialName("rslave") RSlave,
+        @SerialName("rslave")
+        RSlave,
     }
 }
 
