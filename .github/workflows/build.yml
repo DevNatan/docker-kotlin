@@ -6,7 +6,6 @@ on:
   workflow_dispatch:
 jobs:
   check:
-    name: Lint Codebase
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -30,26 +29,7 @@ jobs:
         with:
           arguments: detekt --continue --stacktrace
           gradle-version: wrapper
-      - name: Install reviewdog
-        uses: reviewdog/action-setup@v1
-        if: ${{ failure() }}
-        continue-on-error: true
-      - name: Collect results
-        if: ${{ failure() }}
-        continue-on-error: true
-        env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          ./gradlew formatKotlin
-          TMPFILE=$(mktemp)
-          git diff >"${TMPFILE}"
-          ./gradlew lintKotlin --continue || true
-          ./gradlew detekt --continue || true
-          git stash -u && git stash drop || true
-          reviewdog -name="ktlint" -f=diff -f.diff.strip=1 -reporter="github-pr-review" < "${TMPFILE}"
-          cat ${{ github.workspace }}/build/reports/ktlint/commonMain-lint.xml | reviewdog -f=checkstyle -name="ktlint" -reporter="github-pr-review" -level="error" -filter-mode="added" -fail-on-error="false"
-#          cat ${{ github.workspace }}/build/reports/detekt/detekt.xml | reviewdog -f=checkstyle -name="detekt" -reporter="github-pr-review" -level="error" -filter-mode="added" -fail-on-error="false"
-      - name: Generate coverage report
+      - name: Kover
         uses: burrunan/gradle-cache-action@v1
         with:
           arguments: koverXmlReport --continue --stacktrace
@@ -63,7 +43,6 @@ jobs:
           fail_ci_if_error: true
           verbose: true
   build:
-    name: Build
     runs-on: ubuntu-latest
     permissions:
       contents: read
