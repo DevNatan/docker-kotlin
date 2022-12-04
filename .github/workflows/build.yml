@@ -49,6 +49,17 @@ jobs:
           reviewdog -name="ktlint" -f=diff -f.diff.strip=1 -reporter="github-pr-review" < "${TMPFILE}"
           cat ${{ github.workspace }}/build/reports/ktlint/main-lint.xml | reviewdog -f=checkstyle -name="ktlint" -reporter="github-pr-review" -level="error" -filter-mode="added" -fail-on-error="false"
           cat ${{ github.workspace }}/build/reports/detekt/detekt.xml | reviewdog -f=checkstyle -name="detekt" -reporter="github-pr-review" -level="error" -filter-mode="added" -fail-on-error="false"
+      - name: Generate coverage report
+        uses: burrunan/gradle-cache-action@v1
+        with:
+          arguments: koverXmlReport --continue --stacktrace
+          gradle-version: wrapper
+      - name: Upload coverage to Codecov
+      - uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ${{ github.workspace }}/build/reports/kover/report.xml
+          verbose: true
   build:
     name: Build
     runs-on: ubuntu-latest
