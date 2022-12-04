@@ -43,7 +43,7 @@ public inline fun Yoki(
  */
 @YokiDsl
 public class Yoki @PublishedApi internal constructor(
-    public val config: YokiConfig,
+    public val config: YokiConfig
 ) : Closeable {
 
     private val httpClient: HttpClient = createHttpClient(this)
