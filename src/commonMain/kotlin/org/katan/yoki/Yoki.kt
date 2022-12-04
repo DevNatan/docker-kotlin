@@ -13,6 +13,7 @@ import org.katan.yoki.resource.NetworkResource
 import org.katan.yoki.resource.SecretResource
 import org.katan.yoki.resource.SystemResource
 import org.katan.yoki.resource.VolumeResource
+import org.katan.yoki.util.Closeable
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 

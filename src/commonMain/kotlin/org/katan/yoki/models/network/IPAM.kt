@@ -2,7 +2,6 @@ package org.katan.yoki.models.network
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import org.katan.yoki.models.UserDefinedMetadata
 
 /**
  * Network IPAM (IP Address Management) is the administration of DNS and DHCP, which are the network services that
@@ -16,7 +15,7 @@ import org.katan.yoki.models.UserDefinedMetadata
 public data class IPAM(
     @SerialName("Driver") public val driver: String,
     @SerialName("Config") public val config: List<IPAMConfig>? = null,
-    @SerialName("Options") public val options: UserDefinedMetadata? = null,
+    @SerialName("Options") public val options: Map<String, String?>? = null,
 )
 
 /**
