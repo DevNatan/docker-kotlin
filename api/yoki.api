@@ -1,8 +1,3 @@
-public final class org/katan/yoki/MainKt {
-	public static final fun main ()V
-	public static synthetic fun main ([Ljava/lang/String;)V
-}
-
 public final class org/katan/yoki/Yoki : java/io/Closeable {
 	public static final field Companion Lorg/katan/yoki/Yoki$Companion;
 	public final field containers Lorg/katan/yoki/resource/ContainerResource;
