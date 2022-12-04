@@ -22,5 +22,5 @@ public data class NetworkListFilters @JvmOverloads public constructor(
     public var id: String? = null,
     public var name: String? = null,
     public var scope: String? = null,
-    public var type: String? = null
+    public var type: String? = null,
 )

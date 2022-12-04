@@ -27,7 +27,7 @@ public class ContainerLogsOptions @JvmOverloads constructor(
     public var until: Long? = null,
     @SerialName("timestamps") public var showTimestamps: Boolean? = null,
     public var tail: String? = null,
-    public var splitLineBreaks: Boolean = false
+    public var splitLineBreaks: Boolean = false,
 ) {
 
     public fun setTailAll() {

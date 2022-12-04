@@ -14,5 +14,5 @@ public data class Image(
     @SerialName("SharedSize") public val sharedSize: Int,
     @SerialName("VirtualSize") public val virtualSize: Int,
     @SerialName("Labels") public val labels: Map<String, String?>?,
-    @SerialName("Containers") public val containers: Int
+    @SerialName("Containers") public val containers: Int,
 )

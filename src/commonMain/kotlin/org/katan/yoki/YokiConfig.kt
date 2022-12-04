@@ -123,7 +123,7 @@ public class YokiConfigBuilder {
         socketPath = envOrFallback(
             key = DOCKER_HOST_ENV_KEY,
             fallback = selectDockerSocketPath(),
-            prefix = null
+            prefix = null,
         )
         return this
     }
@@ -148,8 +148,11 @@ public class YokiConfigBuilder {
         prefix: String?,
     ): String {
         return env(key)?.ifBlank { null }?.let { path ->
-            if (prefix == null || path.startsWith(prefix)) path
-            else null
+            if (prefix == null || path.startsWith(prefix)) {
+                path
+            } else {
+                null
+            }
         } ?: fallback
     }
 
@@ -157,9 +160,10 @@ public class YokiConfigBuilder {
      * Selects a Docker socket path based on current OS.
      */
     private fun selectDockerSocketPath(): String {
-        return if (isUnixPlatform())
+        return if (isUnixPlatform()) {
             DEFAULT_DOCKER_UNIX_SOCKET
-        else
+        } else {
             DEFAULT_DOCKER_HTTP_SOCKET
+        }
     }
 }

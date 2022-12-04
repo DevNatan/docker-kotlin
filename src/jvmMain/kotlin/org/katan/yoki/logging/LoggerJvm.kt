@@ -1,4 +1,4 @@
-@file:Suppress("MatchingDeclarationName")
+// ktlint-disable filename
 
 package org.katan.yoki.logging
 
@@ -9,6 +9,7 @@ import org.slf4j.Logger as SLF4JLogger
 public actual class Logger {
 
     public companion object {
+        @Suppress("MemberNameEqualsClassName")
         private val logger: SLF4JLogger = LoggerFactory.getLogger(Yoki::class.java)
     }
 

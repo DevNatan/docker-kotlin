@@ -43,15 +43,16 @@ public class SystemResource internal constructor(
     @JvmOverloads
     public suspend fun ping(head: Boolean = true): SystemPingData {
         return requestCatching {
-            if (head)
+            if (head) {
                 httpClient.head(PING_ENDPOINT)
-            else
+            } else {
                 httpClient.get(PING_ENDPOINT)
+            }
         }.headers.let { headers ->
             SystemPingData(
                 apiVersion = headers["API-Version"].orEmpty(),
                 builderVersion = headers["Builder-Version"].orEmpty(),
-                experimental = headers["Docker-Experimental"]?.toBooleanStrict() ?: false
+                experimental = headers["Docker-Experimental"]?.toBooleanStrict() ?: false,
             )
         }
     }

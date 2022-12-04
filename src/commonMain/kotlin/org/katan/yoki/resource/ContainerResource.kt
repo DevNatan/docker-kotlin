@@ -55,8 +55,8 @@ public class ContainerResource internal constructor(
     public suspend fun list(): List<ContainerSummary> {
         return list(
             ContainerListOptions(
-                all = true
-            )
+                all = true,
+            ),
         )
     }
 
@@ -144,7 +144,7 @@ public class ContainerResource internal constructor(
     public suspend fun remove(id: String) {
         requestCatching(
             HttpStatusCode.NotFound to { ContainerNotFoundException(it, id) },
-            HttpStatusCode.Conflict to { ContainerRemoveConflictException(it, id) }
+            HttpStatusCode.Conflict to { ContainerRemoveConflictException(it, id) },
         ) {
             httpClient.delete("$BASE_PATH/$id")
         }
@@ -166,7 +166,7 @@ public class ContainerResource internal constructor(
      */
     public suspend fun inspect(id: String, size: Boolean = false): Container {
         return requestCatching(
-            HttpStatusCode.NotFound to { ContainerNotFoundException(it, id) }
+            HttpStatusCode.NotFound to { ContainerNotFoundException(it, id) },
         ) {
             httpClient.get("$BASE_PATH/$id/json") {
                 parameter("size", size)
@@ -207,7 +207,7 @@ public class ContainerResource internal constructor(
                     val payload = ByteReadChannel(
                         ByteArray(len) {
                             if (it == 0) fb else channel.readByte()
-                        }
+                        },
                     )
 
                     val line = payload.readUTF8Line() ?: error("Payload cannot be null")
@@ -287,7 +287,7 @@ public class ContainerResource internal constructor(
         options: ResizeTTYOptions,
     ) {
         requestCatching(
-            HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, container) }
+            HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, container) },
         ) {
             httpClient.post("$BASE_PATH/$container/resize") {
                 setBody(options)
@@ -304,7 +304,7 @@ public class ContainerResource internal constructor(
     public suspend fun exec(container: String, options: ExecCreateOptions): String {
         return requestCatching(
             HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, container) },
-            HttpStatusCode.Conflict to { exception -> ContainerNotRunningException(exception, container) }
+            HttpStatusCode.Conflict to { exception -> ContainerNotRunningException(exception, container) },
         ) {
             httpClient.post("$BASE_PATH/$container/exec") {
                 setBody(options)

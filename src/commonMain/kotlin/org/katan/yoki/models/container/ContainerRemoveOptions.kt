@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 public data class ContainerRemoveOptions(
     public var removeAnonymousVolumes: Boolean = false,
     public var force: Boolean = false,
-    public var unlink: Boolean = false
+    public var unlink: Boolean = false,
 )

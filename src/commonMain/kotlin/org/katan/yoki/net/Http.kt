@@ -28,7 +28,7 @@ import org.katan.yoki.YokiConfig
 import org.katan.yoki.YokiResponseException
 
 internal expect fun <T : HttpClientEngineConfig> HttpClientConfig<out T>.configureHttpClient(
-    client: Yoki
+    client: Yoki,
 )
 
 private fun checkSocketPath(config: YokiConfig) {
@@ -43,7 +43,7 @@ internal fun createHttpClient(client: Yoki): HttpClient {
             json(
                 Json {
                     ignoreUnknownKeys = true
-                }
+                },
             )
         }
         // TODO set Yoki version on user agent
@@ -73,7 +73,7 @@ internal fun createHttpClient(client: Yoki): HttpClient {
                 URLBuilder(createUrlBuilder(client.config.socketPath)).apply {
                     encodedPath = "/v${client.config.apiVersion}/"
                     encodedPath += url.encodedPath
-                }
+                },
             )
         }
     }
@@ -91,23 +91,24 @@ private fun createUrlBuilder(socketPath: String): URLBuilder {
         URLBuilder(
             protocol = URLProtocol.HTTP,
             port = DOCKER_SOCKET_PORT,
-            host = socketPath.substringAfter(UNIX_SOCKET_PREFIX).encodeUtf8().hex() + ENCODED_HOSTNAME_SUFFIX
+            host = socketPath.substringAfter(UNIX_SOCKET_PREFIX).encodeUtf8().hex() + ENCODED_HOSTNAME_SUFFIX,
         )
     } else {
         val url = Url(socketPath)
         URLBuilder(
             protocol = URLProtocol.HTTP,
             host = url.host,
-            port = url.port
+            port = url.port,
         )
     }
 }
 
 internal fun <T> Result<T>.mapFailureToHttpStatus(
-    statuses: Map<HttpStatusCode, (YokiResponseException) -> Throwable>
+    statuses: Map<HttpStatusCode, (YokiResponseException) -> Throwable>,
 ) = onFailure { exception ->
-    if (exception !is YokiResponseException)
+    if (exception !is YokiResponseException) {
         throw exception
+    }
 
     val resourceException = statuses.entries.firstOrNull { (code, _) ->
         code == exception.statusCode
@@ -121,5 +122,5 @@ internal fun <T> Result<T>.mapFailureToHttpStatus(
 
 internal inline fun requestCatching(
     vararg errors: Pair<HttpStatusCode, (YokiResponseException) -> Throwable>,
-    request: () -> HttpResponse
+    request: () -> HttpResponse,
 ) = runCatching(request).mapFailureToHttpStatus(errors.toMap()).getOrThrow()

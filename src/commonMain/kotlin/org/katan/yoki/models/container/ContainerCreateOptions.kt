@@ -30,7 +30,7 @@ public data class ContainerCreateOptions(
     @SerialName("Shell") public var shell: List<String>? = null,
     @SerialName("Labels") public var labels: Map<String, String>? = null,
     @SerialName("OnBuild") public var buildMetadata: List<String>? = null,
-    @SerialName("ExposedPorts") public var exposedPorts: Map<String, @Contextual Any>? = null
+    @SerialName("ExposedPorts") public var exposedPorts: Map<String, @Contextual Any>? = null,
 )
 
 public fun ContainerCreateOptions.stopTimeout(stopTimeout: Duration) {

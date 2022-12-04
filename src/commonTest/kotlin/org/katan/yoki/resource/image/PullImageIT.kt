@@ -15,8 +15,8 @@ class PullImageIT : ResourceIT() {
     fun `image pull`() = runTest {
         testClient.withImage("busybox:latest") { imageTag ->
             assertTrue(
-                testClient.images.list().any { it.repositoryTags.any { repoTag -> repoTag == imageTag } },
-                "Pulled image must be in the images list"
+                actual = testClient.images.list().any { it.repositoryTags.any { repoTag -> repoTag == imageTag } },
+                message = "Pulled image must be in the images list",
             )
         }
     }

@@ -12,5 +12,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class VolumeListResponse(
     @SerialName("Volumes") public val volumes: List<Volume>,
-    @SerialName("Warnings") public val warnings: List<String>?
+    @SerialName("Warnings") public val warnings: List<String>?,
 )

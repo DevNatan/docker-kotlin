@@ -15,7 +15,7 @@ public data class Network(
     @SerialName("Ingress") val ingress: Boolean = false,
     @SerialName("Containers") val containers: Map<String, NetworkContainer> = emptyMap(),
     @SerialName("Options") val options: Map<String, String> = emptyMap(),
-    @SerialName("Labels") val labels: Map<String, String> = emptyMap()
+    @SerialName("Labels") val labels: Map<String, String> = emptyMap(),
 )
 
 public const val NetworkCustomType: String = "custom"

@@ -23,13 +23,13 @@ import kotlin.jvm.JvmStatic
  * @param config Yoki configuration.
  */
 public inline fun Yoki(
-    crossinline config: YokiConfigBuilder.() -> Unit = {}
+    crossinline config: YokiConfigBuilder.() -> Unit = {},
 ): Yoki {
     return Yoki(
         YokiConfigBuilder()
             .forCurrentPlatform()
             .apply(config)
-            .build()
+            .build(),
     )
 }
 
@@ -43,7 +43,7 @@ public inline fun Yoki(
  */
 @YokiDsl
 public class Yoki @PublishedApi internal constructor(
-    public val config: YokiConfig
+    public val config: YokiConfig,
 ) : Closeable {
 
     private val httpClient: HttpClient = createHttpClient(this)

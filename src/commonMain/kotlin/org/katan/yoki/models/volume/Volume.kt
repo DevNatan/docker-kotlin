@@ -11,5 +11,5 @@ public data class Volume(
     @SerialName("Mountpoint") public val mountPoint: String,
     @SerialName("CreatedAt") public val createdAt: String?,
     @SerialName("Labels") public val labels: Map<String, String>?,
-    @SerialName("Options") public val options: Map<String, String>?
+    @SerialName("Options") public val options: Map<String, String>?,
 )

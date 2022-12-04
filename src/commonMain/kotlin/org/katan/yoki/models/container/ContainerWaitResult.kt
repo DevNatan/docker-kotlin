@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class ContainerWaitResult internal constructor(
     @SerialName("StatusCode") public val statusCode: Int,
-    @SerialName("Error") public val error: Error? = null
+    @SerialName("Error") public val error: Error? = null,
 ) {
 
     @Serializable

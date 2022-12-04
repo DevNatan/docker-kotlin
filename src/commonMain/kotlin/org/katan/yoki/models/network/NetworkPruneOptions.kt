@@ -13,5 +13,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class NetworkPruneOptions(
     public var until: String? = null,
-    public var label: String? = null
+    public var label: String? = null,
 )

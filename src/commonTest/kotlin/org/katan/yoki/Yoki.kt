@@ -8,6 +8,7 @@ fun createTestYoki(block: YokiConfigBuilder.() -> Unit = {}): Yoki {
     return runCatching {
         Yoki { apply(block) }
     }.onFailure {
+        @Suppress("TooGenericExceptionThrown")
         throw RuntimeException("Failed to initialize Yoki test client", it)
     }.getOrThrow()
 }

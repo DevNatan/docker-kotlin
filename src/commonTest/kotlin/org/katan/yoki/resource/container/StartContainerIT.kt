@@ -30,9 +30,10 @@ class StartContainerIT : ResourceIT() {
 
     @Test
     fun `throws ContainerAlreadyStartedException on start a already started container`() = runTest {
-        testClient.withContainer("busybox:latest", {
-            keepStartedForever()
-        }) { container ->
+        testClient.withContainer(
+            image = "busybox:latest",
+            options = { keepStartedForever() },
+        ) { container ->
             testClient.containers.start(container)
 
             assertFailsWith<ContainerAlreadyStartedException> {

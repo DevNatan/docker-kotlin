@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 public data class VolumePruneOptions(
-    public var label: String? = null
+    public var label: String? = null,
 )

@@ -13,5 +13,5 @@ import kotlinx.serialization.Serializable
 public data class SecretListFilters(
     public var id: String? = null,
     public var label: String? = null,
-    public var name: String? = null
+    public var name: String? = null,
 )
