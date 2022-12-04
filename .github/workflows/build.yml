@@ -43,10 +43,8 @@ jobs:
           ./gradlew formatKotlin
           TMPFILE=$(mktemp)
           git diff >"${TMPFILE}"
-          ./gradlew cleanReports
           ./gradlew lintKotlin --continue || true
           ./gradlew detekt --continue || true
-          ./gradlew mergeCheckstyles
           git stash -u && git stash drop || true
           reviewdog -name="ktlint" -f=diff -f.diff.strip=1 -reporter="github-pr-review" < "${TMPFILE}"
           cat ${{ github.workspace }}/build/reports/ktlint/main-lint.xml | reviewdog -f=checkstyle -name="ktlint" -reporter="github-pr-review" -level="error" -filter-mode="added" -fail-on-error="false"
