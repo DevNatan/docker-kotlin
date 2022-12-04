@@ -1,9 +1,55 @@
 name: Build
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   workflow_dispatch:
 jobs:
+  check:
+    name: Lint Codebase
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup JDK 8
+        uses: actions/setup-java@v2
+        with:
+          java-version: '8'
+          distribution: 'adopt'
+          server-id: github
+          cache: 'gradle'
+      - name: Gradle Wrapper Validation
+        uses: gradle/wrapper-validation-action@v1.0.4
+      - name: KtLint
+        uses: burrunan/gradle-cache-action@v1
+        with:
+          arguments: lintKotlin --continue --stacktrace
+          gradle-version: wrapper
+      - name: Detekt
+        uses: burrunan/gradle-cache-action@v1
+        with:
+          arguments: detekt --continue --stacktrace
+          gradle-version: wrapper
+      - name: Install reviewdog
+        uses: reviewdog/action-setup@v1
+        if: ${{ failure() }}
+        continue-on-error: true
+      - name: Collect results
+        if: ${{ failure() }}
+        continue-on-error: true
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ./gradlew formatKotlin
+          TMPFILE=$(mktemp)
+          git diff >"${TMPFILE}"
+          ./gradlew cleanReports
+          ./gradlew lintKotlin --continue || true
+          ./gradlew detekt --continue || true
+          ./gradlew mergeCheckstyles
+          git stash -u && git stash drop || true
+          reviewdog -name="ktlint" -f=diff -f.diff.strip=1 -reporter="github-pr-review" < "${TMPFILE}"
+          cat ${{ github.workspace }}/build/reports/ktlint/main-lint.xml | reviewdog -f=checkstyle -name="ktlint" -reporter="github-pr-review" -level="error" -filter-mode="added" -fail-on-error="false"
+          cat ${{ github.workspace }}/build/reports/detekt/detekt.xml | reviewdog -f=checkstyle -name="detekt" -reporter="github-pr-review" -level="error" -filter-mode="added" -fail-on-error="false"
   build:
     name: Build
     runs-on: ubuntu-latest
