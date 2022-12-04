@@ -9,7 +9,7 @@ import org.katan.yoki.models.Stream.Companion.Unknown
 @Serializable
 public data class Stream internal constructor(
     internal val code: Byte,
-    public val name: String
+    public val name: String,
 ) {
 
     public companion object {
@@ -53,5 +53,5 @@ public fun stream(name: String): Stream {
 public data class Frame(
     public val value: String,
     public val length: Int,
-    public val stream: Stream
+    public val stream: Stream,
 )

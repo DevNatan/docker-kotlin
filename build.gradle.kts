@@ -1,6 +1,8 @@
 // https://youtrack.jetbrains.com/issue/KTIJ-19369
 @file:Suppress("DSL_SCOPE_VIOLATION", "UnstableApiUsage")
 
+import io.gitlab.arturbosch.detekt.Detekt
+
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlinx.serialization)
@@ -161,9 +163,23 @@ tasks {
     check {
         dependsOn("installKotlinterPrePushHook")
     }
+
+    withType<Detekt>().configureEach {
+        jvmTarget = "1.8"
+
+        reports {
+            xml.required.set(true)
+        }
+    }
 }
 
 detekt {
     buildUponDefaultConfig = true
     allRules = false
+    config = files("$projectDir/config/detekt.yml")
+    baseline = file("$projectDir/config/baseline.xml")
+}
+
+kover {
+    isDisabled.set(false)
 }

@@ -9,7 +9,7 @@ public data class Healthcheck internal constructor(
     // TODO create sealed class for status
     @SerialName("Status") public val statusString: String,
     @SerialName("FailingStreak") public val failingStreak: Int,
-    @SerialName("Log") public val logs: List<HealthcheckResult> = emptyList()
+    @SerialName("Log") public val logs: List<HealthcheckResult> = emptyList(),
 )
 
 @Serializable

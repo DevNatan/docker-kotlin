@@ -7,7 +7,7 @@ public data class ContainerListOptions(
     public var all: Boolean? = null,
     public var limit: Int? = null,
     public var size: Boolean? = null,
-    public var filters: Filters? = null
+    public var filters: Filters? = null,
 ) {
 
     @Serializable
@@ -26,7 +26,7 @@ public data class ContainerListOptions(
         public var publish: List<String>? = null, // TODO ExposedPort type
         public var since: List<String>? = null,
         public var status: List<String>? = null, // TODO use ContainerStatus object
-        public var volume: List<String>? = null
+        public var volume: List<String>? = null,
     )
 }
 

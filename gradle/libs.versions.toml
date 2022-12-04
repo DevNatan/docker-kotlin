@@ -8,11 +8,11 @@ ktx-datetime = "0.4.0"
 junit = "5.6.2"
 okio = "3.2.0"
 slf4j = "2.0.3"
-plugin-kotlinter = "3.9.0"
+plugin-kotlinter = "3.12.0"
 plugin-publishOnCentral = "2.0.8"
 plugin-binaryCompatibilityValidator = "0.12.1"
 plugin-kover = "0.6.1"
-plugin-detekt = "1.22.0-RC2"
+plugin-detekt = "1.22.0"
 
 [libraries.ktx-coroutines-core]
 module = "org.jetbrains.kotlinx:kotlinx-coroutines-core"

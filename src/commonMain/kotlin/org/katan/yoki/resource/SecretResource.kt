@@ -35,7 +35,7 @@ public class SecretResource internal constructor(
      */
     public suspend fun list(filters: SecretListFilters? = null): List<Secret> {
         return requestCatching(
-            HttpStatusCode.ServiceUnavailable to ::NodeNotPartOfSwarmException
+            HttpStatusCode.ServiceUnavailable to ::NodeNotPartOfSwarmException,
         ) {
             httpClient.get(BASE_PATH) {
                 parameter("filters", filters?.let(json::encodeToString))
@@ -69,7 +69,7 @@ public class SecretResource internal constructor(
     public suspend fun create(options: SecretSpec): String {
         return requestCatching(
             HttpStatusCode.Conflict to { SecretNameConflictException(it, options.name) },
-            HttpStatusCode.ServiceUnavailable to ::NodeNotPartOfSwarmException
+            HttpStatusCode.ServiceUnavailable to ::NodeNotPartOfSwarmException,
         ) {
             httpClient.post("$BASE_PATH/create") {
                 setBody(options)
@@ -87,7 +87,7 @@ public class SecretResource internal constructor(
     public suspend fun update(id: String, version: Long, options: SecretSpec) {
         requestCatching(
             HttpStatusCode.NotFound to { SecretNotFoundException(it, id, version) },
-            HttpStatusCode.ServiceUnavailable to ::NodeNotPartOfSwarmException
+            HttpStatusCode.ServiceUnavailable to ::NodeNotPartOfSwarmException,
         ) {
             httpClient.post("$BASE_PATH/$id/update") {
                 parameter("version", version)

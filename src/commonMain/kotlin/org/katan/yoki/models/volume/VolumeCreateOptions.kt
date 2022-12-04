@@ -16,5 +16,5 @@ public data class VolumeCreateOptions(
     @SerialName("Name") public var name: String? = null,
     @SerialName("Driver") public var driver: String? = null,
     @SerialName("DriverOpts") public var driverOpts: Map<String, String>? = null,
-    @SerialName("Labels") public var labels: Map<String, String>? = null
+    @SerialName("Labels") public var labels: Map<String, String>? = null,
 )

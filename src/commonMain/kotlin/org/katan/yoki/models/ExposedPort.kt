@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class ExposedPort internal constructor(
     public val protocol: String,
-    public val port: Short
+    public val port: Short,
 )
 
 public fun exposedPort(port: Short): ExposedPort = ExposedPort("tcp", port)

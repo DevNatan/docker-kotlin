@@ -15,7 +15,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class NetworkInspectOptions(
     public var verbose: Boolean? = null,
-    public var scope: String? = null
+    public var scope: String? = null,
 ) {
 
     init {

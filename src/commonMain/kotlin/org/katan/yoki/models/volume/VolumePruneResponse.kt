@@ -12,5 +12,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 public data class VolumePruneResponse internal constructor(
     @SerialName("VolumesDeleted") public val volumesDeleted: List<String>?,
-    @SerialName("SpaceReclaimed") public val spaceReclaimed: Long
+    @SerialName("SpaceReclaimed") public val spaceReclaimed: Long,
 )

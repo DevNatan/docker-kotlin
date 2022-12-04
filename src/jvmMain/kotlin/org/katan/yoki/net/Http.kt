@@ -9,7 +9,7 @@ import org.katan.yoki.Yoki
 import java.util.concurrent.TimeUnit
 
 internal actual fun <T : HttpClientEngineConfig> HttpClientConfig<out T>.configureHttpClient(
-    client: Yoki
+    client: Yoki,
 ) {
     engine {
         // ensure that current engine is OkHttp, cannot use CIO due to a Ktor Client bug related to data streaming
@@ -18,8 +18,9 @@ internal actual fun <T : HttpClientEngineConfig> HttpClientConfig<out T>.configu
 
         config {
             val isUnixSocket = isUnixSocket(client.config.socketPath)
-            if (isUnixSocket)
+            if (isUnixSocket) {
                 socketFactory(UnixSocketFactory())
+            }
             dns(SocketDns(isUnixSocket))
             readTimeout(0, TimeUnit.MILLISECONDS)
             connectTimeout(0, TimeUnit.MILLISECONDS)

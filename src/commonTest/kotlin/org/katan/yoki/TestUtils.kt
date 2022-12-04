@@ -25,7 +25,7 @@ suspend fun <R> Yoki.withImage(imageName: String, block: suspend (String) -> R):
 suspend fun <R> Yoki.withContainer(
     image: String,
     options: ContainerCreateOptions.() -> Unit = {},
-    block: suspend (String) -> R
+    block: suspend (String) -> R,
 ) = withImage(image) { imageTag ->
     try {
         val id = containers.create {
@@ -44,7 +44,7 @@ suspend fun <R> Yoki.withContainer(
 
 suspend fun <R> Yoki.withVolume(
     config: VolumeCreateOptions.() -> Unit = {},
-    block: suspend (Volume) -> R
+    block: suspend (Volume) -> R,
 ) {
     try {
         val volume = volumes.create(config)

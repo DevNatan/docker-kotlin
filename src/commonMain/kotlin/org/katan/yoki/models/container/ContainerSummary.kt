@@ -27,6 +27,6 @@ public data class ContainerSummary internal constructor(
 
     @Serializable
     public data class HostConfig internal constructor(
-        @SerialName("NetworkMode") val networkMode: String
+        @SerialName("NetworkMode") val networkMode: String,
     )
 }
