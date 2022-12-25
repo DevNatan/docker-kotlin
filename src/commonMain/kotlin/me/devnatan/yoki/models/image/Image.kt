@@ -7,8 +7,8 @@ import kotlinx.serialization.Serializable
 public data class Image(
     @SerialName("Id") public val id: String,
     @SerialName("ParentId") public val parentId: String,
-    @SerialName("RepoTags") public val repositoryTags: List<String>,
-    @SerialName("RepoDigests") public val repositoryDigests: List<String>,
+    @SerialName("RepoTags") public val repositoryTags: List<String>?,
+    @SerialName("RepoDigests") public val repositoryDigests: List<String>?,
     @SerialName("Created") public val created: Int,
     @SerialName("Size") public val size: Int,
     @SerialName("SharedSize") public val sharedSize: Int,

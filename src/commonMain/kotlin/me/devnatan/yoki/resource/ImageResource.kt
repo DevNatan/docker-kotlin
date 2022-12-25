@@ -12,8 +12,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import me.devnatan.yoki.models.image.Image
 import me.devnatan.yoki.models.image.ImagePull
+import me.devnatan.yoki.models.image.ImageSummary
 
 public class ImageResource internal constructor(
     private val httpClient: HttpClient,
@@ -24,7 +24,7 @@ public class ImageResource internal constructor(
         private const val BASE_PATH = "/images"
     }
 
-    public suspend fun list(): List<Image> {
+    public suspend fun list(): List<ImageSummary> {
         return httpClient.get("$BASE_PATH/json").body()
     }
 
