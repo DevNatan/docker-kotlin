@@ -29,19 +29,6 @@ jobs:
         with:
           arguments: detekt --continue --stacktrace
           gradle-version: wrapper
-      - name: Kover
-        uses: burrunan/gradle-cache-action@v1
-        with:
-          arguments: koverXmlReport --continue --stacktrace
-          gradle-version: wrapper
-        continue-on-error: true
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ${{ github.workspace }}/build/reports/kover/report.xml
-          fail_ci_if_error: true
-          verbose: true
   binary-compatibility:
     runs-on: ubuntu-latest
     steps:
