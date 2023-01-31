@@ -76,13 +76,23 @@ public class ContainerResource internal constructor(
 
     /**
      * Creates a new container.
+     *
+     * @param options Options to customize the container creation.
+     *
+     * @throws ImageNotFoundException If the image specified does not exist or isn't pulled.
+     * @throws ContainerAlreadyExistsException If a container with the same name already exists.
      */
     public suspend fun create(options: ContainerCreateOptions): String {
         requireNotNull(options.image) { "Container image is required" }
 
-        val result = httpClient.post("$BASE_PATH/create") {
-            parameter("name", options.name)
-            setBody(options)
+        val result = requestCatching(
+            HttpStatusCode.NotFound to { ImageNotFoundException(it, options.image.orEmpty()) },
+            HttpStatusCode.Conflict to { ContainerAlreadyExistsException(it, options.name.orEmpty()) },
+        ) {
+            httpClient.post("$BASE_PATH/create") {
+                parameter("name", options.name)
+                setBody(options)
+            }
         }.body<ContainerCreateResult>()
 
         result.warnings.forEach(logger::warn)

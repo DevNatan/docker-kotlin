@@ -11,6 +11,11 @@ public class ContainerAlreadyStartedException internal constructor(
     public val containerId: String,
 ) : ContainerException(cause)
 
+public class ContainerAlreadyExistsException internal constructor(
+    cause: Throwable?,
+    public val name: String,
+) : ContainerException(cause)
+
 public class ContainerNotFoundException internal constructor(
     cause: Throwable?,
     public val containerId: String,
