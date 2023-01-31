@@ -3506,6 +3506,13 @@ public final class me/devnatan/yoki/resource/ImageResource {
 public final class me/devnatan/yoki/resource/ImageResource$Companion {
 }
 
+public class me/devnatan/yoki/resource/NetworkException : me/devnatan/yoki/YokiResourceException {
+}
+
+public final class me/devnatan/yoki/resource/NetworkNotFoundException : me/devnatan/yoki/resource/NetworkException {
+	public final fun getNetworkId ()Ljava/lang/String;
+}
+
 public final class me/devnatan/yoki/resource/NetworkResource {
 	public static final field BASE_PATH Ljava/lang/String;
 	public final fun connectContainer (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
