@@ -7,6 +7,7 @@ import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
+import io.ktor.http.HttpStatusCode
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import me.devnatan.yoki.models.network.Network
@@ -14,6 +15,7 @@ import me.devnatan.yoki.models.network.NetworkCreateOptions
 import me.devnatan.yoki.models.network.NetworkInspectOptions
 import me.devnatan.yoki.models.network.NetworkListFilters
 import me.devnatan.yoki.models.network.NetworkPruneOptions
+import me.devnatan.yoki.net.requestCatching
 
 /**
  * Networks are user-defined networks that containers can be attached to.
@@ -49,9 +51,13 @@ public class NetworkResource internal constructor(
      * @see <a href="https://docs.docker.com/engine/api/latest/#operation/NetworkInspect">NetworkInspect</a>
      */
     public suspend fun inspect(id: String, options: NetworkInspectOptions? = null): Network {
-        return httpClient.get("$BASE_PATH/$id") {
-            parameter("verbose", options?.verbose)
-            parameter("scope", options?.scope)
+        return requestCatching(
+            HttpStatusCode.NotFound to { NetworkNotFoundException(it, id) },
+        ) {
+            httpClient.get("$BASE_PATH/$id") {
+                parameter("verbose", options?.verbose)
+                parameter("scope", options?.scope)
+            }
         }.body()
     }
 
