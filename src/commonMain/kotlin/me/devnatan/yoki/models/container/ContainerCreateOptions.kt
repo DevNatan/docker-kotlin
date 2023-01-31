@@ -39,7 +39,7 @@ public data class ContainerCreateOptions(
     @SerialName("StopTimeout") public var stopTimeout: Int? = null,
     @SerialName("Shell") public var shell: List<String>? = null,
     @SerialName("HostConfig") public var hostConfig: HostConfig? = null,
-    // TODO networking config
+    @SerialName("NetworkingConfig") public var networkingConfig: NetworkingConfig? = null,
 )
 
 public fun ContainerCreateOptions.healthcheck(block: HealthConfig.() -> Unit) {
@@ -48,6 +48,10 @@ public fun ContainerCreateOptions.healthcheck(block: HealthConfig.() -> Unit) {
 
 public fun ContainerCreateOptions.hostConfig(block: HostConfig.() -> Unit) {
     this.hostConfig = HostConfig().apply(block)
+}
+
+public fun ContainerCreateOptions.networkingConfig(block: NetworkingConfig.() -> Unit) {
+    this.networkingConfig = NetworkingConfig().apply(block)
 }
 
 @Suppress("EXTENSION_SHADOWED_BY_MEMBER")
