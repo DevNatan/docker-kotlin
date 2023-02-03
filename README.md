@@ -118,18 +118,6 @@ val flow: Flow<Frame> = yoki.containers.logs("floral-fury") {
 By default, all options parameters for accessing a resource use `null`, that is, *null value* means that it will use the
 value defined by the Docker API as the default value for that property.
 
-## Versions Compatibility
-
-TODO
-
-## Native Targets
-
-For now the only supported native targets are: macosX64, linuxX64 and mingwX64.
-
-## Interoperability
-
-TODO
-
 ## License
 
 Yoki is licensed under the MIT license.
