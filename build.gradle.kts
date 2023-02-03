@@ -74,7 +74,6 @@ kotlin {
             }
         }
 
-        @Suppress("UNUSED_VARIABLE")
         val jvmMain by getting {
             dependsOn(commonMain)
             dependencies {
@@ -85,7 +84,6 @@ kotlin {
             }
         }
 
-        @Suppress("UNUSED_VARIABLE")
         val jvmTest by getting {
             dependsOn(commonTest)
             dependencies {
@@ -94,7 +92,6 @@ kotlin {
         }
 
         if (isNativeTargetsEnabled) {
-            @Suppress("UNUSED_VARIABLE")
             val nativeMain by getting {
                 dependsOn(commonMain)
                 dependencies {
@@ -102,7 +99,6 @@ kotlin {
                 }
             }
 
-            @Suppress("UNUSED_VARIABLE")
             val nativeTest by getting {
                 dependsOn(commonTest)
             }
