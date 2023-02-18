@@ -1399,9 +1399,9 @@ public final class me/devnatan/yoki/models/container/ContainerConfig$Companion {
 public final class me/devnatan/yoki/models/container/ContainerCreateOptions {
 	public static final field Companion Lme/devnatan/yoki/models/container/ContainerCreateOptions$Companion;
 	public fun <init> ()V
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/Map;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Lme/devnatan/yoki/models/HostConfig;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/Map;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Lme/devnatan/yoki/models/HostConfig;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/Map;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Lme/devnatan/yoki/models/HostConfig;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/Map;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Lme/devnatan/yoki/models/HostConfig;Lme/devnatan/yoki/models/network/NetworkingConfig;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/Map;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Lme/devnatan/yoki/models/HostConfig;Lme/devnatan/yoki/models/network/NetworkingConfig;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/Map;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Lme/devnatan/yoki/models/HostConfig;Lme/devnatan/yoki/models/network/NetworkingConfig;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()Ljava/lang/Boolean;
 	public final fun component11 ()Ljava/lang/Boolean;
@@ -1410,17 +1410,19 @@ public final class me/devnatan/yoki/models/container/ContainerCreateOptions {
 	public final fun component14 ()Lme/devnatan/yoki/models/HealthConfig;
 	public final fun component15 ()Ljava/lang/Boolean;
 	public final fun component16 ()Ljava/lang/String;
-	public final fun component17 ()Ljava/lang/String;
-	public final fun component18 ()Ljava/util/List;
-	public final fun component19 ()Ljava/lang/Boolean;
+	public final fun component17 ()Ljava/util/Map;
+	public final fun component18 ()Ljava/lang/String;
+	public final fun component19 ()Ljava/util/List;
 	public final fun component2 ()Ljava/lang/String;
-	public final fun component20 ()Ljava/lang/String;
-	public final fun component21 ()Ljava/util/List;
-	public final fun component22 ()Ljava/util/Map;
-	public final fun component23 ()Ljava/lang/String;
-	public final fun component24 ()Ljava/lang/Integer;
-	public final fun component25 ()Ljava/util/List;
-	public final fun component26 ()Lme/devnatan/yoki/models/HostConfig;
+	public final fun component20 ()Ljava/lang/Boolean;
+	public final fun component21 ()Ljava/lang/String;
+	public final fun component22 ()Ljava/util/List;
+	public final fun component23 ()Ljava/util/Map;
+	public final fun component24 ()Ljava/lang/String;
+	public final fun component25 ()Ljava/lang/Integer;
+	public final fun component26 ()Ljava/util/List;
+	public final fun component27 ()Lme/devnatan/yoki/models/HostConfig;
+	public final fun component28 ()Lme/devnatan/yoki/models/network/NetworkingConfig;
 	public final fun component3 ()Ljava/lang/String;
 	public final fun component4 ()Ljava/lang/String;
 	public final fun component5 ()Ljava/lang/Boolean;
@@ -1428,8 +1430,8 @@ public final class me/devnatan/yoki/models/container/ContainerCreateOptions {
 	public final fun component7 ()Ljava/lang/Boolean;
 	public final fun component8 ()Ljava/util/Map;
 	public final fun component9 ()Z
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/Map;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Lme/devnatan/yoki/models/HostConfig;)Lme/devnatan/yoki/models/container/ContainerCreateOptions;
-	public static synthetic fun copy$default (Lme/devnatan/yoki/models/container/ContainerCreateOptions;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/Map;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Lme/devnatan/yoki/models/HostConfig;ILjava/lang/Object;)Lme/devnatan/yoki/models/container/ContainerCreateOptions;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/Map;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Lme/devnatan/yoki/models/HostConfig;Lme/devnatan/yoki/models/network/NetworkingConfig;)Lme/devnatan/yoki/models/container/ContainerCreateOptions;
+	public static synthetic fun copy$default (Lme/devnatan/yoki/models/container/ContainerCreateOptions;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/Map;ZLjava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Lme/devnatan/yoki/models/HostConfig;Lme/devnatan/yoki/models/network/NetworkingConfig;ILjava/lang/Object;)Lme/devnatan/yoki/models/container/ContainerCreateOptions;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAttachStderr ()Ljava/lang/Boolean;
 	public final fun getAttachStdin ()Ljava/lang/Boolean;
@@ -1449,6 +1451,7 @@ public final class me/devnatan/yoki/models/container/ContainerCreateOptions {
 	public final fun getLabels ()Ljava/util/Map;
 	public final fun getMacAddress ()Ljava/lang/String;
 	public final fun getName ()Ljava/lang/String;
+	public final fun getNetworkingConfig ()Lme/devnatan/yoki/models/network/NetworkingConfig;
 	public final fun getOnceStdin ()Ljava/lang/Boolean;
 	public final fun getOpenStdin ()Ljava/lang/Boolean;
 	public final fun getShell ()Ljava/util/List;
@@ -1456,6 +1459,7 @@ public final class me/devnatan/yoki/models/container/ContainerCreateOptions {
 	public final fun getStopTimeout ()Ljava/lang/Integer;
 	public final fun getTty ()Z
 	public final fun getUser ()Ljava/lang/String;
+	public final fun getVolumes ()Ljava/util/Map;
 	public final fun getWorkingDirectory ()Ljava/lang/String;
 	public fun hashCode ()I
 	public final fun setAttachStderr (Ljava/lang/Boolean;)V
@@ -1476,6 +1480,7 @@ public final class me/devnatan/yoki/models/container/ContainerCreateOptions {
 	public final fun setLabels (Ljava/util/Map;)V
 	public final fun setMacAddress (Ljava/lang/String;)V
 	public final fun setName (Ljava/lang/String;)V
+	public final fun setNetworkingConfig (Lme/devnatan/yoki/models/network/NetworkingConfig;)V
 	public final fun setOnceStdin (Ljava/lang/Boolean;)V
 	public final fun setOpenStdin (Ljava/lang/Boolean;)V
 	public final fun setShell (Ljava/util/List;)V
@@ -1483,6 +1488,7 @@ public final class me/devnatan/yoki/models/container/ContainerCreateOptions {
 	public final fun setStopTimeout (Ljava/lang/Integer;)V
 	public final fun setTty (Z)V
 	public final fun setUser (Ljava/lang/String;)V
+	public final fun setVolumes (Ljava/util/Map;)V
 	public final fun setWorkingDirectory (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
 	public static final fun write$Self (Lme/devnatan/yoki/models/container/ContainerCreateOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
@@ -1508,7 +1514,9 @@ public final class me/devnatan/yoki/models/container/ContainerCreateOptionsKt {
 	public static final fun getStopTimeout (Lme/devnatan/yoki/models/container/ContainerCreateOptions;)Lkotlin/time/Duration;
 	public static final fun healthcheck (Lme/devnatan/yoki/models/container/ContainerCreateOptions;Lkotlin/jvm/functions/Function1;)V
 	public static final fun hostConfig (Lme/devnatan/yoki/models/container/ContainerCreateOptions;Lkotlin/jvm/functions/Function1;)V
+	public static final fun networkingConfig (Lme/devnatan/yoki/models/container/ContainerCreateOptions;Lkotlin/jvm/functions/Function1;)V
 	public static final fun setStopTimeout-6Au4x4Y (Lme/devnatan/yoki/models/container/ContainerCreateOptions;Lkotlin/time/Duration;)V
+	public static final fun volume (Lme/devnatan/yoki/models/container/ContainerCreateOptions;Ljava/lang/String;)V
 }
 
 public final class me/devnatan/yoki/models/container/ContainerListOptions {
@@ -2446,6 +2454,114 @@ public final class me/devnatan/yoki/models/image/ImageSummaryKt {
 	public static final fun getCreated (Lme/devnatan/yoki/models/image/ImageSummary;)Lkotlinx/datetime/Instant;
 }
 
+public final class me/devnatan/yoki/models/network/EndpointIPAMConfig {
+	public static final field Companion Lme/devnatan/yoki/models/network/EndpointIPAMConfig$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/util/List;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)Lme/devnatan/yoki/models/network/EndpointIPAMConfig;
+	public static synthetic fun copy$default (Lme/devnatan/yoki/models/network/EndpointIPAMConfig;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lme/devnatan/yoki/models/network/EndpointIPAMConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getIpv4Address ()Ljava/lang/String;
+	public final fun getIpv6Address ()Ljava/lang/String;
+	public final fun getLinkLocalIPs ()Ljava/util/List;
+	public fun hashCode ()I
+	public final fun setIpv4Address (Ljava/lang/String;)V
+	public final fun setIpv6Address (Ljava/lang/String;)V
+	public final fun setLinkLocalIPs (Ljava/util/List;)V
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lme/devnatan/yoki/models/network/EndpointIPAMConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class me/devnatan/yoki/models/network/EndpointIPAMConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lme/devnatan/yoki/models/network/EndpointIPAMConfig$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/network/EndpointIPAMConfig;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lme/devnatan/yoki/models/network/EndpointIPAMConfig;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class me/devnatan/yoki/models/network/EndpointIPAMConfig$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class me/devnatan/yoki/models/network/EndpointSettings {
+	public static final field Companion Lme/devnatan/yoki/models/network/EndpointSettings$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILme/devnatan/yoki/models/network/EndpointIPAMConfig;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Ljava/util/Map;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Lme/devnatan/yoki/models/network/EndpointIPAMConfig;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Ljava/util/Map;)V
+	public synthetic fun <init> (Lme/devnatan/yoki/models/network/EndpointIPAMConfig;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Lme/devnatan/yoki/models/network/EndpointIPAMConfig;
+	public final fun component10 ()Ljava/lang/String;
+	public final fun component11 ()Ljava/lang/Long;
+	public final fun component12 ()Ljava/lang/String;
+	public final fun component13 ()Ljava/util/Map;
+	public final fun component2 ()Ljava/util/List;
+	public final fun component3 ()Ljava/util/List;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/lang/Integer;
+	public final fun component9 ()Ljava/lang/String;
+	public final fun copy (Lme/devnatan/yoki/models/network/EndpointIPAMConfig;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Ljava/util/Map;)Lme/devnatan/yoki/models/network/EndpointSettings;
+	public static synthetic fun copy$default (Lme/devnatan/yoki/models/network/EndpointSettings;Lme/devnatan/yoki/models/network/EndpointIPAMConfig;Ljava/util/List;Ljava/util/List;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Ljava/util/Map;ILjava/lang/Object;)Lme/devnatan/yoki/models/network/EndpointSettings;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAliases ()Ljava/util/List;
+	public final fun getDriverOpts ()Ljava/util/Map;
+	public final fun getEndpointID ()Ljava/lang/String;
+	public final fun getGateway ()Ljava/lang/String;
+	public final fun getGlobalIpv6Gateway ()Ljava/lang/String;
+	public final fun getGlobalIpv6PrefixLen ()Ljava/lang/Long;
+	public final fun getIpAddress ()Ljava/lang/String;
+	public final fun getIpPrefixLen ()Ljava/lang/Integer;
+	public final fun getIpamConfig ()Lme/devnatan/yoki/models/network/EndpointIPAMConfig;
+	public final fun getIpv6Gateway ()Ljava/lang/String;
+	public final fun getLinks ()Ljava/util/List;
+	public final fun getMacAddress ()Ljava/lang/String;
+	public final fun getNetworkID ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun setAliases (Ljava/util/List;)V
+	public final fun setDriverOpts (Ljava/util/Map;)V
+	public final fun setEndpointID (Ljava/lang/String;)V
+	public final fun setGateway (Ljava/lang/String;)V
+	public final fun setGlobalIpv6Gateway (Ljava/lang/String;)V
+	public final fun setGlobalIpv6PrefixLen (Ljava/lang/Long;)V
+	public final fun setIpAddress (Ljava/lang/String;)V
+	public final fun setIpPrefixLen (Ljava/lang/Integer;)V
+	public final fun setIpamConfig (Lme/devnatan/yoki/models/network/EndpointIPAMConfig;)V
+	public final fun setIpv6Gateway (Ljava/lang/String;)V
+	public final fun setLinks (Ljava/util/List;)V
+	public final fun setMacAddress (Ljava/lang/String;)V
+	public final fun setNetworkID (Ljava/lang/String;)V
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lme/devnatan/yoki/models/network/EndpointSettings;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class me/devnatan/yoki/models/network/EndpointSettings$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lme/devnatan/yoki/models/network/EndpointSettings$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/network/EndpointSettings;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lme/devnatan/yoki/models/network/EndpointSettings;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class me/devnatan/yoki/models/network/EndpointSettings$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
 public final class me/devnatan/yoki/models/network/IPAM {
 	public static final field Companion Lme/devnatan/yoki/models/network/IPAM$Companion;
 	public synthetic fun <init> (ILjava/lang/String;Ljava/util/List;Ljava/util/Map;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
@@ -2815,6 +2931,39 @@ public final class me/devnatan/yoki/models/network/NetworkPruneOptions$$serializ
 }
 
 public final class me/devnatan/yoki/models/network/NetworkPruneOptions$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class me/devnatan/yoki/models/network/NetworkingConfig {
+	public static final field Companion Lme/devnatan/yoki/models/network/NetworkingConfig$Companion;
+	public fun <init> ()V
+	public synthetic fun <init> (ILjava/util/Map;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public fun <init> (Ljava/util/Map;)V
+	public synthetic fun <init> (Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/util/Map;
+	public final fun copy (Ljava/util/Map;)Lme/devnatan/yoki/models/network/NetworkingConfig;
+	public static synthetic fun copy$default (Lme/devnatan/yoki/models/network/NetworkingConfig;Ljava/util/Map;ILjava/lang/Object;)Lme/devnatan/yoki/models/network/NetworkingConfig;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEndpointsConfig ()Ljava/util/Map;
+	public fun hashCode ()I
+	public final fun setEndpointsConfig (Ljava/util/Map;)V
+	public fun toString ()Ljava/lang/String;
+	public static final fun write$Self (Lme/devnatan/yoki/models/network/NetworkingConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+}
+
+public final class me/devnatan/yoki/models/network/NetworkingConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lme/devnatan/yoki/models/network/NetworkingConfig$$serializer;
+	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
+	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/network/NetworkingConfig;
+	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
+	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lme/devnatan/yoki/models/network/NetworkingConfig;)V
+	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
+}
+
+public final class me/devnatan/yoki/models/network/NetworkingConfig$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
