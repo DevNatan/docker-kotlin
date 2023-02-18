@@ -3420,6 +3420,10 @@ public final class me/devnatan/yoki/net/SocketUtils {
 	public static final field DEFAULT_DOCKER_UNIX_SOCKET Ljava/lang/String;
 }
 
+public final class me/devnatan/yoki/resource/ContainerAlreadyExistsException : me/devnatan/yoki/resource/ContainerException {
+	public final fun getName ()Ljava/lang/String;
+}
+
 public final class me/devnatan/yoki/resource/ContainerAlreadyStartedException : me/devnatan/yoki/resource/ContainerException {
 	public final fun getContainerId ()Ljava/lang/String;
 }
@@ -3493,6 +3497,13 @@ public final class me/devnatan/yoki/resource/ExecResource {
 	public final fun inspect (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun resize (Ljava/lang/String;Lme/devnatan/yoki/models/ResizeTTYOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun start (Ljava/lang/String;Lme/devnatan/yoki/models/exec/ExecStartOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public class me/devnatan/yoki/resource/ImageException : me/devnatan/yoki/YokiResourceException {
+}
+
+public final class me/devnatan/yoki/resource/ImageNotFoundException : me/devnatan/yoki/resource/ImageException {
+	public final fun getImage ()Ljava/lang/String;
 }
 
 public final class me/devnatan/yoki/resource/ImageResource {
