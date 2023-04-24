@@ -41,7 +41,7 @@ kotlin {
     val isNativeTargetsEnabled: Boolean = project.property("yoki.native-targets")
         ?.toString()
         ?.toBoolean()
-        ?: false
+        ?: true
 
     if (isNativeTargetsEnabled) {
         val hostOs = System.getProperty("os.name")
