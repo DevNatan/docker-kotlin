@@ -1,12 +1,12 @@
 public final class me/devnatan/yoki/Yoki : java/io/Closeable {
 	public static final field Companion Lme/devnatan/yoki/Yoki$Companion;
-	public final field containers Lme/devnatan/yoki/resource/ContainerResource;
-	public final field exec Lme/devnatan/yoki/resource/ExecResource;
-	public final field images Lme/devnatan/yoki/resource/ImageResource;
+	public final field containers Lme/devnatan/yoki/resource/container/ContainerResource;
+	public final field exec Lme/devnatan/yoki/resource/exec/ExecResource;
+	public final field images Lme/devnatan/yoki/resource/image/ImageResource;
 	public final field networks Lme/devnatan/yoki/resource/NetworkResource;
-	public final field secrets Lme/devnatan/yoki/resource/SecretResource;
-	public final field system Lme/devnatan/yoki/resource/SystemResource;
-	public final field volumes Lme/devnatan/yoki/resource/VolumeResource;
+	public final field secrets Lme/devnatan/yoki/resource/secret/SecretResource;
+	public final field system Lme/devnatan/yoki/resource/system/SystemResource;
+	public final field volumes Lme/devnatan/yoki/resource/volume/VolumeResource;
 	public fun <init> (Lme/devnatan/yoki/YokiConfig;)V
 	public fun close ()V
 	public static final fun create ()Lme/devnatan/yoki/Yoki;
@@ -101,12 +101,11 @@ public final class me/devnatan/yoki/models/BlkioWeightDevice {
 	public final fun setPath (Ljava/lang/String;)V
 	public final fun setWeight (I)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/BlkioWeightDevice;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/BlkioWeightDevice;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/BlkioWeightDevice$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/BlkioWeightDevice$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/BlkioWeightDevice;
@@ -140,12 +139,11 @@ public final class me/devnatan/yoki/models/DeviceMapping {
 	public final fun setPathInContainer (Ljava/lang/String;)V
 	public final fun setPathOnHost (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/DeviceMapping;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/DeviceMapping;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/DeviceMapping$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/DeviceMapping$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/DeviceMapping;
@@ -185,12 +183,11 @@ public final class me/devnatan/yoki/models/DeviceRequest {
 	public final fun setDriver (Ljava/lang/String;)V
 	public final fun setOptions (Ljava/util/Map;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/DeviceRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/DeviceRequest;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/DeviceRequest$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/DeviceRequest$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/DeviceRequest;
@@ -219,12 +216,11 @@ public final class me/devnatan/yoki/models/ExposedPort {
 	public final fun getProtocol ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/ExposedPort;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/ExposedPort;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/ExposedPort$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/ExposedPort$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/ExposedPort;
@@ -258,12 +254,11 @@ public final class me/devnatan/yoki/models/Frame {
 	public final fun getValue ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/Frame;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/Frame;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/Frame$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/Frame$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/Frame;
@@ -290,12 +285,11 @@ public final class me/devnatan/yoki/models/GraphDriverData {
 	public final fun getName ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/GraphDriverData;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/GraphDriverData;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/GraphDriverData$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/GraphDriverData$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/GraphDriverData;
@@ -335,12 +329,11 @@ public final class me/devnatan/yoki/models/HealthConfig {
 	public final fun setTest (Ljava/util/List;)V
 	public final fun setTimeout (Ljava/lang/Integer;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/HealthConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/HealthConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/HealthConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/HealthConfig$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/HealthConfig;
@@ -377,12 +370,11 @@ public final class me/devnatan/yoki/models/Healthcheck {
 	public final fun getStatusString ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/Healthcheck;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/Healthcheck;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/Healthcheck$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/Healthcheck$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/Healthcheck;
@@ -414,12 +406,11 @@ public final class me/devnatan/yoki/models/HealthcheckResult {
 	public final fun getStartedAtString ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/HealthcheckResult;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/HealthcheckResult;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/HealthcheckResult$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/HealthcheckResult$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/HealthcheckResult;
@@ -723,12 +714,11 @@ public final class me/devnatan/yoki/models/HostConfig {
 	public final fun setVolumeDriver (Ljava/lang/String;)V
 	public final fun setVolumesFrom (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/HostConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/HostConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/HostConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/HostConfig$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/HostConfig;
@@ -758,12 +748,11 @@ public final class me/devnatan/yoki/models/LogConfig {
 	public final fun setConfig (Ljava/util/Map;)V
 	public final fun setType (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/LogConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/LogConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/LogConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/LogConfig$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/LogConfig;
@@ -801,12 +790,11 @@ public final class me/devnatan/yoki/models/Mount {
 	public final fun getVolumeOptions ()Lme/devnatan/yoki/models/MountVolumeOptions;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/Mount;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/Mount;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/Mount$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/Mount$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/Mount;
@@ -849,12 +837,11 @@ public final class me/devnatan/yoki/models/MountBindOptions {
 	public final fun getPropagation ()Lme/devnatan/yoki/models/MountBindOptions$Propagation;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/MountBindOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/MountBindOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/MountBindOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/MountBindOptions$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/MountBindOptions;
@@ -899,12 +886,11 @@ public final class me/devnatan/yoki/models/MountTmpfsOptions {
 	public final fun getSizeInBytes ()Ljava/lang/Long;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/MountTmpfsOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/MountTmpfsOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/MountTmpfsOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/MountTmpfsOptions$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/MountTmpfsOptions;
@@ -935,12 +921,11 @@ public final class me/devnatan/yoki/models/MountVolumeOptions {
 	public final fun getNoCopy ()Ljava/lang/Boolean;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/MountVolumeOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/MountVolumeOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/MountVolumeOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/MountVolumeOptions$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/MountVolumeOptions;
@@ -969,12 +954,11 @@ public final class me/devnatan/yoki/models/MountVolumeOptionsDriverConfig {
 	public final fun getOptions ()Ljava/util/Map;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/MountVolumeOptionsDriverConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/MountVolumeOptionsDriverConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/MountVolumeOptionsDriverConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/MountVolumeOptionsDriverConfig$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/MountVolumeOptionsDriverConfig;
@@ -1005,12 +989,11 @@ public final class me/devnatan/yoki/models/PortBinding {
 	public final fun setIp (Ljava/lang/String;)V
 	public final fun setPort (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/PortBinding;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/PortBinding;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/PortBinding$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/PortBinding$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/PortBinding;
@@ -1042,12 +1025,11 @@ public final class me/devnatan/yoki/models/ProcessConfig {
 	public final fun getUser ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/ProcessConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/ProcessConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/ProcessConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/ProcessConfig$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/ProcessConfig;
@@ -1078,12 +1060,11 @@ public final class me/devnatan/yoki/models/ResizeTTYOptions {
 	public final fun setHeight (Ljava/lang/Integer;)V
 	public final fun setWidth (Ljava/lang/Integer;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/ResizeTTYOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/ResizeTTYOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/ResizeTTYOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/ResizeTTYOptions$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/ResizeTTYOptions;
@@ -1119,12 +1100,11 @@ public final class me/devnatan/yoki/models/ResourceLimit {
 	public final fun setName (Ljava/lang/String;)V
 	public final fun setSoft (I)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/ResourceLimit;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/ResourceLimit;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/ResourceLimit$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/ResourceLimit$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/ResourceLimit;
@@ -1157,12 +1137,11 @@ public final class me/devnatan/yoki/models/RestartPolicy {
 	public final fun setMaximumRetryCount (I)V
 	public final fun setName (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/RestartPolicy;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/RestartPolicy;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/RestartPolicy$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/RestartPolicy$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/RestartPolicy;
@@ -1186,12 +1165,11 @@ public final class me/devnatan/yoki/models/Stream {
 	public final fun getName ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/Stream;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/Stream;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/Stream$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/Stream$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/Stream;
@@ -1229,12 +1207,11 @@ public final class me/devnatan/yoki/models/ThrottleDevice {
 	public final fun setPath (Ljava/lang/String;)V
 	public final fun setRate (J)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/ThrottleDevice;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/ThrottleDevice;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/ThrottleDevice$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/ThrottleDevice$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/ThrottleDevice;
@@ -1297,12 +1274,11 @@ public final class me/devnatan/yoki/models/container/Container {
 	public final fun getState ()Lme/devnatan/yoki/models/container/ContainerState;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/container/Container;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/container/Container;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/container/Container$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/container/Container$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/container/Container;
@@ -1377,12 +1353,11 @@ public final class me/devnatan/yoki/models/container/ContainerConfig {
 	public final fun getWorkingDir ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/container/ContainerConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/container/ContainerConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/container/ContainerConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/container/ContainerConfig$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/container/ContainerConfig;
@@ -1491,12 +1466,11 @@ public final class me/devnatan/yoki/models/container/ContainerCreateOptions {
 	public final fun setVolumes (Ljava/util/Map;)V
 	public final fun setWorkingDirectory (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/container/ContainerCreateOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/container/ContainerCreateOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/container/ContainerCreateOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/container/ContainerCreateOptions$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/container/ContainerCreateOptions;
@@ -1542,12 +1516,11 @@ public final class me/devnatan/yoki/models/container/ContainerListOptions {
 	public final fun setLimit (Ljava/lang/Integer;)V
 	public final fun setSize (Ljava/lang/Boolean;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/container/ContainerListOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/container/ContainerListOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/container/ContainerListOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/container/ContainerListOptions$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/container/ContainerListOptions;
@@ -1617,12 +1590,11 @@ public final class me/devnatan/yoki/models/container/ContainerListOptions$Filter
 	public final fun setTask (Ljava/util/List;)V
 	public final fun setVolume (Ljava/util/List;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/container/ContainerListOptions$Filters;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/container/ContainerListOptions$Filters;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/container/ContainerListOptions$Filters$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/container/ContainerListOptions$Filters$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/container/ContainerListOptions$Filters;
@@ -1671,12 +1643,11 @@ public final class me/devnatan/yoki/models/container/ContainerLogsOptions {
 	public final fun setTail (Ljava/lang/String;)V
 	public final fun setTailAll ()V
 	public final fun setUntil (Ljava/lang/Long;)V
-	public static final fun write$Self (Lme/devnatan/yoki/models/container/ContainerLogsOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/container/ContainerLogsOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/container/ContainerLogsOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/container/ContainerLogsOptions$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/container/ContainerLogsOptions;
@@ -1712,12 +1683,11 @@ public final class me/devnatan/yoki/models/container/ContainerPruneFilters {
 	public final fun setLabel (Ljava/lang/String;)V
 	public final fun setUntil (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/container/ContainerPruneFilters;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/container/ContainerPruneFilters;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/container/ContainerPruneFilters$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/container/ContainerPruneFilters$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/container/ContainerPruneFilters;
@@ -1743,12 +1713,11 @@ public final class me/devnatan/yoki/models/container/ContainerPruneResult {
 	public final fun getReclaimedSpace ()J
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/container/ContainerPruneResult;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/container/ContainerPruneResult;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/container/ContainerPruneResult$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/container/ContainerPruneResult$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/container/ContainerPruneResult;
@@ -1782,12 +1751,11 @@ public final class me/devnatan/yoki/models/container/ContainerRemoveOptions {
 	public final fun setRemoveAnonymousVolumes (Z)V
 	public final fun setUnlink (Z)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/container/ContainerRemoveOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/container/ContainerRemoveOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/container/ContainerRemoveOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/container/ContainerRemoveOptions$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/container/ContainerRemoveOptions;
@@ -1836,12 +1804,11 @@ public final class me/devnatan/yoki/models/container/ContainerState {
 	public final fun isRestarting ()Z
 	public final fun isRunning ()Z
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/container/ContainerState;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/container/ContainerState;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/container/ContainerState$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/container/ContainerState$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/container/ContainerState;
@@ -1861,7 +1828,7 @@ public abstract class me/devnatan/yoki/models/container/ContainerState$Status {
 	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getValue ()Ljava/lang/String;
 	public static final fun parse (Ljava/lang/String;)Lme/devnatan/yoki/models/container/ContainerState$Status;
-	public static final fun write$Self (Lme/devnatan/yoki/models/container/ContainerState$Status;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/container/ContainerState$Status;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/container/ContainerState$Status$Companion {
@@ -1935,12 +1902,11 @@ public final class me/devnatan/yoki/models/container/ContainerSummary {
 	public final fun getStatus ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/container/ContainerSummary;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/container/ContainerSummary;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/container/ContainerSummary$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/container/ContainerSummary$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/container/ContainerSummary;
@@ -1964,12 +1930,11 @@ public final class me/devnatan/yoki/models/container/ContainerSummaryHostConfig 
 	public final fun getNetworkMode ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/container/ContainerSummaryHostConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/container/ContainerSummaryHostConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/container/ContainerSummaryHostConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/container/ContainerSummaryHostConfig$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/container/ContainerSummaryHostConfig;
@@ -1999,12 +1964,11 @@ public final class me/devnatan/yoki/models/container/ContainerWaitResult {
 	public final fun getStatusCode ()I
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/container/ContainerWaitResult;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/container/ContainerWaitResult;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/container/ContainerWaitResult$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/container/ContainerWaitResult$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/container/ContainerWaitResult;
@@ -2029,12 +1993,11 @@ public final class me/devnatan/yoki/models/container/ContainerWaitResult$Error {
 	public final fun getMessage ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/container/ContainerWaitResult$Error;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/container/ContainerWaitResult$Error;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/container/ContainerWaitResult$Error$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/container/ContainerWaitResult$Error$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/container/ContainerWaitResult$Error;
@@ -2090,12 +2053,11 @@ public final class me/devnatan/yoki/models/exec/ExecCreateOptions {
 	public final fun setUser (Ljava/lang/String;)V
 	public final fun setWorkingDir (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/exec/ExecCreateOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/exec/ExecCreateOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/exec/ExecCreateOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/exec/ExecCreateOptions$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/exec/ExecCreateOptions;
@@ -2139,12 +2101,11 @@ public final class me/devnatan/yoki/models/exec/ExecInspectResponse {
 	public final fun getRunning ()Z
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/exec/ExecInspectResponse;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/exec/ExecInspectResponse;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/exec/ExecInspectResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/exec/ExecInspectResponse$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/exec/ExecInspectResponse;
@@ -2174,12 +2135,11 @@ public final class me/devnatan/yoki/models/exec/ExecStartOptions {
 	public fun hashCode ()I
 	public final fun setDetach (Ljava/lang/Boolean;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/exec/ExecStartOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/exec/ExecStartOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/exec/ExecStartOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/exec/ExecStartOptions$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/exec/ExecStartOptions;
@@ -2241,12 +2201,11 @@ public final class me/devnatan/yoki/models/image/Image {
 	public final fun getVirtualSize ()J
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/image/Image;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/image/Image;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/image/Image$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/image/Image$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/image/Image;
@@ -2277,12 +2236,11 @@ public final class me/devnatan/yoki/models/image/ImageMetadata {
 	public final fun getLastTagTime ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/image/ImageMetadata;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/image/ImageMetadata;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/image/ImageMetadata$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/image/ImageMetadata$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/image/ImageMetadata;
@@ -2314,12 +2272,11 @@ public final class me/devnatan/yoki/models/image/ImagePull {
 	public final fun getStatusText ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/image/ImagePull;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/image/ImagePull;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/image/ImagePull$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/image/ImagePull$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/image/ImagePull;
@@ -2348,12 +2305,11 @@ public final class me/devnatan/yoki/models/image/ImagePull$ProgressDetail {
 	public final fun getTotal ()Ljava/lang/Integer;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/image/ImagePull$ProgressDetail;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/image/ImagePull$ProgressDetail;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/image/ImagePull$ProgressDetail$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/image/ImagePull$ProgressDetail$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/image/ImagePull$ProgressDetail;
@@ -2383,12 +2339,11 @@ public final class me/devnatan/yoki/models/image/ImageRootFs {
 	public final fun getType ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/image/ImageRootFs;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/image/ImageRootFs;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/image/ImageRootFs$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/image/ImageRootFs$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/image/ImageRootFs;
@@ -2431,12 +2386,11 @@ public final class me/devnatan/yoki/models/image/ImageSummary {
 	public final fun getVirtualSize ()J
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/image/ImageSummary;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/image/ImageSummary;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/image/ImageSummary$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/image/ImageSummary$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/image/ImageSummary;
@@ -2474,12 +2428,11 @@ public final class me/devnatan/yoki/models/network/EndpointIPAMConfig {
 	public final fun setIpv6Address (Ljava/lang/String;)V
 	public final fun setLinkLocalIPs (Ljava/util/List;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/network/EndpointIPAMConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/network/EndpointIPAMConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/network/EndpointIPAMConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/network/EndpointIPAMConfig$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/network/EndpointIPAMConfig;
@@ -2543,12 +2496,11 @@ public final class me/devnatan/yoki/models/network/EndpointSettings {
 	public final fun setMacAddress (Ljava/lang/String;)V
 	public final fun setNetworkID (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/network/EndpointSettings;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/network/EndpointSettings;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/network/EndpointSettings$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/network/EndpointSettings$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/network/EndpointSettings;
@@ -2578,12 +2530,11 @@ public final class me/devnatan/yoki/models/network/IPAM {
 	public final fun getOptions ()Ljava/util/Map;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/network/IPAM;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/network/IPAM;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/network/IPAM$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/network/IPAM$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/network/IPAM;
@@ -2612,12 +2563,11 @@ public final class me/devnatan/yoki/models/network/IPAMConfig {
 	public final fun getSubnet ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/network/IPAMConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/network/IPAMConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/network/IPAMConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/network/IPAMConfig$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/network/IPAMConfig;
@@ -2663,12 +2613,11 @@ public final class me/devnatan/yoki/models/network/Network {
 	public final fun isAttachable ()Z
 	public final fun isInternal ()Z
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/network/Network;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/network/Network;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/network/Network$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/network/Network$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/network/Network;
@@ -2701,12 +2650,11 @@ public final class me/devnatan/yoki/models/network/NetworkContainer {
 	public final fun getName ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/network/NetworkContainer;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/network/NetworkContainer;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/network/NetworkContainer$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/network/NetworkContainer$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/network/NetworkContainer;
@@ -2776,12 +2724,11 @@ public final class me/devnatan/yoki/models/network/NetworkCreateOptions {
 	public final fun setName (Ljava/lang/String;)V
 	public final fun setOptions (Ljava/util/Map;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/network/NetworkCreateOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/network/NetworkCreateOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/network/NetworkCreateOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/network/NetworkCreateOptions$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/network/NetworkCreateOptions;
@@ -2812,12 +2759,11 @@ public final class me/devnatan/yoki/models/network/NetworkInspectOptions {
 	public final fun setScope (Ljava/lang/String;)V
 	public final fun setVerbose (Ljava/lang/Boolean;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/network/NetworkInspectOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/network/NetworkInspectOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/network/NetworkInspectOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/network/NetworkInspectOptions$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/network/NetworkInspectOptions;
@@ -2879,12 +2825,11 @@ public final class me/devnatan/yoki/models/network/NetworkListFilters {
 	public final fun setScope (Ljava/lang/String;)V
 	public final fun setType (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/network/NetworkListFilters;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/network/NetworkListFilters;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/network/NetworkListFilters$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/network/NetworkListFilters$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/network/NetworkListFilters;
@@ -2915,12 +2860,11 @@ public final class me/devnatan/yoki/models/network/NetworkPruneOptions {
 	public final fun setLabel (Ljava/lang/String;)V
 	public final fun setUntil (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/network/NetworkPruneOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/network/NetworkPruneOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/network/NetworkPruneOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/network/NetworkPruneOptions$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/network/NetworkPruneOptions;
@@ -2948,12 +2892,11 @@ public final class me/devnatan/yoki/models/network/NetworkingConfig {
 	public fun hashCode ()I
 	public final fun setEndpointsConfig (Ljava/util/Map;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/network/NetworkingConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/network/NetworkingConfig;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/network/NetworkingConfig$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/network/NetworkingConfig$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/network/NetworkingConfig;
@@ -2984,12 +2927,11 @@ public final class me/devnatan/yoki/models/secret/Secret {
 	public final fun getUpdatedAtRaw ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/secret/Secret;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/secret/Secret;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/secret/Secret$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/secret/Secret$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/secret/Secret;
@@ -3023,12 +2965,11 @@ public final class me/devnatan/yoki/models/secret/SecretListFilters {
 	public final fun setLabel (Ljava/lang/String;)V
 	public final fun setName (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/secret/SecretListFilters;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/secret/SecretListFilters;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/secret/SecretListFilters$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/secret/SecretListFilters$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/secret/SecretListFilters;
@@ -3061,12 +3002,11 @@ public final class me/devnatan/yoki/models/secret/SecretSpec {
 	public final fun getTemplating ()Lme/devnatan/yoki/models/secret/SecretSpec$Driver;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/secret/SecretSpec;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/secret/SecretSpec;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/secret/SecretSpec$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/secret/SecretSpec$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/secret/SecretSpec;
@@ -3094,12 +3034,11 @@ public final class me/devnatan/yoki/models/secret/SecretSpec$Driver {
 	public final fun getOptions ()Ljava/util/Map;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/secret/SecretSpec$Driver;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/secret/SecretSpec$Driver;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/secret/SecretSpec$Driver$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/secret/SecretSpec$Driver$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/secret/SecretSpec$Driver;
@@ -3133,12 +3072,11 @@ public final class me/devnatan/yoki/models/system/SystemEventsOptions {
 	public final fun setSince (Ljava/lang/String;)V
 	public final fun setUntil (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/system/SystemEventsOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/system/SystemEventsOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/system/SystemEventsOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/system/SystemEventsOptions$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/system/SystemEventsOptions;
@@ -3166,12 +3104,11 @@ public final class me/devnatan/yoki/models/system/SystemPingData {
 	public final fun getExperimental ()Z
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/system/SystemPingData;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/system/SystemPingData;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/system/SystemPingData$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/system/SystemPingData$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/system/SystemPingData;
@@ -3218,12 +3155,11 @@ public final class me/devnatan/yoki/models/system/SystemVersion {
 	public final fun getVersion ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/system/SystemVersion;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/system/SystemVersion;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/system/SystemVersion$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/system/SystemVersion$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/system/SystemVersion;
@@ -3251,12 +3187,11 @@ public final class me/devnatan/yoki/models/system/SystemVersion$Component {
 	public final fun getVersion ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/system/SystemVersion$Component;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/system/SystemVersion$Component;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/system/SystemVersion$Component$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/system/SystemVersion$Component$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/system/SystemVersion$Component;
@@ -3280,12 +3215,11 @@ public final class me/devnatan/yoki/models/system/SystemVersion$Component$Detail
 	public final fun getGitCommit ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/system/SystemVersion$Component$Details;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/system/SystemVersion$Component$Details;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/system/SystemVersion$Component$Details$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/system/SystemVersion$Component$Details$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/system/SystemVersion$Component$Details;
@@ -3309,12 +3243,11 @@ public final class me/devnatan/yoki/models/system/SystemVersion$Platform {
 	public final fun getName ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/system/SystemVersion$Platform;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/system/SystemVersion$Platform;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/system/SystemVersion$Platform$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/system/SystemVersion$Platform$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/system/SystemVersion$Platform;
@@ -3351,12 +3284,11 @@ public final class me/devnatan/yoki/models/volume/Volume {
 	public final fun getScope ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/volume/Volume;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/volume/Volume;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/volume/Volume$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/volume/Volume$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/volume/Volume;
@@ -3393,12 +3325,11 @@ public final class me/devnatan/yoki/models/volume/VolumeCreateOptions {
 	public final fun setLabels (Ljava/util/Map;)V
 	public final fun setName (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/volume/VolumeCreateOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/volume/VolumeCreateOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/volume/VolumeCreateOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/volume/VolumeCreateOptions$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/volume/VolumeCreateOptions;
@@ -3435,12 +3366,11 @@ public final class me/devnatan/yoki/models/volume/VolumeListOptions {
 	public final fun setLabel (Ljava/lang/String;)V
 	public final fun setName (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/volume/VolumeListOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/volume/VolumeListOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/volume/VolumeListOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/volume/VolumeListOptions$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/volume/VolumeListOptions;
@@ -3467,12 +3397,11 @@ public final class me/devnatan/yoki/models/volume/VolumeListResponse {
 	public final fun getWarnings ()Ljava/util/List;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/volume/VolumeListResponse;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/volume/VolumeListResponse;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/volume/VolumeListResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/volume/VolumeListResponse$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/volume/VolumeListResponse;
@@ -3500,12 +3429,11 @@ public final class me/devnatan/yoki/models/volume/VolumePruneOptions {
 	public fun hashCode ()I
 	public final fun setLabel (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/volume/VolumePruneOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/volume/VolumePruneOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/volume/VolumePruneOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/volume/VolumePruneOptions$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/volume/VolumePruneOptions;
@@ -3531,12 +3459,11 @@ public final class me/devnatan/yoki/models/volume/VolumePruneResponse {
 	public final fun getVolumesDeleted ()Ljava/util/List;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lme/devnatan/yoki/models/volume/VolumePruneResponse;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/volume/VolumePruneResponse;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class me/devnatan/yoki/models/volume/VolumePruneResponse$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lme/devnatan/yoki/models/volume/VolumePruneResponse$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/volume/VolumePruneResponse;
@@ -3569,103 +3496,6 @@ public final class me/devnatan/yoki/net/SocketUtils {
 	public static final field DEFAULT_DOCKER_UNIX_SOCKET Ljava/lang/String;
 }
 
-public final class me/devnatan/yoki/resource/ContainerAlreadyExistsException : me/devnatan/yoki/resource/ContainerException {
-	public final fun getName ()Ljava/lang/String;
-}
-
-public final class me/devnatan/yoki/resource/ContainerAlreadyStartedException : me/devnatan/yoki/resource/ContainerException {
-	public final fun getContainerId ()Ljava/lang/String;
-}
-
-public class me/devnatan/yoki/resource/ContainerException : me/devnatan/yoki/YokiResourceException {
-}
-
-public final class me/devnatan/yoki/resource/ContainerNotFoundException : me/devnatan/yoki/resource/ContainerException {
-	public final fun getContainerId ()Ljava/lang/String;
-}
-
-public final class me/devnatan/yoki/resource/ContainerNotRunningException : me/devnatan/yoki/resource/ContainerException {
-	public final fun getContainerId ()Ljava/lang/String;
-}
-
-public final class me/devnatan/yoki/resource/ContainerRemoveConflictException : me/devnatan/yoki/resource/ContainerException {
-	public final fun getContainerId ()Ljava/lang/String;
-}
-
-public final class me/devnatan/yoki/resource/ContainerResource {
-	public final fun attach (Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
-	public final fun create (Lme/devnatan/yoki/models/container/ContainerCreateOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun exec (Ljava/lang/String;Lme/devnatan/yoki/models/exec/ExecCreateOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun inspect (Ljava/lang/String;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun inspect$default (Lme/devnatan/yoki/resource/ContainerResource;Ljava/lang/String;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public final fun kill (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun kill$default (Lme/devnatan/yoki/resource/ContainerResource;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public final fun list (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun list (Lme/devnatan/yoki/models/container/ContainerListOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun logs (Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
-	public final fun logs (Ljava/lang/String;Lme/devnatan/yoki/models/container/ContainerLogsOptions;)Lkotlinx/coroutines/flow/Flow;
-	public final fun pause (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun prune (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun prune (Lme/devnatan/yoki/models/container/ContainerPruneFilters;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun remove (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun remove (Ljava/lang/String;Lme/devnatan/yoki/models/container/ContainerRemoveOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun rename (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun resizeTTY (Ljava/lang/String;Lme/devnatan/yoki/models/ResizeTTYOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun restart (Ljava/lang/String;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun restart$default (Lme/devnatan/yoki/resource/ContainerResource;Ljava/lang/String;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public final fun start (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun start$default (Lme/devnatan/yoki/resource/ContainerResource;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public final fun stop (Ljava/lang/String;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun stop$default (Lme/devnatan/yoki/resource/ContainerResource;Ljava/lang/String;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public final fun unpause (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun wait (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun wait$default (Lme/devnatan/yoki/resource/ContainerResource;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-}
-
-public final class me/devnatan/yoki/resource/ContainerResourceKt {
-	public static final fun create (Lme/devnatan/yoki/resource/ContainerResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun exec (Lme/devnatan/yoki/resource/ContainerResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun list (Lme/devnatan/yoki/resource/ContainerResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun logs (Lme/devnatan/yoki/resource/ContainerResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lkotlinx/coroutines/flow/Flow;
-	public static final fun prune (Lme/devnatan/yoki/resource/ContainerResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun remove (Lme/devnatan/yoki/resource/ContainerResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun resizeTTY (Lme/devnatan/yoki/resource/ContainerResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun restart-exY8QGI (Lme/devnatan/yoki/resource/ContainerResource;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun stop-exY8QGI (Lme/devnatan/yoki/resource/ContainerResource;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public class me/devnatan/yoki/resource/ExecException : me/devnatan/yoki/YokiResourceException {
-}
-
-public final class me/devnatan/yoki/resource/ExecNotFoundException : me/devnatan/yoki/resource/ExecException {
-	public final fun getExecId ()Ljava/lang/String;
-}
-
-public final class me/devnatan/yoki/resource/ExecResource {
-	public static final field BASE_PATH Ljava/lang/String;
-	public final fun inspect (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun resize (Ljava/lang/String;Lme/devnatan/yoki/models/ResizeTTYOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun start (Ljava/lang/String;Lme/devnatan/yoki/models/exec/ExecStartOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public class me/devnatan/yoki/resource/ImageException : me/devnatan/yoki/YokiResourceException {
-}
-
-public final class me/devnatan/yoki/resource/ImageNotFoundException : me/devnatan/yoki/resource/ImageException {
-	public final fun getImage ()Ljava/lang/String;
-}
-
-public final class me/devnatan/yoki/resource/ImageResource {
-	public static final field Companion Lme/devnatan/yoki/resource/ImageResource$Companion;
-	public final fun list (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun pull (Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
-	public final fun remove (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun remove$default (Lme/devnatan/yoki/resource/ImageResource;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-}
-
-public final class me/devnatan/yoki/resource/ImageResource$Companion {
-}
-
 public class me/devnatan/yoki/resource/NetworkException : me/devnatan/yoki/YokiResourceException {
 }
 
@@ -3694,70 +3524,167 @@ public final class me/devnatan/yoki/resource/NetworkResourceKt {
 	public static final fun prune (Lme/devnatan/yoki/resource/NetworkResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class me/devnatan/yoki/resource/NodeNotPartOfSwarmException : me/devnatan/yoki/resource/SwarmException {
+public final class me/devnatan/yoki/resource/container/ContainerAlreadyExistsException : me/devnatan/yoki/resource/container/ContainerException {
+	public final fun getName ()Ljava/lang/String;
 }
 
-public class me/devnatan/yoki/resource/SecretException : me/devnatan/yoki/YokiResourceException {
+public final class me/devnatan/yoki/resource/container/ContainerAlreadyStartedException : me/devnatan/yoki/resource/container/ContainerException {
+	public final fun getContainerId ()Ljava/lang/String;
 }
 
-public final class me/devnatan/yoki/resource/SecretNameConflictException : me/devnatan/yoki/resource/SecretException {
+public class me/devnatan/yoki/resource/container/ContainerException : me/devnatan/yoki/YokiResourceException {
+}
+
+public final class me/devnatan/yoki/resource/container/ContainerNotFoundException : me/devnatan/yoki/resource/container/ContainerException {
+	public final fun getContainerId ()Ljava/lang/String;
+}
+
+public final class me/devnatan/yoki/resource/container/ContainerNotRunningException : me/devnatan/yoki/resource/container/ContainerException {
+	public final fun getContainerId ()Ljava/lang/String;
+}
+
+public final class me/devnatan/yoki/resource/container/ContainerRemoveConflictException : me/devnatan/yoki/resource/container/ContainerException {
+	public final fun getContainerId ()Ljava/lang/String;
+}
+
+public final class me/devnatan/yoki/resource/container/ContainerResource {
+	public final fun attach (Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
+	public final fun create (Lme/devnatan/yoki/models/container/ContainerCreateOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun exec (Ljava/lang/String;Lme/devnatan/yoki/models/exec/ExecCreateOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun inspect (Ljava/lang/String;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun inspect$default (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun kill (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun kill$default (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun list (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun list (Lme/devnatan/yoki/models/container/ContainerListOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun logs (Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
+	public final fun logs (Ljava/lang/String;Lme/devnatan/yoki/models/container/ContainerLogsOptions;)Lkotlinx/coroutines/flow/Flow;
+	public final fun pause (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun prune (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun prune (Lme/devnatan/yoki/models/container/ContainerPruneFilters;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun remove (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun remove (Ljava/lang/String;Lme/devnatan/yoki/models/container/ContainerRemoveOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun rename (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun resizeTTY (Ljava/lang/String;Lme/devnatan/yoki/models/ResizeTTYOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun restart (Ljava/lang/String;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun restart$default (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun start (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun start$default (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun stop (Ljava/lang/String;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun stop$default (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun unpause (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun wait (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun wait$default (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class me/devnatan/yoki/resource/container/ContainerResourceKt {
+	public static final fun create (Lme/devnatan/yoki/resource/container/ContainerResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun exec (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun list (Lme/devnatan/yoki/resource/container/ContainerResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun logs (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)Lkotlinx/coroutines/flow/Flow;
+	public static final fun prune (Lme/devnatan/yoki/resource/container/ContainerResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun remove (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun resizeTTY (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun restart-exY8QGI (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun stop-exY8QGI (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public class me/devnatan/yoki/resource/exec/ExecException : me/devnatan/yoki/YokiResourceException {
+}
+
+public final class me/devnatan/yoki/resource/exec/ExecNotFoundException : me/devnatan/yoki/resource/exec/ExecException {
+	public final fun getExecId ()Ljava/lang/String;
+}
+
+public final class me/devnatan/yoki/resource/exec/ExecResource {
+	public static final field BASE_PATH Ljava/lang/String;
+	public final fun inspect (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun resize (Ljava/lang/String;Lme/devnatan/yoki/models/ResizeTTYOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun start (Ljava/lang/String;Lme/devnatan/yoki/models/exec/ExecStartOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public class me/devnatan/yoki/resource/image/ImageException : me/devnatan/yoki/YokiResourceException {
+}
+
+public final class me/devnatan/yoki/resource/image/ImageNotFoundException : me/devnatan/yoki/resource/image/ImageException {
+	public final fun getImage ()Ljava/lang/String;
+}
+
+public final class me/devnatan/yoki/resource/image/ImageResource {
+	public static final field Companion Lme/devnatan/yoki/resource/image/ImageResource$Companion;
+	public final fun list (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun pull (Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
+	public final fun remove (Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun remove$default (Lme/devnatan/yoki/resource/image/ImageResource;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class me/devnatan/yoki/resource/image/ImageResource$Companion {
+}
+
+public class me/devnatan/yoki/resource/secret/SecretException : me/devnatan/yoki/YokiResourceException {
+}
+
+public final class me/devnatan/yoki/resource/secret/SecretNameConflictException : me/devnatan/yoki/resource/secret/SecretException {
 	public final fun getSecretName ()Ljava/lang/String;
 }
 
-public final class me/devnatan/yoki/resource/SecretNotFoundException : me/devnatan/yoki/resource/SecretException {
+public final class me/devnatan/yoki/resource/secret/SecretNotFoundException : me/devnatan/yoki/resource/secret/SecretException {
 	public final fun getSecretId ()Ljava/lang/String;
 	public final fun getVersion ()J
 }
 
-public final class me/devnatan/yoki/resource/SecretResource {
+public final class me/devnatan/yoki/resource/secret/SecretResource {
 	public static final field BASE_PATH Ljava/lang/String;
 	public final fun create (Lme/devnatan/yoki/models/secret/SecretSpec;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun delete (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun inspect (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun list (Lme/devnatan/yoki/models/secret/SecretListFilters;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun list$default (Lme/devnatan/yoki/resource/SecretResource;Lme/devnatan/yoki/models/secret/SecretListFilters;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun list$default (Lme/devnatan/yoki/resource/secret/SecretResource;Lme/devnatan/yoki/models/secret/SecretListFilters;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun update (Ljava/lang/String;JLme/devnatan/yoki/models/secret/SecretSpec;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class me/devnatan/yoki/resource/SecretResourceKt {
-	public static final fun create (Lme/devnatan/yoki/resource/SecretResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+public final class me/devnatan/yoki/resource/secret/SecretResourceKt {
+	public static final fun create (Lme/devnatan/yoki/resource/secret/SecretResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun label (Lme/devnatan/yoki/models/secret/SecretListFilters;Lkotlin/Pair;)V
-	public static final fun list (Lme/devnatan/yoki/resource/SecretResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun update (Lme/devnatan/yoki/resource/SecretResource;Ljava/lang/String;JLkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun list (Lme/devnatan/yoki/resource/secret/SecretResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun update (Lme/devnatan/yoki/resource/secret/SecretResource;Ljava/lang/String;JLkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public class me/devnatan/yoki/resource/SwarmException : me/devnatan/yoki/YokiResourceException {
+public final class me/devnatan/yoki/resource/swarm/NodeNotPartOfSwarmException : me/devnatan/yoki/resource/swarm/SwarmException {
 }
 
-public final class me/devnatan/yoki/resource/SystemResource {
+public class me/devnatan/yoki/resource/swarm/SwarmException : me/devnatan/yoki/YokiResourceException {
+}
+
+public final class me/devnatan/yoki/resource/system/SystemResource {
 	public static final field PING_ENDPOINT Ljava/lang/String;
 	public final fun ping (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun ping (ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun ping$default (Lme/devnatan/yoki/resource/SystemResource;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun ping$default (Lme/devnatan/yoki/resource/system/SystemResource;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun version (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class me/devnatan/yoki/resource/VolumeResource {
+public final class me/devnatan/yoki/resource/volume/VolumeResource {
 	public static final field BASE_PATH Ljava/lang/String;
 	public final fun create (Lme/devnatan/yoki/models/volume/VolumeCreateOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun inspect (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun list (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun list (Lme/devnatan/yoki/models/volume/VolumeListOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun list$default (Lme/devnatan/yoki/resource/VolumeResource;Lme/devnatan/yoki/models/volume/VolumeListOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun list$default (Lme/devnatan/yoki/resource/volume/VolumeResource;Lme/devnatan/yoki/models/volume/VolumeListOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun prune (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun prune (Lme/devnatan/yoki/models/volume/VolumePruneOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun prune$default (Lme/devnatan/yoki/resource/VolumeResource;Lme/devnatan/yoki/models/volume/VolumePruneOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun prune$default (Lme/devnatan/yoki/resource/volume/VolumeResource;Lme/devnatan/yoki/models/volume/VolumePruneOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun remove (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun remove (Ljava/lang/String;Lme/devnatan/yoki/models/volume/VolumeRemoveOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun remove$default (Lme/devnatan/yoki/resource/VolumeResource;Ljava/lang/String;Lme/devnatan/yoki/models/volume/VolumeRemoveOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun remove$default (Lme/devnatan/yoki/resource/volume/VolumeResource;Ljava/lang/String;Lme/devnatan/yoki/models/volume/VolumeRemoveOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
-public final class me/devnatan/yoki/resource/VolumeResourceKt {
-	public static final fun create (Lme/devnatan/yoki/resource/VolumeResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun create$default (Lme/devnatan/yoki/resource/VolumeResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public static final fun list (Lme/devnatan/yoki/resource/VolumeResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun prune (Lme/devnatan/yoki/resource/VolumeResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun remove (Lme/devnatan/yoki/resource/VolumeResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+public final class me/devnatan/yoki/resource/volume/VolumeResourceKt {
+	public static final fun create (Lme/devnatan/yoki/resource/volume/VolumeResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun create$default (Lme/devnatan/yoki/resource/volume/VolumeResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun list (Lme/devnatan/yoki/resource/volume/VolumeResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun prune (Lme/devnatan/yoki/resource/volume/VolumeResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun remove (Lme/devnatan/yoki/resource/volume/VolumeResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public final class me/devnatan/yoki/util/JsonJvm {
@@ -3799,12 +3726,11 @@ public final class org/katan/yoki/yoki/models/system/SystemEvent {
 	public final fun getType ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lorg/katan/yoki/yoki/models/system/SystemEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lorg/katan/yoki/yoki/models/system/SystemEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class org/katan/yoki/yoki/models/system/SystemEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lorg/katan/yoki/yoki/models/system/SystemEvent$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/yoki/models/system/SystemEvent;
@@ -3828,12 +3754,11 @@ public final class org/katan/yoki/yoki/models/system/SystemEvent$Actor {
 	public final fun getId ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final fun write$Self (Lorg/katan/yoki/yoki/models/system/SystemEvent$Actor;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lorg/katan/yoki/yoki/models/system/SystemEvent$Actor;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
 public final class org/katan/yoki/yoki/models/system/SystemEvent$Actor$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
 	public static final field INSTANCE Lorg/katan/yoki/yoki/models/system/SystemEvent$Actor$$serializer;
-	public static final synthetic field descriptor Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
 	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lorg/katan/yoki/yoki/models/system/SystemEvent$Actor;

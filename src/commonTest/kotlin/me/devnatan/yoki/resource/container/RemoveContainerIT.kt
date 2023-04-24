@@ -4,7 +4,6 @@ package me.devnatan.yoki.resource.container
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import me.devnatan.yoki.resource.ContainerNotFoundException
 import me.devnatan.yoki.resource.ResourceIT
 import kotlin.test.Test
 import kotlin.test.assertFailsWith

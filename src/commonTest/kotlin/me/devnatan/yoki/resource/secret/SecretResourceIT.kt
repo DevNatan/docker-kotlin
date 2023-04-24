@@ -4,8 +4,8 @@ package me.devnatan.yoki.resource.secret
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
-import me.devnatan.yoki.resource.NodeNotPartOfSwarmException
 import me.devnatan.yoki.resource.ResourceIT
+import me.devnatan.yoki.resource.swarm.NodeNotPartOfSwarmException
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
 

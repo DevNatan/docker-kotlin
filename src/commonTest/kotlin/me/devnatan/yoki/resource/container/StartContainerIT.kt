@@ -5,8 +5,6 @@ package me.devnatan.yoki.resource.container
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import me.devnatan.yoki.keepStartedForever
-import me.devnatan.yoki.resource.ContainerAlreadyStartedException
-import me.devnatan.yoki.resource.ContainerNotFoundException
 import me.devnatan.yoki.resource.ResourceIT
 import me.devnatan.yoki.withContainer
 import kotlin.test.Test

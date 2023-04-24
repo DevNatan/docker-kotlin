@@ -36,6 +36,7 @@ import me.devnatan.yoki.models.container.ContainerSummary
 import me.devnatan.yoki.models.container.ContainerWaitResult
 import me.devnatan.yoki.models.exec.ExecCreateOptions
 import me.devnatan.yoki.net.requestCatching
+import me.devnatan.yoki.resource.image.ImageNotFoundException
 import kotlin.time.Duration
 
 public class ContainerResource internal constructor(

@@ -4,7 +4,10 @@ import kotlinx.coroutines.flow.collect
 import me.devnatan.yoki.models.container.ContainerCreateOptions
 import me.devnatan.yoki.models.volume.Volume
 import me.devnatan.yoki.models.volume.VolumeCreateOptions
-import me.devnatan.yoki.resource.remove
+import me.devnatan.yoki.resource.container.create
+import me.devnatan.yoki.resource.container.remove
+import me.devnatan.yoki.resource.volume.create
+import me.devnatan.yoki.resource.volume.remove
 import kotlin.test.fail
 
 suspend fun <R> Yoki.withImage(imageName: String, block: suspend (String) -> R): R {

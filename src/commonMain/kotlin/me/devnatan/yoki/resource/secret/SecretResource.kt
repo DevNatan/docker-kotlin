@@ -15,6 +15,7 @@ import me.devnatan.yoki.models.secret.Secret
 import me.devnatan.yoki.models.secret.SecretListFilters
 import me.devnatan.yoki.models.secret.SecretSpec
 import me.devnatan.yoki.net.requestCatching
+import me.devnatan.yoki.resource.swarm.NodeNotPartOfSwarmException
 
 /**
  * Secrets are sensitive data that can be used by Docker services.

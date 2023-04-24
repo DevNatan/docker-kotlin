@@ -10,6 +10,7 @@ import me.devnatan.yoki.models.ResizeTTYOptions
 import me.devnatan.yoki.models.exec.ExecInspectResponse
 import me.devnatan.yoki.models.exec.ExecStartOptions
 import me.devnatan.yoki.net.requestCatching
+import me.devnatan.yoki.resource.container.ContainerNotRunningException
 
 /**
  * Exec runs new commands inside running containers.

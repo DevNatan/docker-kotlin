@@ -5,6 +5,7 @@ package me.devnatan.yoki.resource.network
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import me.devnatan.yoki.resource.ResourceIT
+import me.devnatan.yoki.resource.create
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
