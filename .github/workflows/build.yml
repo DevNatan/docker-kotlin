@@ -1,19 +1,17 @@
 name: Build
 on:
-  push:
-    branches: [ main ]
-  pull_request:
   workflow_dispatch:
+  push:
 jobs:
-  check:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup JDK 8
+      - name: Setup JDK 11
         uses: actions/setup-java@v2
         with:
-          java-version: '8'
+          java-version: '11'
           distribution: 'adopt'
           server-id: github
           cache: 'gradle'
@@ -34,10 +32,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup JDK 8
+      - name: Setup JDK 11
         uses: actions/setup-java@v2
         with:
-          java-version: '8'
+          java-version: '11'
           distribution: 'adopt'
           server-id: github
           cache: 'gradle'
@@ -56,10 +54,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup JDK 8
+      - name: Setup JDK 11
         uses: actions/setup-java@v2
         with:
-          java-version: '8'
+          java-version: '11'
           distribution: 'adopt'
           server-id: github
           cache: 'gradle'
@@ -73,5 +71,5 @@ jobs:
           GITHUB_USERNAME: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          arguments: clean --no-configuration-cache build -x apiCheck -x allTests -x jvmTest -x lintKotlin
+          arguments: clean --no-configuration-cache build -x check
           gradle-version: wrapper
