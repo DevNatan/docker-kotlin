@@ -3,7 +3,7 @@ public final class me/devnatan/yoki/Yoki : java/io/Closeable {
 	public final field containers Lme/devnatan/yoki/resource/container/ContainerResource;
 	public final field exec Lme/devnatan/yoki/resource/exec/ExecResource;
 	public final field images Lme/devnatan/yoki/resource/image/ImageResource;
-	public final field networks Lme/devnatan/yoki/resource/NetworkResource;
+	public final field networks Lme/devnatan/yoki/resource/network/NetworkResource;
 	public final field secrets Lme/devnatan/yoki/resource/secret/SecretResource;
 	public final field system Lme/devnatan/yoki/resource/system/SystemResource;
 	public final field volumes Lme/devnatan/yoki/resource/volume/VolumeResource;
@@ -3503,27 +3503,6 @@ public final class me/devnatan/yoki/resource/NetworkNotFoundException : me/devna
 	public final fun getNetworkId ()Ljava/lang/String;
 }
 
-public final class me/devnatan/yoki/resource/NetworkResource {
-	public static final field BASE_PATH Ljava/lang/String;
-	public final fun connectContainer (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun create (Lme/devnatan/yoki/models/network/NetworkCreateOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun disconnectContainer (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun inspect (Ljava/lang/String;Lme/devnatan/yoki/models/network/NetworkInspectOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun inspect$default (Lme/devnatan/yoki/resource/NetworkResource;Ljava/lang/String;Lme/devnatan/yoki/models/network/NetworkInspectOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public final fun list (Lme/devnatan/yoki/models/network/NetworkListFilters;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun list$default (Lme/devnatan/yoki/resource/NetworkResource;Lme/devnatan/yoki/models/network/NetworkListFilters;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public final fun prune (Lme/devnatan/yoki/models/network/NetworkPruneOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun prune$default (Lme/devnatan/yoki/resource/NetworkResource;Lme/devnatan/yoki/models/network/NetworkPruneOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public final fun remove (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public final class me/devnatan/yoki/resource/NetworkResourceKt {
-	public static final fun create (Lme/devnatan/yoki/resource/NetworkResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun inspect (Lme/devnatan/yoki/resource/NetworkResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun list (Lme/devnatan/yoki/resource/NetworkResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun prune (Lme/devnatan/yoki/resource/NetworkResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
 public final class me/devnatan/yoki/resource/container/ContainerAlreadyExistsException : me/devnatan/yoki/resource/container/ContainerException {
 	public final fun getName ()Ljava/lang/String;
 }
@@ -3619,6 +3598,27 @@ public final class me/devnatan/yoki/resource/image/ImageResource {
 }
 
 public final class me/devnatan/yoki/resource/image/ImageResource$Companion {
+}
+
+public final class me/devnatan/yoki/resource/network/NetworkResource {
+	public static final field BASE_PATH Ljava/lang/String;
+	public final fun connectContainer (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun create (Lme/devnatan/yoki/models/network/NetworkCreateOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun disconnectContainer (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun inspect (Ljava/lang/String;Lme/devnatan/yoki/models/network/NetworkInspectOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun inspect$default (Lme/devnatan/yoki/resource/network/NetworkResource;Ljava/lang/String;Lme/devnatan/yoki/models/network/NetworkInspectOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun list (Lme/devnatan/yoki/models/network/NetworkListFilters;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun list$default (Lme/devnatan/yoki/resource/network/NetworkResource;Lme/devnatan/yoki/models/network/NetworkListFilters;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun prune (Lme/devnatan/yoki/models/network/NetworkPruneOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun prune$default (Lme/devnatan/yoki/resource/network/NetworkResource;Lme/devnatan/yoki/models/network/NetworkPruneOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun remove (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class me/devnatan/yoki/resource/network/NetworkResourceKt {
+	public static final fun create (Lme/devnatan/yoki/resource/network/NetworkResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun inspect (Lme/devnatan/yoki/resource/network/NetworkResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun list (Lme/devnatan/yoki/resource/network/NetworkResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun prune (Lme/devnatan/yoki/resource/network/NetworkResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public class me/devnatan/yoki/resource/secret/SecretException : me/devnatan/yoki/YokiResourceException {

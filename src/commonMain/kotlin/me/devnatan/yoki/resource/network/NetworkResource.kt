@@ -1,4 +1,4 @@
-package me.devnatan.yoki.resource
+package me.devnatan.yoki.resource.network
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -16,6 +16,7 @@ import me.devnatan.yoki.models.network.NetworkInspectOptions
 import me.devnatan.yoki.models.network.NetworkListFilters
 import me.devnatan.yoki.models.network.NetworkPruneOptions
 import me.devnatan.yoki.net.requestCatching
+import me.devnatan.yoki.resource.NetworkNotFoundException
 
 /**
  * Networks are user-defined networks that containers can be attached to.

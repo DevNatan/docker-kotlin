@@ -6,10 +6,10 @@ import me.devnatan.yoki.YokiConfigBuilder.Companion.DEFAULT_DOCKER_API_VERSION
 import me.devnatan.yoki.logging.Logger
 import me.devnatan.yoki.logging.createLogger
 import me.devnatan.yoki.net.createHttpClient
-import me.devnatan.yoki.resource.NetworkResource
 import me.devnatan.yoki.resource.container.ContainerResource
 import me.devnatan.yoki.resource.exec.ExecResource
 import me.devnatan.yoki.resource.image.ImageResource
+import me.devnatan.yoki.resource.network.NetworkResource
 import me.devnatan.yoki.resource.secret.SecretResource
 import me.devnatan.yoki.resource.system.SystemResource
 import me.devnatan.yoki.resource.volume.VolumeResource
