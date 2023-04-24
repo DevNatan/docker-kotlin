@@ -1,4 +1,4 @@
-package me.devnatan.yoki.resource
+package me.devnatan.yoki.resource.system
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body

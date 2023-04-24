@@ -1,4 +1,4 @@
-package me.devnatan.yoki.resource
+package me.devnatan.yoki.resource.container
 
 import me.devnatan.yoki.YokiResourceException
 

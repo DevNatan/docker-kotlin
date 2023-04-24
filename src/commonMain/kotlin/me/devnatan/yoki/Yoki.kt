@@ -11,8 +11,8 @@ import me.devnatan.yoki.resource.ExecResource
 import me.devnatan.yoki.resource.ImageResource
 import me.devnatan.yoki.resource.NetworkResource
 import me.devnatan.yoki.resource.SecretResource
-import me.devnatan.yoki.resource.SystemResource
 import me.devnatan.yoki.resource.VolumeResource
+import me.devnatan.yoki.resource.system.SystemResource
 import me.devnatan.yoki.util.Closeable
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
