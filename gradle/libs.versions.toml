@@ -1,5 +1,5 @@
 [versions]
-kotlin = "1.8.10"
+kotlin = "1.8.20"
 ktx-coroutines = "1.6.3-native-mt"
 ktx-serialization = "1.4.1"
 ktor = "2.3.0"
