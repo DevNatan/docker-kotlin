@@ -1,6 +1,3 @@
-// https://youtrack.jetbrains.com/issue/KTIJ-19369
-@file:Suppress("DSL_SCOPE_VIOLATION", "UnstableApiUsage")
-
 import io.gitlab.arturbosch.detekt.Detekt
 
 plugins {
