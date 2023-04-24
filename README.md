@@ -11,7 +11,7 @@ repositories {
 }
 
 dependencies {
-    implementation("me.devnatan:yoki:0.0.1-SNAPSHOT")
+    implementation("me.devnatan:yoki:0.1.0-SNAPSHOT")
 }
 ```
 
