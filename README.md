@@ -5,12 +5,6 @@
 
 Yoki allows you to interact with the Docker Engine Remote API in a simplified and fast way.
 
-* [Configuration](#configuration)
-* [Basic Usage](#basic-usage)
-* [Versions Compatibility](#versions-compatibility)
-* [Native Targets](#native-targets)
-* [Interoperability](#interoperability)
-
 ```kotlin
 repositories {
     maven("https://s01.oss.sonatype.org/content/repositories/snapshots/")
@@ -53,31 +47,20 @@ Yoki {
 }
 ```
 
-## Basic Usage
+## Usage
 
 The way to access resources is straight to the point, all functions (for Kotlin) are suspend.
 
 ##### Get info about system version
 
 ```kotlin
-import me.devnatan.yoki
-import me.devnatan.yoki.models.system.SystemVersion
-import me.devnatan.yoki.resource.list
-
-val client = Yoki()
-
-val version: SystemVersion = client.system.version()
+val version: SystemVersion = yoki.system.version()
 ```
 
 ##### Listing all containers
 
 ```kotlin
-import me.devnatan.yoki
-import me.devnatan.yoki.resource.list
-
-val client = Yoki()
-
-client.containers.list {
+val containers: List<Container> = yoki.containers.list {
     all = true
 }
 ```
@@ -85,12 +68,7 @@ client.containers.list {
 ##### Creating a new network
 
 ```kotlin
-import me.devnatan.yoki
-import me.devnatan.yoki.resource.create
-
-val client = Yoki()
-
-client.networks.create {
+val networkId: String = yoki.networks.create {
     name = "octopus-net"
     driver = "overlay"
 }
@@ -98,16 +76,10 @@ client.networks.create {
 
 ##### Streaming container logs
 
-Streaming methods will always return a [Flow](https://kotlinlang.org/docs/flow.html).
+All streaming methods will always return a [Flow](https://kotlinlang.org/docs/flow.html).
 
 ```kotlin
-import me.devnatan.yoki
-import me.devnatan.yoki.models.Frame
-import me.devnatan.yoki.resource.logs
-
-val client = Yoki()
-
-val flow: Flow<Frame> = yoki.containers.logs("floral-fury") {
+val logs: Flow<Frame> = yoki.containers.logs("floral-fury") {
     stderr = true
     stdout = true
 }
@@ -115,8 +87,8 @@ val flow: Flow<Frame> = yoki.containers.logs("floral-fury") {
 
 #### Fallback to version-specific parameter value
 
-By default, all options parameters for accessing a resource use `null`, that is, *null value* means that it will use the
-value defined by the Docker API as the default value for that property.
+By default, all options parameters for accessing a resource use `null`, that is, *null value* means
+that it will use the value defined by the Docker API as the default value for that property.
 
 ## License
 
