@@ -3595,6 +3595,10 @@ public final class me/devnatan/yoki/resource/container/ContainerAlreadyStartedEx
 	public final fun getContainerId ()Ljava/lang/String;
 }
 
+public final class me/devnatan/yoki/resource/container/ContainerAlreadyStoppedException : me/devnatan/yoki/resource/container/ContainerException {
+	public final fun getContainerId ()Ljava/lang/String;
+}
+
 public class me/devnatan/yoki/resource/container/ContainerException : me/devnatan/yoki/YokiResourceException {
 }
 
@@ -3610,6 +3614,11 @@ public final class me/devnatan/yoki/resource/container/ContainerRemoveConflictEx
 	public final fun getContainerId ()Ljava/lang/String;
 }
 
+public final class me/devnatan/yoki/resource/container/ContainerRenameConflictException : me/devnatan/yoki/resource/container/ContainerException {
+	public final fun getContainerId ()Ljava/lang/String;
+	public final fun getNewName ()Ljava/lang/String;
+}
+
 public final class me/devnatan/yoki/resource/container/ContainerResource {
 	public final fun attach (Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
 	public final fun create (Lme/devnatan/yoki/models/container/ContainerCreateOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -3618,23 +3627,23 @@ public final class me/devnatan/yoki/resource/container/ContainerResource {
 	public static synthetic fun inspect$default (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun kill (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun kill$default (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public final fun list (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun list (Lme/devnatan/yoki/models/container/ContainerListOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun list$default (Lme/devnatan/yoki/resource/container/ContainerResource;Lme/devnatan/yoki/models/container/ContainerListOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun logs (Ljava/lang/String;)Lkotlinx/coroutines/flow/Flow;
 	public final fun logs (Ljava/lang/String;Lme/devnatan/yoki/models/container/ContainerLogsOptions;)Lkotlinx/coroutines/flow/Flow;
 	public final fun pause (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun prune (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun prune (Lme/devnatan/yoki/models/container/ContainerPruneFilters;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun remove (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun remove (Ljava/lang/String;Lme/devnatan/yoki/models/container/ContainerRemoveOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun remove$default (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Lme/devnatan/yoki/models/container/ContainerRemoveOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun rename (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun resizeTTY (Ljava/lang/String;Lme/devnatan/yoki/models/ResizeTTYOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final fun restart (Ljava/lang/String;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun restart$default (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun restart-Kx4hsE0 (Ljava/lang/String;Lkotlin/time/Duration;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun restart-Kx4hsE0$default (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Lkotlin/time/Duration;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun start (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun start$default (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public final fun stop (Ljava/lang/String;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun stop$default (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Ljava/lang/Integer;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun stop-Kx4hsE0 (Ljava/lang/String;Lkotlin/time/Duration;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun stop-Kx4hsE0$default (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Lkotlin/time/Duration;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun unpause (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun wait (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun wait$default (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
@@ -3648,8 +3657,6 @@ public final class me/devnatan/yoki/resource/container/ContainerResourceKt {
 	public static final fun prune (Lme/devnatan/yoki/resource/container/ContainerResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun remove (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun resizeTTY (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun restart-exY8QGI (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun stop-exY8QGI (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;JLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
 public class me/devnatan/yoki/resource/exec/ExecException : me/devnatan/yoki/YokiResourceException {

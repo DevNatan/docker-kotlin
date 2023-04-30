@@ -51,27 +51,18 @@ public class ContainerResource internal constructor(
     }
 
     /**
-     * Returns a list of all created containers.
-     */
-    public suspend fun list(): List<ContainerSummary> {
-        return list(
-            ContainerListOptions(
-                all = true,
-            ),
-        )
-    }
-
-    /**
      * Returns a list of all containers.
      *
      * @param options Options to customize the listing result.
      */
-    public suspend fun list(options: ContainerListOptions): List<ContainerSummary> {
-        return httpClient.get("$BASE_PATH/json") {
-            parameter("all", options.all)
-            parameter("limit", options.limit)
-            parameter("size", options.size)
-            parameter("filters", options.filters?.let(json::encodeToString))
+    public suspend fun list(options: ContainerListOptions = ContainerListOptions(all = true)): List<ContainerSummary> {
+        return requestCatching {
+            httpClient.get("$BASE_PATH/json") {
+                parameter("all", options.all)
+                parameter("limit", options.limit)
+                parameter("size", options.size)
+                parameter("filters", options.filters?.let(json::encodeToString))
+            }
         }.body()
     }
 
@@ -79,7 +70,6 @@ public class ContainerResource internal constructor(
      * Creates a new container.
      *
      * @param options Options to customize the container creation.
-     *
      * @throws ImageNotFoundException If the image specified does not exist or isn't pulled.
      * @throws ContainerAlreadyExistsException If a container with the same name already exists.
      */
@@ -87,8 +77,13 @@ public class ContainerResource internal constructor(
         requireNotNull(options.image) { "Container image is required" }
 
         val result = requestCatching(
-            HttpStatusCode.NotFound to { ImageNotFoundException(it, options.image.orEmpty()) },
-            HttpStatusCode.Conflict to { ContainerAlreadyExistsException(it, options.name.orEmpty()) },
+            HttpStatusCode.NotFound to { exception -> ImageNotFoundException(exception, options.image.orEmpty()) },
+            HttpStatusCode.Conflict to { exception ->
+                ContainerAlreadyExistsException(
+                    exception,
+                    options.name.orEmpty(),
+                )
+            },
         ) {
             httpClient.post("$BASE_PATH/create") {
                 parameter("name", options.name)
@@ -110,8 +105,8 @@ public class ContainerResource internal constructor(
      */
     public suspend fun start(id: String, detachKeys: String? = null) {
         requestCatching(
-            HttpStatusCode.NotModified to { ContainerAlreadyStartedException(it, id) },
-            HttpStatusCode.NotFound to { ContainerNotFoundException(it, id) },
+            HttpStatusCode.NotModified to { exception -> ContainerAlreadyStartedException(exception, id) },
+            HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, id) },
         ) {
             httpClient.post("$BASE_PATH/$id/start") {
                 parameter("detachKeys", detachKeys)
@@ -119,52 +114,122 @@ public class ContainerResource internal constructor(
         }
     }
 
-    public suspend fun stop(id: String, timeout: Int? = null) {
-        httpClient.post("$BASE_PATH/$id/stop") {
-            parameter("t", timeout)
+    /**
+     * Stops a container.
+     *
+     * @param id The container id to stop.
+     * @param timeout Duration to wait before killing the container.
+     */
+    public suspend fun stop(id: String, timeout: Duration? = null) {
+        requestCatching(
+            HttpStatusCode.NotModified to { exception -> ContainerAlreadyStoppedException(exception, id) },
+            HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, id) },
+        ) {
+            httpClient.post("$BASE_PATH/$id/stop") {
+                parameter("t", timeout?.inWholeSeconds)
+            }
         }
     }
 
-    public suspend fun restart(id: String, timeout: Int? = null) {
-        httpClient.post("$BASE_PATH/$id/restart") {
-            parameter("t", timeout)
+    /**
+     * Restarts a container.
+     *
+     * @param id The container id to restart.
+     * @param timeout Duration to wait before killing the container.
+     */
+    public suspend fun restart(id: String, timeout: Duration? = null) {
+        requestCatching(
+            HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, id) },
+        ) {
+            httpClient.post("$BASE_PATH/$id/restart") {
+                parameter("t", timeout)
+            }
         }
     }
 
+    /**
+     * Kills a container.
+     *
+     * @param id The container id to kille.
+     * @param signal Signal to send for container to be killed, default is "SIGKILL"
+     */
     public suspend fun kill(id: String, signal: String? = null) {
-        httpClient.post("$BASE_PATH/$id/kill") {
-            parameter("signal", signal)
+        requestCatching(
+            HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, id) },
+            HttpStatusCode.Conflict to { exception -> ContainerNotRunningException(exception, id) },
+        ) {
+            httpClient.post("$BASE_PATH/$id/kill") {
+                parameter("signal", signal)
+            }
         }
     }
 
+    /**
+     * Renames a container.
+     *
+     * @param id The container id to rename.
+     * @param newName The new container name.
+     */
     public suspend fun rename(id: String, newName: String) {
-        httpClient.post("$BASE_PATH/$id/rename") {
-            parameter("name", newName)
+        requestCatching(
+            HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, id) },
+            HttpStatusCode.Conflict to { exception -> ContainerRenameConflictException(exception, id, newName) },
+        ) {
+            httpClient.post("$BASE_PATH/$id/rename") {
+                parameter("name", newName)
+            }
         }
     }
 
+    /**
+     * Pauses a container.
+     *
+     * @param id The container id to pause.
+     * @see unpause
+     */
     public suspend fun pause(id: String) {
-        httpClient.post("$BASE_PATH/$id/pause")
+        requestCatching(
+            HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, id) },
+        ) {
+            httpClient.post("$BASE_PATH/$id/pause")
+        }
     }
 
+    /**
+     * Resume a container which has been paused by [pause].
+     *
+     * @param The container id to unpause.
+     * @see pause
+     */
     public suspend fun unpause(id: String) {
-        httpClient.post("$BASE_PATH/$id/unpause")
+        requestCatching(
+            HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, id) },
+        ) {
+            httpClient.post("$BASE_PATH/$id/unpause")
+        }
     }
 
-    public suspend fun remove(id: String) {
+    /**
+     * Removes a container.
+     *
+     * @param id The container id to remove.
+     * @param options Removal options.
+     * @throws ContainerNotFoundException If the container is not found for the specified id.
+     * @throws ContainerRemoveConflictException When trying to remove an active container without the `force` option.
+     */
+    public suspend fun remove(
+        id: String,
+        options: ContainerRemoveOptions = ContainerRemoveOptions(),
+    ) {
         requestCatching(
             HttpStatusCode.NotFound to { ContainerNotFoundException(it, id) },
             HttpStatusCode.Conflict to { ContainerRemoveConflictException(it, id) },
         ) {
-            httpClient.delete("$BASE_PATH/$id")
-        }
-    }
-
-    public suspend fun remove(id: String, options: ContainerRemoveOptions) {
-        httpClient.delete("$BASE_PATH/$id") {
-            parameter("v", options.removeAnonymousVolumes)
-            parameter("force", options.force)
-            parameter("link", options.unlink)
+            httpClient.delete("$BASE_PATH/$id") {
+                parameter("v", options.removeAnonymousVolumes)
+                parameter("force", options.force)
+                parameter("link", options.unlink)
+            }
         }
     }
 
@@ -297,7 +362,12 @@ public class ContainerResource internal constructor(
         options: ResizeTTYOptions,
     ) {
         requestCatching(
-            HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, container) },
+            HttpStatusCode.NotFound to { exception ->
+                ContainerNotFoundException(
+                    exception,
+                    container,
+                )
+            },
         ) {
             httpClient.post("$BASE_PATH/$container/resize") {
                 setBody(options)
@@ -313,22 +383,24 @@ public class ContainerResource internal constructor(
      */
     public suspend fun exec(container: String, options: ExecCreateOptions): String {
         return requestCatching(
-            HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, container) },
-            HttpStatusCode.Conflict to { exception -> ContainerNotRunningException(exception, container) },
+            HttpStatusCode.NotFound to { exception ->
+                ContainerNotFoundException(
+                    exception,
+                    container,
+                )
+            },
+            HttpStatusCode.Conflict to { exception ->
+                ContainerNotRunningException(
+                    exception,
+                    container,
+                )
+            },
         ) {
             httpClient.post("$BASE_PATH/$container/exec") {
                 setBody(options)
             }
         }.body<IdOnlyResponse>().id
     }
-}
-
-public suspend inline fun ContainerResource.restart(id: String, timeout: Duration) {
-    return restart(id, timeout.inWholeSeconds.toInt())
-}
-
-public suspend inline fun ContainerResource.stop(id: String, timeout: Duration) {
-    return stop(id, timeout.inWholeSeconds.toInt())
 }
 
 public suspend inline fun ContainerResource.list(block: ContainerListOptions.() -> Unit): List<ContainerSummary> {
@@ -339,11 +411,17 @@ public suspend inline fun ContainerResource.create(block: ContainerCreateOptions
     return create(ContainerCreateOptions().apply(block))
 }
 
-public suspend inline fun ContainerResource.remove(id: String, block: ContainerRemoveOptions.() -> Unit) {
+public suspend inline fun ContainerResource.remove(
+    id: String,
+    block: ContainerRemoveOptions.() -> Unit,
+) {
     return remove(id, ContainerRemoveOptions().apply(block))
 }
 
-public inline fun ContainerResource.logs(id: String, block: ContainerLogsOptions.() -> Unit): Flow<Frame> {
+public inline fun ContainerResource.logs(
+    id: String,
+    block: ContainerLogsOptions.() -> Unit,
+): Flow<Frame> {
     return logs(id, ContainerLogsOptions().apply(block))
 }
 
