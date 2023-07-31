@@ -12,7 +12,7 @@ plugin-kotlinter = "3.14.0"
 plugin-publishOnCentral = "5.0.5"
 plugin-binaryCompatibilityValidator = "0.13.1"
 plugin-kover = "0.6.1"
-plugin-detekt = "1.22.0"
+plugin-detekt = "1.23.1"
 
 [libraries.ktx-coroutines-core]
 module = "org.jetbrains.kotlinx:kotlinx-coroutines-core"
