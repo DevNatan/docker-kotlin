@@ -2,7 +2,7 @@ name: Publish
 on:
   workflow_dispatch:
   release:
-    types: [ created ]
+    types: [ published ]
 jobs:
   publish:
     name: Publish
@@ -27,8 +27,10 @@ jobs:
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          OSSRH_SIGNING_KEY:  ${{ secrets.OSSRH_SIGNING_KEY }}
+          OSSRH_SIGNING_PASSWORD:  ${{ secrets.OSSRH_SIGNING_PASSWORD }}
           GITHUB_USERNAME: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          arguments: --no-configuration-cache publish
+          arguments: publish
           gradle-version: wrapper

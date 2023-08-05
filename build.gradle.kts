@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "me.devnatan"
-version = "0.1.0-SNAPSHOT"
+version = "0.1.0"
 
 repositories {
     mavenCentral()
@@ -106,7 +106,7 @@ kotlin {
 val isReleaseVersion = !version.toString().endsWith("SNAPSHOT")
 publishOnCentral {
     projectDescription.set("Multiplatform Docker API client")
-    projectLongName.set(if (project.name == "lib") "yoki" else project.name)
+    projectLongName.set("yoki")
     licenseName.set("MIT")
     licenseUrl.set("https://github.com/DevNatan/yoki/blob/main/LICENSE")
     projectUrl.set("https://github.com/DevNatan/yoki")
@@ -171,8 +171,4 @@ detekt {
     allRules = false
     config = files("$projectDir/config/detekt.yml")
     baseline = file("$projectDir/config/baseline.xml")
-}
-
-kover {
-    isDisabled.set(false)
 }

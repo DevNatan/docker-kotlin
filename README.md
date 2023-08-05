@@ -7,11 +7,11 @@ Yoki allows you to interact with the Docker Engine Remote API in a simplified an
 
 ```kotlin
 repositories {
-    maven("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+    mavenCentral()
 }
 
 dependencies {
-    implementation("me.devnatan:yoki:0.1.0-SNAPSHOT")
+    implementation("me.devnatan:yoki:0.1.0")
 }
 ```
 
@@ -27,7 +27,7 @@ otherwise it will use the platform default.
 ```kotlin
 import me.devnatan.yoki
 
-val client = Yoki()
+val dockerClient = Yoki()
 ```
 
 You can still configure the client by expanding the initialization block
@@ -54,13 +54,13 @@ The way to access resources is straight to the point, all functions (for Kotlin)
 ##### Get info about system version
 
 ```kotlin
-val version: SystemVersion = yoki.system.version()
+val version: SystemVersion = dockerClient.system.version()
 ```
 
 ##### Listing all containers
 
 ```kotlin
-val containers: List<Container> = yoki.containers.list {
+val containers: List<Container> = dockerClient.containers.list {
     all = true
 }
 ```
@@ -68,7 +68,7 @@ val containers: List<Container> = yoki.containers.list {
 ##### Creating a new network
 
 ```kotlin
-val networkId: String = yoki.networks.create {
+val networkId: String = dockerClient.networks.create {
     name = "octopus-net"
     driver = "overlay"
 }
@@ -79,7 +79,7 @@ val networkId: String = yoki.networks.create {
 All streaming methods will always return a [Flow](https://kotlinlang.org/docs/flow.html).
 
 ```kotlin
-val logs: Flow<Frame> = yoki.containers.logs("floral-fury") {
+val logs: Flow<Frame> = dockerClient.containers.logs("floral-fury") {
     stderr = true
     stdout = true
 }
