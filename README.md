@@ -2,6 +2,7 @@
 
 [![Build](https://github.com/DevNatan/yoki/actions/workflows/build.yml/badge.svg)](https://github.com/DevNatan/yoki/actions/workflows/build.yml)
 [![Integration Tests](https://github.com/DevNatan/yoki/actions/workflows/integration-tests.yml/badge.svg)](https://github.com/DevNatan/yoki/actions/workflows/integration-tests.yml)
+![Maven Central](https://img.shields.io/maven-central/v/me.devnatan/yoki)
 
 Yoki allows you to interact with the Docker Engine Remote API in a simplified and fast way.
 
@@ -11,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation("me.devnatan:yoki-jvm:0.1.0")
+    implementation("me.devnatan:yoki:0.1.1")
 }
 ```
 
@@ -84,11 +85,6 @@ val logs: Flow<Frame> = dockerClient.containers.logs("floral-fury") {
     stdout = true
 }
 ```
-
-#### Fallback to version-specific parameter value
-
-By default, all options parameters for accessing a resource use `null`, that is, *null value* means
-that it will use the value defined by the Docker API as the default value for that property.
 
 ## License
 
