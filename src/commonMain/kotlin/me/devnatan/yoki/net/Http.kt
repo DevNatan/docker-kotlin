@@ -120,6 +120,7 @@ internal fun <T> Result<T>.mapFailureToHttpStatus(
         ?: exception
 }
 
+// TODO use Ktor exception handler instead
 internal inline fun requestCatching(
     vararg errors: Pair<HttpStatusCode, (YokiResponseException) -> Throwable>,
     request: () -> HttpResponse,
