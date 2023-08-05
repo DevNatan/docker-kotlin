@@ -2,6 +2,7 @@ package me.devnatan.yoki.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.jvm.JvmOverloads
 
 @Serializable
 public data class HostConfig @JvmOverloads public constructor(
