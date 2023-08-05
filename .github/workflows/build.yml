@@ -72,5 +72,5 @@ jobs:
           GITHUB_USERNAME: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          arguments: clean --no-configuration-cache build -x check
+          arguments: clean --no-configuration-cache --no-build-cache build -x check
           gradle-version: wrapper
