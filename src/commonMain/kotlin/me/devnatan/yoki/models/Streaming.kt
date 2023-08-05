@@ -14,9 +14,20 @@ public data class Stream internal constructor(
 
     public companion object {
 
+        @JvmStatic
+        @get:JvmName("STD_OUT")
         public val StdIn: Stream = Stream(0, "STDIN")
+
+        @JvmStatic
+        @get:JvmName("STD_OUT")
         public val StdOut: Stream = Stream(1, "STDOUT")
+
+        @JvmStatic
+        @get:JvmName("STD_OUT")
         public val StdErr: Stream = Stream(2, "STDERR")
+
+        @JvmStatic
+        @get:JvmName("STD_OUT")
         public val Unknown: Stream = Stream(-1, "UNKNOWN")
 
         public fun typeOfOrNull(code: Byte): Stream? {
