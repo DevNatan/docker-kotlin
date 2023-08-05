@@ -169,6 +169,6 @@ tasks {
 detekt {
     buildUponDefaultConfig = true
     allRules = false
-    config = files("$projectDir/config/detekt.yml")
+    config.setFrom(files("$projectDir/config/detekt.yml"))
     baseline = file("$projectDir/config/baseline.xml")
 }
