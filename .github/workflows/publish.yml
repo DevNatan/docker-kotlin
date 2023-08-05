@@ -29,7 +29,6 @@ jobs:
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
           OSSRH_SIGNING_KEY:  ${{ secrets.OSSRH_SIGNING_KEY }}
           OSSRH_SIGNING_PASSWORD:  ${{ secrets.OSSRH_SIGNING_PASSWORD }}
-          GITHUB_USERNAME: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           arguments: --no-configuration-cache publish
