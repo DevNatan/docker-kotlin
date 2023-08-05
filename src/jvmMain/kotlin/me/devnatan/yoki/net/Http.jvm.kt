@@ -1,5 +1,3 @@
-@file:JvmName("HttpJVM")
-
 package me.devnatan.yoki.net
 
 import io.ktor.client.HttpClientConfig

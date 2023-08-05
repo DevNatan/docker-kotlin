@@ -1,8 +1,5 @@
-@file:JvmName("JsonJvm")
-
 package me.devnatan.yoki.util
 
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 

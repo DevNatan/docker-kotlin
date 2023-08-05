@@ -4,8 +4,6 @@ import me.devnatan.yoki.net.DEFAULT_DOCKER_HTTP_SOCKET
 import me.devnatan.yoki.net.DEFAULT_DOCKER_UNIX_SOCKET
 import me.devnatan.yoki.net.HTTP_SOCKET_PREFIX
 import me.devnatan.yoki.net.UNIX_SOCKET_PREFIX
-import me.devnatan.yoki.util.env
-import me.devnatan.yoki.util.isUnixPlatform
 import kotlin.jvm.JvmSynthetic
 
 /**

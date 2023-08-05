@@ -7,6 +7,7 @@ private typealias LogLevel = Pair<Int, String>
 private val DEBUG: LogLevel = 0 to "DEBUG"
 private val INFO: LogLevel = 1 to "INFO"
 private val WARN: LogLevel = 2 to "WARN"
+
 @Suppress("MagicNumber")
 private val ERROR: LogLevel = 3 to "ERROR"
 
@@ -21,9 +22,10 @@ public actual class Logger {
                 append("[${level.second}] ")
                 append("($LOGGER_NAME): ")
                 append(message)
-                if (cause != null)
+                if (cause != null) {
                     append(". Cause: ${cause.stackTraceToString()}")
-            }
+                }
+            },
         )
     }
 

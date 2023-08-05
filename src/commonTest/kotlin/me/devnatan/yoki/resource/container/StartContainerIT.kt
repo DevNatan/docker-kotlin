@@ -22,7 +22,8 @@ class StartContainerIT : ResourceIT() {
     @Test
     fun `throws ContainerNotFoundException on start unknown container`() = runTest {
         assertFailsWith<ContainerNotFoundException> {
-            testClient.containers.start("jao-gomides" /* TODO generate random id */)
+            // TODO generate random id
+            testClient.containers.start("jao-gomides")
         }
     }
 

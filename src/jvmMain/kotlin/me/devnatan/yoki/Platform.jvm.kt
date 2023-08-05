@@ -1,6 +1,4 @@
-@file:JvmName("PlatformJvm")
-
-package me.devnatan.yoki.util
+package me.devnatan.yoki
 
 internal actual fun env(key: String): String? {
     return System.getenv(key)

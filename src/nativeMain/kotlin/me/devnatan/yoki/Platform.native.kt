@@ -1,4 +1,4 @@
-package org.katan.yoki
+package me.devnatan.yoki
 
 import kotlinx.cinterop.toKString
 import platform.posix.getenv

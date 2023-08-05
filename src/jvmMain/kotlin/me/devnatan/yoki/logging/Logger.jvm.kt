@@ -1,5 +1,3 @@
-// ktlint-disable filename
-
 package me.devnatan.yoki.logging
 
 import me.devnatan.yoki.Yoki

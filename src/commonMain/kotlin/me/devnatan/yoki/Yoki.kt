@@ -13,7 +13,6 @@ import me.devnatan.yoki.resource.network.NetworkResource
 import me.devnatan.yoki.resource.secret.SecretResource
 import me.devnatan.yoki.resource.system.SystemResource
 import me.devnatan.yoki.resource.volume.VolumeResource
-import me.devnatan.yoki.util.Closeable
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
