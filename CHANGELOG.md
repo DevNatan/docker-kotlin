@@ -7,7 +7,7 @@
 * Bump publish-on-central from 5.0.5 to 5.0.10
 * Bump kotlin from 1.8.21 to 1.8.22
 * Bump ktor from 2.3.0 to 2.3.3
-* Bump okio from 3.3.0 to 3.5.0
+* Bump okio from 3.3.0 to 3.4.0
 * Bump binary-compatibility-validator from 0.13.1 to 0.13.2
 * Changed file names to follow KMP standards
 
