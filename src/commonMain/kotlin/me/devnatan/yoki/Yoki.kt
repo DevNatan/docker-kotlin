@@ -13,7 +13,6 @@ import me.devnatan.yoki.resource.network.NetworkResource
 import me.devnatan.yoki.resource.secret.SecretResource
 import me.devnatan.yoki.resource.system.SystemResource
 import me.devnatan.yoki.resource.volume.VolumeResource
-import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
 /**
@@ -34,17 +33,15 @@ public inline fun Yoki(
 }
 
 /**
- * Yoki heart, where all resource accessors and other things are located.
+ * Yoki's heart where all resource accessors and other things are located.
  *
- * Create and configure a fresh Yoki instance by calling [Yoki.create] or [me.devnatan.yoki.Yoki]
+ * Create and configure a fresh Yoki instance by calling [Yoki.create] or [me.devnatan.yoki.Yoki].
  *
  * Note: This class must be a singleton, that is, don't instantiate it more than once in your code, and, implements
  * [Closeable] so be sure to [close] it after use.
  */
 @YokiDsl
-public class Yoki @PublishedApi internal constructor(
-    public val config: YokiConfig,
-) : Closeable {
+public class Yoki @PublishedApi internal constructor(public val config: YokiConfig) : Closeable {
 
     private val httpClient: HttpClient = createHttpClient(this)
     private val json: Json = Json {
@@ -52,25 +49,25 @@ public class Yoki @PublishedApi internal constructor(
     }
     private val logger: Logger = createLogger()
 
-    @JvmField
+    @get:JvmName("containers")
     public val containers: ContainerResource = ContainerResource(httpClient, json, logger)
 
-    @JvmField
+    @get:JvmName("networks")
     public val networks: NetworkResource = NetworkResource(httpClient, json)
 
-    @JvmField
+    @get:JvmName("volumes")
     public val volumes: VolumeResource = VolumeResource(httpClient, json)
 
-    @JvmField
+    @get:JvmName("secrets")
     public val secrets: SecretResource = SecretResource(httpClient, json)
 
-    @JvmField
+    @get:JvmName("images")
     public val images: ImageResource = ImageResource(httpClient, json)
 
-    @JvmField
+    @get:JvmName("exec")
     public val exec: ExecResource = ExecResource(httpClient)
 
-    @JvmField
+    @get:JvmName("system")
     public val system: SystemResource = SystemResource(httpClient)
 
     public override fun close() {
@@ -84,9 +81,7 @@ public class Yoki @PublishedApi internal constructor(
          * Docker API version.
          */
         @JvmStatic
-        public fun create(): Yoki {
-            return Yoki()
-        }
+        public fun create(): Yoki = Yoki()
 
         /**
          * Creates a new Yoki instance.
@@ -94,9 +89,7 @@ public class Yoki @PublishedApi internal constructor(
          * @param config Configurations to the instance.
          */
         @JvmStatic
-        public fun create(config: YokiConfig): Yoki {
-            return Yoki(config)
-        }
+        public fun create(config: YokiConfig): Yoki = Yoki(config)
 
         /**
          * Creates a new Yoki instance with the specified socket path configuration.
@@ -104,27 +97,19 @@ public class Yoki @PublishedApi internal constructor(
          * @param socketPath The socket path that'll be used on connection.
          */
         @JvmStatic
-        public fun create(socketPath: String): Yoki {
-            return Yoki {
-                this.socketPath = socketPath
-            }
-        }
+        public fun create(socketPath: String): Yoki = Yoki { socketPath(socketPath) }
 
         /**
          * Creates a new Yoki instance using UNIX defaults configuration.
          */
         @JvmStatic
-        public fun createWithUnixDefaults(): Yoki {
-            return Yoki { useUnixDefaults() }
-        }
+        public fun createWithUnixDefaults(): Yoki = Yoki { useUnixDefaults() }
 
         /**
          * Creates a new Yoki instance using HTTP defaults configuration.
          */
         @JvmStatic
-        public fun createWithHttpDefaults(): Yoki {
-            return Yoki { useHttpDefaults() }
-        }
+        public fun createWithHttpDefaults(): Yoki = Yoki { useHttpDefaults() }
     }
 }
 

@@ -9,7 +9,9 @@ import io.ktor.client.request.post
 import io.ktor.client.request.prepareGet
 import io.ktor.client.request.preparePost
 import io.ktor.client.request.setBody
-import io.ktor.http.HttpStatusCode
+import io.ktor.http.HttpStatusCode.Companion.Conflict
+import io.ktor.http.HttpStatusCode.Companion.NotFound
+import io.ktor.http.HttpStatusCode.Companion.NotModified
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.core.ByteOrder
 import io.ktor.utils.io.core.readInt
@@ -77,8 +79,8 @@ public class ContainerResource internal constructor(
         requireNotNull(options.image) { "Container image is required" }
 
         val result = requestCatching(
-            HttpStatusCode.NotFound to { exception -> ImageNotFoundException(exception, options.image.orEmpty()) },
-            HttpStatusCode.Conflict to { exception ->
+            NotFound to { exception -> ImageNotFoundException(exception, options.image.orEmpty()) },
+            Conflict to { exception ->
                 ContainerAlreadyExistsException(
                     exception,
                     options.name.orEmpty(),
@@ -105,8 +107,8 @@ public class ContainerResource internal constructor(
      */
     public suspend fun start(id: String, detachKeys: String? = null) {
         requestCatching(
-            HttpStatusCode.NotModified to { exception -> ContainerAlreadyStartedException(exception, id) },
-            HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, id) },
+            NotModified to { exception -> ContainerAlreadyStartedException(exception, id) },
+            NotFound to { exception -> ContainerNotFoundException(exception, id) },
         ) {
             httpClient.post("$BASE_PATH/$id/start") {
                 parameter("detachKeys", detachKeys)
@@ -122,8 +124,8 @@ public class ContainerResource internal constructor(
      */
     public suspend fun stop(id: String, timeout: Duration? = null) {
         requestCatching(
-            HttpStatusCode.NotModified to { exception -> ContainerAlreadyStoppedException(exception, id) },
-            HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, id) },
+            NotModified to { exception -> ContainerAlreadyStoppedException(exception, id) },
+            NotFound to { exception -> ContainerNotFoundException(exception, id) },
         ) {
             httpClient.post("$BASE_PATH/$id/stop") {
                 parameter("t", timeout?.inWholeSeconds)
@@ -139,7 +141,7 @@ public class ContainerResource internal constructor(
      */
     public suspend fun restart(id: String, timeout: Duration? = null) {
         requestCatching(
-            HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, id) },
+            NotFound to { exception -> ContainerNotFoundException(exception, id) },
         ) {
             httpClient.post("$BASE_PATH/$id/restart") {
                 parameter("t", timeout)
@@ -155,8 +157,8 @@ public class ContainerResource internal constructor(
      */
     public suspend fun kill(id: String, signal: String? = null) {
         requestCatching(
-            HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, id) },
-            HttpStatusCode.Conflict to { exception -> ContainerNotRunningException(exception, id) },
+            NotFound to { exception -> ContainerNotFoundException(exception, id) },
+            Conflict to { exception -> ContainerNotRunningException(exception, id) },
         ) {
             httpClient.post("$BASE_PATH/$id/kill") {
                 parameter("signal", signal)
@@ -172,8 +174,8 @@ public class ContainerResource internal constructor(
      */
     public suspend fun rename(id: String, newName: String) {
         requestCatching(
-            HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, id) },
-            HttpStatusCode.Conflict to { exception -> ContainerRenameConflictException(exception, id, newName) },
+            NotFound to { exception -> ContainerNotFoundException(exception, id) },
+            Conflict to { exception -> ContainerRenameConflictException(exception, id, newName) },
         ) {
             httpClient.post("$BASE_PATH/$id/rename") {
                 parameter("name", newName)
@@ -189,21 +191,21 @@ public class ContainerResource internal constructor(
      */
     public suspend fun pause(id: String) {
         requestCatching(
-            HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, id) },
+            NotFound to { exception -> ContainerNotFoundException(exception, id) },
         ) {
             httpClient.post("$BASE_PATH/$id/pause")
         }
     }
 
     /**
-     * Resume a container which has been paused by [pause].
+     * Resumes a container which has been paused.
      *
-     * @param The container id to unpause.
+     * @param id The container id to unpause.
      * @see pause
      */
     public suspend fun unpause(id: String) {
         requestCatching(
-            HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, id) },
+            NotFound to { exception -> ContainerNotFoundException(exception, id) },
         ) {
             httpClient.post("$BASE_PATH/$id/unpause")
         }
@@ -217,13 +219,10 @@ public class ContainerResource internal constructor(
      * @throws ContainerNotFoundException If the container is not found for the specified id.
      * @throws ContainerRemoveConflictException When trying to remove an active container without the `force` option.
      */
-    public suspend fun remove(
-        id: String,
-        options: ContainerRemoveOptions = ContainerRemoveOptions(),
-    ) {
+    public suspend fun remove(id: String, options: ContainerRemoveOptions = ContainerRemoveOptions()) {
         requestCatching(
-            HttpStatusCode.NotFound to { ContainerNotFoundException(it, id) },
-            HttpStatusCode.Conflict to { ContainerRemoveConflictException(it, id) },
+            NotFound to { ContainerNotFoundException(it, id) },
+            Conflict to { ContainerRemoveConflictException(it, id) },
         ) {
             httpClient.delete("$BASE_PATH/$id") {
                 parameter("v", options.removeAnonymousVolumes)
@@ -241,7 +240,7 @@ public class ContainerResource internal constructor(
      */
     public suspend fun inspect(id: String, size: Boolean = false): Container {
         return requestCatching(
-            HttpStatusCode.NotFound to { ContainerNotFoundException(it, id) },
+            NotFound to { ContainerNotFoundException(it, id) },
         ) {
             httpClient.get("$BASE_PATH/$id/json") {
                 parameter("size", size)
@@ -338,10 +337,7 @@ public class ContainerResource internal constructor(
         }.execute { response ->
             val channel = response.body<ByteReadChannel>()
             while (!channel.isClosedForRead) {
-                val line = channel.readUTF8Line()
-                if (line == null) {
-                    break
-                }
+                val line = channel.readUTF8Line() ?: break
 
                 // TODO handle stream type
                 emit(Frame(line, line.length, Stream.StdOut))
@@ -357,12 +353,9 @@ public class ContainerResource internal constructor(
      * @throws ContainerNotFoundException If the container is not found.
      * @throws YokiResponseException If the container cannot be resized or if an error occurs in the request.
      */
-    public suspend fun resizeTTY(
-        container: String,
-        options: ResizeTTYOptions,
-    ) {
+    public suspend fun resizeTTY(container: String, options: ResizeTTYOptions) {
         requestCatching(
-            HttpStatusCode.NotFound to { exception ->
+            NotFound to { exception ->
                 ContainerNotFoundException(
                     exception,
                     container,
@@ -383,13 +376,13 @@ public class ContainerResource internal constructor(
      */
     public suspend fun exec(container: String, options: ExecCreateOptions): String {
         return requestCatching(
-            HttpStatusCode.NotFound to { exception ->
+            NotFound to { exception ->
                 ContainerNotFoundException(
                     exception,
                     container,
                 )
             },
-            HttpStatusCode.Conflict to { exception ->
+            Conflict to { exception ->
                 ContainerNotRunningException(
                     exception,
                     container,

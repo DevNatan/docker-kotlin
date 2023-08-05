@@ -4,7 +4,6 @@ import me.devnatan.yoki.net.DEFAULT_DOCKER_HTTP_SOCKET
 import me.devnatan.yoki.net.DEFAULT_DOCKER_UNIX_SOCKET
 import me.devnatan.yoki.net.HTTP_SOCKET_PREFIX
 import me.devnatan.yoki.net.UNIX_SOCKET_PREFIX
-import kotlin.jvm.JvmSynthetic
 
 /**
  * Class to store all Yoki configurations.
@@ -24,6 +23,11 @@ public class YokiConfig(
         check(socketPath.isNotBlank()) { "Socket path must be provided and cannot be blank" }
         check(apiVersion.isNotBlank()) { "Docker Remote API version must be provided and cannot be blank" }
     }
+
+    public companion object {
+        @JvmStatic
+        public fun builder(): YokiConfigBuilder = YokiConfigBuilder()
+    }
 }
 
 /**
@@ -31,39 +35,19 @@ public class YokiConfig(
  */
 public class YokiConfigBuilder {
 
-    public companion object {
-        /**
-         * Daemon socket to connect to.
-         */
-        private const val DOCKER_HOST_ENV_KEY = "DOCKER_HOST"
-
-        /**
-         * Override the negotiated Docker Remote API version.
-         */
-        private const val DOCKER_API_VERSION_ENV_KEY = "DOCKER_API_VERSION"
-
-        /**
-         * Minimum Docker Remote API version supported by Yoki.
-         */
-        public const val DEFAULT_DOCKER_API_VERSION: String = "1.41"
-    }
-
     /**
      * Docker socket file used to communicate with main Docker daemon.
      */
-    public var socketPath: String = ""
-        @JvmSynthetic
-        public set
+    private var socketPath: String = ""
 
     /**
      * The version of the Docker API that will be used during communication.
      */
-    public var apiVersion: String = envOrFallback(
+    private var apiVersion: String = envOrFallback(
         key = DOCKER_API_VERSION_ENV_KEY,
         fallback = DEFAULT_DOCKER_API_VERSION,
         prefix = null,
-    ) @JvmSynthetic
-    public set
+    )
 
     /**
      * Sets the Docker socket path.
@@ -165,5 +149,22 @@ public class YokiConfigBuilder {
         } else {
             DEFAULT_DOCKER_HTTP_SOCKET
         }
+    }
+
+    public companion object {
+        /**
+         * Daemon socket to connect to.
+         */
+        private const val DOCKER_HOST_ENV_KEY = "DOCKER_HOST"
+
+        /**
+         * Override the negotiated Docker Remote API version.
+         */
+        private const val DOCKER_API_VERSION_ENV_KEY = "DOCKER_API_VERSION"
+
+        /**
+         * Minimum Docker Remote API version supported by Yoki.
+         */
+        public const val DEFAULT_DOCKER_API_VERSION: String = "1.41"
     }
 }
