@@ -156,6 +156,12 @@ tasks {
             xml.required.set(true)
         }
     }
+
+    // https://youtrack.jetbrains.com/issue/KT-46466/Kotlin-MPP-publishing-Gradle-7-disables-optimizations-because-of-task-dependencies
+    val signingTasks = withType<Sign>()
+    withType<AbstractPublishToMaven>().configureEach {
+        dependsOn(signingTasks)
+    }
 }
 
 detekt {
