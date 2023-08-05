@@ -3771,7 +3771,7 @@ public final class me/devnatan/yoki/resource/volume/VolumeResourceKt {
 	public static final fun remove (Lme/devnatan/yoki/resource/volume/VolumeResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class me/devnatan/yoki/util/Json_jvmKt {
+public final class me/devnatan/yoki/util/JsonKt {
 	public static final fun fromJsonEncodedString (Ljava/lang/String;)Ljava/util/Map;
 	public static final fun toJsonEncodedString (Ljava/lang/Object;)Ljava/lang/String;
 }

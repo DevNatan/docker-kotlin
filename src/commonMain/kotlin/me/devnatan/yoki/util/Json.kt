@@ -1,5 +1,18 @@
 package me.devnatan.yoki.util
 
-public expect fun toJsonEncodedString(value: Any): String
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
-public expect fun fromJsonEncodedString(value: String): Map<String, String?>
+private val json: Json = Json {
+    ignoreUnknownKeys = true
+    isLenient = true
+    allowStructuredMapKeys = true
+}
+
+public fun toJsonEncodedString(value: Any): String {
+    return json.encodeToString(value)
+}
+
+public fun fromJsonEncodedString(value: String): Map<String, String?> {
+    return json.decodeFromString(value)
+}
