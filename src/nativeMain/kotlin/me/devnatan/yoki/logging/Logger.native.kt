@@ -1,4 +1,4 @@
-package org.katan.yoki.logging
+package me.devnatan.yoki.logging
 
 private const val LOGGER_NAME = "Yoki"
 

@@ -36,7 +36,7 @@ public inline fun Yoki(
 /**
  * Yoki heart, where all resource accessors and other things are located.
  *
- * Create and configure a fresh Yoki instance by calling [Yoki.create] or [org.katan.yoki.Yoki]
+ * Create and configure a fresh Yoki instance by calling [Yoki.create] or [me.devnatan.yoki.Yoki]
  *
  * Note: This class must be a singleton, that is, don't instantiate it more than once in your code, and, implements
  * [Closeable] so be sure to [close] it after use.

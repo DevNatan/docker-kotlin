@@ -7,6 +7,7 @@ import io.ktor.client.request.head
 import me.devnatan.yoki.models.system.SystemPingData
 import me.devnatan.yoki.models.system.SystemVersion
 import me.devnatan.yoki.net.requestCatching
+import kotlin.jvm.JvmOverloads
 
 /**
  * Resource responsible for getting information from the operating system and the Docker daemon it is running on.
@@ -27,7 +28,7 @@ public class SystemResource internal constructor(
      * $ docker version
      * ```
      *
-     * @throws org.katan.yoki.YokiResourceException If an error occurs in the request.
+     * @throws me.devnatan.yoki.YokiResourceException If an error occurs in the request.
      */
     public suspend fun version(): SystemVersion {
         return requestCatching {

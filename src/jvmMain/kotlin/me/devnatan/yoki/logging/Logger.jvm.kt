@@ -29,5 +29,5 @@ public actual class Logger {
 }
 
 internal actual fun createLogger(): Logger {
-    return me.devnatan.yoki.logging.Logger()
+    return Logger()
 }
