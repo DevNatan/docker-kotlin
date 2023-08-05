@@ -15,7 +15,7 @@ import me.devnatan.yoki.models.network.NetworkCreateOptions
 import me.devnatan.yoki.models.network.NetworkInspectOptions
 import me.devnatan.yoki.models.network.NetworkListFilters
 import me.devnatan.yoki.models.network.NetworkPruneOptions
-import me.devnatan.yoki.net.requestCatching
+import me.devnatan.yoki.io.requestCatching
 import me.devnatan.yoki.resource.NetworkNotFoundException
 
 /**

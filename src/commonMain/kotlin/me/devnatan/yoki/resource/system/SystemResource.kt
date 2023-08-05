@@ -6,7 +6,7 @@ import io.ktor.client.request.get
 import io.ktor.client.request.head
 import me.devnatan.yoki.models.system.SystemPingData
 import me.devnatan.yoki.models.system.SystemVersion
-import me.devnatan.yoki.net.requestCatching
+import me.devnatan.yoki.io.requestCatching
 import kotlin.jvm.JvmOverloads
 
 /**

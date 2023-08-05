@@ -1,4 +1,4 @@
-package me.devnatan.yoki.net
+package me.devnatan.yoki.io
 
 import okhttp3.Dns
 import org.newsclub.net.unix.AFUNIXSocketAddress

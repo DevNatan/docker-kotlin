@@ -1,4 +1,4 @@
-package me.devnatan.yoki.net
+package me.devnatan.yoki.io
 
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.HttpClientEngineConfig

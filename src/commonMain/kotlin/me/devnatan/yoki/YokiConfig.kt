@@ -1,9 +1,9 @@
 package me.devnatan.yoki
 
-import me.devnatan.yoki.net.DEFAULT_DOCKER_HTTP_SOCKET
-import me.devnatan.yoki.net.DEFAULT_DOCKER_UNIX_SOCKET
-import me.devnatan.yoki.net.HTTP_SOCKET_PREFIX
-import me.devnatan.yoki.net.UNIX_SOCKET_PREFIX
+import me.devnatan.yoki.io.DEFAULT_DOCKER_HTTP_SOCKET
+import me.devnatan.yoki.io.DEFAULT_DOCKER_UNIX_SOCKET
+import me.devnatan.yoki.io.HTTP_SOCKET_PREFIX
+import me.devnatan.yoki.io.UNIX_SOCKET_PREFIX
 
 /**
  * Class to store all Yoki configurations.
