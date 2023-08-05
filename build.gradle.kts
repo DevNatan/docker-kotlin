@@ -98,7 +98,7 @@ kotlin {
 val isReleaseVersion = !version.toString().endsWith("SNAPSHOT")
 publishOnCentral {
     projectDescription.set("Multiplatform Docker API client")
-    projectLongName.set("yoki")
+    projectLongName.set(project.name)
     licenseName.set("MIT")
     licenseUrl.set("https://github.com/DevNatan/yoki/blob/main/LICENSE")
     projectUrl.set("https://github.com/DevNatan/yoki")
@@ -106,11 +106,6 @@ publishOnCentral {
 
     mavenCentral.user.set(System.getenv("OSSRH_USERNAME"))
     mavenCentral.password.set(provider { System.getenv("OSSRH_PASSWORD") })
-
-    repository("https://maven.pkg.github.com/DevNatan/yoki", "GitHub") {
-        user.set(System.getenv("GITHUB_USERNAME"))
-        password.set(System.getenv("GITHUB_TOKEN"))
-    }
 
     if (!isReleaseVersion)
         mavenCentralSnapshotsRepository()
