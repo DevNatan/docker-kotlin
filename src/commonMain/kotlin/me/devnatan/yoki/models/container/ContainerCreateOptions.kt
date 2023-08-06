@@ -16,7 +16,7 @@ public data class ContainerCreateOptions(
     @SerialName("Hostname") public var hostName: String? = null,
     @SerialName("Domainname") public var domainName: String? = null,
     @SerialName("User") public var user: String? = null,
-    @SerialName("AttachStdin") public var attachStdin: ContainerListOptions,
+    @SerialName("AttachStdin") public var attachStdin: Boolean? = null,
     @SerialName("Cmd") public var command: List<String>? = null,
     @SerialName("Healthcheck") public var healthcheck: HealthConfig? = null,
     @SerialName("ArgsEscaped") public var escapedArgs: Boolean? = null,
