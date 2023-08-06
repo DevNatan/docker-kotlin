@@ -33,6 +33,11 @@ kotlin {
                 exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
             }
         }
+        compilations.all {
+            kotlinOptions {
+                freeCompilerArgs = listOf("-Xjvm-default=all")
+            }
+        }
     }
 
     val hostOs = System.getProperty("os.name")
