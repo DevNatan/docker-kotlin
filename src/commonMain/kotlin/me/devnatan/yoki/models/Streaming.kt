@@ -15,19 +15,19 @@ public data class Stream internal constructor(
     public companion object {
 
         @JvmStatic
-        @get:JvmName("STD_OUT")
+        @get:JvmName("STDIN")
         public val StdIn: Stream = Stream(0, "STDIN")
 
         @JvmStatic
-        @get:JvmName("STD_OUT")
+        @get:JvmName("STDOUT")
         public val StdOut: Stream = Stream(1, "STDOUT")
 
         @JvmStatic
-        @get:JvmName("STD_OUT")
+        @get:JvmName("STDERR")
         public val StdErr: Stream = Stream(2, "STDERR")
 
         @JvmStatic
-        @get:JvmName("STD_OUT")
+        @get:JvmName("UNKNOWN")
         public val Unknown: Stream = Stream(-1, "UNKNOWN")
 
         @JvmStatic
