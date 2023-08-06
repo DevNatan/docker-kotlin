@@ -14,10 +14,13 @@ import me.devnatan.yoki.Closeable
 
 public fun interface YokiFlow<T> {
     public fun onEach(value: T)
+
     @JvmDefault
     public fun onStart(): Unit = Unit
+
     @JvmDefault
     public fun onError(cause: Throwable): Unit = Unit
+
     @JvmDefault
     public fun onComplete(error: Throwable?): Unit = Unit
 }

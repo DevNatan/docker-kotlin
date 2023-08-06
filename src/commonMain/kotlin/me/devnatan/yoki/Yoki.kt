@@ -1,11 +1,13 @@
 package me.devnatan.yoki
 
 import io.ktor.client.HttpClient
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.serialization.json.Json
 import me.devnatan.yoki.YokiConfigBuilder.Companion.DEFAULT_DOCKER_API_VERSION
+import me.devnatan.yoki.io.createHttpClient
 import me.devnatan.yoki.logging.Logger
 import me.devnatan.yoki.logging.createLogger
-import me.devnatan.yoki.io.createHttpClient
 import me.devnatan.yoki.resource.container.ContainerResource
 import me.devnatan.yoki.resource.exec.ExecResource
 import me.devnatan.yoki.resource.image.ImageResource
@@ -41,7 +43,8 @@ public inline fun Yoki(
  * [Closeable] so be sure to [close] it after use.
  */
 @YokiDsl
-public class Yoki @PublishedApi internal constructor(public val config: YokiConfig) : Closeable {
+public class Yoki @PublishedApi internal constructor(public val config: YokiConfig) :
+    Closeable, CoroutineScope by CoroutineScope(SupervisorJob()) {
 
     private val httpClient: HttpClient = createHttpClient(this)
     private val json: Json = Json {
@@ -50,13 +53,17 @@ public class Yoki @PublishedApi internal constructor(public val config: YokiConf
     private val logger: Logger = createLogger()
 
     @get:JvmName("containers")
-    public val containers: ContainerResource = ContainerResource(httpClient, json, logger)
+    public val containers: ContainerResource = ContainerResource(httpClient, json, logger, this)
 
     @get:JvmName("networks")
     public val networks: NetworkResource = NetworkResource(httpClient, json)
 
     @get:JvmName("volumes")
     public val volumes: VolumeResource = VolumeResource(httpClient, json)
+
+    @get:JvmName("pirocoptero")
+    @get:JvmSynthetic
+    public val javaVolumes: VolumeResource = VolumeResource(httpClient, json)
 
     @get:JvmName("secrets")
     public val secrets: SecretResource = SecretResource(httpClient, json)

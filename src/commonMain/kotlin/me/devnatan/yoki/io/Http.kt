@@ -9,7 +9,6 @@ import io.ktor.client.plugins.ResponseException
 import io.ktor.client.plugins.UserAgent
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
-import io.ktor.client.statement.HttpResponse
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.URLBuilder
@@ -121,7 +120,7 @@ internal fun <T> Result<T>.mapFailureToHttpStatus(
 }
 
 // TODO use Ktor exception handler instead
-internal inline fun requestCatching(
+internal inline fun <T> requestCatching(
     vararg errors: Pair<HttpStatusCode, (YokiResponseException) -> Throwable>,
-    request: () -> HttpResponse,
+    request: () -> T,
 ) = runCatching(request).mapFailureToHttpStatus(errors.toMap()).getOrThrow()

@@ -6,10 +6,10 @@ import io.ktor.client.request.get
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.http.HttpStatusCode
+import me.devnatan.yoki.io.requestCatching
 import me.devnatan.yoki.models.ResizeTTYOptions
 import me.devnatan.yoki.models.exec.ExecInspectResponse
 import me.devnatan.yoki.models.exec.ExecStartOptions
-import me.devnatan.yoki.io.requestCatching
 import me.devnatan.yoki.resource.container.ContainerNotRunningException
 
 /**
