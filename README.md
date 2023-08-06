@@ -85,21 +85,24 @@ val logs: Flow<Frame> = dockerClient.containers.logs("floral-fury") {
     stdout = true
 }
 
-logs.onStart { ... }
+logs.onStart { /* streaming started */ }
+    .onCompletion { /* streaming finished */ }
     .catch { /* something went wrong */ }
     .collect { log -> /* do something with each log */ }
 ```
 ```java
 final YokiFlow<Frame> callback = new YokiFlow<Frame>() {
     @Override
-    public void onEach(Frame log) {
-        // do something with each log
-    }
+    public void onEach(Frame log) { /* do something with each log */ }
+
+    @Override
+    public void onStart() { /* streaming started */ }
+
+    @Override
+    public void onComplete(Throwable error) { /* streaming finished */ }
     
     @Override
-    public void onError(Throwable cause) {
-        // something went wrong
-    }
+    public void onError(Throwable cause) { /* something went wrong */ }
 };
 
 dockerClient.containers.logs("floral-fury", callback);
