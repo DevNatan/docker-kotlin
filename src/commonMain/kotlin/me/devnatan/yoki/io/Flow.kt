@@ -17,7 +17,7 @@ public fun interface YokiFlow<T> {
     @JvmDefault
     public fun onStart(): Unit = Unit
     @JvmDefault
-    public fun onError(error: Throwable): Unit = Unit
+    public fun onError(cause: Throwable): Unit = Unit
     @JvmDefault
     public fun onComplete(error: Throwable?): Unit = Unit
 }

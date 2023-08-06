@@ -84,6 +84,25 @@ val logs: Flow<Frame> = dockerClient.containers.logs("floral-fury") {
     stderr = true
     stdout = true
 }
+
+logs.onStart { ... }
+    .catch { /* something went wrong */ }
+    .collect { log -> /* do something with each log */ }
+```
+```java
+final YokiFlow<Frame> callback = new YokiFlow<Frame>() {
+    @Override
+    public void onEach(Frame log) {
+        // do something with each log
+    }
+    
+    @Override
+    public void onError(Throwable cause) {
+        // something went wrong
+    }
+};
+
+dockerClient.containers.logs("floral-fury", callback);
 ```
 
 ## License
