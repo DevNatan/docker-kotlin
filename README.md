@@ -93,10 +93,10 @@ final YokiFlow<Frame> callback = new YokiFlow<Frame>() {
     public void onError(Throwable cause) { /* something went wrong */ }
 };
 
-client.containers.logs("floral-fury", callback);
+client.containers.logsAsync("floral-fury", callback);
 
 // Short version
-client.containers.logs("floral-fury", (log) -> /* do something with each log */);
+client.containers.logsAsync("floral-fury", (log) -> /* do something with each log */);
 ```
 
 ## License
