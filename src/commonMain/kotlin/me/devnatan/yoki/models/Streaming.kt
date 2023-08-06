@@ -30,6 +30,7 @@ public data class Stream internal constructor(
         @get:JvmName("STD_OUT")
         public val Unknown: Stream = Stream(-1, "UNKNOWN")
 
+        @JvmStatic
         public fun typeOfOrNull(code: Byte): Stream? {
             return when (code) {
                 StdIn.code -> StdIn
