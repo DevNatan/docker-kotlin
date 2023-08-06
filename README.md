@@ -16,71 +16,59 @@ dependencies {
 }
 ```
 
-## Configuration
+## Getting Started
 
-By default, at client startup if no configuration parameters are passed, the settings that will be applied will depend
-on the current platform and environment variables.
-
-For example, the socket path will be set to the value of
-the [`DOCKER_HOST` environment variable](https://docs.docker.com/compose/reference/envvars/#docker_host) if set,
-otherwise it will use the platform default.
+Use `Yoki.create()` to create a new Yoki client instance with the default settings, default settings are based on the 
+current platform or environment variables, e.g.: socket path will be set to [`DOCKER_HOST`](https://docs.docker.com/compose/environment-variables/envvars/#docker_host)
+if present otherwise `unix://var/run/docker.sock` if the current platform is Unix-like.
 
 ```kotlin
-import me.devnatan.yoki
-
-val dockerClient = Yoki()
+val client = Yoki.create()
 ```
 
-You can still configure the client by expanding the initialization block
+To change the default configuration properties use `YokiConfig` and `Yoki` overload.
 
 ```kotlin
-Yoki {
+val client = Yoki {
     // this: YokiConfigBuilder
 }
 ```
 
-Change socket path (docker host) or target api version
+In Java code you can use `YokiConfigBuilder` with `YokiConfig.builder()`.
 
-```kotlin
-Yoki {
-    socketPath = "unix:///var/run/docker.sock"
-    apiVersion = "1.40"
-}
+```java
+YokiConfig config = YokiConfig.builder().socketPath(...).build()
+Yoki client = Yoki.create(config)
 ```
 
-## Usage
+To Docker resources, functions will return `CompletableFuture<T>` or `YokiFlow<T>` (for streaming) due to Java Interoperatibility
+but there are extensions for Kotlin that are `suspend` and for streaming returns `Flow<T>`.
 
-The way to access resources is straight to the point, all functions (for Kotlin) are suspend.
-
-##### Get info about system version
+##### Get System Information
 
 ```kotlin
-val version: SystemVersion = dockerClient.system.version()
+val version: SystemVersion = client.system.version()
 ```
 
-##### Listing all containers
+##### List All Containers
 
 ```kotlin
-val containers: List<Container> = dockerClient.containers.list {
-    all = true
-}
+val containers: List<Container> = client.containers.list()
 ```
 
-##### Creating a new network
+##### Create a new Network
 
 ```kotlin
-val networkId: String = dockerClient.networks.create {
+val networkId: String = client.networks.create {
     name = "octopus-net"
     driver = "overlay"
 }
 ```
 
-##### Streaming container logs
-
-All streaming methods will always return a [Flow](https://kotlinlang.org/docs/flow.html).
+##### Stream Container Logs
 
 ```kotlin
-val logs: Flow<Frame> = dockerClient.containers.logs("floral-fury") {
+val logs: Flow<Frame> = client.containers.logs("floral-fury") {
     stderr = true
     stdout = true
 }
@@ -105,7 +93,10 @@ final YokiFlow<Frame> callback = new YokiFlow<Frame>() {
     public void onError(Throwable cause) { /* something went wrong */ }
 };
 
-dockerClient.containers.logs("floral-fury", callback);
+client.containers.logs("floral-fury", callback);
+
+// Short version
+client.containers.logs("floral-fury", (log) -> /* do something with each log */);
 ```
 
 ## License
