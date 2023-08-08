@@ -6,9 +6,7 @@ import io.ktor.client.engine.okhttp.OkHttpConfig
 import me.devnatan.yoki.Yoki
 import java.util.concurrent.TimeUnit
 
-internal actual fun <T : HttpClientEngineConfig> HttpClientConfig<out T>.configureHttpClient(
-    client: Yoki,
-) {
+internal actual fun <T : HttpClientEngineConfig> HttpClientConfig<out T>.configureHttpClient(client: Yoki) {
     engine {
         // ensure that current engine is OkHttp, cannot use CIO due to a Ktor Client bug related to data streaming
         // https://youtrack.jetbrains.com/issue/KTOR-2494

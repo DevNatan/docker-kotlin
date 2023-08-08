@@ -21,21 +21,13 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import me.devnatan.yoki.GenericDockerErrorResponse
 import me.devnatan.yoki.Yoki
-import me.devnatan.yoki.YokiConfig
 import me.devnatan.yoki.YokiResponseException
-import okio.ByteString.Companion.decodeHex
 import okio.ByteString.Companion.encodeUtf8
 
-internal expect fun <T : HttpClientEngineConfig> HttpClientConfig<out T>.configureHttpClient(
-    client: Yoki,
-)
-
-private fun checkSocketPath(config: YokiConfig) {
-    check(config.socketPath.isNotBlank()) { "Socket path cannot be blank" }
-}
+internal expect fun <T : HttpClientEngineConfig> HttpClientConfig<out T>.configureHttpClient(client: Yoki)
 
 internal fun createHttpClient(client: Yoki): HttpClient {
-    checkSocketPath(client.config)
+    check(client.config.socketPath.isNotBlank()) { "Socket path cannot be blank" }
     return HttpClient {
         expectSuccess = true
         install(ContentNegotiation) {
@@ -45,8 +37,8 @@ internal fun createHttpClient(client: Yoki): HttpClient {
                 },
             )
         }
-        // TODO set Yoki version on user agent
-        install(UserAgent) { agent = "Yoki/0.0.1" }
+
+        install(UserAgent) { agent = "Yoki" }
         configureHttpClient(client)
 
         HttpResponseValidator {
@@ -78,33 +70,22 @@ internal fun createHttpClient(client: Yoki): HttpClient {
     }
 }
 
-internal fun decodeHostname(hostname: String): String {
-    return hostname
-        .substring(0, hostname.indexOf(ENCODED_HOSTNAME_SUFFIX))
-        .decodeHex()
-        .utf8()
+private fun createUrlBuilder(socketPath: String): URLBuilder = if (isUnixSocket(socketPath)) {
+    URLBuilder(
+        protocol = URLProtocol.HTTP,
+        port = DOCKER_SOCKET_PORT,
+        host = socketPath.substringAfter(UNIX_SOCKET_PREFIX).encodeUtf8().hex() + ENCODED_HOSTNAME_SUFFIX,
+    )
+} else {
+    val url = Url(socketPath)
+    URLBuilder(
+        protocol = URLProtocol.HTTP,
+        host = url.host,
+        port = url.port,
+    )
 }
 
-private fun createUrlBuilder(socketPath: String): URLBuilder {
-    return if (isUnixSocket(socketPath)) {
-        URLBuilder(
-            protocol = URLProtocol.HTTP,
-            port = DOCKER_SOCKET_PORT,
-            host = socketPath.substringAfter(UNIX_SOCKET_PREFIX).encodeUtf8().hex() + ENCODED_HOSTNAME_SUFFIX,
-        )
-    } else {
-        val url = Url(socketPath)
-        URLBuilder(
-            protocol = URLProtocol.HTTP,
-            host = url.host,
-            port = url.port,
-        )
-    }
-}
-
-internal fun <T> Result<T>.mapFailureToHttpStatus(
-    statuses: Map<HttpStatusCode, (YokiResponseException) -> Throwable>,
-) = onFailure { exception ->
+internal fun handleHttpFailure(exception: Throwable, statuses: Map<HttpStatusCode, (YokiResponseException) -> Throwable>) {
     if (exception !is YokiResponseException) {
         throw exception
     }
@@ -115,7 +96,7 @@ internal fun <T> Result<T>.mapFailureToHttpStatus(
 
     throw resourceException
         ?.invoke(exception)
-        ?.also { it.addSuppressed(exception) }
+        ?.also { root -> root.addSuppressed(exception) }
         ?: exception
 }
 
@@ -123,4 +104,4 @@ internal fun <T> Result<T>.mapFailureToHttpStatus(
 internal inline fun <T> requestCatching(
     vararg errors: Pair<HttpStatusCode, (YokiResponseException) -> Throwable>,
     request: () -> T,
-) = runCatching(request).mapFailureToHttpStatus(errors.toMap()).getOrThrow()
+) = runCatching(request).onFailure { exception -> handleHttpFailure(exception, errors.toMap()) }.getOrThrow()
