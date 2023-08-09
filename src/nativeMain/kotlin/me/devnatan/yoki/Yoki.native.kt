@@ -24,7 +24,7 @@ public actual class Yoki public actual constructor(public val config: YokiConfig
 
     public actual val images: ImageResource = ImageResource(httpClient, json)
     public actual val exec: ExecResource = ExecResource(httpClient)
-    public actual val containers: ContainerResource = ContainerResource(this)
+    public actual val containers: ContainerResource = ContainerResource()
     public actual val networks: NetworkResource = NetworkResource(httpClient, json)
     public actual val volumes: VolumeResource = VolumeResource(httpClient, json)
     public actual val secrets: SecretResource = SecretResource(httpClient, json)
