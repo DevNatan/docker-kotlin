@@ -4,6 +4,9 @@ import me.devnatan.yoki.io.DEFAULT_DOCKER_HTTP_SOCKET
 import me.devnatan.yoki.io.DEFAULT_DOCKER_UNIX_SOCKET
 import me.devnatan.yoki.io.HTTP_SOCKET_PREFIX
 import me.devnatan.yoki.io.UNIX_SOCKET_PREFIX
+import kotlin.jvm.JvmStatic
+
+internal val DefaultYokiConfig = YokiConfig.builder().forCurrentPlatform().build()
 
 /**
  * Class to store all Yoki configurations.
@@ -14,10 +17,7 @@ import me.devnatan.yoki.io.UNIX_SOCKET_PREFIX
  * @param apiVersion The version of the Docker API that will be used during communication.
  *                   See more: [Versioned API and SDK](https://docs.docker.com/engine/api/#versioned-api-and-sdk).
  */
-public class YokiConfig(
-    public val socketPath: String,
-    public val apiVersion: String,
-) {
+public class YokiConfig(public val socketPath: String, public val apiVersion: String) {
 
     init {
         check(socketPath.isNotBlank()) { "Socket path must be provided and cannot be blank" }

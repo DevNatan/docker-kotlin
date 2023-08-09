@@ -1,7 +1,6 @@
 package me.devnatan.yoki.resource.container
 
 import kotlinx.coroutines.flow.Flow
-import me.devnatan.yoki.YokiResponseException
 import me.devnatan.yoki.models.Frame
 import me.devnatan.yoki.models.ResizeTTYOptions
 import me.devnatan.yoki.models.container.Container
@@ -13,17 +12,18 @@ import me.devnatan.yoki.models.container.ContainerRemoveOptions
 import me.devnatan.yoki.models.container.ContainerSummary
 import me.devnatan.yoki.models.container.ContainerWaitResult
 import me.devnatan.yoki.models.exec.ExecCreateOptions
-import me.devnatan.yoki.resource.image.ImageNotFoundException
 import kotlin.time.Duration
 
-public expect class ContainerResource {
+public actual class ContainerResource {
 
     /**
      * Returns a list of all containers.
      *
      * @param options Options to customize the listing result.
      */
-    public suspend fun list(options: ContainerListOptions = ContainerListOptions(all = true)): List<ContainerSummary>
+    public actual suspend fun list(options: ContainerListOptions): List<ContainerSummary> {
+        TODO("Not yet implemented")
+    }
 
     /**
      * Creates a new container.
@@ -32,7 +32,9 @@ public expect class ContainerResource {
      * @throws ImageNotFoundException If the image specified does not exist or isn't pulled.
      * @throws ContainerAlreadyExistsException If a container with the same name already exists.
      */
-    public suspend fun create(options: ContainerCreateOptions): String
+    public actual suspend fun create(options: ContainerCreateOptions): String {
+        TODO("Not yet implemented")
+    }
 
     /**
      * Removes a container.
@@ -42,7 +44,11 @@ public expect class ContainerResource {
      * @throws ContainerNotFoundException If the container is not found for the specified id.
      * @throws ContainerRemoveConflictException When trying to remove an active container without the `force` option.
      */
-    public suspend fun remove(container: String, options: ContainerRemoveOptions = ContainerRemoveOptions())
+    public actual suspend fun remove(
+        container: String,
+        options: ContainerRemoveOptions,
+    ) {
+    }
 
     /**
      * Returns low-level information about a container.
@@ -50,7 +56,12 @@ public expect class ContainerResource {
      * @param container ID or name of the container.
      * @param size Should return the size of container as fields `SizeRw` and `SizeRootFs`
      */
-    public suspend fun inspect(container: String, size: Boolean = false): Container
+    public actual suspend fun inspect(
+        container: String,
+        size: Boolean,
+    ): Container {
+        TODO("Not yet implemented")
+    }
 
     /**
      * Starts a container.
@@ -60,7 +71,8 @@ public expect class ContainerResource {
      * @throws ContainerAlreadyStartedException If the container was already started.
      * @throws ContainerNotFoundException If container was not found.
      */
-    public suspend fun start(container: String, detachKeys: String? = null)
+    public actual suspend fun start(container: String, detachKeys: String?) {
+    }
 
     /**
      * Stops a container.
@@ -68,7 +80,8 @@ public expect class ContainerResource {
      * @param container The container id to stop.
      * @param timeout Duration to wait before killing the container.
      */
-    public suspend fun stop(container: String, timeout: Duration? = null)
+    public actual suspend fun stop(container: String, timeout: Duration?) {
+    }
 
     /**
      * Restarts a container.
@@ -76,7 +89,8 @@ public expect class ContainerResource {
      * @param container The container id to restart.
      * @param timeout Duration to wait before killing the container.
      */
-    public suspend fun restart(container: String, timeout: Duration? = null)
+    public actual suspend fun restart(container: String, timeout: Duration?) {
+    }
 
     /**
      * Kills a container.
@@ -84,7 +98,8 @@ public expect class ContainerResource {
      * @param container The container id to kill.
      * @param signal Signal to send for container to be killed, Docker's default is "SIGKILL".
      */
-    public suspend fun kill(container: String, signal: String? = null)
+    public actual suspend fun kill(container: String, signal: String?) {
+    }
 
     /**
      * Renames a container.
@@ -92,7 +107,8 @@ public expect class ContainerResource {
      * @param container The container id to rename.
      * @param newName The new container name.
      */
-    public suspend fun rename(container: String, newName: String)
+    public actual suspend fun rename(container: String, newName: String) {
+    }
 
     /**
      * Pauses a container.
@@ -100,7 +116,8 @@ public expect class ContainerResource {
      * @param container The container id to pause.
      * @see unpause
      */
-    public suspend fun pause(container: String)
+    public actual suspend fun pause(container: String) {
+    }
 
     /**
      * Resumes a container which has been paused.
@@ -108,7 +125,8 @@ public expect class ContainerResource {
      * @param container The container id to unpause.
      * @see pause
      */
-    public suspend fun unpause(container: String)
+    public actual suspend fun unpause(container: String) {
+    }
 
     /**
      * Resizes the TTY for a container.
@@ -118,7 +136,8 @@ public expect class ContainerResource {
      * @throws ContainerNotFoundException If the container is not found.
      * @throws YokiResponseException If the container cannot be resized or if an error occurs in the request.
      */
-    public suspend fun resizeTTY(container: String, options: ResizeTTYOptions = ResizeTTYOptions())
+    public actual suspend fun resizeTTY(container: String, options: ResizeTTYOptions) {
+    }
 
     /**
      * Runs a command inside a running container.
@@ -126,14 +145,25 @@ public expect class ContainerResource {
      * @param container The container id to execute the command.
      * @param options Exec instance command options.
      */
-    public suspend fun exec(container: String, options: ExecCreateOptions = ExecCreateOptions()): String
+    public actual suspend fun exec(
+        container: String,
+        options: ExecCreateOptions,
+    ): String {
+        TODO("Not yet implemented")
+    }
 
-    // TODO documentation
-    public fun attach(container: String): Flow<Frame>
+    public actual fun attach(container: String): Flow<Frame> {
+        TODO("Not yet implemented")
+    }
 
-    // TODO documentation
-    public suspend fun wait(container: String, condition: String? = null): ContainerWaitResult
+    public actual suspend fun wait(
+        container: String,
+        condition: String?,
+    ): ContainerWaitResult {
+        TODO("Not yet implemented")
+    }
 
-    // TODO documentation
-    public suspend fun prune(filters: ContainerPruneFilters = ContainerPruneFilters()): ContainerPruneResult
+    public actual suspend fun prune(filters: ContainerPruneFilters): ContainerPruneResult {
+        TODO("Not yet implemented")
+    }
 }
