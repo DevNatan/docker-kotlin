@@ -5,6 +5,8 @@ import me.devnatan.yoki.models.Stream.Companion.StdErr
 import me.devnatan.yoki.models.Stream.Companion.StdIn
 import me.devnatan.yoki.models.Stream.Companion.StdOut
 import me.devnatan.yoki.models.Stream.Companion.Unknown
+import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 @Serializable
 public data class Stream internal constructor(
