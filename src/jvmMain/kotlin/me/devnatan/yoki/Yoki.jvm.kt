@@ -15,7 +15,7 @@ import me.devnatan.yoki.resource.system.SystemResource
 import me.devnatan.yoki.resource.volume.VolumeResource
 import kotlin.coroutines.CoroutineContext
 
-public actual class Yoki actual constructor(public val config: YokiConfig) : CoroutineScope {
+public actual class Yoki public actual constructor(public actual val config: YokiConfig) : CoroutineScope {
 
     public constructor() : this(DefaultYokiConfig)
 
