@@ -1,6 +1,6 @@
 @file:JvmName("SocketUtils")
 
-package me.devnatan.yoki.net
+package me.devnatan.yoki.io
 
 import kotlin.jvm.JvmName
 

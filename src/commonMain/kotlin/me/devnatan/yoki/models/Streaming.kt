@@ -5,6 +5,8 @@ import me.devnatan.yoki.models.Stream.Companion.StdErr
 import me.devnatan.yoki.models.Stream.Companion.StdIn
 import me.devnatan.yoki.models.Stream.Companion.StdOut
 import me.devnatan.yoki.models.Stream.Companion.Unknown
+import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
 
 @Serializable
 public data class Stream internal constructor(
@@ -14,11 +16,23 @@ public data class Stream internal constructor(
 
     public companion object {
 
+        @JvmStatic
+        @get:JvmName("STDIN")
         public val StdIn: Stream = Stream(0, "STDIN")
+
+        @JvmStatic
+        @get:JvmName("STDOUT")
         public val StdOut: Stream = Stream(1, "STDOUT")
+
+        @JvmStatic
+        @get:JvmName("STDERR")
         public val StdErr: Stream = Stream(2, "STDERR")
+
+        @JvmStatic
+        @get:JvmName("UNKNOWN")
         public val Unknown: Stream = Stream(-1, "UNKNOWN")
 
+        @JvmStatic
         public fun typeOfOrNull(code: Byte): Stream? {
             return when (code) {
                 StdIn.code -> StdIn

@@ -33,15 +33,15 @@ kotlin {
                 exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
             }
         }
+        compilations.all {
+            kotlinOptions {
+                freeCompilerArgs = listOf("-Xjvm-default=all")
+            }
+        }
     }
 
-    val hostOs = System.getProperty("os.name")
-    var isNativeUnsupported = false
-    when (hostOs) {
-        "Mac OS X" -> macosX64("native")
-        "Linux" -> linuxX64("native")
-        else -> isNativeUnsupported = true
-    }
+    linuxX64()
+    macosX64()
 
     sourceSets {
         val commonMain by getting {
@@ -80,18 +80,21 @@ kotlin {
             }
         }
 
-        if (!isNativeUnsupported) {
-            val nativeMain by getting {
-                dependsOn(commonMain)
-                dependencies {
-                    implementation(libs.ktor.client.engine.cio)
-                }
-            }
-
-            val nativeTest by getting {
-                dependsOn(commonTest)
+        val nativeMain by creating {
+            dependsOn(commonMain)
+            dependencies {
+                implementation(libs.ktor.client.engine.cio)
             }
         }
+
+        val nativeTest by creating {
+            dependsOn(commonTest)
+        }
+
+        val linuxX64Main by getting { dependsOn(nativeMain) }
+        val linuxX64Test by getting { dependsOn(nativeTest) }
+        val macosX64Main by getting { dependsOn(nativeMain) }
+        val macosX64Test by getting { dependsOn(nativeTest) }
     }
 }
 

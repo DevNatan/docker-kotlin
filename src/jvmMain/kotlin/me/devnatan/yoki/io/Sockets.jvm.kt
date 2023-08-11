@@ -1,6 +1,7 @@
-package me.devnatan.yoki.net
+package me.devnatan.yoki.io
 
 import okhttp3.Dns
+import okio.ByteString.Companion.decodeHex
 import org.newsclub.net.unix.AFUNIXSocketAddress
 import org.newsclub.net.unix.AFUNIXSocketFactory
 import java.net.InetAddress
@@ -24,6 +25,13 @@ internal class SocketDns(private val isUnixSocket: Boolean) : Dns {
 }
 
 internal class UnixSocketFactory : AFUNIXSocketFactory() {
+    private fun decodeHostname(hostname: String): String {
+        return hostname
+            .substring(0, hostname.indexOf(ENCODED_HOSTNAME_SUFFIX))
+            .decodeHex()
+            .utf8()
+    }
+
     override fun addressFromHost(host: String, port: Int): AFUNIXSocketAddress {
         val socketPath = decodeHostname(host)
         val socketFile = Paths.get(socketPath) ?: error("Unable to connect to unix socket @ $socketPath")
