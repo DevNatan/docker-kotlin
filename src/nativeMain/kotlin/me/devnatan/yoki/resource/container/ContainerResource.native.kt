@@ -166,4 +166,20 @@ public actual class ContainerResource {
     public actual suspend fun prune(filters: ContainerPruneFilters): ContainerPruneResult {
         TODO("Not yet implemented")
     }
+
+    /**
+     * Downloads files from a container file system.
+     *
+     * @param container The container id.
+     */
+    public actual suspend fun downloadArchive(container: String) {
+    }
+
+    /**
+     * Uploads files into a container file system.
+     *
+     * @param container The container id.
+     */
+    public actual suspend fun uploadArchive(container: String) {
+    }
 }

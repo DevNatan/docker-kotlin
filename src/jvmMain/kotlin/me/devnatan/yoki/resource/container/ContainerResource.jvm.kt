@@ -477,4 +477,22 @@ public actual class ContainerResource(
     @JvmOverloads
     public fun pruneAsync(filters: ContainerPruneFilters = ContainerPruneFilters()): CompletableFuture<ContainerPruneResult> =
         coroutineScope.async { prune(filters) }.asCompletableFuture()
+
+    /**
+     * Downloads files from a container file system.
+     *
+     * @param container The container id.
+     */
+    public actual suspend fun downloadArchive(container: String) {
+    }
+
+    /**
+     * Uploads files into a container file system.
+     *
+     * @param container The container id.
+     */
+    public actual suspend fun uploadArchive(container: String) {
+    }
+
+
 }

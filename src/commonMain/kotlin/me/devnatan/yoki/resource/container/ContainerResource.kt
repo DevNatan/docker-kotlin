@@ -136,4 +136,18 @@ public expect class ContainerResource {
 
     // TODO documentation
     public suspend fun prune(filters: ContainerPruneFilters = ContainerPruneFilters()): ContainerPruneResult
+
+    /**
+     * Downloads files from a container file system.
+     *
+     * @param container The container id.
+     */
+    public suspend fun downloadArchive(container: String)
+
+    /**
+     * Uploads files into a container file system.
+     *
+     * @param container The container id.
+     */
+    public suspend fun uploadArchive(container: String)
 }
