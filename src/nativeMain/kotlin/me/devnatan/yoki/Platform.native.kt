@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalForeignApi::class)
-
 package me.devnatan.yoki
 
 import kotlinx.cinterop.ExperimentalForeignApi
@@ -17,6 +15,7 @@ internal actual fun isUnixPlatform(): Boolean {
  * Gets the value of the specified environment variable.
  * An environment variable is a system-dependent external named value
  */
+@OptIn(ExperimentalForeignApi::class)
 internal actual fun env(key: String): String? {
     return getenv(key)?.toKString()
 }
