@@ -3034,126 +3034,185 @@ public final class me/devnatan/yoki/models/secret/SecretSpec$Driver$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class me/devnatan/yoki/models/system/SystemEvent {
-	public static final field BuilderType Ljava/lang/String;
-	public static final field Companion Lme/devnatan/yoki/models/system/SystemEvent$Companion;
-	public static final field ConfigType Ljava/lang/String;
-	public static final field ContainerType Ljava/lang/String;
-	public static final field DaemonType Ljava/lang/String;
-	public static final field ImageType Ljava/lang/String;
-	public static final field LocalScope Ljava/lang/String;
-	public static final field NetworkType Ljava/lang/String;
-	public static final field NodeType Ljava/lang/String;
-	public static final field PluginType Ljava/lang/String;
-	public static final field SecretType Ljava/lang/String;
-	public static final field ServiceType Ljava/lang/String;
-	public static final field SwarmScope Ljava/lang/String;
-	public static final field VolumeType Ljava/lang/String;
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JJLkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JJ)V
-	public final fun component1 ()Ljava/lang/String;
+public final class me/devnatan/yoki/models/system/Event {
+	public static final field Companion Lme/devnatan/yoki/models/system/Event$Companion;
+	public synthetic fun <init> (ILme/devnatan/yoki/models/system/EventType;Ljava/lang/String;Lme/devnatan/yoki/models/system/EventActor;Lme/devnatan/yoki/models/system/EventScope;JJLkotlinx/serialization/internal/SerializationConstructorMarker;)V
+	public final fun component1 ()Lme/devnatan/yoki/models/system/EventType;
 	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Ljava/lang/String;
+	public final fun component3 ()Lme/devnatan/yoki/models/system/EventActor;
+	public final fun component4 ()Lme/devnatan/yoki/models/system/EventScope;
 	public final fun component5 ()J
 	public final fun component6 ()J
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JJ)Lme/devnatan/yoki/models/system/SystemEvent;
-	public static synthetic fun copy$default (Lme/devnatan/yoki/models/system/SystemEvent;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JJILjava/lang/Object;)Lme/devnatan/yoki/models/system/SystemEvent;
+	public final fun copy (Lme/devnatan/yoki/models/system/EventType;Ljava/lang/String;Lme/devnatan/yoki/models/system/EventActor;Lme/devnatan/yoki/models/system/EventScope;JJ)Lme/devnatan/yoki/models/system/Event;
+	public static synthetic fun copy$default (Lme/devnatan/yoki/models/system/Event;Lme/devnatan/yoki/models/system/EventType;Ljava/lang/String;Lme/devnatan/yoki/models/system/EventActor;Lme/devnatan/yoki/models/system/EventScope;JJILjava/lang/Object;)Lme/devnatan/yoki/models/system/Event;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAction ()Ljava/lang/String;
-	public final fun getActor ()Ljava/lang/String;
-	public final fun getScope ()Ljava/lang/String;
-	public final fun getTime ()J
-	public final fun getTimeInNanos ()J
-	public final fun getType ()Ljava/lang/String;
+	public final fun getActor ()Lme/devnatan/yoki/models/system/EventActor;
+	public final fun getScope ()Lme/devnatan/yoki/models/system/EventScope;
+	public final fun getTimeMillis ()J
+	public final fun getTimeNanos ()J
+	public final fun getType ()Lme/devnatan/yoki/models/system/EventType;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/system/SystemEvent;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/system/Event;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
-public final class me/devnatan/yoki/models/system/SystemEvent$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lme/devnatan/yoki/models/system/SystemEvent$$serializer;
+public final class me/devnatan/yoki/models/system/Event$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lme/devnatan/yoki/models/system/Event$$serializer;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/system/SystemEvent;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/system/Event;
 	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lme/devnatan/yoki/models/system/SystemEvent;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lme/devnatan/yoki/models/system/Event;)V
 	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
-public final class me/devnatan/yoki/models/system/SystemEvent$Actor {
-	public static final field Companion Lme/devnatan/yoki/models/system/SystemEvent$Actor$Companion;
+public final class me/devnatan/yoki/models/system/Event$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class me/devnatan/yoki/models/system/EventAction : java/lang/Enum {
+	public static final field ATTACH Lme/devnatan/yoki/models/system/EventAction;
+	public static final field COMMIT Lme/devnatan/yoki/models/system/EventAction;
+	public static final field COPY Lme/devnatan/yoki/models/system/EventAction;
+	public static final field CREATE Lme/devnatan/yoki/models/system/EventAction;
+	public static final field Companion Lme/devnatan/yoki/models/system/EventAction$Companion;
+	public static final field DAEMON_RELOAD Lme/devnatan/yoki/models/system/EventAction;
+	public static final field DELETE Lme/devnatan/yoki/models/system/EventAction;
+	public static final field DESTROY Lme/devnatan/yoki/models/system/EventAction;
+	public static final field DETACH Lme/devnatan/yoki/models/system/EventAction;
+	public static final field DIE Lme/devnatan/yoki/models/system/EventAction;
+	public static final field EXEC_CREATE Lme/devnatan/yoki/models/system/EventAction;
+	public static final field EXEC_DETACH Lme/devnatan/yoki/models/system/EventAction;
+	public static final field EXEC_DIE Lme/devnatan/yoki/models/system/EventAction;
+	public static final field EXEC_START Lme/devnatan/yoki/models/system/EventAction;
+	public static final field EXPORT Lme/devnatan/yoki/models/system/EventAction;
+	public static final field HEALTH Lme/devnatan/yoki/models/system/EventAction;
+	public static final field IMAGE_LOAD Lme/devnatan/yoki/models/system/EventAction;
+	public static final field IMAGE_PULL Lme/devnatan/yoki/models/system/EventAction;
+	public static final field IMAGE_PUSH Lme/devnatan/yoki/models/system/EventAction;
+	public static final field IMAGE_SAVE Lme/devnatan/yoki/models/system/EventAction;
+	public static final field IMAGE_TAG Lme/devnatan/yoki/models/system/EventAction;
+	public static final field IMAGE_UNTAG Lme/devnatan/yoki/models/system/EventAction;
+	public static final field IMPORT Lme/devnatan/yoki/models/system/EventAction;
+	public static final field KILL Lme/devnatan/yoki/models/system/EventAction;
+	public static final field NET_CONNECT Lme/devnatan/yoki/models/system/EventAction;
+	public static final field NET_DISCONNECT Lme/devnatan/yoki/models/system/EventAction;
+	public static final field OOM Lme/devnatan/yoki/models/system/EventAction;
+	public static final field PAUSE Lme/devnatan/yoki/models/system/EventAction;
+	public static final field PRUNE Lme/devnatan/yoki/models/system/EventAction;
+	public static final field REMOVE Lme/devnatan/yoki/models/system/EventAction;
+	public static final field RENAME Lme/devnatan/yoki/models/system/EventAction;
+	public static final field RESIZE Lme/devnatan/yoki/models/system/EventAction;
+	public static final field RESTART Lme/devnatan/yoki/models/system/EventAction;
+	public static final field START Lme/devnatan/yoki/models/system/EventAction;
+	public static final field STOP Lme/devnatan/yoki/models/system/EventAction;
+	public static final field TOP Lme/devnatan/yoki/models/system/EventAction;
+	public static final field UNKNOWN Lme/devnatan/yoki/models/system/EventAction;
+	public static final field UNPAUSE Lme/devnatan/yoki/models/system/EventAction;
+	public static final field UPDATE Lme/devnatan/yoki/models/system/EventAction;
+	public static fun valueOf (Ljava/lang/String;)Lme/devnatan/yoki/models/system/EventAction;
+	public static fun values ()[Lme/devnatan/yoki/models/system/EventAction;
+}
+
+public final class me/devnatan/yoki/models/system/EventAction$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class me/devnatan/yoki/models/system/EventActor {
+	public static final field Companion Lme/devnatan/yoki/models/system/EventActor$Companion;
 	public synthetic fun <init> (ILjava/lang/String;Ljava/util/Map;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/util/Map;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/util/Map;
-	public final fun copy (Ljava/lang/String;Ljava/util/Map;)Lme/devnatan/yoki/models/system/SystemEvent$Actor;
-	public static synthetic fun copy$default (Lme/devnatan/yoki/models/system/SystemEvent$Actor;Ljava/lang/String;Ljava/util/Map;ILjava/lang/Object;)Lme/devnatan/yoki/models/system/SystemEvent$Actor;
+	public final fun copy (Ljava/lang/String;Ljava/util/Map;)Lme/devnatan/yoki/models/system/EventActor;
+	public static synthetic fun copy$default (Lme/devnatan/yoki/models/system/EventActor;Ljava/lang/String;Ljava/util/Map;ILjava/lang/Object;)Lme/devnatan/yoki/models/system/EventActor;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAttributes ()Ljava/util/Map;
 	public final fun getId ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
-	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/system/SystemEvent$Actor;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
+	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/system/EventActor;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
-public final class me/devnatan/yoki/models/system/SystemEvent$Actor$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lme/devnatan/yoki/models/system/SystemEvent$Actor$$serializer;
+public final class me/devnatan/yoki/models/system/EventActor$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
+	public static final field INSTANCE Lme/devnatan/yoki/models/system/EventActor$$serializer;
 	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
 	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/system/SystemEvent$Actor;
+	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/system/EventActor;
 	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
 	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lme/devnatan/yoki/models/system/SystemEvent$Actor;)V
+	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lme/devnatan/yoki/models/system/EventActor;)V
 	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
 }
 
-public final class me/devnatan/yoki/models/system/SystemEvent$Actor$Companion {
+public final class me/devnatan/yoki/models/system/EventActor$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class me/devnatan/yoki/models/system/SystemEvent$Companion {
+public final class me/devnatan/yoki/models/system/EventKt {
+	public static final fun getTime (Lme/devnatan/yoki/models/system/Event;)Lkotlinx/datetime/Instant;
+}
+
+public final class me/devnatan/yoki/models/system/EventScope : java/lang/Enum {
+	public static final field Companion Lme/devnatan/yoki/models/system/EventScope$Companion;
+	public static final field LOCAL Lme/devnatan/yoki/models/system/EventScope;
+	public static final field SWARM Lme/devnatan/yoki/models/system/EventScope;
+	public static final field UNKNOWN Lme/devnatan/yoki/models/system/EventScope;
+	public static fun valueOf (Ljava/lang/String;)Lme/devnatan/yoki/models/system/EventScope;
+	public static fun values ()[Lme/devnatan/yoki/models/system/EventScope;
+}
+
+public final class me/devnatan/yoki/models/system/EventScope$Companion {
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
 }
 
-public final class me/devnatan/yoki/models/system/SystemEventsOptions {
-	public static final field Companion Lme/devnatan/yoki/models/system/SystemEventsOptions$Companion;
+public final class me/devnatan/yoki/models/system/EventType : java/lang/Enum {
+	public static final field BUILDER Lme/devnatan/yoki/models/system/EventType;
+	public static final field CONFIG Lme/devnatan/yoki/models/system/EventType;
+	public static final field CONTAINER Lme/devnatan/yoki/models/system/EventType;
+	public static final field Companion Lme/devnatan/yoki/models/system/EventType$Companion;
+	public static final field DAEMON Lme/devnatan/yoki/models/system/EventType;
+	public static final field IMAGE Lme/devnatan/yoki/models/system/EventType;
+	public static final field NETWORK Lme/devnatan/yoki/models/system/EventType;
+	public static final field NODE Lme/devnatan/yoki/models/system/EventType;
+	public static final field PLUGIN Lme/devnatan/yoki/models/system/EventType;
+	public static final field SECRET Lme/devnatan/yoki/models/system/EventType;
+	public static final field SERVICE Lme/devnatan/yoki/models/system/EventType;
+	public static final field UNKNOWN Lme/devnatan/yoki/models/system/EventType;
+	public static final field VOLUME Lme/devnatan/yoki/models/system/EventType;
+	public static fun valueOf (Ljava/lang/String;)Lme/devnatan/yoki/models/system/EventType;
+	public static fun values ()[Lme/devnatan/yoki/models/system/EventType;
+}
+
+public final class me/devnatan/yoki/models/system/EventType$Companion {
+	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final class me/devnatan/yoki/models/system/MonitorEventsOptions {
 	public fun <init> ()V
-	public synthetic fun <init> (ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lkotlinx/serialization/internal/SerializationConstructorMarker;)V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun addFilter (Ljava/lang/String;Ljava/lang/String;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lme/devnatan/yoki/models/system/SystemEventsOptions;
-	public static synthetic fun copy$default (Lme/devnatan/yoki/models/system/SystemEventsOptions;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lme/devnatan/yoki/models/system/SystemEventsOptions;
+	public final fun component3 ()Ljava/util/Map;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)Lme/devnatan/yoki/models/system/MonitorEventsOptions;
+	public static synthetic fun copy$default (Lme/devnatan/yoki/models/system/MonitorEventsOptions;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;ILjava/lang/Object;)Lme/devnatan/yoki/models/system/MonitorEventsOptions;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getFilters ()Ljava/lang/String;
+	public final fun filterByType ([Lme/devnatan/yoki/models/system/EventType;)Lme/devnatan/yoki/models/system/MonitorEventsOptions;
+	public final fun getFilters ()Ljava/util/Map;
 	public final fun getSince ()Ljava/lang/String;
 	public final fun getUntil ()Ljava/lang/String;
 	public fun hashCode ()I
-	public final fun setFilters (Ljava/lang/String;)V
 	public final fun setSince (Ljava/lang/String;)V
 	public final fun setUntil (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
-	public static final synthetic fun write$Self (Lme/devnatan/yoki/models/system/SystemEventsOptions;Lkotlinx/serialization/encoding/CompositeEncoder;Lkotlinx/serialization/descriptors/SerialDescriptor;)V
 }
 
-public final class me/devnatan/yoki/models/system/SystemEventsOptions$$serializer : kotlinx/serialization/internal/GeneratedSerializer {
-	public static final field INSTANCE Lme/devnatan/yoki/models/system/SystemEventsOptions$$serializer;
-	public fun childSerializers ()[Lkotlinx/serialization/KSerializer;
-	public synthetic fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Ljava/lang/Object;
-	public fun deserialize (Lkotlinx/serialization/encoding/Decoder;)Lme/devnatan/yoki/models/system/SystemEventsOptions;
-	public fun getDescriptor ()Lkotlinx/serialization/descriptors/SerialDescriptor;
-	public synthetic fun serialize (Lkotlinx/serialization/encoding/Encoder;Ljava/lang/Object;)V
-	public fun serialize (Lkotlinx/serialization/encoding/Encoder;Lme/devnatan/yoki/models/system/SystemEventsOptions;)V
-	public fun typeParametersSerializers ()[Lkotlinx/serialization/KSerializer;
-}
-
-public final class me/devnatan/yoki/models/system/SystemEventsOptions$Companion {
-	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+public final class me/devnatan/yoki/models/system/MonitorEventsOptionsKt {
+	public static final fun setSince (Lme/devnatan/yoki/models/system/MonitorEventsOptions;Lkotlinx/datetime/Instant;)V
+	public static final fun setUntil (Lme/devnatan/yoki/models/system/MonitorEventsOptions;Lkotlinx/datetime/Instant;)V
 }
 
 public final class me/devnatan/yoki/models/system/SystemPingData {
@@ -3766,10 +3825,16 @@ public class me/devnatan/yoki/resource/swarm/SwarmException : me/devnatan/yoki/Y
 
 public final class me/devnatan/yoki/resource/system/SystemResource {
 	public static final field PING_ENDPOINT Ljava/lang/String;
+	public final fun events (Lme/devnatan/yoki/models/system/MonitorEventsOptions;)Lkotlinx/coroutines/flow/Flow;
+	public static synthetic fun events$default (Lme/devnatan/yoki/resource/system/SystemResource;Lme/devnatan/yoki/models/system/MonitorEventsOptions;ILjava/lang/Object;)Lkotlinx/coroutines/flow/Flow;
 	public final fun ping (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun ping (ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun ping$default (Lme/devnatan/yoki/resource/system/SystemResource;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun version (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class me/devnatan/yoki/resource/system/SystemResourceKt {
+	public static final fun events (Lme/devnatan/yoki/resource/system/SystemResource;Lkotlin/jvm/functions/Function1;)Lkotlinx/coroutines/flow/Flow;
 }
 
 public final class me/devnatan/yoki/resource/volume/VolumeResource {

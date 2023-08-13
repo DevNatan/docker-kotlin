@@ -1,6 +1,6 @@
 # Yoki supported Docker API endpoints
 
-Supports 42 of 106 endpoints
+Supports 43 of 106 endpoints
 
 ### Containers (15/25)
 * [x] List containers - GET **/containers/json**
@@ -130,7 +130,7 @@ Supports 42 of 106 endpoints
 * [x] Get version - GET **/version**
 * [x] Ping - GET **/_ping**
 * [x] Ping - HEAD **/_ping**
-* [ ] Monitor events - GET **/events**
+* [x] Monitor events - GET **/events**
 * [ ] Get data usage information - GET **/system/df**
 
 ### Distribution (0/1)
