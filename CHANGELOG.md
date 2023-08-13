@@ -1,3 +1,8 @@
+# 0.2.0 (unreleased)
+
+* Enhanced Java interoperability (#97)
+* Implementation of /events to monitor system events in real time (#101)
+
 # 0.1.1 (08-05-2023)
 
 * MacOS and Linux native targets are now published to Maven Central as well
