@@ -43,7 +43,7 @@ public actual class Yoki public actual constructor(public actual val config: Yok
     public actual val secrets: SecretResource = SecretResource(httpClient, json)
 
     @get:JvmName("system")
-    public actual val system: SystemResource = SystemResource(httpClient)
+    public actual val system: SystemResource = SystemResource(httpClient, json)
 
     public actual fun close() {
         cancel()

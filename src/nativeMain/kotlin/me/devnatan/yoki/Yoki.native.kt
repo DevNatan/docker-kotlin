@@ -28,7 +28,7 @@ public actual class Yoki public actual constructor(public actual val config: Yok
     public actual val networks: NetworkResource = NetworkResource(httpClient, json)
     public actual val volumes: VolumeResource = VolumeResource(httpClient, json)
     public actual val secrets: SecretResource = SecretResource(httpClient, json)
-    public actual val system: SystemResource = SystemResource(httpClient)
+    public actual val system: SystemResource = SystemResource(httpClient, json)
 
     actual override fun close() {
         cancel()

@@ -4,7 +4,17 @@ import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.head
+import io.ktor.client.request.parameter
+import io.ktor.client.request.prepareGet
+import io.ktor.utils.io.ByteReadChannel
+import io.ktor.utils.io.readUTF8Line
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import me.devnatan.yoki.io.requestCatching
+import me.devnatan.yoki.models.system.Event
+import me.devnatan.yoki.models.system.MonitorEventsOptions
 import me.devnatan.yoki.models.system.SystemPingData
 import me.devnatan.yoki.models.system.SystemVersion
 import kotlin.jvm.JvmOverloads
@@ -14,6 +24,7 @@ import kotlin.jvm.JvmOverloads
  */
 public class SystemResource internal constructor(
     private val httpClient: HttpClient,
+    private val json: Json,
 ) {
 
     private companion object {
@@ -57,4 +68,34 @@ public class SystemResource internal constructor(
             )
         }
     }
+
+    /**
+     * Monitors events in real-time from the server.
+     *
+     * @param options Options to filter the received events.
+     */
+    public fun events(options: MonitorEventsOptions = MonitorEventsOptions()): Flow<Event> = flow {
+        requestCatching {
+            httpClient.prepareGet("/events") {
+                parameter("until", options.until)
+                parameter("since", options.since)
+                parameter("filters", json.encodeToString(options.filters))
+            }.execute { response ->
+                val channel = response.body<ByteReadChannel>()
+                while (true) {
+                    val raw = channel.readUTF8Line() ?: break
+                    val decoded = json.decodeFromString<Event>(raw)
+                    emit(decoded)
+                }
+            }
+        }
+    }
 }
+
+/**
+ * Monitors events in real-time from the server.
+ *
+ * @param options Options to filter the received events.
+ */
+public inline fun SystemResource.events(options: MonitorEventsOptions.() -> Unit): Flow<Event> =
+    events(MonitorEventsOptions().apply(options))
