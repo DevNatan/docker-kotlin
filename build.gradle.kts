@@ -1,4 +1,5 @@
 import io.gitlab.arturbosch.detekt.Detekt
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
@@ -33,9 +34,9 @@ kotlin {
                 exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
             }
         }
-        compilations.all {
+        tasks.withType<KotlinCompile>().configureEach {
             kotlinOptions {
-                freeCompilerArgs = listOf("-Xjvm-default=all")
+                freeCompilerArgs += listOf("-Xjvm-default=all")
             }
         }
     }

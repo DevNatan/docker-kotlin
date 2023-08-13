@@ -14,14 +14,8 @@ import me.devnatan.yoki.Closeable
 
 public fun interface YokiFlow<T> {
     public fun onEach(value: T)
-
-    @JvmDefault
     public fun onStart(): Unit = Unit
-
-    @JvmDefault
     public fun onError(cause: Throwable): Unit = Unit
-
-    @JvmDefault
     public fun onComplete(error: Throwable?): Unit = Unit
 }
 
@@ -39,7 +33,7 @@ internal class InternalYokiFlow internal constructor() : Closeable {
     }
 
     override fun close() {
-        val exception = error?.let { cause -> CancellationException("An error ocurred while consuming flow.", cause) }
+        val exception = error?.let { cause -> CancellationException("An error occurred while consuming flow.", cause) }
         coroutineScope.cancel(exception)
     }
 }
