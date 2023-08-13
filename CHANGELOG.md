@@ -2,6 +2,7 @@
 
 * Enhanced Java interoperability (#97)
 * Implementation of /events to monitor system events in real time (#101)
+* Bump kotlin from 1.8.22 to 1.9.0 and okio from 3.4.0 to 3.5.0 (#102)
 
 # 0.1.1 (08-05-2023)
 

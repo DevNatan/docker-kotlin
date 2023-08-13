@@ -798,6 +798,7 @@ public final class me/devnatan/yoki/models/Mount$Type : java/lang/Enum {
 	public static final field NamedPipe Lme/devnatan/yoki/models/Mount$Type;
 	public static final field Tmpfs Lme/devnatan/yoki/models/Mount$Type;
 	public static final field Volume Lme/devnatan/yoki/models/Mount$Type;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lme/devnatan/yoki/models/Mount$Type;
 	public static fun values ()[Lme/devnatan/yoki/models/Mount$Type;
 }
@@ -847,6 +848,7 @@ public final class me/devnatan/yoki/models/MountBindOptions$Propagation : java/l
 	public static final field RSlave Lme/devnatan/yoki/models/MountBindOptions$Propagation;
 	public static final field Shared Lme/devnatan/yoki/models/MountBindOptions$Propagation;
 	public static final field Slave Lme/devnatan/yoki/models/MountBindOptions$Propagation;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lme/devnatan/yoki/models/MountBindOptions$Propagation;
 	public static fun values ()[Lme/devnatan/yoki/models/MountBindOptions$Propagation;
 }
@@ -3112,6 +3114,7 @@ public final class me/devnatan/yoki/models/system/EventAction : java/lang/Enum {
 	public static final field UNKNOWN Lme/devnatan/yoki/models/system/EventAction;
 	public static final field UNPAUSE Lme/devnatan/yoki/models/system/EventAction;
 	public static final field UPDATE Lme/devnatan/yoki/models/system/EventAction;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lme/devnatan/yoki/models/system/EventAction;
 	public static fun values ()[Lme/devnatan/yoki/models/system/EventAction;
 }
@@ -3159,6 +3162,7 @@ public final class me/devnatan/yoki/models/system/EventScope : java/lang/Enum {
 	public static final field LOCAL Lme/devnatan/yoki/models/system/EventScope;
 	public static final field SWARM Lme/devnatan/yoki/models/system/EventScope;
 	public static final field UNKNOWN Lme/devnatan/yoki/models/system/EventScope;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lme/devnatan/yoki/models/system/EventScope;
 	public static fun values ()[Lme/devnatan/yoki/models/system/EventScope;
 }
@@ -3181,6 +3185,7 @@ public final class me/devnatan/yoki/models/system/EventType : java/lang/Enum {
 	public static final field SERVICE Lme/devnatan/yoki/models/system/EventType;
 	public static final field UNKNOWN Lme/devnatan/yoki/models/system/EventType;
 	public static final field VOLUME Lme/devnatan/yoki/models/system/EventType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lme/devnatan/yoki/models/system/EventType;
 	public static fun values ()[Lme/devnatan/yoki/models/system/EventType;
 }
