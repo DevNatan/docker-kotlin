@@ -1,10 +1,12 @@
 package me.devnatan.yoki.resource.container
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.io.RawSource
 import me.devnatan.yoki.YokiResponseException
 import me.devnatan.yoki.models.Frame
 import me.devnatan.yoki.models.ResizeTTYOptions
 import me.devnatan.yoki.models.container.Container
+import me.devnatan.yoki.models.container.ContainerArchiveInfo
 import me.devnatan.yoki.models.container.ContainerCreateOptions
 import me.devnatan.yoki.models.container.ContainerListOptions
 import me.devnatan.yoki.models.container.ContainerPruneFilters
@@ -14,7 +16,10 @@ import me.devnatan.yoki.models.container.ContainerSummary
 import me.devnatan.yoki.models.container.ContainerWaitResult
 import me.devnatan.yoki.models.exec.ExecCreateOptions
 import me.devnatan.yoki.resource.image.ImageNotFoundException
+import kotlin.jvm.JvmOverloads
 import kotlin.time.Duration
+
+internal const val FS_ROOT = "/"
 
 public expect class ContainerResource {
 
@@ -138,16 +143,28 @@ public expect class ContainerResource {
     public suspend fun prune(filters: ContainerPruneFilters = ContainerPruneFilters()): ContainerPruneResult
 
     /**
+     * Retrieves information about files of a container file system.
+     *
+     * @param container The container id.
+     * @param path The path to the file or directory inside the container file system.
+     */
+    @JvmOverloads
+    public suspend fun archive(container: String, path: String = FS_ROOT): ContainerArchiveInfo
+
+    /**
      * Downloads files from a container file system.
      *
      * @param container The container id.
+     * @param remotePath The path to the file or directory inside the container file system.
      */
-    public suspend fun downloadArchive(container: String)
+    public suspend fun downloadArchive(container: String, remotePath: String): RawSource
 
     /**
      * Uploads files into a container file system.
      *
      * @param container The container id.
+     * @param inputPath Path to the file that will be uploaded.
+     * @param remotePath Path to the file or directory inside the container file system.
      */
-    public suspend fun uploadArchive(container: String)
+    public suspend fun uploadArchive(container: String, inputPath: String, remotePath: String)
 }

@@ -47,5 +47,6 @@ public actual class Yoki public actual constructor(public actual val config: Yok
 
     public actual fun close() {
         cancel()
+        httpClient.close()
     }
 }

@@ -1,9 +1,11 @@
 package me.devnatan.yoki.resource.container
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.io.RawSource
 import me.devnatan.yoki.models.Frame
 import me.devnatan.yoki.models.ResizeTTYOptions
 import me.devnatan.yoki.models.container.Container
+import me.devnatan.yoki.models.container.ContainerArchiveInfo
 import me.devnatan.yoki.models.container.ContainerCreateOptions
 import me.devnatan.yoki.models.container.ContainerListOptions
 import me.devnatan.yoki.models.container.ContainerPruneFilters
@@ -168,18 +170,39 @@ public actual class ContainerResource {
     }
 
     /**
+     * Retrieves information about files of a container file system.
+     *
+     * @param container The container id.
+     * @param path The path to the file or directory inside the container file system.
+     */
+    public actual suspend fun archive(
+        container: String,
+        path: String,
+    ): ContainerArchiveInfo {
+        TODO("Not yet implemented")
+    }
+
+    /**
      * Downloads files from a container file system.
      *
      * @param container The container id.
+     * @param remotePath The path to the file or directory inside the container file system.
      */
-    public actual suspend fun downloadArchive(container: String) {
+    public actual suspend fun downloadArchive(container: String, remotePath: String): RawSource {
+        TODO("Not yet implemented")
     }
 
     /**
      * Uploads files into a container file system.
      *
      * @param container The container id.
+     * @param inputPath Path to the file that will be uploaded.
+     * @param remotePath Path to the file or directory inside the container file system.
      */
-    public actual suspend fun uploadArchive(container: String) {
+    public actual suspend fun uploadArchive(
+        container: String,
+        inputPath: String,
+        remotePath: String,
+    ) {
     }
 }
