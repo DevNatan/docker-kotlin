@@ -52,7 +52,7 @@ kotlin {
                 implementation(libs.ktx.datetime)
                 implementation(libs.bundles.ktor)
                 implementation(libs.bundles.ktx)
-                implementation(libs.okio)
+                implementation(libs.kotlinx.io.core)
             }
         }
 
@@ -71,6 +71,7 @@ kotlin {
                 implementation(libs.junixsocket.common)
                 implementation(libs.ktor.client.engine.okhttp)
                 implementation(libs.slf4j.api)
+                implementation(libs.apache.compress)
             }
         }
 

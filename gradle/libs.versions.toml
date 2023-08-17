@@ -6,8 +6,9 @@ ktor = "2.3.3"
 junixsocket = "2.6.1"
 ktx-datetime = "0.4.0"
 junit = "5.10.0"
-okio = "3.5.0"
 slf4j = "2.0.7"
+apache-compress = "1.23.0"
+kotlinx-io = "0.2.1"
 plugin-kotlinter = "3.16.0"
 plugin-publishOnCentral = "5.0.11"
 plugin-binaryCompatibilityValidator = "0.13.2"
@@ -82,13 +83,17 @@ version.ref = "ktx-datetime"
 module = "org.junit.jupiter:junit-jupiter-engine"
 version.ref = "junit"
 
-[libraries.okio]
-module = "com.squareup.okio:okio"
-version.ref = "okio"
-
 [libraries.slf4j-api]
 module = "org.slf4j:slf4j-api"
 version.ref = "slf4j"
+
+[libraries.apache-compress]
+module = "org.apache.commons:commons-compress"
+version.ref = "apache-compress"
+
+[libraries.kotlinx-io-core]
+module = "org.jetbrains.kotlinx:kotlinx-io-core"
+version.ref = "kotlinx-io"
 
 [bundles]
 ktor = ["ktor-client-core", "ktor-client-serialization", "ktor-client-json", "ktor-client-content-negotiation", "ktor-serialization-kotlinx-json", "ktor-network"]

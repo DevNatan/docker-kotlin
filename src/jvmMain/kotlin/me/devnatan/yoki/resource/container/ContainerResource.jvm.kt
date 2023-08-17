@@ -2,29 +2,41 @@ package me.devnatan.yoki.resource.container
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
+import io.ktor.client.request.accept
 import io.ktor.client.request.delete
 import io.ktor.client.request.get
+import io.ktor.client.request.head
 import io.ktor.client.request.parameter
 import io.ktor.client.request.post
 import io.ktor.client.request.preparePost
+import io.ktor.client.request.put
 import io.ktor.client.request.setBody
+import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.utils.io.ByteReadChannel
+import io.ktor.utils.io.jvm.javaio.toByteReadChannel
 import io.ktor.utils.io.readUTF8Line
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.future.asCompletableFuture
+import kotlinx.io.RawSource
+import kotlinx.io.asInputStream
+import kotlinx.io.asSource
+import kotlinx.io.buffered
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import me.devnatan.yoki.YokiResponseException
+import me.devnatan.yoki.io.readTarFile
 import me.devnatan.yoki.io.requestCatching
+import me.devnatan.yoki.io.writeTarFile
 import me.devnatan.yoki.models.Frame
 import me.devnatan.yoki.models.IdOnlyResponse
 import me.devnatan.yoki.models.ResizeTTYOptions
 import me.devnatan.yoki.models.Stream
 import me.devnatan.yoki.models.container.Container
+import me.devnatan.yoki.models.container.ContainerArchiveInfo
 import me.devnatan.yoki.models.container.ContainerCreateOptions
 import me.devnatan.yoki.models.container.ContainerCreateResult
 import me.devnatan.yoki.models.container.ContainerListOptions
@@ -36,7 +48,10 @@ import me.devnatan.yoki.models.container.ContainerWaitResult
 import me.devnatan.yoki.models.exec.ExecCreateOptions
 import me.devnatan.yoki.resource.ResourcePaths.CONTAINERS
 import me.devnatan.yoki.resource.image.ImageNotFoundException
+import java.io.InputStream
 import java.util.concurrent.CompletableFuture
+import kotlin.io.encoding.Base64
+import kotlin.io.encoding.ExperimentalEncodingApi
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
@@ -68,7 +83,8 @@ public actual class ContainerResource(
      * @param options Options to customize the listing result.
      */
     @JvmOverloads
-    public fun listAsync(options: ContainerListOptions = ContainerListOptions(all = true)): CompletableFuture<List<ContainerSummary>> = coroutineScope.async { list(options) }.asCompletableFuture()
+    public fun listAsync(options: ContainerListOptions = ContainerListOptions(all = true)): CompletableFuture<List<ContainerSummary>> =
+        coroutineScope.async { list(options) }.asCompletableFuture()
 
     /**
      * Runs a command inside a running container.
@@ -77,7 +93,10 @@ public actual class ContainerResource(
      * @param options Exec instance command options.
      */
     @JvmOverloads
-    public fun execAsync(container: String, options: ExecCreateOptions = ExecCreateOptions()): CompletableFuture<String> =
+    public fun execAsync(
+        container: String,
+        options: ExecCreateOptions = ExecCreateOptions(),
+    ): CompletableFuture<String> =
         coroutineScope.async { exec(container, options) }.asCompletableFuture()
 
     /**
@@ -151,7 +170,10 @@ public actual class ContainerResource(
      * @throws ContainerRemoveConflictException When trying to remove an active container without the `force` option.
      */
     @JvmOverloads
-    public fun removeAsync(container: String, options: ContainerRemoveOptions = ContainerRemoveOptions()): CompletableFuture<Unit> =
+    public fun removeAsync(
+        container: String,
+        options: ContainerRemoveOptions = ContainerRemoveOptions(),
+    ): CompletableFuture<Unit> =
         coroutineScope.async { remove(container, options) }.asCompletableFuture()
 
     /**
@@ -410,7 +432,10 @@ public actual class ContainerResource(
      * @throws YokiResponseException If the container cannot be resized or if an error occurs in the request.
      */
     @JvmOverloads
-    public fun resizeTTYAsync(container: String, options: ResizeTTYOptions = ResizeTTYOptions()): CompletableFuture<Unit> =
+    public fun resizeTTYAsync(
+        container: String,
+        options: ResizeTTYOptions = ResizeTTYOptions(),
+    ): CompletableFuture<Unit> =
         coroutineScope.async { resizeTTY(container, options) }.asCompletableFuture()
 
     /**
@@ -477,4 +502,55 @@ public actual class ContainerResource(
     @JvmOverloads
     public fun pruneAsync(filters: ContainerPruneFilters = ContainerPruneFilters()): CompletableFuture<ContainerPruneResult> =
         coroutineScope.async { prune(filters) }.asCompletableFuture()
+
+    /**
+     * Retrieves information about files of a container file system.
+     *
+     * @param container The container id.
+     * @param path The path to the file or directory inside the container file system.
+     */
+    @OptIn(ExperimentalEncodingApi::class)
+    public actual suspend fun archive(container: String, path: String): ContainerArchiveInfo = requestCatching {
+        val response = httpClient.head("$CONTAINERS/$container/archive") {
+            parameter("path", path)
+        }
+
+        val pathStat = response.headers["X-Docker-Container-Path-Stat"] ?: error("Missing path stat header")
+        val decoded = Base64.decode(pathStat).decodeToString()
+        return json.decodeFromString(decoded)
+    }
+
+    /**
+     * Downloads files from a container file system.
+     *
+     * @param container The container id.
+     * @param remotePath The path to the file or directory inside the container file system.
+     */
+    public actual suspend fun downloadArchive(container: String, remotePath: String): RawSource {
+        val contents = requestCatching {
+            httpClient.get("$CONTAINERS/$container/archive") {
+                accept(ContentType.parse("application/x-tar"))
+                parameter("path", remotePath)
+            }
+        }.body<InputStream>()
+        return readTarFile(contents.asSource())
+    }
+
+    /**
+     * Uploads files into a container file system.
+     *
+     * @param container The container id.
+     * @param inputPath Path to the file that will be uploaded.
+     * @param remotePath Path to the file or directory inside the container file system.
+     */
+    public actual suspend fun uploadArchive(container: String, inputPath: String, remotePath: String): Unit =
+        requestCatching {
+            val archive = writeTarFile(inputPath)
+
+            httpClient.put("$CONTAINERS/$container/archive") {
+                parameter("path", remotePath.ifEmpty { FS_ROOT })
+                parameter("noOverwriteDirNonDir", false)
+                setBody(archive.buffered().asInputStream().toByteReadChannel())
+            }
+        }
 }

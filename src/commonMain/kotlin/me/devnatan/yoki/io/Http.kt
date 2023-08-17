@@ -22,7 +22,6 @@ import kotlinx.serialization.json.Json
 import me.devnatan.yoki.GenericDockerErrorResponse
 import me.devnatan.yoki.Yoki
 import me.devnatan.yoki.YokiResponseException
-import okio.ByteString.Companion.encodeUtf8
 
 internal expect fun <T : HttpClientEngineConfig> HttpClientConfig<out T>.configureHttpClient(client: Yoki)
 
@@ -45,11 +44,14 @@ internal fun createHttpClient(client: Yoki): HttpClient {
             handleResponseExceptionWithRequest { exception, _ ->
                 val responseException = exception as? ResponseException ?: return@handleResponseExceptionWithRequest
                 val exceptionResponse = responseException.response
+                println("exceptionResponse = ${exceptionResponse.body<String>()}")
 
-                val error = exceptionResponse.body<GenericDockerErrorResponse>()
+                val errorMessage = runCatching {
+                    exceptionResponse.body<GenericDockerErrorResponse>()
+                }.getOrNull()?.message
                 throw YokiResponseException(
                     cause = exception,
-                    message = error.message,
+                    message = errorMessage,
                     statusCode = exceptionResponse.status,
                 )
             }
@@ -70,11 +72,12 @@ internal fun createHttpClient(client: Yoki): HttpClient {
     }
 }
 
+@OptIn(ExperimentalStdlibApi::class)
 private fun createUrlBuilder(socketPath: String): URLBuilder = if (isUnixSocket(socketPath)) {
     URLBuilder(
         protocol = URLProtocol.HTTP,
         port = DOCKER_SOCKET_PORT,
-        host = socketPath.substringAfter(UNIX_SOCKET_PREFIX).encodeUtf8().hex() + ENCODED_HOSTNAME_SUFFIX,
+        host = socketPath.substringAfter(UNIX_SOCKET_PREFIX).toInt().toHexString() + ENCODED_HOSTNAME_SUFFIX,
     )
 } else {
     val url = Url(socketPath)
