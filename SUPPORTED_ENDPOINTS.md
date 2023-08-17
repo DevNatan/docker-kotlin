@@ -1,6 +1,6 @@
 # Yoki supported Docker API endpoints
 
-Supports 43 of 106 endpoints
+Supports 46 of 106 endpoints
 
 ### Containers (15/25)
 * [x] List containers - GET **/containers/json**
@@ -24,9 +24,9 @@ Supports 43 of 106 endpoints
 * [ ] Attach to a container via a websocket - **POST /containers/:id/attach/ws**
 * [x] Wait for a container - **POST /containers/:id/wait**
 * [x] Remove a container - **DELETE /containers/:id**
-* [ ] Get information about files in a container - **HEAD /containers/:id/archive**
-* [ ] Get an archive of a filesystem resource in a container - **GET /containers/:id/archive**
-* [ ] Extract an archive of files or folders to a directory in a container - **PUT /containers/:id/archive**
+* [x] Get information about files in a container - **HEAD /containers/:id/archive**
+* [x] Get an archive of a filesystem resource in a container - **GET /containers/:id/archive**
+* [x] Extract an archive of files or folders to a directory in a container - **PUT /containers/:id/archive**
 * [x] Delete stopped containers - **PUT /containers/prune**
 
 ### Images (3/15)
