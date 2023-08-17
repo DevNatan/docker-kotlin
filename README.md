@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-    implementation("me.devnatan:yoki:0.1.1")
+    implementation("me.devnatan:yoki:0.2.0")
 }
 ```
 
