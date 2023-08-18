@@ -1,6 +1,5 @@
 package me.devnatan.yoki.models.container
 
-import kotlinx.datetime.Instant
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import me.devnatan.yoki.models.network.EndpointSettings
@@ -8,7 +7,7 @@ import me.devnatan.yoki.models.network.EndpointSettings
 @Serializable
 public data class Container internal constructor(
     @SerialName("Id") val id: String,
-    @SerialName("Created") val createdAtRaw: String,
+    @SerialName("Created") val createdAt: String,
     @SerialName("Path") val path: String? = null,
     @SerialName("Args") val args: List<String> = emptyList(),
     @SerialName("State") val state: ContainerState,
@@ -28,10 +27,8 @@ public data class Container internal constructor(
     @SerialName("SizeRw") val sizeRw: Long? = null,
     @SerialName("SizeRootFs") val sizeRootFs: Long? = null,
     @SerialName("NetworkSettings") val networkSettings: NetworkSettings,
-) {
-
-    val createdAt: Instant by lazy { Instant.parse(createdAtRaw) }
-}
+    @SerialName("Config") public val config: ContainerConfig,
+)
 
 @Serializable
 public data class NetworkSettings internal constructor(
