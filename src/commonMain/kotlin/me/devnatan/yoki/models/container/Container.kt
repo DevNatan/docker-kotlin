@@ -2,6 +2,8 @@ package me.devnatan.yoki.models.container
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.devnatan.yoki.models.Mount
+import me.devnatan.yoki.models.MountBindOptions
 import me.devnatan.yoki.models.network.EndpointSettings
 
 @Serializable
@@ -28,6 +30,7 @@ public data class Container internal constructor(
     @SerialName("SizeRootFs") val sizeRootFs: Long? = null,
     @SerialName("NetworkSettings") val networkSettings: NetworkSettings,
     @SerialName("Config") public val config: ContainerConfig,
+    @SerialName("Mounts") public val mounts: List<Mount>,
 )
 
 @Serializable
@@ -48,4 +51,15 @@ public data class NetworkSettings internal constructor(
     @SerialName("EndpointID") public val endpointId: String,
     @SerialName("Gateway") public val gateway: String,
     @SerialName("Networks") public val networks: List<EndpointSettings> = emptyList(),
+)
+
+@Serializable
+public data class MountPoint internal constructor(
+    @SerialName("Name") public val name: String,
+    @SerialName("Source") public val source: String,
+    @SerialName("Destination") public val dest: String,
+    @SerialName("Local") public val driver: String,
+    @SerialName("Mode") public val mode: String,
+    @SerialName("RW") public val rw: Boolean,
+    @SerialName("Propagation") public val propagation: MountBindOptions.Propagation,
 )
