@@ -33,6 +33,7 @@ public data class ContainerCreateOptions(
     @SerialName("Shell") public var shell: List<String>? = null,
     @SerialName("HostConfig") public var hostConfig: HostConfig? = null,
     @SerialName("NetworkingConfig") public var networkingConfig: NetworkingConfig? = null,
+    @SerialName("Tty") public var tty: Boolean? = null,
 )
 
 public fun ContainerCreateOptions.healthcheck(block: HealthConfig.() -> Unit) {
