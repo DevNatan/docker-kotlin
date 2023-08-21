@@ -16,6 +16,12 @@ dependencies {
 }
 ```
 
+For Java users, use the Yoki JVM artifact
+
+```groovy
+implementation 'me.devnatan:yoki-jvm:0.2.0'
+```
+
 ## Getting Started
 
 Use `Yoki.create()` to create a new Yoki client instance with the default settings, default settings are based on the 
