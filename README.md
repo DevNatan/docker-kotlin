@@ -1,6 +1,7 @@
 <p align="center">
-    <img alt="Yoki logo" src="https://user-images.githubusercontent.com/24600258/159191738-7b3d9a65-d78b-4cb2-b02f-49c09732852e.png" width="300">
+    <img alt="Yoki logo" src="https://github.com/DevNatan/yoki/assets/24600258/f4069f5f-f980-470f-9d36-d37b6d0943c8" width="300">
 </p>
+
 
 # Yoki
 
