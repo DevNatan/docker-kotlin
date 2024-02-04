@@ -77,7 +77,7 @@ private fun createUrlBuilder(socketPath: String): URLBuilder = if (isUnixSocket(
     URLBuilder(
         protocol = URLProtocol.HTTP,
         port = DOCKER_SOCKET_PORT,
-        host = socketPath.substringAfter(UNIX_SOCKET_PREFIX).toInt().toHexString() + ENCODED_HOSTNAME_SUFFIX,
+        host = socketPath.substringAfter(UNIX_SOCKET_PREFIX).encodeToByteArray().toHexString() + ENCODED_HOSTNAME_SUFFIX,
     )
 } else {
     val url = Url(socketPath)
