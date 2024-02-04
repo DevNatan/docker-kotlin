@@ -1,3 +1,7 @@
+<p align="center">
+    <img alt="Yoki logo" src="https://user-images.githubusercontent.com/24600258/159191738-7b3d9a65-d78b-4cb2-b02f-49c09732852e.png" width="300">
+</p>
+
 # Yoki
 
 [![Build](https://github.com/DevNatan/yoki/actions/workflows/build.yml/badge.svg)](https://github.com/DevNatan/yoki/actions/workflows/build.yml)
@@ -12,14 +16,14 @@ repositories {
 }
 
 dependencies {
-    implementation("me.devnatan:yoki:0.2.0")
+    implementation("me.devnatan:yoki:0.3.0")
 }
 ```
 
 For Java users, use the Yoki JVM artifact
 
 ```groovy
-implementation 'me.devnatan:yoki-jvm:0.2.0'
+implementation 'me.devnatan:yoki-jvm:0.3.0'
 ```
 
 ## Getting Started
