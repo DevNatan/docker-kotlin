@@ -1,15 +1,19 @@
-<p align="center">
-    <img alt="Yoki logo" src="https://github.com/DevNatan/yoki/assets/24600258/f4069f5f-f980-470f-9d36-d37b6d0943c8" width="300">
-</p>
-
-
-# Yoki
+<h1>
+    Yoki
+    <img align="right" alt="Yoki logo" src="https://github.com/DevNatan/yoki/assets/24600258/f4069f5f-f980-470f-9d36-d37b6d0943c8" width="270">
+</h1>
 
 [![Build](https://github.com/DevNatan/yoki/actions/workflows/build.yml/badge.svg)](https://github.com/DevNatan/yoki/actions/workflows/build.yml)
 [![Integration Tests](https://github.com/DevNatan/yoki/actions/workflows/integration-tests.yml/badge.svg)](https://github.com/DevNatan/yoki/actions/workflows/integration-tests.yml)
 ![Maven Central](https://img.shields.io/maven-central/v/me.devnatan/yoki)
 
 Yoki allows you to interact with the Docker Engine Remote API in a simplified and fast way.
+
+* [Installation](#installation)
+* [Basic Usage](#basic-usage)
+* [Supported Endpoints](SUPPORTED_ENDPOINTS.md)
+
+## Installation
 
 ```kotlin
 repositories {
@@ -21,13 +25,13 @@ dependencies {
 }
 ```
 
-For Java users, use the Yoki JVM artifact
+For JVM users, use the Yoki JVM artifact
 
 ```groovy
 implementation 'me.devnatan:yoki-jvm:0.3.0'
 ```
 
-## Getting Started
+## Basic Usage
 
 Use `Yoki.create()` to create a new Yoki client instance with the default settings, default settings are based on the 
 current platform or environment variables, e.g.: socket path will be set to [`DOCKER_HOST`](https://docs.docker.com/compose/environment-variables/envvars/#docker_host)
