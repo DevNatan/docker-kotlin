@@ -8,6 +8,7 @@ import io.ktor.client.request.header
 import io.ktor.client.request.parameter
 import io.ktor.client.request.post
 import io.ktor.client.request.preparePost
+import io.ktor.client.request.setBody
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.utils.io.ByteReadChannel
@@ -55,11 +56,12 @@ public class ImageResource internal constructor(
     }
 
     /**
-     * Builds a Docker image using the specified [ImageBuildOptions].
+     * builds a Docker image using the specified archive path and [ImageBuildOptions].
      *
+     * @param archivePath The path to the build context archive (e.g., a TAR file) that contains the source code and resources.
      * @param options The [ImageBuildOptions] containing the configuration for the image build.
      */
-    public suspend fun build(options: ImageBuildOptions) {
+    public suspend fun build(archivePath: String, options: ImageBuildOptions) {
         httpClient.post("/build") {
             contentType(TAR_CONTENT_TYPE)
             header("X-Registry-Config", json.encodeToString(options.registryConfig))
@@ -88,6 +90,11 @@ public class ImageResource internal constructor(
             parameter("target", options.target)
             parameter("outputs", options.outputs)
             parameter("version", options.version)
+            setBody(archivePath)
         }
     }
+}
+
+public suspend inline fun ImageResource.build(archivePath: String, options: ImageBuildOptions.() -> Unit) {
+    build(archivePath, ImageBuildOptions().apply(options))
 }
