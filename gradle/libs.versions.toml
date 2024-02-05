@@ -1,7 +1,7 @@
 [versions]
 kotlin = "1.9.10"
 ktx-coroutines = "1.7.3"
-ktx-serialization = "1.6.0"
+ktx-serialization = "1.6.2"
 ktor = "2.3.5"
 junixsocket = "2.6.1"
 ktx-datetime = "0.4.1"
