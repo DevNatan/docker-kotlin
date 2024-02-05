@@ -21,14 +21,14 @@ repositories {
 }
 
 dependencies {
-    implementation("me.devnatan:yoki:0.3.0")
+    implementation("me.devnatan:yoki:0.4.0")
 }
 ```
 
 For JVM users, use the Yoki JVM artifact
 
 ```groovy
-implementation 'me.devnatan:yoki-jvm:0.3.0'
+implementation 'me.devnatan:yoki-jvm:0.4.0'
 ```
 
 ## Basic Usage
@@ -52,8 +52,8 @@ val client = Yoki {
 In Java code you can use `YokiConfigBuilder` with `YokiConfig.builder()`.
 
 ```java
-YokiConfig config = YokiConfig.builder().socketPath(...).build()
-Yoki client = Yoki.create(config)
+YokiConfig config = YokiConfig.builder().socketPath(...).build();
+Yoki client = Yoki.create(config);
 ```
 
 To Docker resources, functions will return `CompletableFuture<T>` or `YokiFlow<T>` (for streaming) due to Java Interoperatibility
