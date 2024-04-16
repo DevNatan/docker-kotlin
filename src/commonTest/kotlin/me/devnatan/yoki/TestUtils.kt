@@ -63,6 +63,6 @@ suspend fun <R> Yoki.withVolume(
  * Make a container started forever.
  */
 fun ContainerCreateOptions.keepStartedForever() {
-    openStdin = true
+    attachStdin = true
     tty = true
 }

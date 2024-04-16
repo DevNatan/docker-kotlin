@@ -65,6 +65,42 @@ but there are extensions for Kotlin that are `suspend` and for streaming returns
 val version: SystemVersion = client.system.version()
 ```
 
+##### Create and start a Container with explicit port bindings
+
+```kotlin
+val containerId = client.containers.create("busybox:latest") {
+    // Only if your container doesn't already expose this port
+    exposedPort(80u)
+
+    hostConfig {
+        portBindings(80u) {
+            add(PortBinding("0.0.0.0", 8080u))
+        }
+    }
+}
+
+client.containers.start(containerId)
+```
+
+##### Create and start a Container with auto-assigned port bindings
+
+```kotlin
+val containerId = client.containers.create("busybox:latest") {
+    // Only if your container doesn't already expose this port
+    exposedPort(80u)
+    
+    hostConfig {
+        portBindings(80u)
+    }
+}
+
+client.containers.start(containerId)
+
+// Inspect the container to retrieve the auto-assigned ports
+val container = testClient.containers.inspect(id)
+val ports = container.networkSettings.ports
+```
+
 ##### List All Containers
 
 ```kotlin
