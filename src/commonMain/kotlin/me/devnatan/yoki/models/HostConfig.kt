@@ -43,7 +43,7 @@ public data class HostConfig @JvmOverloads public constructor(
     @SerialName("ContainerIDFile") public var containerIDFile: String? = null,
     @SerialName("LogConfig") public var logConfig: LogConfig? = null,
     @SerialName("NetworkMode") public var networkMode: String? = null,
-    @SerialName("PortBindings") public var portBindings: Map<String, List<PortBinding>?>? = null,
+    @SerialName("PortBindings") public var portBindings: @Serializable(with = PortBindingsSerializer::class) Map<ExposedPort, List<PortBinding>?>? = null,
     @SerialName("RestartPolicy") public var restartPolicy: RestartPolicy? = null,
     @SerialName("AutoRemove") public var autoRemove: Boolean? = null,
     @SerialName("VolumeDriver") public var volumeDriver: String? = null,
@@ -84,3 +84,22 @@ public data class HostConfig @JvmOverloads public constructor(
     @SerialName("MaskedPaths") public var maskedPaths: List<String>? = null,
     @SerialName("ReadonlyPaths") public var readonlyPaths: List<String>? = null,
 )
+
+public fun HostConfig.portBindings(exposedPort: ExposedPort, portBindings: List<PortBinding>) {
+    this.portBindings = this.portBindings.orEmpty() + mapOf(exposedPort to portBindings)
+}
+
+public fun HostConfig.portBindings(exposedPort: UShort, portBindings: List<PortBinding>) {
+    this.portBindings(ExposedPort(exposedPort), portBindings)
+}
+
+public fun HostConfig.portBindings(
+    exposedPort: ExposedPort,
+    portBindingBuilder: MutableList<PortBinding>.() -> Unit = {},
+) {
+    this.portBindings(exposedPort, buildList(portBindingBuilder))
+}
+
+public fun HostConfig.portBindings(exposedPort: UShort, portBindingBuilder: MutableList<PortBinding>.() -> Unit = {}) {
+    this.portBindings(exposedPort, buildList(portBindingBuilder))
+}

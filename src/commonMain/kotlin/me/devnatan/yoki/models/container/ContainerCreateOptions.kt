@@ -3,6 +3,9 @@ package me.devnatan.yoki.models.container
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.devnatan.yoki.models.ExposedPort
+import me.devnatan.yoki.models.ExposedPortProtocol
+import me.devnatan.yoki.models.ExposedPortsSerializer
 import me.devnatan.yoki.models.HealthConfig
 import me.devnatan.yoki.models.HostConfig
 import me.devnatan.yoki.models.network.NetworkingConfig
@@ -17,6 +20,7 @@ public data class ContainerCreateOptions(
     @SerialName("Domainname") public var domainName: String? = null,
     @SerialName("User") public var user: String? = null,
     @SerialName("AttachStdin") public var attachStdin: Boolean? = null,
+    @SerialName("ExposedPorts") public var exposedPorts: @Serializable(with = ExposedPortsSerializer::class) List<ExposedPort>? = null,
     @SerialName("Cmd") public var command: List<String>? = null,
     @SerialName("Healthcheck") public var healthcheck: HealthConfig? = null,
     @SerialName("ArgsEscaped") public var escapedArgs: Boolean? = null,
@@ -35,6 +39,14 @@ public data class ContainerCreateOptions(
     @SerialName("NetworkingConfig") public var networkingConfig: NetworkingConfig? = null,
     @SerialName("Tty") public var tty: Boolean? = null,
 )
+
+public fun ContainerCreateOptions.exposedPort(port: UShort) {
+    this.exposedPort(port, ExposedPortProtocol.TCP)
+}
+
+public fun ContainerCreateOptions.exposedPort(port: UShort, protocol: ExposedPortProtocol) {
+    this.exposedPorts = exposedPorts.orEmpty() + listOf(ExposedPort(port, protocol))
+}
 
 public fun ContainerCreateOptions.healthcheck(block: HealthConfig.() -> Unit) {
     this.healthcheck = HealthConfig().apply(block)

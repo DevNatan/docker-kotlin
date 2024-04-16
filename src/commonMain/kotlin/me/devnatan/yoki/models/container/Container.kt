@@ -2,8 +2,11 @@ package me.devnatan.yoki.models.container
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.devnatan.yoki.models.ExposedPort
 import me.devnatan.yoki.models.Mount
 import me.devnatan.yoki.models.MountBindOptions
+import me.devnatan.yoki.models.PortBinding
+import me.devnatan.yoki.models.PortBindingsSerializer
 import me.devnatan.yoki.models.network.EndpointSettings
 
 @Serializable
@@ -46,11 +49,11 @@ public data class NetworkSettings internal constructor(
     @SerialName("IPPrefixLen") public val ipAddressPrefixLength: Int? = null,
     @SerialName("IPv6Gateway") public val ipv6Gateway: String? = null,
     @SerialName("MacAddress") public val macAddress: String? = null,
-    @SerialName("Ports") public val ports: Map<String, Map<String, String>> = emptyMap(),
+    @SerialName("Ports") public val ports: @Serializable(with = PortBindingsSerializer::class) Map<ExposedPort, List<PortBinding>?> = emptyMap(),
     @SerialName("SandboxKey") public val sandboxKey: String,
     @SerialName("EndpointID") public val endpointId: String,
     @SerialName("Gateway") public val gateway: String,
-    @SerialName("Networks") public val networks: List<EndpointSettings> = emptyList(),
+    @SerialName("Networks") public val networks: Map<String, EndpointSettings> = emptyMap(),
 )
 
 @Serializable
