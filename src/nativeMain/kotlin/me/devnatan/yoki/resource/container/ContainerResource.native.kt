@@ -13,7 +13,6 @@ import me.devnatan.yoki.models.container.ContainerPruneResult
 import me.devnatan.yoki.models.container.ContainerRemoveOptions
 import me.devnatan.yoki.models.container.ContainerSummary
 import me.devnatan.yoki.models.container.ContainerWaitResult
-import me.devnatan.yoki.models.exec.ExecCreateOptions
 import kotlin.time.Duration
 
 public actual class ContainerResource {
@@ -139,19 +138,6 @@ public actual class ContainerResource {
      * @throws YokiResponseException If the container cannot be resized or if an error occurs in the request.
      */
     public actual suspend fun resizeTTY(container: String, options: ResizeTTYOptions) {
-    }
-
-    /**
-     * Runs a command inside a running container.
-     *
-     * @param container The container id to execute the command.
-     * @param options Exec instance command options.
-     */
-    public actual suspend fun exec(
-        container: String,
-        options: ExecCreateOptions,
-    ): String {
-        TODO("Not yet implemented")
     }
 
     public actual fun attach(container: String): Flow<Frame> {

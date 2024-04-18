@@ -59,16 +59,6 @@ public suspend inline fun ContainerResource.resizeTTY(container: String, options
     resizeTTY(container, ResizeTTYOptions().apply(options))
 }
 
-/**
- * Runs a command inside a running container.
- *
- * @param container The container id to execute the command.
- * @param options Exec instance command options.
- */
-public suspend inline fun ContainerResource.exec(container: String, options: ExecCreateOptions.() -> Unit) {
-    exec(container, ExecCreateOptions().apply(options))
-}
-
 // public inline fun ContainerResource.logs(
 //     id: String,
 //     block: ContainerLogsOptions.() -> Unit,
