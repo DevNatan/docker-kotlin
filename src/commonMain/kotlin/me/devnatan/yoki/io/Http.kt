@@ -9,6 +9,7 @@ import io.ktor.client.plugins.ResponseException
 import io.ktor.client.plugins.UserAgent
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
+import io.ktor.client.plugins.logging.*
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.URLBuilder
@@ -35,6 +36,13 @@ internal fun createHttpClient(client: Yoki): HttpClient {
                     ignoreUnknownKeys = true
                 },
             )
+        }
+
+        if (client.config.debugHttpCalls) {
+            install(Logging) {
+                logger = Logger.SIMPLE
+                level = LogLevel.ALL
+            }
         }
 
         install(UserAgent) { agent = "Yoki" }
