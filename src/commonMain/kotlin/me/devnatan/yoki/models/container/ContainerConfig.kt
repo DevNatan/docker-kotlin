@@ -2,9 +2,11 @@ package me.devnatan.yoki.models.container
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.builtins.serializer
 import me.devnatan.yoki.models.ExposedPort
 import me.devnatan.yoki.models.ExposedPortsSerializer
 import me.devnatan.yoki.models.HealthConfig
+import me.devnatan.yoki.util.ListAsMapToEmptyObjectsSerializer
 
 @Serializable
 public data class ContainerConfig(
@@ -23,7 +25,7 @@ public data class ContainerConfig(
     @SerialName("Healthcheck") public val healthcheck: HealthConfig? = null,
     @SerialName("ArgsEscaped") public val argsEscaped: Boolean? = null,
     @SerialName("Image") public val image: String? = null,
-    @SerialName("Volumes") public val volumes: Map<String, String>? = emptyMap(),
+    @SerialName("Volumes") public val volumes: @Serializable(with = VolumesSerializer::class) List<String>? = emptyList(),
     @SerialName("WorkingDir") public val workingDir: String? = null,
     @SerialName("Entrypoint") public val entrypoint: List<String>? = emptyList(),
     @SerialName("NetworkDisabled") public val networkDisabled: Boolean? = null,
@@ -34,3 +36,5 @@ public data class ContainerConfig(
     @SerialName("StopTimeout") public val stopTimeout: Int? = null,
     @SerialName("Shell") public val shell: List<String> = emptyList(),
 )
+
+internal object VolumesSerializer : ListAsMapToEmptyObjectsSerializer<String>(String.serializer())
