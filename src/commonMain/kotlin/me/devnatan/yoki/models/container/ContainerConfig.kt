@@ -16,7 +16,10 @@ public data class ContainerConfig(
     @SerialName("AttachStdin") public val attachStdin: Boolean? = null,
     @SerialName("AttachStdout") public val attachStdout: Boolean? = null,
     @SerialName("AttachStderr") public val attachStderr: Boolean? = null,
-    @SerialName("ExposedPorts") public val exposedPorts: @Serializable(with = ExposedPortsSerializer::class) List<ExposedPort>? = emptyList(),
+    @SerialName("ExposedPorts") public val exposedPorts:
+        @Serializable(with = ExposedPortsSerializer::class)
+        List<ExposedPort>? =
+        emptyList(),
     @SerialName("Tty") public val tty: Boolean? = null,
     @SerialName("OpenStdin") public val openStdin: Boolean? = null,
     @SerialName("StdinOnce") public val stdinOnce: Boolean? = null,
@@ -25,7 +28,9 @@ public data class ContainerConfig(
     @SerialName("Healthcheck") public val healthcheck: HealthConfig? = null,
     @SerialName("ArgsEscaped") public val argsEscaped: Boolean? = null,
     @SerialName("Image") public val image: String? = null,
-    @SerialName("Volumes") public val volumes: @Serializable(with = VolumesSerializer::class) List<String>? = emptyList(),
+    @SerialName("Volumes") public val volumes:
+        @Serializable(with = VolumesSerializer::class)
+        List<String>? = emptyList(),
     @SerialName("WorkingDir") public val workingDir: String? = null,
     @SerialName("Entrypoint") public val entrypoint: List<String>? = emptyList(),
     @SerialName("NetworkDisabled") public val networkDisabled: Boolean? = null,

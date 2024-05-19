@@ -28,8 +28,9 @@ public data class ExposedPort internal constructor(
             val port = portAndProtocol.getOrNull(0)?.toUShortOrNull() ?: error("Invalid exposed port")
 
             val protocolString = portAndProtocol.getOrNull(1) ?: error("Invalid exposed port")
-            val protocol = runCatching { ExposedPortProtocol.valueOf(protocolString.uppercase()) }
-                .getOrElse { error("Invalid exposed port") }
+            val protocol =
+                runCatching { ExposedPortProtocol.valueOf(protocolString.uppercase()) }
+                    .getOrElse { error("Invalid exposed port") }
 
             return ExposedPort(port, protocol)
         }
@@ -49,12 +50,12 @@ public enum class ExposedPortProtocol {
 }
 
 internal object ExposedPortSerializer : KSerializer<ExposedPort> {
-
     override val descriptor: SerialDescriptor
-        get() = buildClassSerialDescriptor("ExposedPort") {
-            element("port", UShort.serializer().descriptor)
-            element("protocol", ExposedPortProtocol.serializer().descriptor)
-        }
+        get() =
+            buildClassSerialDescriptor("ExposedPort") {
+                element("port", UShort.serializer().descriptor)
+                element("protocol", ExposedPortProtocol.serializer().descriptor)
+            }
 
     override fun deserialize(decoder: Decoder): ExposedPort {
         try {
@@ -64,7 +65,10 @@ internal object ExposedPortSerializer : KSerializer<ExposedPort> {
         }
     }
 
-    override fun serialize(encoder: Encoder, value: ExposedPort) {
+    override fun serialize(
+        encoder: Encoder,
+        value: ExposedPort,
+    ) {
         encoder.encodeString(value.toString())
     }
 }

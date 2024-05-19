@@ -22,7 +22,6 @@ public class VolumeResource internal constructor(
     private val httpClient: HttpClient,
     private val json: Json,
 ) {
-
     private companion object {
         const val BASE_PATH = "/volumes"
     }
@@ -68,7 +67,10 @@ public class VolumeResource internal constructor(
      * @see <a href="https://docs.docker.com/engine/api/v1.41/#operation/VolumeDelete">VolumeDelete</a>
      */
     @JvmOverloads
-    public suspend fun remove(id: String, options: VolumeRemoveOptions? = null) {
+    public suspend fun remove(
+        id: String,
+        options: VolumeRemoveOptions? = null,
+    ) {
         httpClient.delete("$BASE_PATH/$id") {
             parameter("force", options?.force)
         }
@@ -121,7 +123,10 @@ public suspend inline fun VolumeResource.create(config: VolumeCreateOptions.() -
  *
  * @see <a href="https://docs.docker.com/engine/api/v1.41/#operation/VolumeDelete">VolumeDelete</a>
  */
-public suspend inline fun VolumeResource.remove(id: String, options: VolumeRemoveOptions.() -> Unit) {
+public suspend inline fun VolumeResource.remove(
+    id: String,
+    options: VolumeRemoveOptions.() -> Unit,
+) {
     remove(id, VolumeRemoveOptions().apply(options))
 }
 

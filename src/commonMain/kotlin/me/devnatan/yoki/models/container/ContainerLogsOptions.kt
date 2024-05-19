@@ -19,25 +19,26 @@ import kotlin.jvm.JvmOverloads
  * @see ContainerResource.logs
  */
 @Serializable
-public class ContainerLogsOptions @JvmOverloads constructor(
-    public var follow: Boolean? = null,
-    public var stdout: Boolean? = null,
-    public var stderr: Boolean? = null,
-    public var since: Long? = null,
-    public var until: Long? = null,
-    @SerialName("timestamps") public var showTimestamps: Boolean? = null,
-    public var tail: String? = null,
-    public var splitLineBreaks: Boolean = false,
-) {
+public class ContainerLogsOptions
+    @JvmOverloads
+    constructor(
+        public var follow: Boolean? = null,
+        public var stdout: Boolean? = null,
+        public var stderr: Boolean? = null,
+        public var since: Long? = null,
+        public var until: Long? = null,
+        @SerialName("timestamps") public var showTimestamps: Boolean? = null,
+        public var tail: String? = null,
+        public var splitLineBreaks: Boolean = false,
+    ) {
+        public fun setTailAll() {
+            this.tail = "all"
+        }
 
-    public fun setTailAll() {
-        this.tail = "all"
+        public fun setTail(size: Int) {
+            this.tail = size.toString()
+        }
     }
-
-    public fun setTail(size: Int) {
-        this.tail = size.toString()
-    }
-}
 
 /**
  * Only return logs since this time, as a UNIX timestamp.

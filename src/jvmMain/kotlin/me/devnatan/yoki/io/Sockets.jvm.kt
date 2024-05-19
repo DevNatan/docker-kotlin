@@ -8,7 +8,6 @@ import java.nio.file.Files
 import java.nio.file.Paths
 
 internal class SocketDns(private val isUnixSocket: Boolean) : Dns {
-
     override fun lookup(hostname: String): List<InetAddress> {
         return if (isUnixSocket) {
             listOf(
@@ -32,7 +31,10 @@ internal class UnixSocketFactory : AFUNIXSocketFactory() {
             .decodeToString()
     }
 
-    override fun addressFromHost(host: String, port: Int): AFUNIXSocketAddress {
+    override fun addressFromHost(
+        host: String,
+        port: Int,
+    ): AFUNIXSocketAddress {
         val socketPath = decodeHostname(host)
         val socketFile = Paths.get(socketPath) ?: error("Unable to connect to unix socket @ $socketPath")
 

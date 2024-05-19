@@ -16,11 +16,13 @@ import kotlin.jvm.JvmOverloads
  * @see NetworkResource.list
  */
 @Serializable
-public data class NetworkListFilters @JvmOverloads public constructor(
-    public var dangling: Boolean = false,
-    public var driver: String? = null,
-    public var id: String? = null,
-    public var name: String? = null,
-    public var scope: String? = null,
-    public var type: String? = null,
-)
+public data class NetworkListFilters
+    @JvmOverloads
+    public constructor(
+        public var dangling: Boolean = false,
+        public var driver: String? = null,
+        public var id: String? = null,
+        public var name: String? = null,
+        public var scope: String? = null,
+        public var type: String? = null,
+    )

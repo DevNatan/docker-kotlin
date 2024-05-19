@@ -17,9 +17,10 @@ public final class me/devnatan/yoki/Yoki : kotlinx/coroutines/CoroutineScope {
 
 public final class me/devnatan/yoki/YokiConfig {
 	public static final field Companion Lme/devnatan/yoki/YokiConfig$Companion;
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Z)V
 	public static final fun builder ()Lme/devnatan/yoki/YokiConfigBuilder;
 	public final fun getApiVersion ()Ljava/lang/String;
+	public final fun getDebugHttpCalls ()Z
 	public final fun getSocketPath ()Ljava/lang/String;
 }
 
@@ -33,6 +34,8 @@ public final class me/devnatan/yoki/YokiConfigBuilder {
 	public fun <init> ()V
 	public final fun apiVersion (Ljava/lang/String;)Lme/devnatan/yoki/YokiConfigBuilder;
 	public final fun build ()Lme/devnatan/yoki/YokiConfig;
+	public final fun debugHttpCalls (Z)Lme/devnatan/yoki/YokiConfigBuilder;
+	public static synthetic fun debugHttpCalls$default (Lme/devnatan/yoki/YokiConfigBuilder;ZILjava/lang/Object;)Lme/devnatan/yoki/YokiConfigBuilder;
 	public final fun forCurrentPlatform ()Lme/devnatan/yoki/YokiConfigBuilder;
 	public final fun socketPath (Ljava/lang/String;)Lme/devnatan/yoki/YokiConfigBuilder;
 	public final fun useHttpDefaults ()Lme/devnatan/yoki/YokiConfigBuilder;
@@ -1328,8 +1331,8 @@ public final class me/devnatan/yoki/models/container/ContainerArchiveInfoKt {
 public final class me/devnatan/yoki/models/container/ContainerConfig {
 	public static final field Companion Lme/devnatan/yoki/models/container/ContainerConfig$Companion;
 	public fun <init> ()V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()Ljava/lang/Boolean;
 	public final fun component11 ()Ljava/util/List;
@@ -1337,7 +1340,7 @@ public final class me/devnatan/yoki/models/container/ContainerConfig {
 	public final fun component13 ()Lme/devnatan/yoki/models/HealthConfig;
 	public final fun component14 ()Ljava/lang/Boolean;
 	public final fun component15 ()Ljava/lang/String;
-	public final fun component16 ()Ljava/util/Map;
+	public final fun component16 ()Ljava/util/List;
 	public final fun component17 ()Ljava/lang/String;
 	public final fun component18 ()Ljava/util/List;
 	public final fun component19 ()Ljava/lang/Boolean;
@@ -1355,8 +1358,8 @@ public final class me/devnatan/yoki/models/container/ContainerConfig {
 	public final fun component7 ()Ljava/util/List;
 	public final fun component8 ()Ljava/lang/Boolean;
 	public final fun component9 ()Ljava/lang/Boolean;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;)Lme/devnatan/yoki/models/container/ContainerConfig;
-	public static synthetic fun copy$default (Lme/devnatan/yoki/models/container/ContainerConfig;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;ILjava/lang/Object;)Lme/devnatan/yoki/models/container/ContainerConfig;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;)Lme/devnatan/yoki/models/container/ContainerConfig;
+	public static synthetic fun copy$default (Lme/devnatan/yoki/models/container/ContainerConfig;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;ILjava/lang/Object;)Lme/devnatan/yoki/models/container/ContainerConfig;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getArgsEscaped ()Ljava/lang/Boolean;
 	public final fun getAttachStderr ()Ljava/lang/Boolean;
@@ -1381,7 +1384,7 @@ public final class me/devnatan/yoki/models/container/ContainerConfig {
 	public final fun getStopTimeout ()Ljava/lang/Integer;
 	public final fun getTty ()Ljava/lang/Boolean;
 	public final fun getUser ()Ljava/lang/String;
-	public final fun getVolumes ()Ljava/util/Map;
+	public final fun getVolumes ()Ljava/util/List;
 	public final fun getWorkingDir ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
@@ -1405,33 +1408,34 @@ public final class me/devnatan/yoki/models/container/ContainerConfig$Companion {
 public final class me/devnatan/yoki/models/container/ContainerCreateOptions {
 	public static final field Companion Lme/devnatan/yoki/models/container/ContainerCreateOptions$Companion;
 	public fun <init> ()V
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Lme/devnatan/yoki/models/HostConfig;Lme/devnatan/yoki/models/network/NetworkingConfig;Ljava/lang/Boolean;)V
-	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Lme/devnatan/yoki/models/HostConfig;Lme/devnatan/yoki/models/network/NetworkingConfig;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Lme/devnatan/yoki/models/HostConfig;Lme/devnatan/yoki/models/network/NetworkingConfig;Ljava/lang/Boolean;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Lme/devnatan/yoki/models/HostConfig;Lme/devnatan/yoki/models/network/NetworkingConfig;Ljava/lang/Boolean;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()Ljava/lang/String;
-	public final fun component10 ()Ljava/lang/String;
-	public final fun component11 ()Ljava/util/Map;
-	public final fun component12 ()Ljava/lang/String;
-	public final fun component13 ()Ljava/util/List;
-	public final fun component14 ()Ljava/lang/Boolean;
-	public final fun component15 ()Ljava/lang/String;
-	public final fun component16 ()Ljava/util/List;
-	public final fun component17 ()Ljava/util/Map;
-	public final fun component18 ()Ljava/lang/String;
-	public final fun component19 ()Ljava/lang/Integer;
+	public final fun component10 ()Ljava/lang/Boolean;
+	public final fun component11 ()Ljava/lang/String;
+	public final fun component12 ()Ljava/util/List;
+	public final fun component13 ()Ljava/lang/String;
+	public final fun component14 ()Ljava/util/List;
+	public final fun component15 ()Ljava/lang/Boolean;
+	public final fun component16 ()Ljava/lang/String;
+	public final fun component17 ()Ljava/util/List;
+	public final fun component18 ()Ljava/util/Map;
+	public final fun component19 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
-	public final fun component20 ()Ljava/util/List;
-	public final fun component21 ()Lme/devnatan/yoki/models/HostConfig;
-	public final fun component22 ()Lme/devnatan/yoki/models/network/NetworkingConfig;
-	public final fun component23 ()Ljava/lang/Boolean;
+	public final fun component20 ()Ljava/lang/Integer;
+	public final fun component21 ()Ljava/util/List;
+	public final fun component22 ()Lme/devnatan/yoki/models/HostConfig;
+	public final fun component23 ()Lme/devnatan/yoki/models/network/NetworkingConfig;
+	public final fun component24 ()Ljava/lang/Boolean;
 	public final fun component3 ()Ljava/lang/String;
 	public final fun component4 ()Ljava/lang/String;
 	public final fun component5 ()Ljava/lang/Boolean;
 	public final fun component6 ()Ljava/util/List;
 	public final fun component7 ()Ljava/util/List;
-	public final fun component8 ()Lme/devnatan/yoki/models/HealthConfig;
-	public final fun component9 ()Ljava/lang/Boolean;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Lme/devnatan/yoki/models/HostConfig;Lme/devnatan/yoki/models/network/NetworkingConfig;Ljava/lang/Boolean;)Lme/devnatan/yoki/models/container/ContainerCreateOptions;
-	public static synthetic fun copy$default (Lme/devnatan/yoki/models/container/ContainerCreateOptions;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Lme/devnatan/yoki/models/HostConfig;Lme/devnatan/yoki/models/network/NetworkingConfig;Ljava/lang/Boolean;ILjava/lang/Object;)Lme/devnatan/yoki/models/container/ContainerCreateOptions;
+	public final fun component8 ()Ljava/util/List;
+	public final fun component9 ()Lme/devnatan/yoki/models/HealthConfig;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Lme/devnatan/yoki/models/HostConfig;Lme/devnatan/yoki/models/network/NetworkingConfig;Ljava/lang/Boolean;)Lme/devnatan/yoki/models/container/ContainerCreateOptions;
+	public static synthetic fun copy$default (Lme/devnatan/yoki/models/container/ContainerCreateOptions;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Boolean;Ljava/util/List;Ljava/util/List;Ljava/util/List;Lme/devnatan/yoki/models/HealthConfig;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/lang/String;Ljava/util/List;Ljava/lang/Boolean;Ljava/lang/String;Ljava/util/List;Ljava/util/Map;Ljava/lang/String;Ljava/lang/Integer;Ljava/util/List;Lme/devnatan/yoki/models/HostConfig;Lme/devnatan/yoki/models/network/NetworkingConfig;Ljava/lang/Boolean;ILjava/lang/Object;)Lme/devnatan/yoki/models/container/ContainerCreateOptions;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAttachStdin ()Ljava/lang/Boolean;
 	public final fun getBuildMetadata ()Ljava/util/List;
@@ -1439,6 +1443,7 @@ public final class me/devnatan/yoki/models/container/ContainerCreateOptions {
 	public final fun getDisabledNetwork ()Ljava/lang/Boolean;
 	public final fun getDomainName ()Ljava/lang/String;
 	public final fun getEntrypoint ()Ljava/util/List;
+	public final fun getEnv ()Ljava/util/List;
 	public final fun getEscapedArgs ()Ljava/lang/Boolean;
 	public final fun getExposedPorts ()Ljava/util/List;
 	public final fun getHealthcheck ()Lme/devnatan/yoki/models/HealthConfig;
@@ -1454,7 +1459,7 @@ public final class me/devnatan/yoki/models/container/ContainerCreateOptions {
 	public final fun getStopTimeout ()Ljava/lang/Integer;
 	public final fun getTty ()Ljava/lang/Boolean;
 	public final fun getUser ()Ljava/lang/String;
-	public final fun getVolumes ()Ljava/util/Map;
+	public final fun getVolumes ()Ljava/util/List;
 	public final fun getWorkingDirectory ()Ljava/lang/String;
 	public fun hashCode ()I
 	public final fun setAttachStdin (Ljava/lang/Boolean;)V
@@ -1463,6 +1468,7 @@ public final class me/devnatan/yoki/models/container/ContainerCreateOptions {
 	public final fun setDisabledNetwork (Ljava/lang/Boolean;)V
 	public final fun setDomainName (Ljava/lang/String;)V
 	public final fun setEntrypoint (Ljava/util/List;)V
+	public final fun setEnv (Ljava/util/List;)V
 	public final fun setEscapedArgs (Ljava/lang/Boolean;)V
 	public final fun setExposedPorts (Ljava/util/List;)V
 	public final fun setHealthcheck (Lme/devnatan/yoki/models/HealthConfig;)V
@@ -1478,7 +1484,7 @@ public final class me/devnatan/yoki/models/container/ContainerCreateOptions {
 	public final fun setStopTimeout (Ljava/lang/Integer;)V
 	public final fun setTty (Ljava/lang/Boolean;)V
 	public final fun setUser (Ljava/lang/String;)V
-	public final fun setVolumes (Ljava/util/Map;)V
+	public final fun setVolumes (Ljava/util/List;)V
 	public final fun setWorkingDirectory (Ljava/lang/String;)V
 	public fun toString ()Ljava/lang/String;
 }
@@ -3806,11 +3812,6 @@ public final class me/devnatan/yoki/resource/container/ContainerResource {
 	public final synthetic fun create (Lme/devnatan/yoki/models/container/ContainerCreateOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun createAsync (Lme/devnatan/yoki/models/container/ContainerCreateOptions;)Ljava/util/concurrent/CompletableFuture;
 	public final fun downloadArchive (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public final synthetic fun exec (Ljava/lang/String;Lme/devnatan/yoki/models/exec/ExecCreateOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun exec$default (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Lme/devnatan/yoki/models/exec/ExecCreateOptions;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public final fun execAsync (Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;
-	public final fun execAsync (Ljava/lang/String;Lme/devnatan/yoki/models/exec/ExecCreateOptions;)Ljava/util/concurrent/CompletableFuture;
-	public static synthetic fun execAsync$default (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Lme/devnatan/yoki/models/exec/ExecCreateOptions;ILjava/lang/Object;)Ljava/util/concurrent/CompletableFuture;
 	public final synthetic fun inspect (Ljava/lang/String;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun inspect$default (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public final fun inspectAsync (Ljava/lang/String;)Ljava/util/concurrent/CompletableFuture;
@@ -3870,7 +3871,6 @@ public final class me/devnatan/yoki/resource/container/ContainerResource {
 
 public final class me/devnatan/yoki/resource/container/ContainerResourceExtKt {
 	public static final fun create (Lme/devnatan/yoki/resource/container/ContainerResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun exec (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun list (Lme/devnatan/yoki/resource/container/ContainerResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun prune (Lme/devnatan/yoki/resource/container/ContainerResource;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun remove (Lme/devnatan/yoki/resource/container/ContainerResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -3886,9 +3886,16 @@ public final class me/devnatan/yoki/resource/exec/ExecNotFoundException : me/dev
 
 public final class me/devnatan/yoki/resource/exec/ExecResource {
 	public static final field BASE_PATH Ljava/lang/String;
+	public final synthetic fun create (Ljava/lang/String;Lme/devnatan/yoki/models/exec/ExecCreateOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun inspect (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun resize (Ljava/lang/String;Lme/devnatan/yoki/models/ResizeTTYOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun start (Ljava/lang/String;Lme/devnatan/yoki/models/exec/ExecStartOptions;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class me/devnatan/yoki/resource/exec/ExecResourceExtKt {
+	public static final fun create (Lme/devnatan/yoki/resource/exec/ExecResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun start (Lme/devnatan/yoki/resource/exec/ExecResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun start$default (Lme/devnatan/yoki/resource/exec/ExecResource;Ljava/lang/String;Lkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public class me/devnatan/yoki/resource/image/ImageException : me/devnatan/yoki/YokiResourceException {

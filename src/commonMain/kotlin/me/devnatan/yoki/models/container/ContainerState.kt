@@ -21,7 +21,6 @@ public data class ContainerState internal constructor(
     @SerialName("OOMKilled") public val oomKilled: Boolean,
     @SerialName("Health") public val health: Healthcheck? = null,
 ) {
-
     public val status: Status = Status.parse(statusString)
     public val startedAt: Instant by lazy { Instant.parse(startedAtRaw) }
     public val finishedAt: Instant by lazy { Instant.parse(finishedAtRaw) }
@@ -29,16 +28,22 @@ public data class ContainerState internal constructor(
     @Serializable
     public sealed class Status(public val value: String) {
         public object Created : Status("created")
+
         public object Running : Status("running")
+
         public object Paused : Status("paused")
+
         public object Restarting : Status("restarting")
+
         public object Removing : Status("removing")
+
         public object Exited : Status("exited")
+
         public object Dead : Status("dead")
+
         public class Other(value: String) : Status(value)
 
         public companion object {
-
             public val all: Set<Status> by lazy {
                 setOf(Created, Running, Paused, Restarting, Removing, Exited, Dead)
             }

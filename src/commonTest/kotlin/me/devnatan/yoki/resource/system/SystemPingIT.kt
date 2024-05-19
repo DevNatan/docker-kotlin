@@ -8,22 +8,23 @@ import kotlin.test.fail
 
 @ExperimentalCoroutinesApi
 class SystemPingIT : ResourceIT() {
+    @Test
+    fun `system ping HEAD`() =
+        runTest {
+            runCatching {
+                testClient.system.ping(head = true)
+            }.onFailure { throwable ->
+                fail("Failed to ping server (HEAD).", throwable)
+            }
+        }
 
     @Test
-    fun `system ping HEAD`() = runTest {
-        runCatching {
-            testClient.system.ping(head = true)
-        }.onFailure { throwable ->
-            fail("Failed to ping server (HEAD).", throwable)
+    fun `system ping GET`() =
+        runTest {
+            runCatching {
+                testClient.system.ping(head = false)
+            }.onFailure { throwable ->
+                fail("Failed to ping server (GET).", throwable)
+            }
         }
-    }
-
-    @Test
-    fun `system ping GET`() = runTest {
-        runCatching {
-            testClient.system.ping(head = false)
-        }.onFailure { throwable ->
-            fail("Failed to ping server (GET).", throwable)
-        }
-    }
 }

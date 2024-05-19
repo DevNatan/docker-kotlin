@@ -7,15 +7,15 @@ public data class MonitorEventsOptions(
     public var until: String? = null,
     public val filters: MutableMap<String, MutableList<String>> = mutableMapOf(),
 ) {
-
     /**
      * Filters event by one or more types.
      *
      * @param types The event types to filter.
      */
-    public fun filterByType(vararg types: EventType): MonitorEventsOptions = apply {
-        types.forEach { type -> addFilter("type", type.name.lowercase()) }
-    }
+    public fun filterByType(vararg types: EventType): MonitorEventsOptions =
+        apply {
+            types.forEach { type -> addFilter("type", type.name.lowercase()) }
+        }
 
     /**
      * Adds a new filter to the monitor events.
@@ -23,7 +23,10 @@ public data class MonitorEventsOptions(
      * @param key The filter key.
      * @param value The filter value.
      */
-    public fun addFilter(key: String, value: String) {
+    public fun addFilter(
+        key: String,
+        value: String,
+    ) {
         filters.getOrPut(key, ::mutableListOf).add(value)
     }
 }

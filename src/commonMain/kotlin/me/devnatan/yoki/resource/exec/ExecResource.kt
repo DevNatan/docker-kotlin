@@ -6,7 +6,6 @@ import io.ktor.client.request.get
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.http.HttpStatusCode
-import kotlin.jvm.JvmSynthetic
 import me.devnatan.yoki.io.requestCatching
 import me.devnatan.yoki.models.IdOnlyResponse
 import me.devnatan.yoki.models.ResizeTTYOptions
@@ -16,6 +15,7 @@ import me.devnatan.yoki.models.exec.ExecStartOptions
 import me.devnatan.yoki.resource.ResourcePaths.CONTAINERS
 import me.devnatan.yoki.resource.container.ContainerNotFoundException
 import me.devnatan.yoki.resource.container.ContainerNotRunningException
+import kotlin.jvm.JvmSynthetic
 
 /**
  * Exec runs new commands inside running containers.
@@ -27,7 +27,6 @@ import me.devnatan.yoki.resource.container.ContainerNotRunningException
 public class ExecResource internal constructor(
     private val httpClient: HttpClient,
 ) {
-
     private companion object {
         const val BASE_PATH = "/exec"
     }
@@ -41,7 +40,10 @@ public class ExecResource internal constructor(
      * @throws ContainerNotRunningException If the container is not running.
      */
     @JvmSynthetic
-    public suspend fun create(id: String, options: ExecCreateOptions): String =
+    public suspend fun create(
+        id: String,
+        options: ExecCreateOptions,
+    ): String =
         requestCatching(
             HttpStatusCode.NotFound to { cause ->
                 ContainerNotFoundException(
@@ -86,7 +88,10 @@ public class ExecResource internal constructor(
      * @throws ExecNotFoundException If exec instance is not found.
      * @throws ContainerNotRunningException If the container in which the exec instance was created is not running.
      */
-    public suspend fun start(id: String, options: ExecStartOptions) {
+    public suspend fun start(
+        id: String,
+        options: ExecStartOptions,
+    ) {
         requestCatching(
             HttpStatusCode.NotFound to { exception -> ExecNotFoundException(exception, id) },
             HttpStatusCode.Conflict to { exception -> ContainerNotRunningException(exception, null) },
@@ -106,7 +111,10 @@ public class ExecResource internal constructor(
      * @param options Options for TTY resizing.
      * @throws ExecNotFoundException If exec instance is not found.
      */
-    public suspend fun resize(id: String, options: ResizeTTYOptions) {
+    public suspend fun resize(
+        id: String,
+        options: ResizeTTYOptions,
+    ) {
         requestCatching(
             HttpStatusCode.NotFound to { exception -> ExecNotFoundException(exception, id) },
         ) {

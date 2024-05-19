@@ -26,7 +26,6 @@ public class SystemResource internal constructor(
     private val httpClient: HttpClient,
     private val json: Json,
 ) {
-
     private companion object {
         const val PING_ENDPOINT = "/_ping"
     }
@@ -74,22 +73,23 @@ public class SystemResource internal constructor(
      *
      * @param options Options to filter the received events.
      */
-    public fun events(options: MonitorEventsOptions = MonitorEventsOptions()): Flow<Event> = flow {
-        requestCatching {
-            httpClient.prepareGet("/events") {
-                parameter("until", options.until)
-                parameter("since", options.since)
-                parameter("filters", json.encodeToString(options.filters))
-            }.execute { response ->
-                val channel = response.body<ByteReadChannel>()
-                while (true) {
-                    val raw = channel.readUTF8Line() ?: break
-                    val decoded = json.decodeFromString<Event>(raw)
-                    emit(decoded)
+    public fun events(options: MonitorEventsOptions = MonitorEventsOptions()): Flow<Event> =
+        flow {
+            requestCatching {
+                httpClient.prepareGet("/events") {
+                    parameter("until", options.until)
+                    parameter("since", options.since)
+                    parameter("filters", json.encodeToString(options.filters))
+                }.execute { response ->
+                    val channel = response.body<ByteReadChannel>()
+                    while (true) {
+                        val raw = channel.readUTF8Line() ?: break
+                        val decoded = json.decodeFromString<Event>(raw)
+                        emit(decoded)
+                    }
                 }
             }
         }
-    }
 }
 
 /**

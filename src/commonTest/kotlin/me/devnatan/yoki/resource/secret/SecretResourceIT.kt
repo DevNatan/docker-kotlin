@@ -10,11 +10,11 @@ import kotlin.test.Test
 import kotlin.test.assertFailsWith
 
 class SecretResourceIT : ResourceIT() {
-
     @Test
-    fun `list secrets with no swarm`() = runTest {
-        assertFailsWith<NodeNotPartOfSwarmException> {
-            testClient.secrets.list()
+    fun `list secrets with no swarm`() =
+        runTest {
+            assertFailsWith<NodeNotPartOfSwarmException> {
+                testClient.secrets.list()
+            }
         }
-    }
 }

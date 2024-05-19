@@ -16,13 +16,6 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.util.cio.toByteReadChannel
 import io.ktor.utils.io.ByteReadChannel
 import io.ktor.utils.io.readUTF8Line
-import java.io.InputStream
-import java.util.concurrent.CompletableFuture
-import kotlin.io.encoding.Base64
-import kotlin.io.encoding.ExperimentalEncodingApi
-import kotlin.time.Duration
-import kotlin.time.DurationUnit
-import kotlin.time.toDuration
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
@@ -53,27 +46,34 @@ import me.devnatan.yoki.models.container.ContainerSummary
 import me.devnatan.yoki.models.container.ContainerWaitResult
 import me.devnatan.yoki.resource.ResourcePaths.CONTAINERS
 import me.devnatan.yoki.resource.image.ImageNotFoundException
+import java.io.InputStream
+import java.util.concurrent.CompletableFuture
+import kotlin.io.encoding.Base64
+import kotlin.io.encoding.ExperimentalEncodingApi
+import kotlin.time.Duration
+import kotlin.time.DurationUnit
+import kotlin.time.toDuration
 
 public actual class ContainerResource(
     private val coroutineScope: CoroutineScope,
     private val json: Json,
     private val httpClient: HttpClient,
 ) {
-
     /**
      * Returns a list of all containers.
      *
      * @param options Options to customize the listing result.
      */
     @JvmSynthetic
-    public actual suspend fun list(options: ContainerListOptions): List<ContainerSummary> = requestCatching {
-        httpClient.get("$CONTAINERS/json") {
-            parameter("all", options.all)
-            parameter("limit", options.limit)
-            parameter("size", options.size)
-            parameter("filters", options.filters?.let(json::encodeToString))
-        }
-    }.body()
+    public actual suspend fun list(options: ContainerListOptions): List<ContainerSummary> =
+        requestCatching {
+            httpClient.get("$CONTAINERS/json") {
+                parameter("all", options.all)
+                parameter("limit", options.limit)
+                parameter("size", options.size)
+                parameter("filters", options.filters?.let(json::encodeToString))
+            }
+        }.body()
 
     /**
      * Returns a list of all containers.
@@ -95,20 +95,21 @@ public actual class ContainerResource(
     public actual suspend fun create(options: ContainerCreateOptions): String {
         requireNotNull(options.image) { "Container image is required" }
 
-        val result = requestCatching(
-            HttpStatusCode.NotFound to { exception -> ImageNotFoundException(exception, options.image.orEmpty()) },
-            HttpStatusCode.Conflict to { exception ->
-                ContainerAlreadyExistsException(
-                    exception,
-                    options.name.orEmpty(),
-                )
-            },
-        ) {
-            httpClient.post("$CONTAINERS/create") {
-                parameter("name", options.name)
-                setBody(options)
-            }
-        }.body<ContainerCreateResult>()
+        val result =
+            requestCatching(
+                HttpStatusCode.NotFound to { exception -> ImageNotFoundException(exception, options.image.orEmpty()) },
+                HttpStatusCode.Conflict to { exception ->
+                    ContainerAlreadyExistsException(
+                        exception,
+                        options.name.orEmpty(),
+                    )
+                },
+            ) {
+                httpClient.post("$CONTAINERS/create") {
+                    parameter("name", options.name)
+                    setBody(options)
+                }
+            }.body<ContainerCreateResult>()
 
         // TODO log warns
         // result.warnings.forEach(logger::warn)
@@ -122,9 +123,10 @@ public actual class ContainerResource(
      * @throws ImageNotFoundException If the image specified does not exist or isn't pulled.
      * @throws ContainerAlreadyExistsException If a container with the same name already exists.
      */
-    public fun createAsync(options: ContainerCreateOptions): CompletableFuture<String> = coroutineScope.async {
-        create(options)
-    }.asCompletableFuture()
+    public fun createAsync(options: ContainerCreateOptions): CompletableFuture<String> =
+        coroutineScope.async {
+            create(options)
+        }.asCompletableFuture()
 
     /**
      * Removes a container.
@@ -135,16 +137,20 @@ public actual class ContainerResource(
      * @throws ContainerRemoveConflictException When trying to remove an active container without the `force` option.
      */
     @JvmSynthetic
-    public actual suspend fun remove(container: String, options: ContainerRemoveOptions): Unit = requestCatching(
-        HttpStatusCode.NotFound to { cause -> ContainerNotFoundException(cause, container) },
-        HttpStatusCode.Conflict to { cause -> ContainerRemoveConflictException(cause, container) },
-    ) {
-        httpClient.delete("$CONTAINERS/$container") {
-            parameter("v", options.removeAnonymousVolumes)
-            parameter("force", options.force)
-            parameter("link", options.unlink)
+    public actual suspend fun remove(
+        container: String,
+        options: ContainerRemoveOptions,
+    ): Unit =
+        requestCatching(
+            HttpStatusCode.NotFound to { cause -> ContainerNotFoundException(cause, container) },
+            HttpStatusCode.Conflict to { cause -> ContainerRemoveConflictException(cause, container) },
+        ) {
+            httpClient.delete("$CONTAINERS/$container") {
+                parameter("v", options.removeAnonymousVolumes)
+                parameter("force", options.force)
+                parameter("link", options.unlink)
+            }
         }
-    }
 
     /**
      * Removes a container.
@@ -158,8 +164,7 @@ public actual class ContainerResource(
     public fun removeAsync(
         container: String,
         options: ContainerRemoveOptions = ContainerRemoveOptions(),
-    ): CompletableFuture<Unit> =
-        coroutineScope.async { remove(container, options) }.asCompletableFuture()
+    ): CompletableFuture<Unit> = coroutineScope.async { remove(container, options) }.asCompletableFuture()
 
     /**
      * Returns low-level information about a container.
@@ -168,7 +173,10 @@ public actual class ContainerResource(
      * @param size Should return the size of container as fields `SizeRw` and `SizeRootFs`
      */
     @JvmSynthetic
-    public actual suspend fun inspect(container: String, size: Boolean): Container =
+    public actual suspend fun inspect(
+        container: String,
+        size: Boolean,
+    ): Container =
         requestCatching(
             HttpStatusCode.NotFound to { cause -> ContainerNotFoundException(cause, container) },
         ) {
@@ -184,8 +192,10 @@ public actual class ContainerResource(
      * @param size Should return the size of container as fields `SizeRw` and `SizeRootFs`
      */
     @JvmOverloads
-    public fun inspectAsync(container: String, size: Boolean = false): CompletableFuture<Container> =
-        coroutineScope.async { inspect(container, size) }.asCompletableFuture()
+    public fun inspectAsync(
+        container: String,
+        size: Boolean = false,
+    ): CompletableFuture<Container> = coroutineScope.async { inspect(container, size) }.asCompletableFuture()
 
     /**
      * Starts a container.
@@ -196,14 +206,18 @@ public actual class ContainerResource(
      * @throws ContainerNotFoundException If container was not found.
      */
     @JvmSynthetic
-    public actual suspend fun start(container: String, detachKeys: String?): Unit = requestCatching(
-        HttpStatusCode.NotModified to { cause -> ContainerAlreadyStartedException(cause, container) },
-        HttpStatusCode.NotFound to { cause -> ContainerNotFoundException(cause, container) },
-    ) {
-        httpClient.post("$CONTAINERS/$container/start") {
-            parameter("detachKeys", detachKeys)
+    public actual suspend fun start(
+        container: String,
+        detachKeys: String?,
+    ): Unit =
+        requestCatching(
+            HttpStatusCode.NotModified to { cause -> ContainerAlreadyStartedException(cause, container) },
+            HttpStatusCode.NotFound to { cause -> ContainerNotFoundException(cause, container) },
+        ) {
+            httpClient.post("$CONTAINERS/$container/start") {
+                parameter("detachKeys", detachKeys)
+            }
         }
-    }
 
     /**
      * Starts a container.
@@ -214,9 +228,13 @@ public actual class ContainerResource(
      * @throws ContainerNotFoundException If container was not found.
      */
     @JvmOverloads
-    public fun startAsync(id: String, detachKeys: String? = null): CompletableFuture<Unit> = coroutineScope.async {
-        start(id, detachKeys)
-    }.asCompletableFuture()
+    public fun startAsync(
+        id: String,
+        detachKeys: String? = null,
+    ): CompletableFuture<Unit> =
+        coroutineScope.async {
+            start(id, detachKeys)
+        }.asCompletableFuture()
 
     /**
      * Stops a container.
@@ -225,7 +243,10 @@ public actual class ContainerResource(
      * @param timeout Duration to wait before killing the container.
      */
     @JvmSynthetic
-    public actual suspend fun stop(container: String, timeout: Duration?): Unit =
+    public actual suspend fun stop(
+        container: String,
+        timeout: Duration?,
+    ): Unit =
         requestCatching(
             HttpStatusCode.NotModified to { cause -> ContainerAlreadyStoppedException(cause, container) },
             HttpStatusCode.NotFound to { cause -> ContainerNotFoundException(cause, container) },
@@ -240,9 +261,10 @@ public actual class ContainerResource(
      *
      * @param container The container id to stop.
      */
-    public fun stopAsync(container: String): CompletableFuture<Unit> = coroutineScope.async {
-        stop(container, timeout = null)
-    }.asCompletableFuture()
+    public fun stopAsync(container: String): CompletableFuture<Unit> =
+        coroutineScope.async {
+            stop(container, timeout = null)
+        }.asCompletableFuture()
 
     /**
      * Stops a container.
@@ -250,9 +272,13 @@ public actual class ContainerResource(
      * @param container The container id to stop.
      * @param timeoutInSeconds Duration in seconds to wait before killing the container.
      */
-    public fun stopAsync(container: String, timeoutInSeconds: Int): CompletableFuture<Unit> = coroutineScope.async {
-        stop(container, timeoutInSeconds.toDuration(DurationUnit.SECONDS))
-    }.asCompletableFuture()
+    public fun stopAsync(
+        container: String,
+        timeoutInSeconds: Int,
+    ): CompletableFuture<Unit> =
+        coroutineScope.async {
+            stop(container, timeoutInSeconds.toDuration(DurationUnit.SECONDS))
+        }.asCompletableFuture()
 
     /**
      * Restarts a container.
@@ -261,22 +287,27 @@ public actual class ContainerResource(
      * @param timeout Duration to wait before killing the container.
      */
     @JvmSynthetic
-    public actual suspend fun restart(container: String, timeout: Duration?): Unit = requestCatching(
-        HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, container) },
-    ) {
-        httpClient.post("$CONTAINERS/$container/restart") {
-            parameter("t", timeout)
+    public actual suspend fun restart(
+        container: String,
+        timeout: Duration?,
+    ): Unit =
+        requestCatching(
+            HttpStatusCode.NotFound to { exception -> ContainerNotFoundException(exception, container) },
+        ) {
+            httpClient.post("$CONTAINERS/$container/restart") {
+                parameter("t", timeout)
+            }
         }
-    }
 
     /**
      * Restarts a container.
      *
      * @param container The container id to restart.
      */
-    public fun restartAsync(container: String): CompletableFuture<Unit> = coroutineScope.async {
-        restart(container, timeout = null)
-    }.asCompletableFuture()
+    public fun restartAsync(container: String): CompletableFuture<Unit> =
+        coroutineScope.async {
+            restart(container, timeout = null)
+        }.asCompletableFuture()
 
     /**
      * Restarts a container.
@@ -284,9 +315,13 @@ public actual class ContainerResource(
      * @param container The container id to restart.
      * @param timeoutInSeconds Duration in seconds to wait before killing the container.
      */
-    public fun restartAsync(container: String, timeoutInSeconds: Int): CompletableFuture<Unit> = coroutineScope.async {
-        restart(container, timeoutInSeconds.toDuration(DurationUnit.SECONDS))
-    }.asCompletableFuture()
+    public fun restartAsync(
+        container: String,
+        timeoutInSeconds: Int,
+    ): CompletableFuture<Unit> =
+        coroutineScope.async {
+            restart(container, timeoutInSeconds.toDuration(DurationUnit.SECONDS))
+        }.asCompletableFuture()
 
     /**
      * Kills a container.
@@ -295,14 +330,18 @@ public actual class ContainerResource(
      * @param signal Signal to send for container to be killed, Docker's default is "SIGKILL".
      */
     @JvmSynthetic
-    public actual suspend fun kill(container: String, signal: String?): Unit = requestCatching(
-        HttpStatusCode.NotFound to { cause -> ContainerNotFoundException(cause, container) },
-        HttpStatusCode.Conflict to { cause -> ContainerNotRunningException(cause, container) },
-    ) {
-        httpClient.post("$CONTAINERS/$container/kill") {
-            parameter("signal", signal)
+    public actual suspend fun kill(
+        container: String,
+        signal: String?,
+    ): Unit =
+        requestCatching(
+            HttpStatusCode.NotFound to { cause -> ContainerNotFoundException(cause, container) },
+            HttpStatusCode.Conflict to { cause -> ContainerNotRunningException(cause, container) },
+        ) {
+            httpClient.post("$CONTAINERS/$container/kill") {
+                parameter("signal", signal)
+            }
         }
-    }
 
     /**
      * Kills a container.
@@ -311,9 +350,13 @@ public actual class ContainerResource(
      * @param signal Signal to send for container to be killed, Docker's default is "SIGKILL".
      */
     @JvmOverloads
-    public fun killAsync(container: String, signal: String? = null): CompletableFuture<Unit> = coroutineScope.async {
-        kill(container, signal)
-    }.asCompletableFuture()
+    public fun killAsync(
+        container: String,
+        signal: String? = null,
+    ): CompletableFuture<Unit> =
+        coroutineScope.async {
+            kill(container, signal)
+        }.asCompletableFuture()
 
     /**
      * Renames a container.
@@ -322,14 +365,18 @@ public actual class ContainerResource(
      * @param newName The new container name.
      */
     @JvmSynthetic
-    public actual suspend fun rename(container: String, newName: String): Unit = requestCatching(
-        HttpStatusCode.NotFound to { cause -> ContainerNotFoundException(cause, container) },
-        HttpStatusCode.Conflict to { cause -> ContainerRenameConflictException(cause, container, newName) },
-    ) {
-        httpClient.post("$CONTAINERS/$container/rename") {
-            parameter("name", newName)
+    public actual suspend fun rename(
+        container: String,
+        newName: String,
+    ): Unit =
+        requestCatching(
+            HttpStatusCode.NotFound to { cause -> ContainerNotFoundException(cause, container) },
+            HttpStatusCode.Conflict to { cause -> ContainerRenameConflictException(cause, container, newName) },
+        ) {
+            httpClient.post("$CONTAINERS/$container/rename") {
+                parameter("name", newName)
+            }
         }
-    }
 
     /**
      * Renames a container.
@@ -337,9 +384,13 @@ public actual class ContainerResource(
      * @param container The container id to rename.
      * @param newName The new container name.
      */
-    public fun renameAsync(container: String, newName: String): CompletableFuture<Unit> = coroutineScope.async {
-        rename(container, newName)
-    }.asCompletableFuture()
+    public fun renameAsync(
+        container: String,
+        newName: String,
+    ): CompletableFuture<Unit> =
+        coroutineScope.async {
+            rename(container, newName)
+        }.asCompletableFuture()
 
     /**
      * Pauses a container.
@@ -348,11 +399,12 @@ public actual class ContainerResource(
      * @see unpause
      */
     @JvmSynthetic
-    public actual suspend fun pause(container: String): Unit = requestCatching(
-        HttpStatusCode.NotFound to { cause -> ContainerNotFoundException(cause, container) },
-    ) {
-        httpClient.post("$CONTAINERS/$container/pause")
-    }
+    public actual suspend fun pause(container: String): Unit =
+        requestCatching(
+            HttpStatusCode.NotFound to { cause -> ContainerNotFoundException(cause, container) },
+        ) {
+            httpClient.post("$CONTAINERS/$container/pause")
+        }
 
     /**
      * Pauses a container.
@@ -360,8 +412,7 @@ public actual class ContainerResource(
      * @param container The container id to pause.
      * @see unpause
      */
-    public fun pauseAsync(container: String): CompletableFuture<Unit> =
-        coroutineScope.async { pause(container) }.asCompletableFuture()
+    public fun pauseAsync(container: String): CompletableFuture<Unit> = coroutineScope.async { pause(container) }.asCompletableFuture()
 
     /**
      * Resumes a container which has been paused.
@@ -370,11 +421,12 @@ public actual class ContainerResource(
      * @see pause
      */
     @JvmSynthetic
-    public actual suspend fun unpause(container: String): Unit = requestCatching(
-        HttpStatusCode.NotFound to { cause -> ContainerNotFoundException(cause, container) },
-    ) {
-        httpClient.post("$CONTAINERS/$container/unpause")
-    }
+    public actual suspend fun unpause(container: String): Unit =
+        requestCatching(
+            HttpStatusCode.NotFound to { cause -> ContainerNotFoundException(cause, container) },
+        ) {
+            httpClient.post("$CONTAINERS/$container/unpause")
+        }
 
     /**
      * Resumes a container which has been paused.
@@ -382,8 +434,7 @@ public actual class ContainerResource(
      * @param container The container id to unpause.
      * @see pause
      */
-    public fun unpauseAsync(container: String): CompletableFuture<Unit> =
-        coroutineScope.async { unpause(container) }.asCompletableFuture()
+    public fun unpauseAsync(container: String): CompletableFuture<Unit> = coroutineScope.async { unpause(container) }.asCompletableFuture()
 
     /**
      * Resizes the TTY for a container.
@@ -394,7 +445,10 @@ public actual class ContainerResource(
      * @throws YokiResponseException If the container cannot be resized or if an error occurs in the request.
      */
     @JvmSynthetic
-    public actual suspend fun resizeTTY(container: String, options: ResizeTTYOptions): Unit =
+    public actual suspend fun resizeTTY(
+        container: String,
+        options: ResizeTTYOptions,
+    ): Unit =
         requestCatching(
             HttpStatusCode.NotFound to { cause ->
                 ContainerNotFoundException(
@@ -420,36 +474,41 @@ public actual class ContainerResource(
     public fun resizeTTYAsync(
         container: String,
         options: ResizeTTYOptions = ResizeTTYOptions(),
-    ): CompletableFuture<Unit> =
-        coroutineScope.async { resizeTTY(container, options) }.asCompletableFuture()
+    ): CompletableFuture<Unit> = coroutineScope.async { resizeTTY(container, options) }.asCompletableFuture()
 
     @JvmSynthetic
-    public actual fun attach(container: String): Flow<Frame> = flow {
-        httpClient.preparePost("$CONTAINERS/$container/attach") {
-            parameter("stream", "true")
-            parameter("stdin", "true")
-            parameter("stdout", "true")
-            parameter("stderr", "true")
-        }.execute { response ->
-            val channel = response.body<ByteReadChannel>()
-            while (!channel.isClosedForRead) {
-                val line = channel.readUTF8Line() ?: break
+    public actual fun attach(container: String): Flow<Frame> =
+        flow {
+            httpClient.preparePost("$CONTAINERS/$container/attach") {
+                parameter("stream", "true")
+                parameter("stdin", "true")
+                parameter("stdout", "true")
+                parameter("stderr", "true")
+            }.execute { response ->
+                val channel = response.body<ByteReadChannel>()
+                while (!channel.isClosedForRead) {
+                    val line = channel.readUTF8Line() ?: break
 
-                // TODO handle stream type
-                emit(Frame(line, line.length, Stream.StdOut))
+                    // TODO handle stream type
+                    emit(Frame(line, line.length, Stream.StdOut))
+                }
             }
         }
-    }
 
     @JvmSynthetic
-    public actual suspend fun wait(container: String, condition: String?): ContainerWaitResult =
+    public actual suspend fun wait(
+        container: String,
+        condition: String?,
+    ): ContainerWaitResult =
         httpClient.post("$CONTAINERS/$container/wait") {
             parameter("condition", condition)
         }.body()
 
     @JvmOverloads
-    public fun waitAsync(id: String, condition: String? = null): CompletableFuture<ContainerWaitResult> =
-        coroutineScope.async { wait(id, condition) }.asCompletableFuture()
+    public fun waitAsync(
+        id: String,
+        condition: String? = null,
+    ): CompletableFuture<ContainerWaitResult> = coroutineScope.async { wait(id, condition) }.asCompletableFuture()
 
     @JvmSynthetic
     public actual suspend fun prune(filters: ContainerPruneFilters): ContainerPruneResult =
@@ -468,15 +527,20 @@ public actual class ContainerResource(
      * @param path The path to the file or directory inside the container file system.
      */
     @OptIn(ExperimentalEncodingApi::class)
-    public actual suspend fun archive(container: String, path: String): ContainerArchiveInfo = requestCatching {
-        val response = httpClient.head("$CONTAINERS/$container/archive") {
-            parameter("path", path)
-        }
+    public actual suspend fun archive(
+        container: String,
+        path: String,
+    ): ContainerArchiveInfo =
+        requestCatching {
+            val response =
+                httpClient.head("$CONTAINERS/$container/archive") {
+                    parameter("path", path)
+                }
 
-        val pathStat = response.headers["X-Docker-Container-Path-Stat"] ?: error("Missing path stat header")
-        val decoded = Base64.decode(pathStat).decodeToString()
-        return json.decodeFromString(decoded)
-    }
+            val pathStat = response.headers["X-Docker-Container-Path-Stat"] ?: error("Missing path stat header")
+            val decoded = Base64.decode(pathStat).decodeToString()
+            return json.decodeFromString(decoded)
+        }
 
     /**
      * Downloads files from a container file system.
@@ -484,13 +548,17 @@ public actual class ContainerResource(
      * @param container The container id.
      * @param remotePath The path to the file or directory inside the container file system.
      */
-    public actual suspend fun downloadArchive(container: String, remotePath: String): RawSource {
-        val contents = requestCatching {
-            httpClient.get("$CONTAINERS/$container/archive") {
-                accept(ContentType.parse("application/x-tar"))
-                parameter("path", remotePath)
-            }
-        }.body<InputStream>()
+    public actual suspend fun downloadArchive(
+        container: String,
+        remotePath: String,
+    ): RawSource {
+        val contents =
+            requestCatching {
+                httpClient.get("$CONTAINERS/$container/archive") {
+                    accept(ContentType.parse("application/x-tar"))
+                    parameter("path", remotePath)
+                }
+            }.body<InputStream>()
         return readTarFile(contents.asSource())
     }
 
@@ -501,7 +569,11 @@ public actual class ContainerResource(
      * @param inputPath Path to the file that will be uploaded.
      * @param remotePath Path to the file or directory inside the container file system.
      */
-    public actual suspend fun uploadArchive(container: String, inputPath: String, remotePath: String): Unit =
+    public actual suspend fun uploadArchive(
+        container: String,
+        inputPath: String,
+        remotePath: String,
+    ): Unit =
         requestCatching {
             val archive = writeTarFile(inputPath)
 

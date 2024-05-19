@@ -17,14 +17,19 @@ import kotlinx.serialization.encoding.Encoder
 @Serializable
 public data class PortBinding(
     @SerialName("HostIp") public var ip: String? = null,
-    @SerialName("HostPort") public var port: @Serializable(with = UShortAsStringSerializer::class) UShort? = null,
+    @SerialName("HostPort") public var port:
+        @Serializable(with = UShortAsStringSerializer::class)
+        UShort? = null,
 )
 
 internal object UShortAsStringSerializer : KSerializer<UShort> {
     override val descriptor: SerialDescriptor =
         PrimitiveSerialDescriptor("UShortAsString", PrimitiveKind.STRING)
 
-    override fun serialize(encoder: Encoder, value: UShort) {
+    override fun serialize(
+        encoder: Encoder,
+        value: UShort,
+    ) {
         encoder.encodeString(value.toString())
     }
 
@@ -45,7 +50,10 @@ internal object PortBindingsSerializer : KSerializer<Map<ExposedPort, List<PortB
         return map.mapKeys { ExposedPort.fromString(it.key) }
     }
 
-    override fun serialize(encoder: Encoder, value: Map<ExposedPort, List<PortBinding>?>) {
+    override fun serialize(
+        encoder: Encoder,
+        value: Map<ExposedPort, List<PortBinding>?>,
+    ) {
         mapSerializer.serialize(encoder, value.mapKeys { it.key.toString() })
     }
 }

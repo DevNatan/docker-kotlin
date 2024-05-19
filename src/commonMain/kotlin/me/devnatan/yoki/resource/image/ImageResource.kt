@@ -27,9 +27,7 @@ public class ImageResource internal constructor(
     private val httpClient: HttpClient,
     private val json: Json,
 ) {
-
     public companion object {
-
         private val TAR_CONTENT_TYPE = ContentType.parse("application/x-tar")
     }
 
@@ -37,18 +35,23 @@ public class ImageResource internal constructor(
         return httpClient.get("$BASE_PATH/json").body()
     }
 
-    public fun pull(image: String): Flow<ImagePull> = flow {
-        httpClient.preparePost("$BASE_PATH/create") {
-            parameter("fromImage", image)
-        }.execute { response ->
-            val channel = response.body<ByteReadChannel>()
-            while (true) {
-                emit(json.decodeFromString(channel.readUTF8Line() ?: break))
+    public fun pull(image: String): Flow<ImagePull> =
+        flow {
+            httpClient.preparePost("$BASE_PATH/create") {
+                parameter("fromImage", image)
+            }.execute { response ->
+                val channel = response.body<ByteReadChannel>()
+                while (true) {
+                    emit(json.decodeFromString(channel.readUTF8Line() ?: break))
+                }
             }
         }
-    }
 
-    public suspend fun remove(name: String, force: Boolean? = false, noprune: Boolean? = false) {
+    public suspend fun remove(
+        name: String,
+        force: Boolean? = false,
+        noprune: Boolean? = false,
+    ) {
         httpClient.delete("$BASE_PATH/$name") {
             parameter("force", force)
             parameter("noprune", noprune)
@@ -61,7 +64,10 @@ public class ImageResource internal constructor(
      * @param archivePath The path to the build context archive (e.g., a TAR file) that contains the source code and resources.
      * @param options The [ImageBuildOptions] containing the configuration for the image build.
      */
-    public suspend fun build(archivePath: String, options: ImageBuildOptions) {
+    public suspend fun build(
+        archivePath: String,
+        options: ImageBuildOptions,
+    ) {
         httpClient.post("/build") {
             contentType(TAR_CONTENT_TYPE)
             header("X-Registry-Config", json.encodeToString(options.registryConfig))
@@ -95,6 +101,9 @@ public class ImageResource internal constructor(
     }
 }
 
-public suspend inline fun ImageResource.build(archivePath: String, options: ImageBuildOptions.() -> Unit) {
+public suspend inline fun ImageResource.build(
+    archivePath: String,
+    options: ImageBuildOptions.() -> Unit,
+) {
     build(archivePath, ImageBuildOptions().apply(options))
 }

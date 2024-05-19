@@ -10,7 +10,6 @@ public data class ImagePull(
     public val progressDetail: ProgressDetail? = null,
     @SerialName("progress") public val progressText: String? = null,
 ) {
-
     @Serializable
     public data class ProgressDetail(
         public val current: Int? = null,

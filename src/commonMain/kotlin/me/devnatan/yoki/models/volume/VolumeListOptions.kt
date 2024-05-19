@@ -12,9 +12,11 @@ import kotlinx.serialization.Serializable
  * @property name Matches all or part of a network name.
  */
 @Serializable
-public data class VolumeListOptions @PublishedApi internal constructor(
-    public var dangling: Boolean? = null,
-    public var driver: String? = null,
-    public var label: String? = null,
-    public var name: String? = null,
-)
+public data class VolumeListOptions
+    @PublishedApi
+    internal constructor(
+        public var dangling: Boolean? = null,
+        public var driver: String? = null,
+        public var label: String? = null,
+        public var name: String? = null,
+    )

@@ -11,24 +11,24 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class InspectContainerIT : ResourceIT() {
-
     @Test
-    fun `inspects container with volumes`() = runTest {
-        testClient.withContainer(
-            "busybox:latest",
-            {
-                volume("/opt")
-                command = listOf("sleep", "infinity")
-            },
-        ) { id ->
-            testClient.containers.start(id)
-            try {
-                val container = testClient.containers.inspect(id)
-                val volumes = container.config.volumes
-                assertEquals(volumes, listOf("/opt"))
-            } finally {
-                testClient.containers.stop(id)
+    fun `inspects container with volumes`() =
+        runTest {
+            testClient.withContainer(
+                "busybox:latest",
+                {
+                    volume("/opt")
+                    command = listOf("sleep", "infinity")
+                },
+            ) { id ->
+                testClient.containers.start(id)
+                try {
+                    val container = testClient.containers.inspect(id)
+                    val volumes = container.config.volumes
+                    assertEquals(volumes, listOf("/opt"))
+                } finally {
+                    testClient.containers.stop(id)
+                }
             }
         }
-    }
 }

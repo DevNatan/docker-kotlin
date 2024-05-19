@@ -33,7 +33,6 @@ public data class ExecCreateOptions(
     @SerialName("User") var user: String? = null,
     @SerialName("WorkingDir") var workingDir: String? = null,
 ) {
-
     /**
      * Sets the command to be run.
      *

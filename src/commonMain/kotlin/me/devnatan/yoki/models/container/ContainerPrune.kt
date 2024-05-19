@@ -8,7 +8,6 @@ public data class ContainerPruneFilters(
     public var until: String? = null,
     public var label: String? = null,
 ) {
-
     public data class Builder(
         private val until: String? = null,
         private val label: String? = null,
@@ -17,10 +16,11 @@ public data class ContainerPruneFilters(
 
         public fun label(label: String?): Builder = copy(label = label)
 
-        public fun build(): ContainerPruneFilters = ContainerPruneFilters(
-            until = until,
-            label = label,
-        )
+        public fun build(): ContainerPruneFilters =
+            ContainerPruneFilters(
+                until = until,
+                label = label,
+            )
     }
 }
 

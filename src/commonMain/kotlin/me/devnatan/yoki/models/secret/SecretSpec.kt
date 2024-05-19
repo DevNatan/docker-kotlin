@@ -10,7 +10,6 @@ public data class SecretSpec(
     @SerialName("Driver") val driver: Driver? = null,
     @SerialName("Templating") val templating: Driver? = null,
 ) {
-
     @Serializable
     public data class Driver(
         @SerialName("Name") val name: String,

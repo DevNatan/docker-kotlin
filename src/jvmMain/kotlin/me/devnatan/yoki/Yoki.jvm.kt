@@ -16,7 +16,6 @@ import me.devnatan.yoki.resource.volume.VolumeResource
 import kotlin.coroutines.CoroutineContext
 
 public actual class Yoki public actual constructor(public actual val config: YokiConfig) : CoroutineScope {
-
     public constructor() : this(DefaultYokiConfig)
 
     override val coroutineContext: CoroutineContext = SupervisorJob()

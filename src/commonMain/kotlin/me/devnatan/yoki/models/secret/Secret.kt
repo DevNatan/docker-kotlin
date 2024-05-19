@@ -18,7 +18,6 @@ public data class Secret(
     @SerialName("UpdatedAt") public val updatedAtRaw: String,
     // TODO version
 ) {
-
     val createdAt: Instant by lazy { Instant.parse(createdAtRaw) }
     val updatedAt: Instant by lazy { Instant.parse(updatedAtRaw) }
 }

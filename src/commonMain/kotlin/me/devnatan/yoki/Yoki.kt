@@ -12,7 +12,6 @@ import me.devnatan.yoki.resource.system.SystemResource
 import me.devnatan.yoki.resource.volume.VolumeResource
 
 public expect class Yoki(config: YokiConfig) : CoroutineScope {
-
     public val config: YokiConfig
     public val json: Json
     public val httpClient: HttpClient

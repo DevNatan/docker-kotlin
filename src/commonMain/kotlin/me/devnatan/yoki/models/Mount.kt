@@ -14,7 +14,6 @@ public data class Mount internal constructor(
     @SerialName("VolumeOptions") val volumeOptions: MountVolumeOptions? = null,
     @SerialName("TmpfsOptions") val tmpfsOptions: MountTmpfsOptions? = null,
 ) {
-
     @Serializable
     public enum class Type {
         @SerialName("bind")
@@ -40,7 +39,6 @@ public data class MountBindOptions(
     @SerialName("Propagation") val propagation: Propagation? = null,
     @SerialName("NonRecursive") val nonRecursive: Boolean? = null,
 ) {
-
     /**
      * Bind propagation refers to whether or not mounts created within a given bind-mount can be
      * propagated to replicas of a given [Mount].

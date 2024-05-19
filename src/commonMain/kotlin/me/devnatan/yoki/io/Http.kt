@@ -54,9 +54,10 @@ internal fun createHttpClient(client: Yoki): HttpClient {
                 val exceptionResponse = responseException.response
                 println("exceptionResponse = ${exceptionResponse.body<String>()}")
 
-                val errorMessage = runCatching {
-                    exceptionResponse.body<GenericDockerErrorResponse>()
-                }.getOrNull()?.message
+                val errorMessage =
+                    runCatching {
+                        exceptionResponse.body<GenericDockerErrorResponse>()
+                    }.getOrNull()?.message
                 throw YokiResponseException(
                     cause = exception,
                     message = errorMessage,
@@ -81,29 +82,34 @@ internal fun createHttpClient(client: Yoki): HttpClient {
 }
 
 @OptIn(ExperimentalStdlibApi::class)
-private fun createUrlBuilder(socketPath: String): URLBuilder = if (isUnixSocket(socketPath)) {
-    URLBuilder(
-        protocol = URLProtocol.HTTP,
-        port = DOCKER_SOCKET_PORT,
-        host = socketPath.substringAfter(UNIX_SOCKET_PREFIX).encodeToByteArray().toHexString() + ENCODED_HOSTNAME_SUFFIX,
-    )
-} else {
-    val url = Url(socketPath)
-    URLBuilder(
-        protocol = URLProtocol.HTTP,
-        host = url.host,
-        port = url.port,
-    )
-}
+private fun createUrlBuilder(socketPath: String): URLBuilder =
+    if (isUnixSocket(socketPath)) {
+        URLBuilder(
+            protocol = URLProtocol.HTTP,
+            port = DOCKER_SOCKET_PORT,
+            host = socketPath.substringAfter(UNIX_SOCKET_PREFIX).encodeToByteArray().toHexString() + ENCODED_HOSTNAME_SUFFIX,
+        )
+    } else {
+        val url = Url(socketPath)
+        URLBuilder(
+            protocol = URLProtocol.HTTP,
+            host = url.host,
+            port = url.port,
+        )
+    }
 
-internal fun handleHttpFailure(exception: Throwable, statuses: Map<HttpStatusCode, (YokiResponseException) -> Throwable>) {
+internal fun handleHttpFailure(
+    exception: Throwable,
+    statuses: Map<HttpStatusCode, (YokiResponseException) -> Throwable>,
+) {
     if (exception !is YokiResponseException) {
         throw exception
     }
 
-    val resourceException = statuses.entries.firstOrNull { (code, _) ->
-        code == exception.statusCode
-    }?.value
+    val resourceException =
+        statuses.entries.firstOrNull { (code, _) ->
+            code == exception.statusCode
+        }?.value
 
     throw resourceException
         ?.invoke(exception)

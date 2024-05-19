@@ -9,12 +9,12 @@ import kotlin.test.Test
 import kotlin.test.assertFailsWith
 
 class RemoveContainerIT : ResourceIT() {
-
     @Test
-    fun `throws ContainerNotFoundException on remove a unknown container`() = runTest {
-        assertFailsWith<ContainerNotFoundException>() {
-            // TODO generate random id
-            testClient.containers.remove("santo-bastao")
+    fun `throws ContainerNotFoundException on remove a unknown container`() =
+        runTest {
+            assertFailsWith<ContainerNotFoundException> {
+                // TODO generate random id
+                testClient.containers.remove("santo-bastao")
+            }
         }
-    }
 }

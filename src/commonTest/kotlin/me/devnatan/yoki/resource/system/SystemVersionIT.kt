@@ -9,13 +9,13 @@ import kotlin.test.fail
 
 @ExperimentalCoroutinesApi
 class SystemVersionIT : ResourceIT() {
-
     @Test
-    fun `fetch system version`() = runTest {
-        try {
-            testClient.system.version()
-        } catch (e: YokiResourceException) {
-            fail("Failed to fetch information about system version.", e)
+    fun `fetch system version`() =
+        runTest {
+            try {
+                testClient.system.version()
+            } catch (e: YokiResourceException) {
+                fail("Failed to fetch information about system version.", e)
+            }
         }
-    }
 }

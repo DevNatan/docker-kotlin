@@ -10,7 +10,10 @@ import me.devnatan.yoki.resource.volume.create
 import me.devnatan.yoki.resource.volume.remove
 import kotlin.test.fail
 
-suspend fun <R> Yoki.withImage(imageName: String, block: suspend (String) -> R): R {
+suspend fun <R> Yoki.withImage(
+    imageName: String,
+    block: suspend (String) -> R,
+): R {
     try {
         images.pull(imageName).collect()
     } catch (e: Throwable) {
@@ -30,10 +33,11 @@ suspend fun <R> Yoki.withContainer(
     block: suspend (String) -> R,
 ) = withImage(image) { imageTag ->
     try {
-        val id = containers.create {
-            this.image = imageTag
-            apply(options)
-        }
+        val id =
+            containers.create {
+                this.image = imageTag
+                apply(options)
+            }
         block(id)
         containers.remove(id) {
             force = true

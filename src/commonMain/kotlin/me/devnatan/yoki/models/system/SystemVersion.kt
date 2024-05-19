@@ -35,7 +35,6 @@ public data class SystemVersion internal constructor(
     @SerialName("Experimental") val experimental: Boolean = false,
     @SerialName("BuildTime") val buildTimeRaw: String,
 ) {
-
     /**
      * The date and time that the daemon was compiled as an [Instant].
      */
@@ -66,7 +65,6 @@ public data class SystemVersion internal constructor(
         @SerialName("Version") val version: String,
         @SerialName("Details") val details: Details? = null,
     ) {
-
         /**
          * System version component details.
          *

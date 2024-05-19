@@ -19,7 +19,6 @@ public data class HealthcheckResult internal constructor(
     @SerialName("ExitCode") public val exitCode: Int? = null,
     @SerialName("Output") public val output: String? = null,
 ) {
-
     public val startedAt: Instant by lazy { Instant.parse(startedAtString) }
     public val endedAt: Instant? by lazy { endedAtString?.let(Instant::parse) }
 }

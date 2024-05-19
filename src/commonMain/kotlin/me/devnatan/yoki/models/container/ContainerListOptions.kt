@@ -9,7 +9,6 @@ public data class ContainerListOptions(
     public var size: Boolean? = null,
     public var filters: Filters? = null,
 ) {
-
     @Serializable
     public data class Filters(
         public var ancestor: List<String>? = null, // TODO image pattern

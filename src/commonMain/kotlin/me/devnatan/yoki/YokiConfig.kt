@@ -22,7 +22,6 @@ public class YokiConfig(
     public val apiVersion: String,
     public val debugHttpCalls: Boolean,
 ) {
-
     init {
         check(socketPath.isNotBlank()) { "Socket path must be provided and cannot be blank" }
         check(apiVersion.isNotBlank()) { "Docker Remote API version must be provided and cannot be blank" }
@@ -38,7 +37,6 @@ public class YokiConfig(
  * Mutable builder for Yoki configuration.
  */
 public class YokiConfigBuilder {
-
     /**
      * Docker socket file used to communicate with main Docker daemon.
      */
@@ -47,11 +45,12 @@ public class YokiConfigBuilder {
     /**
      * The version of the Docker API that will be used during communication.
      */
-    private var apiVersion: String = envOrFallback(
-        key = DOCKER_API_VERSION_ENV_KEY,
-        fallback = DEFAULT_DOCKER_API_VERSION,
-        prefix = null,
-    )
+    private var apiVersion: String =
+        envOrFallback(
+            key = DOCKER_API_VERSION_ENV_KEY,
+            fallback = DEFAULT_DOCKER_API_VERSION,
+            prefix = null,
+        )
 
     /**
      * Whether to debug the HTTP calls to the Docker daemon.
@@ -95,11 +94,12 @@ public class YokiConfigBuilder {
      * have the [UNIX_SOCKET_PREFIX] on its prefix.
      */
     public fun useUnixDefaults(): YokiConfigBuilder {
-        socketPath = envOrFallback(
-            key = DOCKER_HOST_ENV_KEY,
-            fallback = DEFAULT_DOCKER_UNIX_SOCKET,
-            prefix = UNIX_SOCKET_PREFIX,
-        )
+        socketPath =
+            envOrFallback(
+                key = DOCKER_HOST_ENV_KEY,
+                fallback = DEFAULT_DOCKER_UNIX_SOCKET,
+                prefix = UNIX_SOCKET_PREFIX,
+            )
         return this
     }
 
@@ -110,11 +110,12 @@ public class YokiConfigBuilder {
      * have the [HTTP_SOCKET_PREFIX] on its prefix.
      */
     public fun useHttpDefaults(): YokiConfigBuilder {
-        socketPath = envOrFallback(
-            key = DOCKER_HOST_ENV_KEY,
-            fallback = DEFAULT_DOCKER_HTTP_SOCKET,
-            prefix = HTTP_SOCKET_PREFIX,
-        )
+        socketPath =
+            envOrFallback(
+                key = DOCKER_HOST_ENV_KEY,
+                fallback = DEFAULT_DOCKER_HTTP_SOCKET,
+                prefix = HTTP_SOCKET_PREFIX,
+            )
         return this
     }
 
@@ -123,11 +124,12 @@ public class YokiConfigBuilder {
      * See [selectDockerSocketPath] for implementation details.
      */
     public fun forCurrentPlatform(): YokiConfigBuilder {
-        socketPath = envOrFallback(
-            key = DOCKER_HOST_ENV_KEY,
-            fallback = selectDockerSocketPath(),
-            prefix = null,
-        )
+        socketPath =
+            envOrFallback(
+                key = DOCKER_HOST_ENV_KEY,
+                fallback = selectDockerSocketPath(),
+                prefix = null,
+            )
         return this
     }
 

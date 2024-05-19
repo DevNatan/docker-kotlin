@@ -26,60 +26,60 @@ public typealias NetworkDriver = String
  * @property labels User-defined key/value metadata.
  */
 @Serializable
-public data class NetworkCreateOptions @JvmOverloads public constructor(
-    @SerialName("Name") public var name: String? = null,
-    @SerialName("CheckDuplicate") public var checkDuplicate: Boolean? = null,
-    @SerialName("Driver") public var driver: NetworkDriver? = null,
-    @SerialName("Internal") public var isInternal: Boolean? = null,
-    @SerialName("Attachable") public var isAttachable: Boolean? = null,
-    @SerialName("Ingress") public var ingress: Boolean? = null,
-    @SerialName("IPAM") public var ipam: IPAM? = null,
-    @SerialName("EnableIPV6") public var enableIpv6: Boolean? = null,
-    @SerialName("Options") public var options: Map<String, String?>? = null,
-    @SerialName("Labels") public var labels: Map<String, String?>? = null,
-) {
+public data class NetworkCreateOptions
+    @JvmOverloads
+    public constructor(
+        @SerialName("Name") public var name: String? = null,
+        @SerialName("CheckDuplicate") public var checkDuplicate: Boolean? = null,
+        @SerialName("Driver") public var driver: NetworkDriver? = null,
+        @SerialName("Internal") public var isInternal: Boolean? = null,
+        @SerialName("Attachable") public var isAttachable: Boolean? = null,
+        @SerialName("Ingress") public var ingress: Boolean? = null,
+        @SerialName("IPAM") public var ipam: IPAM? = null,
+        @SerialName("EnableIPV6") public var enableIpv6: Boolean? = null,
+        @SerialName("Options") public var options: Map<String, String?>? = null,
+        @SerialName("Labels") public var labels: Map<String, String?>? = null,
+    ) {
+        public companion object {
+            /**
+             * Disable all networking. Usually used in conjunction with a custom network driver.
+             * This network driver is not available for swarm services.
+             */
+            public const val NONE: NetworkDriver = "none"
 
-    public companion object {
+            /**
+             * The default network driver.
+             */
+            public const val BRIDGE: NetworkDriver = "bridge"
 
-        /**
-         * Disable all networking. Usually used in conjunction with a custom network driver.
-         * This network driver is not available for swarm services.
-         */
-        public const val NONE: NetworkDriver = "none"
+            /**
+             * For standalone containers, remove network isolation between the container and the Docker host, and use the
+             * host’s networking directly.
+             */
+            public const val HOST: NetworkDriver = "host"
 
-        /**
-         * The default network driver.
-         */
-        public const val BRIDGE: NetworkDriver = "bridge"
+            /**
+             * Overlay networks connect multiple Docker daemons together and enable swarm services to communicate with each
+             * other. You can also use overlay networks to facilitate communication between a swarm service and a standalone
+             * container, or between two standalone containers on different Docker daemons.
+             */
+            public const val OVERLAY: NetworkDriver = "overlay"
 
-        /**
-         * For standalone containers, remove network isolation between the container and the Docker host, and use the
-         * host’s networking directly.
-         */
-        public const val HOST: NetworkDriver = "host"
+            /**
+             * IPvlan networks give users total control over both IPv4 and IPv6 addressing.
+             *
+             * The VLAN driver builds on top of that in giving operators complete control of layer 2 VLAN tagging and even
+             * IPvlan L3 routing for users interested in underlay network integration.
+             */
+            public const val IPVLAN: NetworkDriver = "ipvlan"
 
-        /**
-         * Overlay networks connect multiple Docker daemons together and enable swarm services to communicate with each
-         * other. You can also use overlay networks to facilitate communication between a swarm service and a standalone
-         * container, or between two standalone containers on different Docker daemons.
-         */
-        public const val OVERLAY: NetworkDriver = "overlay"
-
-        /**
-         * IPvlan networks give users total control over both IPv4 and IPv6 addressing.
-         *
-         * The VLAN driver builds on top of that in giving operators complete control of layer 2 VLAN tagging and even
-         * IPvlan L3 routing for users interested in underlay network integration.
-         */
-        public const val IPVLAN: NetworkDriver = "ipvlan"
-
-        /**
-         * Macvlan networks allow you to assign a MAC address to a container, making it appear as a physical device on
-         * your network. The Docker daemon routes traffic to containers by their MAC addresses.
-         *
-         * Using the macvlan driver is sometimes the best choice when dealing with legacy applications that expect to be
-         * directly connected to the physical network, rather than routed through the Docker host’s network stack.
-         */
-        public const val MACVLAN: NetworkDriver = "macvlan"
+            /**
+             * Macvlan networks allow you to assign a MAC address to a container, making it appear as a physical device on
+             * your network. The Docker daemon routes traffic to containers by their MAC addresses.
+             *
+             * Using the macvlan driver is sometimes the best choice when dealing with legacy applications that expect to be
+             * directly connected to the physical network, rather than routed through the Docker host’s network stack.
+             */
+            public const val MACVLAN: NetworkDriver = "macvlan"
+        }
     }
-}

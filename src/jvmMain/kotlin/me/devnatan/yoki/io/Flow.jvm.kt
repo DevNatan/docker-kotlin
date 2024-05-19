@@ -14,17 +14,22 @@ import me.devnatan.yoki.Closeable
 
 public fun interface YokiFlow<T> {
     public fun onEach(value: T)
+
     public fun onStart(): Unit = Unit
+
     public fun onError(cause: Throwable): Unit = Unit
+
     public fun onComplete(error: Throwable?): Unit = Unit
 }
 
 internal class InternalYokiFlow internal constructor() : Closeable {
-
     private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Default)
     private var error: Throwable? = null
 
-    fun <T> start(flow: Flow<T>, callback: YokiFlow<T>) {
+    fun <T> start(
+        flow: Flow<T>,
+        callback: YokiFlow<T>,
+    ) {
         flow.onStart { callback.onStart() }
             .onCompletion { error -> callback.onComplete(error.also { this@InternalYokiFlow.error = it }) }
             .onEach(callback::onEach)

@@ -19,13 +19,17 @@ public data class ContainerCreateOptions(
     @SerialName("Domainname") public var domainName: String? = null,
     @SerialName("User") public var user: String? = null,
     @SerialName("AttachStdin") public var attachStdin: Boolean? = null,
-    @SerialName("ExposedPorts") public var exposedPorts: @Serializable(with = ExposedPortsSerializer::class) List<ExposedPort>? = null,
+    @SerialName("ExposedPorts") public var exposedPorts:
+        @Serializable(with = ExposedPortsSerializer::class)
+        List<ExposedPort>? = null,
     @SerialName("Env") public var env: List<String>? = null,
     @SerialName("Cmd") public var command: List<String>? = null,
     @SerialName("Healthcheck") public var healthcheck: HealthConfig? = null,
     @SerialName("ArgsEscaped") public var escapedArgs: Boolean? = null,
     @SerialName("Image") public var image: String? = null,
-    @SerialName("Volumes") public var volumes: @Serializable(with = VolumesSerializer::class) List<String>? = null,
+    @SerialName("Volumes") public var volumes:
+        @Serializable(with = VolumesSerializer::class)
+        List<String>? = null,
     @SerialName("WorkingDir") public var workingDirectory: String? = null,
     @SerialName("Entrypoint") public var entrypoint: List<String>? = null,
     @SerialName("NetworkDisabled") public var disabledNetwork: Boolean? = null,
@@ -44,7 +48,10 @@ public fun ContainerCreateOptions.exposedPort(port: UShort) {
     this.exposedPort(port, ExposedPortProtocol.TCP)
 }
 
-public fun ContainerCreateOptions.exposedPort(port: UShort, protocol: ExposedPortProtocol) {
+public fun ContainerCreateOptions.exposedPort(
+    port: UShort,
+    protocol: ExposedPortProtocol,
+) {
     this.exposedPorts = exposedPorts.orEmpty() + listOf(ExposedPort(port, protocol))
 }
 

@@ -21,7 +21,6 @@ import kotlin.time.Duration
 internal const val FS_ROOT = "/"
 
 public expect class ContainerResource {
-
     /**
      * Returns a list of all containers.
      *
@@ -46,7 +45,10 @@ public expect class ContainerResource {
      * @throws ContainerNotFoundException If the container is not found for the specified id.
      * @throws ContainerRemoveConflictException When trying to remove an active container without the `force` option.
      */
-    public suspend fun remove(container: String, options: ContainerRemoveOptions = ContainerRemoveOptions())
+    public suspend fun remove(
+        container: String,
+        options: ContainerRemoveOptions = ContainerRemoveOptions(),
+    )
 
     /**
      * Returns low-level information about a container.
@@ -54,7 +56,10 @@ public expect class ContainerResource {
      * @param container ID or name of the container.
      * @param size Should return the size of container as fields `SizeRw` and `SizeRootFs`
      */
-    public suspend fun inspect(container: String, size: Boolean = false): Container
+    public suspend fun inspect(
+        container: String,
+        size: Boolean = false,
+    ): Container
 
     /**
      * Starts a container.
@@ -64,7 +69,10 @@ public expect class ContainerResource {
      * @throws ContainerAlreadyStartedException If the container was already started.
      * @throws ContainerNotFoundException If container was not found.
      */
-    public suspend fun start(container: String, detachKeys: String? = null)
+    public suspend fun start(
+        container: String,
+        detachKeys: String? = null,
+    )
 
     /**
      * Stops a container.
@@ -72,7 +80,10 @@ public expect class ContainerResource {
      * @param container The container id to stop.
      * @param timeout Duration to wait before killing the container.
      */
-    public suspend fun stop(container: String, timeout: Duration? = null)
+    public suspend fun stop(
+        container: String,
+        timeout: Duration? = null,
+    )
 
     /**
      * Restarts a container.
@@ -80,7 +91,10 @@ public expect class ContainerResource {
      * @param container The container id to restart.
      * @param timeout Duration to wait before killing the container.
      */
-    public suspend fun restart(container: String, timeout: Duration? = null)
+    public suspend fun restart(
+        container: String,
+        timeout: Duration? = null,
+    )
 
     /**
      * Kills a container.
@@ -88,7 +102,10 @@ public expect class ContainerResource {
      * @param container The container id to kill.
      * @param signal Signal to send for container to be killed, Docker's default is "SIGKILL".
      */
-    public suspend fun kill(container: String, signal: String? = null)
+    public suspend fun kill(
+        container: String,
+        signal: String? = null,
+    )
 
     /**
      * Renames a container.
@@ -96,7 +113,10 @@ public expect class ContainerResource {
      * @param container The container id to rename.
      * @param newName The new container name.
      */
-    public suspend fun rename(container: String, newName: String)
+    public suspend fun rename(
+        container: String,
+        newName: String,
+    )
 
     /**
      * Pauses a container.
@@ -122,13 +142,19 @@ public expect class ContainerResource {
      * @throws ContainerNotFoundException If the container is not found.
      * @throws YokiResponseException If the container cannot be resized or if an error occurs in the request.
      */
-    public suspend fun resizeTTY(container: String, options: ResizeTTYOptions = ResizeTTYOptions())
+    public suspend fun resizeTTY(
+        container: String,
+        options: ResizeTTYOptions = ResizeTTYOptions(),
+    )
 
     // TODO documentation
     public fun attach(container: String): Flow<Frame>
 
     // TODO documentation
-    public suspend fun wait(container: String, condition: String? = null): ContainerWaitResult
+    public suspend fun wait(
+        container: String,
+        condition: String? = null,
+    ): ContainerWaitResult
 
     // TODO documentation
     public suspend fun prune(filters: ContainerPruneFilters = ContainerPruneFilters()): ContainerPruneResult
@@ -140,7 +166,10 @@ public expect class ContainerResource {
      * @param path The path to the file or directory inside the container file system.
      */
     @JvmOverloads
-    public suspend fun archive(container: String, path: String = FS_ROOT): ContainerArchiveInfo
+    public suspend fun archive(
+        container: String,
+        path: String = FS_ROOT,
+    ): ContainerArchiveInfo
 
     /**
      * Downloads files from a container file system.
@@ -148,7 +177,10 @@ public expect class ContainerResource {
      * @param container The container id.
      * @param remotePath The path to the file or directory inside the container file system.
      */
-    public suspend fun downloadArchive(container: String, remotePath: String): RawSource
+    public suspend fun downloadArchive(
+        container: String,
+        remotePath: String,
+    ): RawSource
 
     /**
      * Uploads files into a container file system.
@@ -157,5 +189,9 @@ public expect class ContainerResource {
      * @param inputPath Path to the file that will be uploaded.
      * @param remotePath Path to the file or directory inside the container file system.
      */
-    public suspend fun uploadArchive(container: String, inputPath: String, remotePath: String)
+    public suspend fun uploadArchive(
+        container: String,
+        inputPath: String,
+        remotePath: String,
+    )
 }

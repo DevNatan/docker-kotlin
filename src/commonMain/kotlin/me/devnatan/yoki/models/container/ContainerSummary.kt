@@ -21,7 +21,6 @@ public data class ContainerSummary internal constructor(
     @SerialName("HostConfig") val hostConfig: ContainerSummaryHostConfig,
     // TODO HostConfig, NetworkSettings, Mounts,
 ) {
-
     public val name: String = names?.firstOrNull() ?: id
 }
 

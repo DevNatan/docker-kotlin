@@ -13,7 +13,10 @@ import me.devnatan.yoki.resource.container.ContainerNotRunningException
  * @throws ContainerNotFoundException If container instance is not found.
  * @throws ContainerNotRunningException If the container is not running.
  */
-public suspend inline fun ExecResource.create(id: String, options: ExecCreateOptions.() -> Unit): String {
+public suspend inline fun ExecResource.create(
+    id: String,
+    options: ExecCreateOptions.() -> Unit,
+): String {
     return create(id, ExecCreateOptions().apply(options))
 }
 
@@ -28,6 +31,9 @@ public suspend inline fun ExecResource.create(id: String, options: ExecCreateOpt
  * @throws ExecNotFoundException If exec instance is not found.
  * @throws ContainerNotRunningException If the container in which the exec instance was created is not running.
  */
-public suspend inline fun ExecResource.start(id: String, options: ExecStartOptions.() -> Unit = {}) {
+public suspend inline fun ExecResource.start(
+    id: String,
+    options: ExecStartOptions.() -> Unit = {},
+) {
     start(id, ExecStartOptions().apply(options))
 }

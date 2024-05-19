@@ -13,9 +13,7 @@ public data class Stream internal constructor(
     internal val code: Byte,
     public val name: String,
 ) {
-
     public companion object {
-
         @JvmStatic
         @get:JvmName("STDIN")
         public val StdIn: Stream = Stream(0, "STDIN")

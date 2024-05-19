@@ -49,7 +49,10 @@ public data class NetworkSettings internal constructor(
     @SerialName("IPPrefixLen") public val ipAddressPrefixLength: Int? = null,
     @SerialName("IPv6Gateway") public val ipv6Gateway: String? = null,
     @SerialName("MacAddress") public val macAddress: String? = null,
-    @SerialName("Ports") public val ports: @Serializable(with = PortBindingsSerializer::class) Map<ExposedPort, List<PortBinding>?> = emptyMap(),
+    @SerialName("Ports") public val ports:
+        @Serializable(with = PortBindingsSerializer::class)
+        Map<ExposedPort, List<PortBinding>?> =
+        emptyMap(),
     @SerialName("SandboxKey") public val sandboxKey: String,
     @SerialName("EndpointID") public val endpointId: String,
     @SerialName("Gateway") public val gateway: String,

@@ -16,7 +16,6 @@ import me.devnatan.yoki.models.container.ContainerWaitResult
 import kotlin.time.Duration
 
 public actual class ContainerResource {
-
     /**
      * Returns a list of all containers.
      *
@@ -72,7 +71,10 @@ public actual class ContainerResource {
      * @throws ContainerAlreadyStartedException If the container was already started.
      * @throws ContainerNotFoundException If container was not found.
      */
-    public actual suspend fun start(container: String, detachKeys: String?) {
+    public actual suspend fun start(
+        container: String,
+        detachKeys: String?,
+    ) {
     }
 
     /**
@@ -81,7 +83,10 @@ public actual class ContainerResource {
      * @param container The container id to stop.
      * @param timeout Duration to wait before killing the container.
      */
-    public actual suspend fun stop(container: String, timeout: Duration?) {
+    public actual suspend fun stop(
+        container: String,
+        timeout: Duration?,
+    ) {
     }
 
     /**
@@ -90,7 +95,10 @@ public actual class ContainerResource {
      * @param container The container id to restart.
      * @param timeout Duration to wait before killing the container.
      */
-    public actual suspend fun restart(container: String, timeout: Duration?) {
+    public actual suspend fun restart(
+        container: String,
+        timeout: Duration?,
+    ) {
     }
 
     /**
@@ -99,7 +107,10 @@ public actual class ContainerResource {
      * @param container The container id to kill.
      * @param signal Signal to send for container to be killed, Docker's default is "SIGKILL".
      */
-    public actual suspend fun kill(container: String, signal: String?) {
+    public actual suspend fun kill(
+        container: String,
+        signal: String?,
+    ) {
     }
 
     /**
@@ -108,7 +119,10 @@ public actual class ContainerResource {
      * @param container The container id to rename.
      * @param newName The new container name.
      */
-    public actual suspend fun rename(container: String, newName: String) {
+    public actual suspend fun rename(
+        container: String,
+        newName: String,
+    ) {
     }
 
     /**
@@ -137,7 +151,10 @@ public actual class ContainerResource {
      * @throws ContainerNotFoundException If the container is not found.
      * @throws YokiResponseException If the container cannot be resized or if an error occurs in the request.
      */
-    public actual suspend fun resizeTTY(container: String, options: ResizeTTYOptions) {
+    public actual suspend fun resizeTTY(
+        container: String,
+        options: ResizeTTYOptions,
+    ) {
     }
 
     public actual fun attach(container: String): Flow<Frame> {
@@ -174,7 +191,10 @@ public actual class ContainerResource {
      * @param container The container id.
      * @param remotePath The path to the file or directory inside the container file system.
      */
-    public actual suspend fun downloadArchive(container: String, remotePath: String): RawSource {
+    public actual suspend fun downloadArchive(
+        container: String,
+        remotePath: String,
+    ): RawSource {
         TODO("Not yet implemented")
     }
 

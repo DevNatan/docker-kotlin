@@ -15,9 +15,12 @@ import kotlin.io.path.name
 import kotlin.io.path.relativeTo
 
 internal object CompressArchiveUtil {
-
     @Throws(IOException::class)
-    fun tar(inputPath: Path, outputPath: Path, childrenOnly: Boolean) {
+    fun tar(
+        inputPath: Path,
+        outputPath: Path,
+        childrenOnly: Boolean,
+    ) {
         buildTarStream(outputPath).use { tarArchiveOutputStream ->
             if (!Files.isDirectory(inputPath)) {
                 addFileToTar(tarArchiveOutputStream, inputPath, inputPath.fileName.toString())
@@ -34,7 +37,11 @@ internal object CompressArchiveUtil {
     }
 
     @Throws(IOException::class)
-    fun addFileToTar(tarArchiveOutputStream: TarArchiveOutputStream, file: Path, entryName: String?) {
+    fun addFileToTar(
+        tarArchiveOutputStream: TarArchiveOutputStream,
+        file: Path,
+        entryName: String?,
+    ) {
         if (Files.isSymbolicLink(file)) {
             tarArchiveOutputStream.putArchiveEntry(
                 TarArchiveEntry(entryName, TarArchiveEntry.LF_SYMLINK).apply {
@@ -42,10 +49,11 @@ internal object CompressArchiveUtil {
                 },
             )
         } else {
-            val tarArchiveEntry = tarArchiveOutputStream.createArchiveEntry(
-                file.toFile(),
-                entryName,
-            ) as TarArchiveEntry
+            val tarArchiveEntry =
+                tarArchiveOutputStream.createArchiveEntry(
+                    file.toFile(),
+                    entryName,
+                ) as TarArchiveEntry
             if (file.toFile().canExecute()) {
                 tarArchiveEntry.mode = tarArchiveEntry.mode or 493
             }
@@ -70,7 +78,10 @@ internal object CompressArchiveUtil {
     class TarDirWalker(private val basePath: Path, private val tarArchiveOutputStream: TarArchiveOutputStream) :
         SimpleFileVisitor<Path>() {
         @Throws(IOException::class)
-        override fun preVisitDirectory(dir: Path, attrs: BasicFileAttributes): FileVisitResult {
+        override fun preVisitDirectory(
+            dir: Path,
+            attrs: BasicFileAttributes,
+        ): FileVisitResult {
             if (dir != basePath) {
                 tarArchiveOutputStream.putArchiveEntry(
                     TarArchiveEntry(dir.toFile(), dir.relativeTo(basePath).fileName.name),
@@ -81,13 +92,19 @@ internal object CompressArchiveUtil {
         }
 
         @Throws(IOException::class)
-        override fun visitFile(file: Path, attrs: BasicFileAttributes): FileVisitResult {
+        override fun visitFile(
+            file: Path,
+            attrs: BasicFileAttributes,
+        ): FileVisitResult {
             addFileToTar(tarArchiveOutputStream, file, file.relativeTo(basePath).toString())
             return FileVisitResult.CONTINUE
         }
 
         @Throws(IOException::class)
-        override fun visitFileFailed(file: Path, exc: IOException): FileVisitResult {
+        override fun visitFileFailed(
+            file: Path,
+            exc: IOException,
+        ): FileVisitResult {
             tarArchiveOutputStream.close()
             throw exc
         }

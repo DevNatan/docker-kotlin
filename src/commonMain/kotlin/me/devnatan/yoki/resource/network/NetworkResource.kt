@@ -26,9 +26,7 @@ public class NetworkResource internal constructor(
     private val httpClient: HttpClient,
     private val json: Json,
 ) {
-
     private companion object {
-
         const val BASE_PATH = "/networks"
     }
 
@@ -51,7 +49,10 @@ public class NetworkResource internal constructor(
      * @param options The network inspection options.
      * @see <a href="https://docs.docker.com/engine/api/latest/#operation/NetworkInspect">NetworkInspect</a>
      */
-    public suspend fun inspect(id: String, options: NetworkInspectOptions? = null): Network {
+    public suspend fun inspect(
+        id: String,
+        options: NetworkInspectOptions? = null,
+    ): Network {
         return requestCatching(
             HttpStatusCode.NotFound to { NetworkNotFoundException(it, id) },
         ) {
@@ -106,7 +107,10 @@ public class NetworkResource internal constructor(
      * @param container The id or name of the container to connect to the network.
      * @see <a href="https://docs.docker.com/engine/api/v1.41/#operation/NetworkConnect">NetworkConnect</a>
      */
-    public suspend fun connectContainer(id: String, container: String) {
+    public suspend fun connectContainer(
+        id: String,
+        container: String,
+    ) {
         httpClient.post("$BASE_PATH/$id/connect") {
             setBody(mapOf("Container" to container))
         }
@@ -119,7 +123,10 @@ public class NetworkResource internal constructor(
      * @param container The id or name of the container to connect to the network.
      * @see <a href="https://docs.docker.com/engine/api/latest/#operation/NetworkDisconnect">NetworkDisconnect</a>
      */
-    public suspend fun disconnectContainer(id: String, container: String) {
+    public suspend fun disconnectContainer(
+        id: String,
+        container: String,
+    ) {
         httpClient.post("$BASE_PATH/$id/disconnect") {
             setBody(mapOf("Container" to container))
         }
@@ -153,7 +160,10 @@ public suspend inline fun NetworkResource.list(filters: NetworkListFilters.() ->
  * @param options The network inspection options.
  * @see <a href="https://docs.docker.com/engine/api/latest/#operation/NetworkInspect">NetworkInspect</a>
  */
-public suspend inline fun NetworkResource.inspect(id: String, options: NetworkInspectOptions.() -> Unit): Network {
+public suspend inline fun NetworkResource.inspect(
+    id: String,
+    options: NetworkInspectOptions.() -> Unit,
+): Network {
     return inspect(id, NetworkInspectOptions().apply(options))
 }
 

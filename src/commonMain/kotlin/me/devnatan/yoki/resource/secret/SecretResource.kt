@@ -25,7 +25,6 @@ public class SecretResource internal constructor(
     private val httpClient: HttpClient,
     private val json: Json,
 ) {
-
     private companion object {
         const val BASE_PATH = "/secrets"
     }
@@ -85,7 +84,11 @@ public class SecretResource internal constructor(
      * @param version The secret version.
      * @param options The new secret spec.
      */
-    public suspend fun update(id: String, version: Long, options: SecretSpec) {
+    public suspend fun update(
+        id: String,
+        version: Long,
+        options: SecretSpec,
+    ) {
         requestCatching(
             HttpStatusCode.NotFound to { SecretNotFoundException(it, id, version) },
             HttpStatusCode.ServiceUnavailable to ::NodeNotPartOfSwarmException,
@@ -111,7 +114,11 @@ public suspend inline fun SecretResource.create(options: SecretSpec.() -> Unit):
     return create(SecretSpec().apply(options))
 }
 
-public suspend inline fun SecretResource.update(id: String, version: Long, options: SecretSpec.() -> Unit) {
+public suspend inline fun SecretResource.update(
+    id: String,
+    version: Long,
+    options: SecretSpec.() -> Unit,
+) {
     return update(id, version, SecretSpec().apply(options))
 }
 

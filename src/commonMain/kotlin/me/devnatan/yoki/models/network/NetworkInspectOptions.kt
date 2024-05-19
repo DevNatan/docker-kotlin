@@ -17,7 +17,6 @@ public data class NetworkInspectOptions(
     public var verbose: Boolean? = null,
     public var scope: String? = null,
 ) {
-
     init {
         scope?.let { requireNetworkScope(it) }
     }

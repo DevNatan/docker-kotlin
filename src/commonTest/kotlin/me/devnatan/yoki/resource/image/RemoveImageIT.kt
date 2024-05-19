@@ -10,17 +10,17 @@ import kotlin.test.Test
 import kotlin.test.fail
 
 class RemoveImageIT : ResourceIT() {
-
     @Test
-    fun `image remove`() = runTest {
-        val image = "busybox:latest"
+    fun `image remove`() =
+        runTest {
+            val image = "busybox:latest"
 
-        try {
-            testClient.images.pull(image).collect()
-        } catch (e: Throwable) {
-            fail("Failed to pull image", e)
+            try {
+                testClient.images.pull(image).collect()
+            } catch (e: Throwable) {
+                fail("Failed to pull image", e)
+            }
+
+            testClient.images.remove(image)
         }
-
-        testClient.images.remove(image)
-    }
 }

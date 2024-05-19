@@ -11,9 +11,10 @@ import kotlin.jvm.JvmSynthetic
  *
  * @param configure The client configuration.
  */
-public inline fun Yoki(crossinline configure: YokiConfigBuilder.() -> Unit): Yoki = Yoki(
-    YokiConfigBuilder()
-        .forCurrentPlatform()
-        .apply(configure)
-        .build(),
-)
+public inline fun Yoki(crossinline configure: YokiConfigBuilder.() -> Unit): Yoki =
+    Yoki(
+        YokiConfigBuilder()
+            .forCurrentPlatform()
+            .apply(configure)
+            .build(),
+    )

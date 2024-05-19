@@ -8,7 +8,6 @@ import me.devnatan.yoki.models.container.ContainerPruneFilters
 import me.devnatan.yoki.models.container.ContainerPruneResult
 import me.devnatan.yoki.models.container.ContainerRemoveOptions
 import me.devnatan.yoki.models.container.ContainerSummary
-import me.devnatan.yoki.models.exec.ExecCreateOptions
 import me.devnatan.yoki.resource.image.ImageNotFoundException
 
 /**
@@ -39,7 +38,10 @@ public suspend inline fun ContainerResource.create(options: ContainerCreateOptio
  * @throws ContainerNotFoundException If the container is not found for the specified id.
  * @throws ContainerRemoveConflictException When trying to remove an active container without the `force` option.
  */
-public suspend inline fun ContainerResource.remove(container: String, options: ContainerRemoveOptions.() -> Unit) {
+public suspend inline fun ContainerResource.remove(
+    container: String,
+    options: ContainerRemoveOptions.() -> Unit,
+) {
     return remove(container, ContainerRemoveOptions().apply(options))
 }
 
@@ -55,7 +57,10 @@ public suspend inline fun ContainerResource.prune(block: ContainerPruneFilters.(
  * @throws ContainerNotFoundException If the container is not found.
  * @throws YokiResponseException If the container cannot be resized or if an error occurs in the request.
  */
-public suspend inline fun ContainerResource.resizeTTY(container: String, options: ResizeTTYOptions.() -> Unit) {
+public suspend inline fun ContainerResource.resizeTTY(
+    container: String,
+    options: ResizeTTYOptions.() -> Unit,
+) {
     resizeTTY(container, ResizeTTYOptions().apply(options))
 }
 
