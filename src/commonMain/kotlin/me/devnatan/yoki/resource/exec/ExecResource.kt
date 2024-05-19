@@ -6,10 +6,15 @@ import io.ktor.client.request.get
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.http.HttpStatusCode
+import kotlin.jvm.JvmSynthetic
 import me.devnatan.yoki.io.requestCatching
+import me.devnatan.yoki.models.IdOnlyResponse
 import me.devnatan.yoki.models.ResizeTTYOptions
+import me.devnatan.yoki.models.exec.ExecCreateOptions
 import me.devnatan.yoki.models.exec.ExecInspectResponse
 import me.devnatan.yoki.models.exec.ExecStartOptions
+import me.devnatan.yoki.resource.ResourcePaths.CONTAINERS
+import me.devnatan.yoki.resource.container.ContainerNotFoundException
 import me.devnatan.yoki.resource.container.ContainerNotRunningException
 
 /**
@@ -26,6 +31,35 @@ public class ExecResource internal constructor(
     private companion object {
         const val BASE_PATH = "/exec"
     }
+
+    /**
+     * Runs a command inside a running container.
+     *
+     * @param id The container id to execute the command.
+     * @param options Exec instance command options.
+     * @throws ContainerNotFoundException If container instance is not found.
+     * @throws ContainerNotRunningException If the container is not running.
+     */
+    @JvmSynthetic
+    public suspend fun create(id: String, options: ExecCreateOptions): String =
+        requestCatching(
+            HttpStatusCode.NotFound to { cause ->
+                ContainerNotFoundException(
+                    cause,
+                    id,
+                )
+            },
+            HttpStatusCode.Conflict to { cause ->
+                ContainerNotRunningException(
+                    cause,
+                    id,
+                )
+            },
+        ) {
+            httpClient.post("$CONTAINERS/$id/exec") {
+                setBody(options)
+            }
+        }.body<IdOnlyResponse>().id
 
     /**
      * Inspects an exec instance and returns low-level information about it.

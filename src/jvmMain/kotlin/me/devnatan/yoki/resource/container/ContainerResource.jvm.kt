@@ -13,9 +13,16 @@ import io.ktor.client.request.put
 import io.ktor.client.request.setBody
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
+import io.ktor.util.cio.toByteReadChannel
 import io.ktor.utils.io.ByteReadChannel
-import io.ktor.utils.io.jvm.javaio.toByteReadChannel
 import io.ktor.utils.io.readUTF8Line
+import java.io.InputStream
+import java.util.concurrent.CompletableFuture
+import kotlin.io.encoding.Base64
+import kotlin.io.encoding.ExperimentalEncodingApi
+import kotlin.time.Duration
+import kotlin.time.DurationUnit
+import kotlin.time.toDuration
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
@@ -32,7 +39,6 @@ import me.devnatan.yoki.io.readTarFile
 import me.devnatan.yoki.io.requestCatching
 import me.devnatan.yoki.io.writeTarFile
 import me.devnatan.yoki.models.Frame
-import me.devnatan.yoki.models.IdOnlyResponse
 import me.devnatan.yoki.models.ResizeTTYOptions
 import me.devnatan.yoki.models.Stream
 import me.devnatan.yoki.models.container.Container
@@ -45,16 +51,8 @@ import me.devnatan.yoki.models.container.ContainerPruneResult
 import me.devnatan.yoki.models.container.ContainerRemoveOptions
 import me.devnatan.yoki.models.container.ContainerSummary
 import me.devnatan.yoki.models.container.ContainerWaitResult
-import me.devnatan.yoki.models.exec.ExecCreateOptions
 import me.devnatan.yoki.resource.ResourcePaths.CONTAINERS
 import me.devnatan.yoki.resource.image.ImageNotFoundException
-import java.io.InputStream
-import java.util.concurrent.CompletableFuture
-import kotlin.io.encoding.Base64
-import kotlin.io.encoding.ExperimentalEncodingApi
-import kotlin.time.Duration
-import kotlin.time.DurationUnit
-import kotlin.time.toDuration
 
 public actual class ContainerResource(
     private val coroutineScope: CoroutineScope,
@@ -85,19 +83,6 @@ public actual class ContainerResource(
     @JvmOverloads
     public fun listAsync(options: ContainerListOptions = ContainerListOptions(all = true)): CompletableFuture<List<ContainerSummary>> =
         coroutineScope.async { list(options) }.asCompletableFuture()
-
-    /**
-     * Runs a command inside a running container.
-     *
-     * @param container Unique identifier or name of the container.
-     * @param options Exec instance command options.
-     */
-    @JvmOverloads
-    public fun execAsync(
-        container: String,
-        options: ExecCreateOptions = ExecCreateOptions(),
-    ): CompletableFuture<String> =
-        coroutineScope.async { exec(container, options) }.asCompletableFuture()
 
     /**
      * Creates a new container.
@@ -437,33 +422,6 @@ public actual class ContainerResource(
         options: ResizeTTYOptions = ResizeTTYOptions(),
     ): CompletableFuture<Unit> =
         coroutineScope.async { resizeTTY(container, options) }.asCompletableFuture()
-
-    /**
-     * Runs a command inside a running container.
-     *
-     * @param container The container id to execute the command.
-     * @param options Exec instance command options.
-     */
-    @JvmSynthetic
-    public actual suspend fun exec(container: String, options: ExecCreateOptions): String =
-        requestCatching(
-            HttpStatusCode.NotFound to { cause ->
-                ContainerNotFoundException(
-                    cause,
-                    container,
-                )
-            },
-            HttpStatusCode.Conflict to { cause ->
-                ContainerNotRunningException(
-                    cause,
-                    container,
-                )
-            },
-        ) {
-            httpClient.post("$CONTAINERS/$container/exec") {
-                setBody(options)
-            }
-        }.body<IdOnlyResponse>().id
 
     @JvmSynthetic
     public actual fun attach(container: String): Flow<Frame> = flow {
