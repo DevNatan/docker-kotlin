@@ -1,6 +1,5 @@
 package me.devnatan.yoki.models.container
 
-import kotlinx.serialization.Contextual
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import me.devnatan.yoki.models.ExposedPort
@@ -25,7 +24,7 @@ public data class ContainerCreateOptions(
     @SerialName("Healthcheck") public var healthcheck: HealthConfig? = null,
     @SerialName("ArgsEscaped") public var escapedArgs: Boolean? = null,
     @SerialName("Image") public var image: String? = null,
-    @SerialName("Volumes") public var volumes: Map<String, @Contextual Any>? = null,
+    @SerialName("Volumes") public var volumes: @Serializable(with = VolumesSerializer::class) List<String>? = null,
     @SerialName("WorkingDir") public var workingDirectory: String? = null,
     @SerialName("Entrypoint") public var entrypoint: List<String>? = null,
     @SerialName("NetworkDisabled") public var disabledNetwork: Boolean? = null,
@@ -57,7 +56,7 @@ public fun ContainerCreateOptions.hostConfig(block: HostConfig.() -> Unit) {
 }
 
 public fun ContainerCreateOptions.volume(string: String) {
-    this.volumes = mapOf(string to emptyMap<String, Any>()) + volumes.orEmpty()
+    this.volumes = this.volumes.orEmpty() + string
 }
 
 public fun ContainerCreateOptions.networkingConfig(block: NetworkingConfig.() -> Unit) {
