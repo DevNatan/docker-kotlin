@@ -20,6 +20,7 @@ public data class ContainerCreateOptions(
     @SerialName("User") public var user: String? = null,
     @SerialName("AttachStdin") public var attachStdin: Boolean? = null,
     @SerialName("ExposedPorts") public var exposedPorts: @Serializable(with = ExposedPortsSerializer::class) List<ExposedPort>? = null,
+    @SerialName("Env") public var env: List<String>? = null,
     @SerialName("Cmd") public var command: List<String>? = null,
     @SerialName("Healthcheck") public var healthcheck: HealthConfig? = null,
     @SerialName("ArgsEscaped") public var escapedArgs: Boolean? = null,
