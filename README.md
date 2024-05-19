@@ -21,14 +21,14 @@ repositories {
 }
 
 dependencies {
-    implementation("me.devnatan:yoki:0.5.0")
+    implementation("me.devnatan:yoki:0.6.0")
 }
 ```
 
 For JVM users, use the Yoki JVM artifact
 
 ```groovy
-implementation 'me.devnatan:yoki-jvm:0.5.0'
+implementation 'me.devnatan:yoki-jvm:0.6.0'
 ```
 
 ## Basic Usage
