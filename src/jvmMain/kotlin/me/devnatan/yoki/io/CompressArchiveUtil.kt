@@ -11,7 +11,7 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.SimpleFileVisitor
 import java.nio.file.attribute.BasicFileAttributes
-import kotlin.io.path.pathString
+import kotlin.io.path.name
 import kotlin.io.path.relativeTo
 
 internal object CompressArchiveUtil {
@@ -73,7 +73,7 @@ internal object CompressArchiveUtil {
         override fun preVisitDirectory(dir: Path, attrs: BasicFileAttributes): FileVisitResult {
             if (dir != basePath) {
                 tarArchiveOutputStream.putArchiveEntry(
-                    TarArchiveEntry(dir.relativeTo(basePath)),
+                    TarArchiveEntry(dir.toFile(), dir.relativeTo(basePath).fileName.name),
                 )
                 tarArchiveOutputStream.closeArchiveEntry()
             }
@@ -82,7 +82,7 @@ internal object CompressArchiveUtil {
 
         @Throws(IOException::class)
         override fun visitFile(file: Path, attrs: BasicFileAttributes): FileVisitResult {
-            addFileToTar(tarArchiveOutputStream, file, file.relativize(basePath).pathString)
+            addFileToTar(tarArchiveOutputStream, file, file.relativeTo(basePath).toString())
             return FileVisitResult.CONTINUE
         }
 
