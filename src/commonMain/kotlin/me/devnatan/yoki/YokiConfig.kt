@@ -17,7 +17,11 @@ internal val DefaultYokiConfig = YokiConfig.builder().forCurrentPlatform().build
  * @param apiVersion The version of the Docker API that will be used during communication.
  *                   See more: [Versioned API and SDK](https://docs.docker.com/engine/api/#versioned-api-and-sdk).
  */
-public class YokiConfig(public val socketPath: String, public val apiVersion: String) {
+public class YokiConfig(
+    public val socketPath: String,
+    public val apiVersion: String,
+    public val debugHttpCalls: Boolean,
+) {
 
     init {
         check(socketPath.isNotBlank()) { "Socket path must be provided and cannot be blank" }
@@ -50,6 +54,11 @@ public class YokiConfigBuilder {
     )
 
     /**
+     * Whether to debug the HTTP calls to the Docker daemon.
+     */
+    private var debugHttpCalls: Boolean = false
+
+    /**
      * Sets the Docker socket path.
      *
      * @param socketPath The Docker socket path.
@@ -66,6 +75,16 @@ public class YokiConfigBuilder {
      */
     public fun apiVersion(apiVersion: String): YokiConfigBuilder {
         this.apiVersion = apiVersion
+        return this
+    }
+
+    /**
+     * Sets the debug logging of HTTP calls.
+     *
+     * @param debugHttpCalls whether to log the HTTP calls
+     */
+    public fun debugHttpCalls(debugHttpCalls: Boolean = true): YokiConfigBuilder {
+        this.debugHttpCalls = debugHttpCalls
         return this
     }
 
@@ -116,7 +135,7 @@ public class YokiConfigBuilder {
      * Builds this class to a [YokiConfig].
      */
     public fun build(): YokiConfig {
-        return YokiConfig(socketPath, apiVersion)
+        return YokiConfig(socketPath, apiVersion, debugHttpCalls)
     }
 
     /**
