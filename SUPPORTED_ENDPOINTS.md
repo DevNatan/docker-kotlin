@@ -1,4 +1,4 @@
-# Yoki supported Docker API endpoints
+# docker-kotlin supported Docker API endpoints
 
 Supports 46 of 106 endpoints
 

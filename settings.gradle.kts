@@ -8,4 +8,4 @@ pluginManagement {
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-rootProject.name = "yoki"
+rootProject.name = "docker-kotlin"

@@ -1,5 +1,5 @@
 # Third-Party Software
-This document contains a list of third-party libraries that Yoki uses.
+This document contains a list of third-party libraries that docker-client uses.
 
 * [junixsocket](https://github.com/kohlschutter/junixsocket)
 * [Kotest](https://kotest.io)

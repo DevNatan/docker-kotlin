@@ -105,9 +105,9 @@ publishOnCentral {
     projectDescription.set("Multiplatform Docker API client")
     projectLongName.set(project.name)
     licenseName.set("MIT")
-    licenseUrl.set("https://github.com/DevNatan/yoki/blob/main/LICENSE")
-    projectUrl.set("https://github.com/DevNatan/yoki")
-    scmConnection.set("git:git@github.com:DevNatan/yoki")
+    licenseUrl.set("https://github.com/DevNatan/docker-kotlin/blob/main/LICENSE")
+    projectUrl.set("https://github.com/DevNatan/docker-kotlin")
+    scmConnection.set("git:git@github.com:DevNatan/docker-kotlin")
 
     mavenCentral.user.set(System.getenv("OSSRH_USERNAME"))
     mavenCentral.password.set(provider { System.getenv("OSSRH_PASSWORD") })
