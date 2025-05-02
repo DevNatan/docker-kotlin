@@ -5,14 +5,30 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.kotlinter)
-    alias(libs.plugins.publishOnCentral)
+    alias(libs.plugins.publish)
     alias(libs.plugins.binaryCompatibilityValidator)
     alias(libs.plugins.kover)
     alias(libs.plugins.detekt)
 }
 
 group = "me.devnatan"
-version = "0.7.0-SNAPSHOT"
+version = property("version")
+    .toString()
+    .takeUnless { it == "unspecified" }
+    ?.filterNot { it == 'v' } ?: nextGitTag()
+
+@Suppress("UnstableApiUsage")
+fun nextGitTag(): String {
+    val latestTag = providers.exec {
+        commandLine("git", "describe", "--tags", "--abbrev=0")
+    }.standardOutput.asText.get().trim()
+
+    val versionParts = latestTag.removePrefix("v").split(".")
+    val major = versionParts.getOrNull(0)?.toIntOrNull() ?: 0
+    val minor = versionParts.getOrNull(1)?.toIntOrNull() ?: 0
+
+    return "$major.${minor + 1}.0-SNAPSHOT"
+}
 
 repositories {
     mavenCentral()
@@ -97,50 +113,6 @@ kotlin {
         val linuxX64Test by getting { dependsOn(nativeTest) }
         val macosX64Main by getting { dependsOn(nativeMain) }
         val macosX64Test by getting { dependsOn(nativeTest) }
-    }
-}
-
-val isReleaseVersion = !version.toString().endsWith("SNAPSHOT")
-publishOnCentral {
-    projectDescription.set("Multiplatform Docker API client")
-    projectLongName.set(project.name)
-    licenseName.set("MIT")
-    licenseUrl.set("https://github.com/DevNatan/docker-kotlin/blob/main/LICENSE")
-    projectUrl.set("https://github.com/DevNatan/docker-kotlin")
-    scmConnection.set("git:git@github.com:DevNatan/docker-kotlin")
-
-    mavenCentral.user.set(System.getenv("OSSRH_USERNAME"))
-    mavenCentral.password.set(provider { System.getenv("OSSRH_PASSWORD") })
-
-    if (!isReleaseVersion)
-        mavenCentralSnapshotsRepository()
-}
-
-signing {
-    isRequired = isReleaseVersion && gradle.taskGraph.hasTask("uploadArchives")
-    useInMemoryPgpKeys(
-        System.getenv("OSSRH_SIGNING_KEY"),
-        System.getenv("OSSRH_SIGNING_PASSWORD")
-    )
-}
-
-publishing {
-    publications {
-        withType<MavenPublication> {
-            if ("OSSRH" !in name) {
-                artifact(tasks.javadocJar)
-            }
-
-            pom {
-                developers {
-                    developer {
-                        name.set("Natan Vieira")
-                        email.set("natanvnascimento@gmail.com")
-                        url.set("http://www.devnatan.me/")
-                    }
-                }
-            }
-        }
     }
 }
 

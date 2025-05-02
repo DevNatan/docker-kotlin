@@ -9,7 +9,7 @@ This document contains a list of third-party libraries that docker-client uses.
 * [kotlinx-datetime](https://github.com/Kotlin/kotlinx-datetime)
 * [kotlinx-io](https://github.com/Kotlin/kotlinx-io)
 * [JetBrains Annotations](https://github.com/JetBrains/java-annotations)
-* [publish-on-central](https://github.com/DanySK/publish-on-central)
+* [vanniktech's publish plugin](github.com/vanniktech/gradle-maven-publish-plugin)
 * [kotlinter](https://github.com/jeremymailen/kotlinter-gradle)
 * [detekt](https://github.com/detekt/detekt)
 * [slf4j](https://www.slf4j.org/)

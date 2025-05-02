@@ -4,7 +4,7 @@
 [![Integration Tests](https://github.com/DevNatan/docker-kotlin/actions/workflows/integration-tests.yml/badge.svg)](https://github.com/DevNatan/docker-kotlin/actions/workflows/integration-tests.yml)
 ![Maven Central](https://img.shields.io/maven-central/v/me.devnatan/docker-kotlin)
 
-docker-kotlin allows you to interact with the Docker Engine Remote API in a simplified and fast way.
+docker-kotlin allows you to interact with the Docker Engine Remote API.
 
 * [Installation](#installation)
 * [Basic Usage](#basic-usage)

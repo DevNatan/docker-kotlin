@@ -1,8 +1,9 @@
-name: Publish
+name: Publish Release
+
 on:
-  workflow_dispatch:
-  release:
-    types: [ published ]
+  push:
+    tags: [ 'v*.*.*' ]
+
 jobs:
   publish:
     name: Publish
@@ -12,24 +13,25 @@ jobs:
       packages: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup JDK 11
-        uses: actions/setup-java@v2
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
         with:
           java-version: '11'
-          distribution: 'adopt'
+          distribution: 'temurin'
           server-id: github
-          cache: 'gradle'
-      - name: Gradle Wrapper Validation
-        uses: gradle/wrapper-validation-action@v1.0.4
-      - name: Build with Gradle
-        uses: burrunan/gradle-cache-action@v1
+          settings-path: ${{ github.workspace }}
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Publish to Maven Central
+        run: ./gradlew publishAndReleaseToMavenCentral -Pversion=${{ github.ref_name }} --no-daemon --stacktrace --no-configuration-cache
         env:
-          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-          OSSRH_SIGNING_KEY:  ${{ secrets.OSSRH_SIGNING_KEY }}
-          OSSRH_SIGNING_PASSWORD:  ${{ secrets.OSSRH_SIGNING_PASSWORD }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          arguments: --no-configuration-cache publish
-          gradle-version: wrapper
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.OSSRH_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.OSSRH_TOKEN }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.OSSRH_SIGNING_KEY }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.OSSRH_SIGNING_PASSWORD }}
