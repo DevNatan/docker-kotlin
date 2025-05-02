@@ -10,7 +10,7 @@ slf4j = "2.0.13"
 apache-compress = "1.26.2"
 kotlinx-io = "0.4.0"
 plugin-kotlinter = "4.3.0"
-plugin-publishOnCentral = "5.1.3"
+plugin-publish = "0.31.0"
 plugin-binaryCompatibilityValidator = "0.14.0"
 plugin-kover = "0.8.0"
 plugin-detekt = "1.23.6"
@@ -107,7 +107,7 @@ ktx = ["ktx-coroutines-core", "ktx-serialization-core", "ktx-serialization-json"
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlinter = { id = "org.jmailen.kotlinter", version.ref = "plugin-kotlinter" }
-publishOnCentral = { id = "org.danilopianini.publish-on-central", version.ref = "plugin-publishOnCentral" }
+publish = { id = "com.vanniktech.maven.publish", version.ref = "plugin-publish" }
 binaryCompatibilityValidator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "plugin-binaryCompatibilityValidator" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "plugin-kover" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "plugin-detekt" }
