@@ -2,7 +2,7 @@
 kotlin = "1.9.22"
 ktx-coroutines = "1.8.1"
 ktx-serialization = "1.7.1"
-ktor = "2.3.11"
+ktor = "2.3.12"
 junixsocket = "2.6.1"
 ktx-datetime = "0.6.0"
 junit = "5.10.2"
