@@ -1,14 +1,13 @@
 # docker-kotlin
 
-[![Build](https://github.com/DevNatan/docker-kotlin/actions/workflows/build.yml/badge.svg)](https://github.com/DevNatan/docker-kotlin/actions/workflows/build.yml)
-[![Integration Tests](https://github.com/DevNatan/docker-kotlin/actions/workflows/integration-tests.yml/badge.svg)](https://github.com/DevNatan/docker-kotlin/actions/workflows/integration-tests.yml)
-![Maven Central](https://img.shields.io/maven-central/v/me.devnatan/docker-kotlin)
-
 docker-kotlin allows you to interact with the Docker Engine Remote API.
 
 * [Installation](#installation)
 * [Basic Usage](#basic-usage)
-* [Supported Endpoints](SUPPORTED_ENDPOINTS.md)
+
+[![Build](https://github.com/DevNatan/docker-kotlin/actions/workflows/build.yml/badge.svg)](https://github.com/DevNatan/docker-kotlin/actions/workflows/build.yml)
+[![Integration Tests](https://github.com/DevNatan/docker-kotlin/actions/workflows/integration-tests.yml/badge.svg)](https://github.com/DevNatan/docker-kotlin/actions/workflows/integration-tests.yml)
+![Maven Central](https://img.shields.io/maven-central/v/me.devnatan/docker-kotlin)
 
 ## Installation
 
@@ -18,14 +17,14 @@ repositories {
 }
 
 dependencies {
-    implementation("me.devnatan:docker-kotlin:0.6.0")
+    implementation("me.devnatan:docker-kotlin:<version>")
 }
 ```
 
 For JVM users, use the Docker client JVM artifact
 
 ```groovy
-implementation 'me.devnatan:docker-kotlin-jvm:0.6.0'
+implementation 'me.devnatan:docker-kotlin-jvm:<version>'
 ```
 
 ## Basic Usage
