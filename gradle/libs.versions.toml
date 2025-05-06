@@ -11,7 +11,7 @@ apache-compress = "1.26.2"
 kotlinx-io = "0.4.0"
 plugin-kotlinter = "4.4.1"
 plugin-publish = "0.31.0"
-plugin-binaryCompatibilityValidator = "0.14.0"
+plugin-binaryCompatibilityValidator = "0.17.0"
 plugin-kover = "0.8.3"
 plugin-detekt = "1.23.6"
 
